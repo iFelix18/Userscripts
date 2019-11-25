@@ -3,11 +3,11 @@
 // @namespace       https://github.com/iFelix18
 // @exclude         *
 // ==UserLibrary==
-// @name            Utils
+// @name            Monkey Utils
 // @description     Utils for my userscripts
 // @copyright       2019, Felix (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.0
+// @version         2.0.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -20,7 +20,7 @@
 (() => {
   'use strict'
 
-  this.Utils = class {
+  this.MonkeyUtils = class {
     constructor (config = {}) {
       if (!config.name) throw Error('Userscript name is required')
       if (!config.version) throw Error('Userscript version is required')
