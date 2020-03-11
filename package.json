@@ -24,7 +24,7 @@
     "gulp-minify": "^3.1.0",
     "prettier": "^1.19.1",
     "standard": "^14.3.1",
-    "updates": "^9.1.0"
+    "updates": "^10.2.2"
   },
   "standard": {
     "globals": [
