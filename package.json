@@ -22,7 +22,7 @@
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-minify": "^3.1.0",
-    "prettier": "^1.19.1",
+    "prettier": "^2.0.1",
     "standard": "^14.3.3",
     "updates": "^10.2.4"
   },
