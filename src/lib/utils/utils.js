@@ -7,7 +7,7 @@
 // @description     Utils for my userscripts
 // @copyright       2019, Felix (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.0.0
+// @version         2.1.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -27,7 +27,7 @@
       if (!config.author) throw Error('Userscript author is required')
 
       this.config = {
-        name: config.name,
+        name: config.name.toUpperCase(),
         version: config.version,
         author: config.author,
         color: config.color || 'red', //* optional
@@ -36,24 +36,28 @@
     }
 
     async init (id) {
-      console.log(`%c${this.config.name} ` + `%cv${this.config.version} by ${this.config.author} is running!`, `color:${this.config.color};font-weight:bold;`, '')
+      console.log(`%c${this.config.name}\n` + `%cv${this.config.version} by ${this.config.author} is running!`, `color:${this.config.color};font-weight:bold;font-size:18px;`, '')
 
       if (id && this.config.logging === true) {
         const data = JSON.parse(await GM.getValue(id))
         Object.keys(data).forEach((key) => {
-          console.log(`%c${this.config.name}` + `%c: ${key} is "${data[key]}"`, `color:${this.config.color};font-weight:bold;`, '')
+          console.log(`${this.config.name}:`, `${key} is "${data[key]}"`)
         })
       }
     }
 
     log (message) {
       if (this.config.logging === true) {
-        console.log(`%c${this.config.name}` + `%c: ${message}`, `color:${this.config.color};font-weight:bold;`, '')
+        console.log(`${this.config.name}:`, message)
       }
     }
 
+    error (message) {
+      console.error(`${this.config.name}:`, message)
+    }
+
     alert (message) {
-      window.alert(`${this.config.name}: ${message}`)
+      window.alert(`${this.config.name}:`, message)
     }
 
     short (message) {
