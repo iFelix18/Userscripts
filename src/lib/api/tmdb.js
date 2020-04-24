@@ -7,7 +7,7 @@
 // @description     TMDb API for userscripts
 // @copyright       2020, Felix (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.0
+// @version         1.0.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -46,7 +46,7 @@
           url: `${this.config.url}/movie/${id}?api_key=${this.config.apikey}&language=${this.config.language}`,
           headers: this._headers,
           onload: (response) => {
-            if (response.readyState === response.DONE && response.responseText !== '[]') {
+            if (response.readyState === 4 && response.responseText !== '[]') {
               if (this.config.debug === true) console.log(response)
               const data = JSON.parse(response.responseText)
               resolve(data)
@@ -66,7 +66,7 @@
           url: `${this.config.url}/tv/${id}?api_key=${this.config.apikey}&language=${this.config.language}`,
           headers: this._headers,
           onload: (response) => {
-            if (response.readyState === response.DONE && response.responseText !== '[]') {
+            if (response.readyState === 4 && response.responseText !== '[]') {
               if (this.config.debug === true) console.log(response)
               const data = JSON.parse(response.responseText)
               resolve(data)
@@ -86,7 +86,7 @@
           url: `${this.config.url}/tv/${id}/season/${season}?api_key=${this.config.apikey}&language=${this.config.language}`,
           headers: this._headers,
           onload: (response) => {
-            if (response.readyState === response.DONE && response.responseText !== '[]') {
+            if (response.readyState === 4 && response.responseText !== '[]') {
               if (this.config.debug === true) console.log(response)
               const data = JSON.parse(response.responseText)
               resolve(data)
@@ -106,7 +106,7 @@
           url: `${this.config.url}/tv/${id}/season/${season}/episode/${episode}?api_key=${this.config.apikey}&language=${this.config.language}`,
           headers: this._headers,
           onload: (response) => {
-            if (response.readyState === response.DONE && response.responseText !== '[]') {
+            if (response.readyState === 4 && response.responseText !== '[]') {
               if (this.config.debug === true) console.log(response)
               const data = JSON.parse(response.responseText)
               resolve(data)
