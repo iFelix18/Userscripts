@@ -1,13 +1,13 @@
 // ==UserScript==
-// @author          Felix
+// @author          Davide
 // @namespace       https://github.com/iFelix18
 // @exclude         *
 // ==UserLibrary==
 // @name            TMDb API
-// @description     TMDb API for userscripts
-// @copyright       2020, Felix (https://github.com/iFelix18)
+// @description     TMDb API for my userscripts
+// @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.1
+// @version         1.0.2
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
