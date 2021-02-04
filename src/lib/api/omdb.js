@@ -1,13 +1,13 @@
 // ==UserScript==
-// @author          Felix
+// @author          Davide
 // @namespace       https://github.com/iFelix18
 // @exclude         *
 // ==UserLibrary==
 // @name            OMDb API
 // @description     OMDb API for my userscripts
-// @copyright       2019, Felix (https://github.com/iFelix18)
+// @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.0
+// @version         1.0.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -47,23 +47,25 @@
       }
 
       return new Promise((resolve, reject) => {
-        const url = (
-          (query.id) ? `${this.config.url}/?apikey=${this.config.apikey}&i=${query.id}&type=${query.type}&y=${query.year}&plot=${query.plot}`
-            : `${this.config.url}/?apikey=${this.config.apikey}&t=${query.title}&type=${query.type}&y=${query.year}&plot=${query.plot}`
-        )
+        const url = query.id
+          ? `${this.config.url}/?apikey=${this.config.apikey}&i=${query.id}&type=${query.type}&y=${query.year}&plot=${query.plot}`
+          : `${this.config.url}/?apikey=${this.config.apikey}&t=${query.title}&type=${query.type}&y=${query.year}&plot=${query.plot}`
+
         GM.xmlHttpRequest({
           method: 'GET',
           url: url,
           headers: this._headers,
-          onload: response => {
+          onload: (response) => {
             if (this.config.debug === true) console.log(response)
 
             const data = JSON.parse(response.responseText)
             if ((query.id !== '' || query.title !== '') && response.readyState === 4 && response.responseText !== '[]' && data.Response !== 'False') {
               resolve(data)
             } else {
-              (query.id === '' && query.title === '') ? reject(new Error('A search query (IMDb ID or Title) is required.'))
-                : data.Response === 'False' ? reject(new Error(data.Error))
+              (query.id === '' && query.title === '')
+                ? reject(new Error('A search query (IMDb ID or Title) is required.'))
+                : data.Response === 'False'
+                  ? reject(new Error(data.Error))
                   : reject(new Error(response))
             }
           }
@@ -84,15 +86,17 @@
           method: 'GET',
           url: `${this.config.url}/?apikey=${this.config.apikey}&s=${query.search}&type=${query.type}&y=${query.year}&page=${query.page}`,
           headers: this._headers,
-          onload: response => {
+          onload: (response) => {
             if (this.config.debug === true) console.log(response)
 
             const data = JSON.parse(response.responseText)
             if (query.search !== '' && response.readyState === 4 && response.responseText !== '[]' && data.Response !== 'False') {
               resolve(data.Search)
             } else {
-              query.search === '' ? reject(new Error('A search query is required.'))
-                : data.Response === 'False' ? reject(new Error(data.Error))
+              query.search === ''
+                ? reject(new Error('A search query is required.'))
+                : data.Response === 'False'
+                  ? reject(new Error(data.Error))
                   : reject(new Error(response))
             }
           }
