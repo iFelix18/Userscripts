@@ -1,7 +1,7 @@
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
 
-# Created by https://www.gitignore.io/api/windows,visualstudiocode,test,notepadpp,node,macos,linux,git
-# Edit at https://www.gitignore.io/?templates=windows,visualstudiocode,test,notepadpp,node,macos,linux,git
+# Created by https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,test,notepadpp,node,macos,linux,git,vscode
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,visualstudiocode,test,notepadpp,node,macos,linux,git,vscode
 
 ### Git ###
 # Created by git for backups. To disable backups in Git:
@@ -40,7 +40,7 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
 
 # Thumbnails
 ._*
@@ -117,6 +117,15 @@ typings/
 # Optional eslint cache
 .eslintcache
 
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
 # Optional REPL history
 .node_repl_history
 
@@ -129,18 +138,24 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+.env*.local
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
+.parcel-cache
 
-# next.js build output
+# Next.js build output
 .next
 
-# nuxt.js build output
+# Nuxt.js build / generate output
 .nuxt
+dist
 
-# react / gatsby 
-public/
+# Gatsby files
+.cache/
+# Comment in the public line in if your project uses Gatsby and not Next.js
+# https://nextjs.org/blog/next-9-1#public-directory-support
+# public
 
 # vuepress build output
 .vuepress/dist
@@ -153,6 +168,12 @@ public/
 
 # DynamoDB Local files
 .dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
 
 ### NotepadPP ###
 # Notepad++ backups #
@@ -240,14 +261,18 @@ public/
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
-!.vscode/extensions.json
+*.code-workspace
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
+.ionide
+
+### vscode ###
+!.vscode/settings.json
+!.vscode/extensions.json
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -275,7 +300,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.gitignore.io/api/windows,visualstudiocode,test,notepadpp,node,macos,linux,git
+# End of https://www.toptal.com/developers/gitignore/api/windows,visualstudiocode,test,notepadpp,node,macos,linux,git,vscode
 
 # Custom rules (everything added below won't be overriden by 'Generate .gitignore File' if you use 'Update' option)
 
