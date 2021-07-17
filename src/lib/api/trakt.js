@@ -1,5 +1,5 @@
 // ==UserScript==
-// @author          Davide
+// @author          Davide <iFelix18@protonmail.com>
 // @namespace       https://github.com/iFelix18
 // @exclude         *
 // ==UserLibrary==
@@ -7,7 +7,7 @@
 // @description     Trakt API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.2
+// @version         1.1.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -21,37 +21,166 @@
 (() => {
   'use strict'
 
+  /**
+   * Trakt.tv API
+   * https://trakt.docs.apiary.io/
+   * @class
+   */
   this.Trakt = class {
+    /**
+     * API configuration
+     * @param {Object} config
+     * @param {String} config.clientID Trakt Client ID
+     * @param {string} [config.url="https://api.trakt.tv"] Trakt API URL
+     * @param {boolean} [config.debug=false] Debug
+     */
     constructor (config = {}) {
-      if (!config.apikey) throw Error('Trakt API Key is required')
+      if (!config.clientID) throw Error('Trakt Client ID is required')
 
-      this.config = {
-        apikey: config.apikey,
-        language: config.language || 'en', //* optional
-        url: config.url || 'https://api.trakt.tv', //* optional
-        debug: config.debug || false //* optional
+      /**
+       * @private
+       */
+      this._config = {
+        clientID: config.clientID,
+        url: config.url || 'https://api.trakt.tv',
+        debug: config.debug || false
       }
 
+      /**
+       * @private
+       */
       this._headers = {
         'User-Agent': 'Mozilla/5.0',
         'Content-Type': 'application/json;charset=utf-8',
-        'trakt-api-key': this.config.apikey,
+        'trakt-api-key': this._config.clientID,
         'trakt-api-version': 2
+      }
+
+      /**
+       * @private
+       */
+      this._debug = (response) => {
+        if (this._config.debug || response.status !== 200) console.log(`${response.status}: ${response.finalUrl}`)
       }
     }
 
-    //* https://trakt.docs.apiary.io/#reference/search/id-lookup/get-id-lookup-results
+    /**
+     * Returns a single episode's details
+     * https://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show
+     * @param {string|number} id Trakt ID, Trakt slug, or IMDB ID Example: game-of-thrones
+     * @param {number} season Season number Example: 1
+     * @param {number} episode Episode number Example: 12
+     * @returns {Object}
+     */
+    episodeSummary (id, season, episode) {
+      return new Promise((resolve, reject) => {
+        GM.xmlHttpRequest({
+          method: 'GET',
+          url: `${this._config.url}/shows/${id}/seasons/${season}/episodes/${episode}?extended=full`,
+          headers: this._headers,
+          onload: (response) => {
+            this._debug(response)
+            if (response.readyState === 4 && response.responseText !== '[]') {
+              resolve(JSON.parse(response.responseText))
+            } else {
+              reject(response)
+            }
+          }
+        })
+      })
+    }
+
+    /**
+     * Lookup items by their Trakt, IMDB, TMDB, or TVDB ID
+     * https://trakt.docs.apiary.io/#reference/search/id-lookup/get-id-lookup-results
+     * @param {string} idType Type of ID to lookup. Example: imdb
+     * @param {string} id ID that matches with the type. Example: tt0848228
+     * @param {string} type Search type. Example: movie
+     * @returns {Object}
+     */
     searchID (idType, id, type) {
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this.config.url}/search/${idType}/${id}?type=${type}`,
+          url: `${this._config.url}/search/${idType}/${id}?type=${type}`,
           headers: this._headers,
           onload: (response) => {
+            this._debug(response)
             if (response.readyState === 4 && response.responseText !== '[]') {
-              if (this.config.debug === true) console.log(response)
-              const data = JSON.parse(response.responseText)
-              resolve(data[0])
+              resolve(JSON.parse(response.responseText))
+            } else {
+              reject(response)
+            }
+          }
+        })
+      })
+    }
+
+    /**
+     * Returns all episodes for a specific season of a show
+     * https://trakt.docs.apiary.io/#reference/seasons/season/get-single-season-for-a-show
+     * @param {string|number} id Trakt ID, Trakt slug, or IMDB ID Example: game-of-thrones
+     * @param {number} season Season number Example: 1
+     * @returns {Object}
+     */
+    seasonsSeason (id, season) {
+      return new Promise((resolve, reject) => {
+        GM.xmlHttpRequest({
+          method: 'GET',
+          url: `${this._config.url}/shows/${id}/seasons/${season}`,
+          headers: this._headers,
+          onload: (response) => {
+            this._debug(response)
+            if (response.readyState === 4 && response.responseText !== '[]') {
+              resolve(JSON.parse(response.responseText))
+            } else {
+              reject(response)
+            }
+          }
+        })
+      })
+    }
+
+    /**
+     * Returns all seasons for a show including the number of episodes in each season
+     * https://trakt.docs.apiary.io/#reference/seasons/summary/get-all-seasons-for-a-show
+     * @param {string|number} id Trakt ID, Trakt slug, or IMDB ID Example: game-of-thrones
+     * @returns {Object}
+     */
+    seasonSummary (id) {
+      return new Promise((resolve, reject) => {
+        GM.xmlHttpRequest({
+          method: 'GET',
+          url: `${this._config.url}/shows/${id}/seasons?extended=full`,
+          headers: this._headers,
+          onload: (response) => {
+            this._debug(response)
+            if (response.readyState === 4 && response.responseText !== '[]') {
+              resolve(JSON.parse(response.responseText))
+            } else {
+              reject(response)
+            }
+          }
+        })
+      })
+    }
+
+    /**
+     * Returns a single shows's details
+     * https://trakt.docs.apiary.io/#reference/shows/summary/get-a-single-show
+     * @param {string|number} id Trakt ID, Trakt slug, or IMDB ID Example: game-of-thrones
+     * @returns {Object}
+     */
+    showSummary (id) {
+      return new Promise((resolve, reject) => {
+        GM.xmlHttpRequest({
+          method: 'GET',
+          url: `${this._config.url}/shows/${id}?extended=full`,
+          headers: this._headers,
+          onload: (response) => {
+            this._debug(response)
+            if (response.readyState === 4 && response.responseText !== '[]') {
+              resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
             }
