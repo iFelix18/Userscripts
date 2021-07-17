@@ -4,14 +4,14 @@ const gulp = require('gulp')
 const minify = require('gulp-minify')
 
 const paths = {
-  libraries: {
+  lib: {
     src: 'src/lib/**/*.js',
     dest: 'lib/'
   }
 }
 
-function compress () {
-  return gulp.src(paths.libraries.src)
+const compress = () => {
+  return gulp.src(paths.lib.src)
     .pipe(minify({
       ext: {
         min: '.min.js'
@@ -22,13 +22,14 @@ function compress () {
         else return true
       }
     }))
-    .pipe(gulp.dest(paths.libraries.dest))
+    .pipe(gulp.dest(paths.lib.dest))
 }
 
-function watch () {
-  gulp.watch(paths.libraries.src, {
+const watch = () => {
+  gulp.watch(paths.lib.src, {
     ignoreInitial: false
   }, gulp.series(compress))
 }
 
+exports.compress = compress
 exports.default = watch

@@ -2,9 +2,12 @@
   "name": "userscripts",
   "version": "1.0.0",
   "description": "My userscripts",
-  "author": "Davide",
-  "license": "MIT",
-  "private": true,
+  "scripts": {
+    "compress": "gulp compress",
+    "start": "gulp default",
+    "update": "updates -u & yarn install"
+  },
+  "homepage": "https://github.com/iFelix18/Userscripts#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iFelix18/Userscripts.git"
@@ -12,18 +15,18 @@
   "bugs": {
     "url": "https://github.com/iFelix18/Userscripts/issues"
   },
-  "scripts": {
-    "start": "gulp default",
-    "update": "updates -u & yarn install"
+  "author": {
+    "name": "Davide",
+    "email": "iFelix18@protonmail.com",
+    "url": "https://twitter.com/iFeIix18"
   },
-  "dependencies": {
-    "yarn": "^1.22.10"
-  },
+  "license": "MIT",
   "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-minify": "^3.1.0",
     "standard": "^16.0.3",
-    "updates": "^12.1.0"
+    "updates": "^12.1.0",
+    "yarn": "^1.22.10"
   },
   "standard": {
     "globals": [
