@@ -1,5 +1,5 @@
 // ==UserScript==
-// @author          Davide
+// @author          Davide <iFelix18@protonmail.com>
 // @namespace       https://github.com/iFelix18
 // @exclude         *
 // ==UserLibrary==
@@ -7,7 +7,7 @@
 // @description     Utils for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.1.1
+// @version         2.2.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -20,46 +20,85 @@
 (() => {
   'use strict'
 
+  /**
+   * Utils for my userscripts
+   * @class
+   */
   this.MonkeyUtils = class {
+    /**
+     * Utils configuration
+     * @param {Object} config
+     * @param {String} config.name Userscript name
+     * @param {String} config.version Userscript version
+     * @param {String} config.author Userscript author
+     * @param {String} [config.color='red'] Userscript header color
+     * @param {String} [config.logging=false] Logging
+     */
     constructor (config = {}) {
       if (!config.name) throw Error('Userscript name is required')
       if (!config.version) throw Error('Userscript version is required')
       if (!config.author) throw Error('Userscript author is required')
 
-      this.config = {
+      /**
+       * @private
+       */
+      this._config = {
         name: config.name.toUpperCase(),
         version: config.version,
-        author: config.author,
-        color: config.color || 'red', //* optional
-        logging: config.logging || false //* optional
+        author: config.author.match(/^(.*?)(\s<\S+@\S+\.\S+>)/) ? config.author.match(/^(.*?)(\s<\S+@\S+\.\S+>)/)[1] : config.author,
+        color: config.color || 'red',
+        logging: config.logging || false
       }
     }
 
+    /**
+     * Initialize utils
+     * log userscript header
+     * and, if logging is true, script config values
+     * @param {string} id Config id
+     */
     async init (id) {
-      console.log(`%c${this.config.name}\n` + `%cv${this.config.version} by ${this.config.author} is running!`, `color:${this.config.color};font-weight:bold;font-size:18px;`, '')
+      console.log(`%c${this._config.name}\n` + `%cv${this._config.version} by ${this._config.author} is running!`, `color:${this._config.color};font-weight:bold;font-size:18px;`, '')
 
-      if (id && this.config.logging === true) {
+      if (id && this._config.logging === true) {
         const data = JSON.parse(await GM.getValue(id))
         Object.keys(data).forEach((key) => {
-          console.log(`${this.config.name}:`, `${key} is "${data[key]}"`)
+          console.log(`${this._config.name}:`, `${key} is "${data[key]}"`)
         })
       }
     }
 
+    /**
+     * Log, if logging is true
+     * @param {string} message
+     */
     log (message) {
-      if (this.config.logging === true) {
-        console.log(`${this.config.name}:`, message)
+      if (this._config.logging === true) {
+        console.log(`${this._config.name}:`, message)
       }
     }
 
+    /**
+     * Error
+     * @param {string} message
+     */
     error (message) {
-      console.error(`${this.config.name}:`, message)
+      console.error(`${this._config.name}:`, message)
     }
 
+    /**
+     * Alert
+     * @param {string} message
+     */
     alert (message) {
-      window.alert(`${this.config.name}:`, message)
+      window.alert(`${this._config.name}:`, message)
     }
 
+    /**
+     * Returns shortened version of a message
+     * @param {string} message
+     * @returns {string}
+     */
     short (message) {
       return message.split(/\s+/).slice(0, 6).join(' ').concat(' [...]')
     }
