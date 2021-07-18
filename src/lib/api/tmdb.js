@@ -1,5 +1,5 @@
 // ==UserScript==
-// @author          Davide
+// @author          Davide <iFelix18@protonmail.com>
 // @namespace       https://github.com/iFelix18
 // @exclude         *
 // ==UserLibrary==
@@ -7,7 +7,7 @@
 // @description     TMDb API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.2
+// @version         1.0.3
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -21,35 +21,65 @@
 (() => {
   'use strict'
 
+  /**
+   * TMDb API
+   * https://developers.themoviedb.org/3/getting-started/introduction
+   * @class
+   */
   this.TMDb = class {
+    /**
+     * API configuration
+     * @param {Object} config
+     * @param {String} config.apikey                                TMDb API Key
+     * @param {String} [config.language='en']                       TMDb API language
+     * @param {String} [config.url='https://api.themoviedb.org/3']  TMDb API URL
+     * @param {boolean} [config.debug=false]                        Debug
+     */
     constructor (config = {}) {
       if (!config.apikey) throw Error('TMDb API Key is required')
 
-      this.config = {
+      /**
+       * @private
+       */
+      this._config = {
         apikey: config.apikey,
-        language: config.language || 'en', //* optional
-        url: config.url || 'https://api.themoviedb.org/3', //* optional
-        debug: config.debug || false //* optional
+        language: config.language || 'en',
+        url: config.url || 'https://api.themoviedb.org/3',
+        debug: config.debug || false
       }
 
+      /**
+       * @private
+       */
       this._headers = {
         'User-Agent': 'Mozilla/5.0',
         'Content-Type': 'application/json;charset=utf-8'
       }
+
+      /**
+       * @private
+       */
+      this._debug = (response) => {
+        if (this._config.debug || response.status !== 200) console.log(`${response.status}: ${response.finalUrl}`)
+      }
     }
 
-    //* https://developers.themoviedb.org/3/movies/get-movie-details
+    /**
+     * Returns the primary details about a movie
+     * https://developers.themoviedb.org/3/movies/get-movie-details
+     * @param {number} id Movie TMDb ID
+     * @returns {Object}
+     */
     moviesDetails (id) {
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this.config.url}/movie/${id}?api_key=${this.config.apikey}&language=${this.config.language}`,
+          url: `${this._config.url}/movie/${id}?api_key=${this._config.apikey}&language=${this._config.language}`,
           headers: this._headers,
           onload: (response) => {
+            this._debug(response)
             if (response.readyState === 4 && response.responseText !== '[]') {
-              if (this.config.debug === true) console.log(response)
-              const data = JSON.parse(response.responseText)
-              resolve(data)
+              resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
             }
@@ -58,18 +88,22 @@
       })
     }
 
-    //* https://developers.themoviedb.org/3/tv/get-tv-details
+    /**
+     * Returns the primary details about a TV show
+     * https://developers.themoviedb.org/3/tv/get-tv-details
+     * @param {number} id TV show TMDb ID
+     * @returns {Object}
+     */
     tvDetails (id) {
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this.config.url}/tv/${id}?api_key=${this.config.apikey}&language=${this.config.language}`,
+          url: `${this._config.url}/tv/${id}?api_key=${this._config.apikey}&language=${this._config.language}`,
           headers: this._headers,
           onload: (response) => {
+            this._debug(response)
             if (response.readyState === 4 && response.responseText !== '[]') {
-              if (this.config.debug === true) console.log(response)
-              const data = JSON.parse(response.responseText)
-              resolve(data)
+              resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
             }
@@ -78,18 +112,23 @@
       })
     }
 
-    //* https://developers.themoviedb.org/3/tv-seasons/get-tv-season-details
+    /**
+     * Returns the primary details about a TV season
+     * https://developers.themoviedb.org/3/tv-seasons/get-tv-season-details
+     * @param {number} id     TV show TMDb ID
+     * @param {number} season TV show season number
+     * @returns {Object}
+     */
     seasonDetails (id, season) {
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this.config.url}/tv/${id}/season/${season}?api_key=${this.config.apikey}&language=${this.config.language}`,
+          url: `${this._config.url}/tv/${id}/season/${season}?api_key=${this._config.apikey}&language=${this._config.language}`,
           headers: this._headers,
           onload: (response) => {
+            this._debug(response)
             if (response.readyState === 4 && response.responseText !== '[]') {
-              if (this.config.debug === true) console.log(response)
-              const data = JSON.parse(response.responseText)
-              resolve(data)
+              resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
             }
@@ -98,18 +137,24 @@
       })
     }
 
-    //* https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-details
+    /**
+     * Returns the primary details about a TV episode
+     * https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-details
+     * @param {number} id       TV show TMDb ID
+     * @param {number} season   TV show season number
+     * @param {number} episode  TV show episode number
+     * @returns {Object}
+     */
     episodeDetails (id, season, episode) {
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this.config.url}/tv/${id}/season/${season}/episode/${episode}?api_key=${this.config.apikey}&language=${this.config.language}`,
+          url: `${this._config.url}/tv/${id}/season/${season}/episode/${episode}?api_key=${this._config.apikey}&language=${this._config.language}`,
           headers: this._headers,
           onload: (response) => {
+            this._debug(response)
             if (response.readyState === 4 && response.responseText !== '[]') {
-              if (this.config.debug === true) console.log(response)
-              const data = JSON.parse(response.responseText)
-              resolve(data)
+              resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
             }
