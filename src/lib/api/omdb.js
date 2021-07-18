@@ -1,5 +1,5 @@
 // ==UserScript==
-// @author          Davide
+// @author          Davide <iFelix18@protonmail.com>
 // @namespace       https://github.com/iFelix18
 // @exclude         *
 // ==UserLibrary==
@@ -7,7 +7,7 @@
 // @description     OMDb API for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.1
+// @version         1.0.2
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -21,43 +21,77 @@
 (() => {
   'use strict'
 
+  /**
+   * OMDb API
+   * https://www.omdbapi.com/
+   * @class
+   */
   this.OMDb = class {
+    /**
+     * API configuration
+     * @param {Object} config
+     * @param {String} config.apikey                          OMDb API Key
+     * @param {string} [config.url='https://www.omdbapi.com'] OMDb API URL
+     * @param {boolean} [config.debug=false]                  Debug
+     */
     constructor (config = {}) {
       if (!config.apikey) throw new Error('OMDb API Key is required')
 
-      this.config = {
+      /**
+       * @private
+       */
+      this._config = {
         apikey: config.apikey,
-        url: config.url || 'https://www.omdbapi.com', //* optional
-        debug: config.debug || false //* optional
+        url: config.url || 'https://www.omdbapi.com',
+        debug: config.debug || false
       }
 
+      /**
+       * @private
+       */
       this._headers = {
         'User-Agent': 'Mozilla/5.0',
         'Content-Type': 'application/json;charset=utf-8'
       }
+
+      /**
+       * @private
+       */
+      this._debug = (response) => {
+        if (this._config.debug || response.status !== 200) console.log(`${response.status}: ${response.finalUrl}`)
+      }
     }
 
+    /**
+     * Returns the results of a search by id or title
+     * @param {Object} research
+     * @param {string} [research.id='']         A valid IMDb ID (e.g. tt1285016)
+     * @param {string} [research.title='']      Movie title to search for
+     * @param {string} [research.type=null]     Type of result to return (movie, series, episode)
+     * @param {number} [research.year=null]     Year of release
+     * @param {string} [research.plot='short']  Return short or full plot (short, full)
+     * @returns {object}
+     */
     get (research = {}) {
       const query = {
         id: research.id || '',
         title: research.title || '',
-        type: research.type || null, //* optional
-        year: research.year || null, //* optional
-        plot: research.plot || 'short' //* optional
+        type: research.type || null,
+        year: research.year || null,
+        plot: research.plot || 'short'
       }
 
       return new Promise((resolve, reject) => {
         const url = query.id
-          ? `${this.config.url}/?apikey=${this.config.apikey}&i=${query.id}&type=${query.type}&y=${query.year}&plot=${query.plot}`
-          : `${this.config.url}/?apikey=${this.config.apikey}&t=${query.title}&type=${query.type}&y=${query.year}&plot=${query.plot}`
+          ? `${this._config.url}/?apikey=${this._config.apikey}&i=${query.id}&type=${query.type}&y=${query.year}&plot=${query.plot}`
+          : `${this._config.url}/?apikey=${this._config.apikey}&t=${query.title}&type=${query.type}&y=${query.year}&plot=${query.plot}`
 
         GM.xmlHttpRequest({
           method: 'GET',
           url: url,
           headers: this._headers,
           onload: (response) => {
-            if (this.config.debug === true) console.log(response)
-
+            this._debug(response)
             const data = JSON.parse(response.responseText)
             if ((query.id !== '' || query.title !== '') && response.readyState === 4 && response.responseText !== '[]' && data.Response !== 'False') {
               resolve(data)
@@ -73,22 +107,30 @@
       })
     }
 
+    /**
+     * Returns the results of a search
+     * @param {Object} research
+     * @param {string} [research.search=''] Movie title to search for
+     * @param {string} [research.type=null] Type of result to return (movie, series, episode)
+     * @param {number} [research.year=null] Year of release
+     * @param {string} [research.page='1']  Page number to return (1-100)
+     * @returns {Object}
+     */
     search (research = {}) {
       const query = {
         search: research.search || '',
-        type: research.type || null, //* optional
-        year: research.year || null, //* optional
-        page: research.page || '1' //* optional
+        type: research.type || null,
+        year: research.year || null,
+        page: research.page || '1'
       }
 
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this.config.url}/?apikey=${this.config.apikey}&s=${query.search}&type=${query.type}&y=${query.year}&page=${query.page}`,
+          url: `${this._config.url}/?apikey=${this._config.apikey}&s=${query.search}&type=${query.type}&y=${query.year}&page=${query.page}`,
           headers: this._headers,
           onload: (response) => {
-            if (this.config.debug === true) console.log(response)
-
+            this._debug(response)
             const data = JSON.parse(response.responseText)
             if (query.search !== '' && response.readyState === 4 && response.responseText !== '[]' && data.Response !== 'False') {
               resolve(data.Search)
