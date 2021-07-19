@@ -5,6 +5,7 @@ const tap = require('gulp-tap')
 const parser = require('userscript-parser')
 const minify = require('gulp-minify')
 const rename = require('gulp-rename')
+const merge = require('merge-stream')
 
 const paths = {
   lib: {
@@ -15,7 +16,8 @@ const paths = {
 
 const compress = () => {
   let version = ''
-  return gulp.src(paths.lib.src)
+
+  const release = gulp.src(paths.lib.src)
     .pipe(tap((file) => {
       const { meta } = parser(file.contents.toString())
       version = meta.version[0]
@@ -35,6 +37,25 @@ const compress = () => {
       path.extname = '.min.js'
     }))
     .pipe(gulp.dest(paths.lib.dest))
+
+  const latest = gulp.src(paths.lib.src)
+    .pipe(minify({
+      ext: {
+        min: '.js'
+      },
+      noSource: true,
+      preserveComments: (node, comment) => {
+        if (comment.value.startsWith('*')) return false
+        else return true
+      }
+    }))
+    .pipe(rename((path) => {
+      path.basename += '-latest'
+      path.extname = '.min.js'
+    }))
+    .pipe(gulp.dest(paths.lib.dest))
+
+  return merge(release, latest)
 }
 
 const watch = () => {
