@@ -7,7 +7,7 @@
 // @description     Trakt API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.1.1
+// @version         1.2.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -30,9 +30,9 @@
     /**
      * API configuration
      * @param {Object} config
-     * @param {String} config.clientID Trakt Client ID
-     * @param {string} [config.url="https://api.trakt.tv"] Trakt API URL
-     * @param {boolean} [config.debug=false] Debug
+     * @param {String} config.clientID                      Trakt Client ID
+     * @param {string} [config.url='https://api.trakt.tv']  Trakt API URL
+     * @param {boolean} [config.debug=false]                Debug
      */
     constructor (config = {}) {
       if (!config.clientID) throw Error('Trakt Client ID is required')
@@ -67,9 +67,9 @@
     /**
      * Returns a single episode's details
      * https://trakt.docs.apiary.io/#reference/episodes/summary/get-a-single-episode-for-a-show
-     * @param {string|number} id Trakt ID, Trakt slug, or IMDB ID Example: game-of-thrones
-     * @param {number} season Season number Example: 1
-     * @param {number} episode Episode number Example: 12
+     * @param {string|number} id  Trakt ID, Trakt slug, or IMDB ID Example: game-of-thrones
+     * @param {number} season     Season number Example: 1
+     * @param {number} episode    Episode number Example: 12
      * @returns {Object}
      */
     episodeSummary (id, season, episode) {
@@ -94,8 +94,8 @@
      * Lookup items by their Trakt, IMDB, TMDB, or TVDB ID
      * https://trakt.docs.apiary.io/#reference/search/id-lookup/get-id-lookup-results
      * @param {string} idType Type of ID to lookup. Example: imdb
-     * @param {string} id ID that matches with the type. Example: tt0848228
-     * @param {string} type Search type. Example: movie
+     * @param {string} id     ID that matches with the type. Example: tt0848228
+     * @param {string} type   Search type. Example: movie
      * @returns {Object}
      */
     searchID (idType, id, type) {
@@ -119,8 +119,8 @@
     /**
      * Returns all episodes for a specific season of a show
      * https://trakt.docs.apiary.io/#reference/seasons/season/get-single-season-for-a-show
-     * @param {string|number} id Trakt ID, Trakt slug, or IMDB ID Example: game-of-thrones
-     * @param {number} season Season number Example: 1
+     * @param {string|number} id  Trakt ID, Trakt slug, or IMDB ID Example: game-of-thrones
+     * @param {number} season     Season number Example: 1
      * @returns {Object}
      */
     seasonsSeason (id, season) {
@@ -144,7 +144,7 @@
     /**
      * Returns all seasons for a show including the number of episodes in each season
      * https://trakt.docs.apiary.io/#reference/seasons/summary/get-all-seasons-for-a-show
-     * @param {string|number} id Trakt ID, Trakt slug, or IMDB ID Example: game-of-thrones
+     * @param {string|number} id  Trakt ID, Trakt slug, or IMDB ID Example: game-of-thrones
      * @returns {Object}
      */
     seasonSummary (id) {
@@ -168,7 +168,7 @@
     /**
      * Returns a single shows's details
      * https://trakt.docs.apiary.io/#reference/shows/summary/get-a-single-show
-     * @param {string|number} id Trakt ID, Trakt slug, or IMDB ID Example: game-of-thrones
+     * @param {string|number} id  Trakt ID, Trakt slug, or IMDB ID Example: game-of-thrones
      * @returns {Object}
      */
     showSummary (id) {
