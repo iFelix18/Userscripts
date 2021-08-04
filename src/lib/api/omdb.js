@@ -30,7 +30,7 @@
     /**
      * API configuration
      * @param {Object} config
-     * @param {String} config.apikey                          OMDb API Key
+     * @param {string} config.apikey                          OMDb API Key
      * @param {string} [config.url='https://www.omdbapi.com'] OMDb API URL
      * @param {boolean} [config.debug=false]                  Debug
      */

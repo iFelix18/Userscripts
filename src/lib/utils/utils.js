@@ -28,11 +28,11 @@
     /**
      * Utils configuration
      * @param {Object} config
-     * @param {String} config.name Userscript name
-     * @param {String} config.version Userscript version
-     * @param {String} config.author Userscript author
-     * @param {String} [config.color='red'] Userscript header color
-     * @param {String} [config.logging=false] Logging
+     * @param {string} config.name Userscript name
+     * @param {string} config.version Userscript version
+     * @param {string} config.author Userscript author
+     * @param {string} [config.color='red'] Userscript header color
+     * @param {string} [config.logging=false] Logging
      */
     constructor (config = {}) {
       if (!config.name) throw Error('Userscript name is required')

@@ -30,9 +30,9 @@
     /**
      * API configuration
      * @param {Object} config
-     * @param {String} config.apikey                                TMDb API Key
-     * @param {String} [config.language='en']                       TMDb API language
-     * @param {String} [config.url='https://api.themoviedb.org/3']  TMDb API URL
+     * @param {string} config.apikey                                TMDb API Key
+     * @param {string} [config.language='en']                       TMDb API language
+     * @param {string} [config.url='https://api.themoviedb.org/3']  TMDb API URL
      * @param {boolean} [config.debug=false]                        Debug
      */
     constructor (config = {}) {
