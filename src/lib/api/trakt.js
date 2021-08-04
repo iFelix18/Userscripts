@@ -7,7 +7,7 @@
 // @description     Trakt API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.2.0
+// @version         1.3.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -30,7 +30,7 @@
     /**
      * API configuration
      * @param {Object} config
-     * @param {String} config.clientID                      Trakt Client ID
+     * @param {string} config.clientID                      Trakt Client ID
      * @param {string} [config.url='https://api.trakt.tv']  Trakt API URL
      * @param {boolean} [config.debug=false]                Debug
      */
@@ -77,6 +77,32 @@
         GM.xmlHttpRequest({
           method: 'GET',
           url: `${this._config.url}/shows/${id}/seasons/${season}/episodes/${episode}?extended=full`,
+          headers: this._headers,
+          onload: (response) => {
+            this._debug(response)
+            if (response.readyState === 4 && response.responseText !== '[]') {
+              resolve(JSON.parse(response.responseText))
+            } else {
+              reject(response)
+            }
+          }
+        })
+      })
+    }
+
+    /**
+     * Search all text fields that a media object contain
+     * https://trakt.docs.apiary.io/#reference/search/get-text-query-results
+     * @param {string} type   Search type. Example: movie
+     * @param {string} query  Search all text based fields. Example: tron
+     * @param {string} fields
+     * @returns {Object}
+     */
+    search (type, query, fields) {
+      return new Promise((resolve, reject) => {
+        GM.xmlHttpRequest({
+          method: 'GET',
+          url: `${this._config.url}/search/${type}/${query}&fields=${fields}`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
