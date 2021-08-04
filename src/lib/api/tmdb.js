@@ -7,7 +7,7 @@
 // @description     TMDb API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.3
+// @version         1.1.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -65,6 +65,32 @@
     }
 
     /**
+     * Returns the primary details about a TV episode
+     * https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-details
+     * @param {number} id       TV show TMDb ID
+     * @param {number} season   TV show season number
+     * @param {number} episode  TV show episode number
+     * @returns {Object}
+     */
+    episodeDetails (id, season, episode) {
+      return new Promise((resolve, reject) => {
+        GM.xmlHttpRequest({
+          method: 'GET',
+          url: `${this._config.url}/tv/${id}/season/${season}/episode/${episode}?api_key=${this._config.apikey}&language=${this._config.language}`,
+          headers: this._headers,
+          onload: (response) => {
+            this._debug(response)
+            if (response.readyState === 4 && response.responseText !== '[]') {
+              resolve(JSON.parse(response.responseText))
+            } else {
+              reject(response)
+            }
+          }
+        })
+      })
+    }
+
+    /**
      * Returns the primary details about a movie
      * https://developers.themoviedb.org/3/movies/get-movie-details
      * @param {number} id Movie TMDb ID
@@ -89,16 +115,16 @@
     }
 
     /**
-     * Returns the primary details about a TV show
-     * https://developers.themoviedb.org/3/tv/get-tv-details
-     * @param {number} id TV show TMDb ID
+     * Search multiple models in a single request
+     * https://developers.themoviedb.org/3/search/multi-search
+     * @param {string} query  Text query to search
      * @returns {Object}
      */
-    tvDetails (id) {
+    multiSearch (query) {
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this._config.url}/tv/${id}?api_key=${this._config.apikey}&language=${this._config.language}`,
+          url: `${this._config.url}/search/multi?api_key=${this._config.apikey}&language=${this._config.language}`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
@@ -138,18 +164,16 @@
     }
 
     /**
-     * Returns the primary details about a TV episode
-     * https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-details
-     * @param {number} id       TV show TMDb ID
-     * @param {number} season   TV show season number
-     * @param {number} episode  TV show episode number
+     * Returns the primary details about a TV show
+     * https://developers.themoviedb.org/3/tv/get-tv-details
+     * @param {number} id TV show TMDb ID
      * @returns {Object}
      */
-    episodeDetails (id, season, episode) {
+    tvDetails (id) {
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this._config.url}/tv/${id}/season/${season}/episode/${episode}?api_key=${this._config.apikey}&language=${this._config.language}`,
+          url: `${this._config.url}/tv/${id}?api_key=${this._config.apikey}&language=${this._config.language}`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
