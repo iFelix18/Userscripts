@@ -7,7 +7,7 @@
 // @description     TMDb API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.1.0
+// @version         1.1.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -124,7 +124,7 @@
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this._config.url}/search/multi?api_key=${this._config.apikey}&language=${this._config.language}`,
+          url: `${this._config.url}/search/multi?api_key=${this._config.apikey}&language=${this._config.language}&query=${query}&page=1&include_adult=false`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
