@@ -7,7 +7,7 @@
 // @description     Trakt API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.3.2
+// @version         1.4.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -80,7 +80,7 @@
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
-            if (response.readyState === 4 && response.responseText !== '[]') {
+            if (response.readyState === 4) {
               resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
@@ -106,7 +106,7 @@
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
-            if (response.readyState === 4 && response.responseText !== '[]') {
+            if (response.readyState === 4) {
               resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
@@ -132,7 +132,7 @@
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
-            if (response.readyState === 4 && response.responseText !== '[]') {
+            if (response.readyState === 4) {
               resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
@@ -157,7 +157,7 @@
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
-            if (response.readyState === 4 && response.responseText !== '[]') {
+            if (response.readyState === 4) {
               resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
@@ -181,7 +181,7 @@
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
-            if (response.readyState === 4 && response.responseText !== '[]') {
+            if (response.readyState === 4) {
               resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
@@ -205,7 +205,7 @@
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
-            if (response.readyState === 4 && response.responseText !== '[]') {
+            if (response.readyState === 4) {
               resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
