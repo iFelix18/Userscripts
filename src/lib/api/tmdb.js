@@ -7,7 +7,7 @@
 // @description     TMDb API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.1.1
+// @version         1.2.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -80,7 +80,32 @@
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
-            if (response.readyState === 4 && response.responseText !== '[]') {
+            if (response.readyState === 4) {
+              resolve(JSON.parse(response.responseText))
+            } else {
+              reject(response)
+            }
+          }
+        })
+      })
+    }
+
+    /**
+     * Returns a element by an external ID
+     * https://developers.themoviedb.org/3/find/find-by-id
+     * @param {string} id     External ID
+     * @param {string} source ID source
+     * @returns {Object}
+     */
+    find (id, source) {
+      return new Promise((resolve, reject) => {
+        GM.xmlHttpRequest({
+          method: 'GET',
+          url: `${this._config.url}/find/${id}?api_key=${this._config.apikey}&language=${this._config.language}&external_source=${source}`,
+          headers: this._headers,
+          onload: (response) => {
+            this._debug(response)
+            if (response.readyState === 4) {
               resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
@@ -104,7 +129,7 @@
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
-            if (response.readyState === 4 && response.responseText !== '[]') {
+            if (response.readyState === 4) {
               resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
@@ -128,7 +153,7 @@
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
-            if (response.readyState === 4 && response.responseText !== '[]') {
+            if (response.readyState === 4) {
               resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
@@ -153,7 +178,7 @@
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
-            if (response.readyState === 4 && response.responseText !== '[]') {
+            if (response.readyState === 4) {
               resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
@@ -177,7 +202,7 @@
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
-            if (response.readyState === 4 && response.responseText !== '[]') {
+            if (response.readyState === 4) {
               resolve(JSON.parse(response.responseText))
             } else {
               reject(response)
