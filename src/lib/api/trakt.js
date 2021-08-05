@@ -7,7 +7,7 @@
 // @description     Trakt API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.4.0
+// @version         1.4.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -76,7 +76,7 @@
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this._config.url}/shows/${id}/seasons/${season}/episodes/${episode}?extended=full`,
+          url: `${this._config.url}/shows/${encodeURIComponent(id)}/seasons/${encodeURIComponent(season)}/episodes/${encodeURIComponent(episode)}?extended=full`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
@@ -102,7 +102,7 @@
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this._config.url}/search/${type}?query=${query}&fields=${fields}`,
+          url: `${this._config.url}/search/${encodeURIComponent(type)}?query=${encodeURIComponent(query)}&fields=${encodeURIComponent(fields)}`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
@@ -128,7 +128,7 @@
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this._config.url}/search/${idType}/${id}?type=${type}`,
+          url: `${this._config.url}/search/${encodeURIComponent(idType)}/${encodeURIComponent(id)}?type=${encodeURIComponent(type)}`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
@@ -153,7 +153,7 @@
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this._config.url}/shows/${id}/seasons/${season}`,
+          url: `${this._config.url}/shows/${encodeURIComponent(id)}/seasons/${encodeURIComponent(season)}`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
@@ -177,7 +177,7 @@
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this._config.url}/shows/${id}/seasons?extended=full`,
+          url: `${this._config.url}/shows/${encodeURIComponent(id)}/seasons?extended=full`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
@@ -201,7 +201,7 @@
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this._config.url}/shows/${id}?extended=full`,
+          url: `${this._config.url}/shows/${encodeURIComponent(id)}?extended=full`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
