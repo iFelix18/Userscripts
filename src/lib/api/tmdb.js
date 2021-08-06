@@ -7,7 +7,7 @@
 // @description     TMDb API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.2.0
+// @version         1.3.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -23,7 +23,6 @@
 
   /**
    * TMDb API
-   * https://developers.themoviedb.org/3/getting-started/introduction
    * @class
    */
   this.TMDb = class {
@@ -66,7 +65,6 @@
 
     /**
      * Returns the primary details about a TV episode
-     * https://developers.themoviedb.org/3/tv-episodes/get-tv-episode-details
      * @param {number} id       TV show TMDb ID
      * @param {number} season   TV show season number
      * @param {number} episode  TV show episode number
@@ -92,7 +90,6 @@
 
     /**
      * Returns a element by an external ID
-     * https://developers.themoviedb.org/3/find/find-by-id
      * @param {string} id     External ID
      * @param {string} source ID source
      * @returns {Object}
@@ -101,7 +98,31 @@
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this._config.url}/find/${id}?api_key=${this._config.apikey}&language=${this._config.language}&external_source=${source}`,
+          url: `${this._config.url}/find/${encodeURIComponent(id)}?api_key=${this._config.apikey}&language=${this._config.language}&external_source=${encodeURIComponent(source)}`,
+          headers: this._headers,
+          onload: (response) => {
+            this._debug(response)
+            if (response.readyState === 4) {
+              resolve(JSON.parse(response.responseText))
+            } else {
+              reject(response)
+            }
+          }
+        })
+      })
+    }
+
+    /**
+     * Returns images
+     * @param {string} type  Image type. For example: movie
+     * @param {number} id    TMDb ID
+     * @returns {Object}
+     */
+    images (type, id) {
+      return new Promise((resolve, reject) => {
+        GM.xmlHttpRequest({
+          method: 'GET',
+          url: `${this._config.url}/${type}/${id}/images?api_key=${this._config.apikey}&language=${this._config.language}`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
@@ -117,7 +138,6 @@
 
     /**
      * Returns the primary details about a movie
-     * https://developers.themoviedb.org/3/movies/get-movie-details
      * @param {number} id Movie TMDb ID
      * @returns {Object}
      */
@@ -141,7 +161,6 @@
 
     /**
      * Search multiple models in a single request
-     * https://developers.themoviedb.org/3/search/multi-search
      * @param {string} query  Text query to search
      * @returns {Object}
      */
@@ -165,7 +184,6 @@
 
     /**
      * Returns the primary details about a TV season
-     * https://developers.themoviedb.org/3/tv-seasons/get-tv-season-details
      * @param {number} id     TV show TMDb ID
      * @param {number} season TV show season number
      * @returns {Object}
@@ -190,7 +208,6 @@
 
     /**
      * Returns the primary details about a TV show
-     * https://developers.themoviedb.org/3/tv/get-tv-details
      * @param {number} id TV show TMDb ID
      * @returns {Object}
      */
