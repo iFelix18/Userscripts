@@ -7,7 +7,7 @@
 // @description     TMDb API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.3.0
+// @version         1.3.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -89,30 +89,6 @@
     }
 
     /**
-     * Returns a element by an external ID
-     * @param {string} id     External ID
-     * @param {string} source ID source
-     * @returns {Object}
-     */
-    find (id, source) {
-      return new Promise((resolve, reject) => {
-        GM.xmlHttpRequest({
-          method: 'GET',
-          url: `${this._config.url}/find/${encodeURIComponent(id)}?api_key=${this._config.apikey}&language=${this._config.language}&external_source=${encodeURIComponent(source)}`,
-          headers: this._headers,
-          onload: (response) => {
-            this._debug(response)
-            if (response.readyState === 4) {
-              resolve(JSON.parse(response.responseText))
-            } else {
-              reject(response)
-            }
-          }
-        })
-      })
-    }
-
-    /**
      * Returns images
      * @param {string} type  Image type. For example: movie
      * @param {number} id    TMDb ID
@@ -146,29 +122,6 @@
         GM.xmlHttpRequest({
           method: 'GET',
           url: `${this._config.url}/movie/${id}?api_key=${this._config.apikey}&language=${this._config.language}`,
-          headers: this._headers,
-          onload: (response) => {
-            this._debug(response)
-            if (response.readyState === 4) {
-              resolve(JSON.parse(response.responseText))
-            } else {
-              reject(response)
-            }
-          }
-        })
-      })
-    }
-
-    /**
-     * Search multiple models in a single request
-     * @param {string} query  Text query to search
-     * @returns {Object}
-     */
-    multiSearch (query) {
-      return new Promise((resolve, reject) => {
-        GM.xmlHttpRequest({
-          method: 'GET',
-          url: `${this._config.url}/search/multi?api_key=${this._config.apikey}&language=${this._config.language}&query=${query}&page=1&include_adult=false`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
