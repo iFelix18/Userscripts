@@ -7,7 +7,7 @@
 // @description     OMDb API for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.2
+// @version         1.1.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -83,8 +83,8 @@
 
       return new Promise((resolve, reject) => {
         const url = query.id
-          ? `${this._config.url}/?apikey=${this._config.apikey}&i=${query.id}&type=${query.type}&y=${query.year}&plot=${query.plot}`
-          : `${this._config.url}/?apikey=${this._config.apikey}&t=${query.title}&type=${query.type}&y=${query.year}&plot=${query.plot}`
+          ? `${this._config.url}/?apikey=${this._config.apikey}&i=${encodeURIComponent(query.id)}&type=${query.type}&y=${query.year}&plot=${query.plot}&tomatoes=true`
+          : `${this._config.url}/?apikey=${this._config.apikey}&t=${encodeURIComponent(query.title)}&type=${query.type}&y=${query.year}&plot=${query.plot}&tomatoes=true`
 
         GM.xmlHttpRequest({
           method: 'GET',
@@ -127,7 +127,7 @@
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this._config.url}/?apikey=${this._config.apikey}&s=${query.search}&type=${query.type}&y=${query.year}&page=${query.page}`,
+          url: `${this._config.url}/?apikey=${this._config.apikey}&s=${encodeURIComponent(query.search)}&type=${query.type}&y=${query.year}&page=${query.page}`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
