@@ -5,10 +5,10 @@
 // @namespace       https://github.com/iFelix18
 // @icon            https://www.google.com/s2/favicons?sz=64&domain=imdb.com
 // @description     Adds ratings from Rotten Tomatoes and Metacritic to IMDb
-// @description:it  Aggiunge valutazioni da Rotten Tomatoes e Metacritic a IMdb
+// @description:it  Aggiunge valutazioni da Rotten Tomatoes e Metacritic a IMDb
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.0
+// @version         1.0.1
 //
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -142,10 +142,19 @@
   }
 
   //* Functions
+  /**
+   * Returns IMDb ID
+   * @returns {string}
+   */
   const getID = () => {
     return $('meta[property="imdb:pageConst"]').first().attr('content')
   }
 
+  /**
+   * Returns ratings from OMDb
+   * @param {*} id IMDb ID
+   * @returns {Promise}
+   */
   const getRatings = async (id) => {
     const cache = await GM.getValue(id) // get cache
 
@@ -165,6 +174,11 @@
     }).catch((error) => MU.error(error))
   }
 
+  /**
+   * Returns elaborated response
+   * @param {Object} response
+   * @returns {Object}
+   */
   const elaborateResponse = (response) => {
     return ([
       {
@@ -186,6 +200,9 @@
     ])
   }
 
+  /**
+   * Add template
+   */
   const addTemplate = () => {
     const template = '<div class="external-ratings idYUsR"style=margin-right:.5rem></div><script id=external-ratings-template type=text/x-handlebars-template>{{#each ratings}}<div class="jQXoLQ rating-bar__base-button"> <div class="bufoWn">{{this.title}}</div><a class="ipc-button ipc-text-button ipc-button--core-baseAlt ipc-button--on-textPrimary jjcqHZ" role="button"{{#ifEqual this.url "N/A"}}{{else}}href="{{this.url}}{{/ifEqual}}"> <div class="ipc-button__text"> <div class="jodtvN"> <div class="dwhzFZ"> <img src="{{this.logo}}" alt="logo" width="24"> </div><div class="hmJkIS"> <div class="bmbYRW"> <span class="iTLWoV">{{this.rating}}</span>{{#ifEqual this.rating "N/A"}}<span></span>{{else}}<span>{{this.symbol}}</span>{{/ifEqual}}</div><div class="fKXaGo"></div>{{#ifEqual this.rating "N/A"}}<div class="jkCVKJ"></div>{{else}}{{#ifEqual this.title "TOMATOMETER"}}<div class="jkCVKJ">{{this.votes}}</div>{{else}}<div class="jkCVKJ" style="background-color:{{this.votes}};height: 10px;width: 100%;margin-top: 3px;margin-bottom: 3px;"></div>{{/ifEqual}}{{/ifEqual}}</div></div></div></a> </div>{{/each}}</script>'
     const target = '.hglRHk div[class^="RatingBar__ButtonContainer"] div[class^="RatingBarButtonBase__ContentWrap"]:nth-child(1)'
