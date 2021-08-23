@@ -7,7 +7,7 @@
 // @description     Utils for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.2.0
+// @version         2.2.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -91,7 +91,7 @@
      * @param {string} message
      */
     alert (message) {
-      window.alert(`${this._config.name}:`, message)
+      window.alert(`${this._config.name}: ${message}`)
     }
 
     /**
