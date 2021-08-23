@@ -8,7 +8,7 @@
 // @description:it  Aggiunge valutazioni da Rotten Tomatoes e Metacritic a IMDb
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.2
+// @version         1.0.3
 //
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -213,6 +213,8 @@
   //* Script
   $(document).ready(() => {
     const id = getID()
+
+    if (!id) return
 
     MU.log(`ID is '${id}'`)
 
