@@ -8,7 +8,7 @@
 // @description:it  Aggiunge valutazioni da Rotten Tomatoes e Metacritic a IMDb
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.4
+// @version         1.0.5
 //
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -118,7 +118,7 @@
     name: GM.info.script.name,
     version: GM.info.script.version,
     author: GM.info.script.author,
-    color: '#ed1c24',
+    color: '#ff0000',
     logging: GM_config.get('logging')
   })
   MU.init('ratings-config')
