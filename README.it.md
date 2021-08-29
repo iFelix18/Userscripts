@@ -33,8 +33,8 @@ Lingue readme:
 
 1. [Userscripts](README.it.md#userscripts)
     - [Valutazioni su IMDb](README.it.md#valutazioni-su-imdb)
-    - [Greasy Fork+](README.it.md#greasy-fork+)
-    - [OpenUserJS+](README.it.md#openuserjs+)
+    - [Greasy Fork+](README.it.md#greasy-fork)
+    - [OpenUserJS+](README.it.md#openuserjs)
 2. [Come installare](README.it.md#come-installare)
 3. [Credits](README.it.md#credits)
 
