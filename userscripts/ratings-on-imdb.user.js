@@ -8,36 +8,37 @@
 // @description:it  Aggiunge valutazioni da Rotten Tomatoes e Metacritic a IMDb
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.3
+// @version         1.0.4
 //
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // @updateURL       https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/ratings-on-imdb.meta.js
 // @downloadURL     https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js
 //
-// @require         https://cdn.jsdelivr.net/gh/greasemonkey/gm4-polyfill@a834d46afcc7d6f6297829876423f58bb14a0d97/gm4-polyfill.min.js
 // @require         https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@bced30119a3304aff1c4f71c77bd1781cefde396/lib/utils/utils.min.js
+// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@abce8796cedbe28ac8e072d9824c4b9342985098/lib/utils/utils.min.js
 // @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@bced30119a3304aff1c4f71c77bd1781cefde396/lib/api/omdb.min.js
+// @require         https://cdn.jsdelivr.net/npm/gm4-polyfill@1.0.1/gm4-polyfill.min.js#sha256-qmLl2Ly0/+2K+HHP76Ul+Wpy1Z41iKtzptPD1Nt8gSk=
 // @require         https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js#sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=
 // @require         https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js#sha256-ZSnrWNaPzGe8v25yP0S6YaMaDLMTDHC+4mHTw0xydEk=
 //
 // @match           *://www.imdb.com/title/*
 // @connect         omdbapi.com
 //
-// @grant           GM.info
-// @grant           GM_info
-// @grant           GM.listValues
-// @grant           GM_listValues
-// @grant           GM.getValue
-// @grant           GM_getValue
-// @grant           GM.setValue
-// @grant           GM_setValue
 // @grant           GM.deleteValue
-// @grant           GM_deleteValue
+// @grant           GM.getValue
+// @grant           GM.info
+// @grant           GM.listValues
 // @grant           GM.registerMenuCommand
-// @grant           GM_registerMenuCommand
+// @grant           GM.setValue
 // @grant           GM.xmlHttpRequest
+//
+// @grant           GM_deleteValue
+// @grant           GM_getValue
+// @grant           GM_info
+// @grant           GM_listValues
+// @grant           GM_registerMenuCommand
+// @grant           GM_setValue
 // @grant           GM_xmlhttpRequest
 //
 // @run-at          document-start
@@ -91,6 +92,7 @@
         default: false
       }
     },
+    /* cspell: disable-next-line */
     css: '#ratings-config{background-color:#343434;color:#fff}#ratings-config *{font-family:varela round,helvetica neue,Helvetica,Arial,sans-serif}#ratings-config .section_header{background-color:#282828;border:1px solid #282828;border-bottom:none;color:#fff;font-size:10pt}#ratings-config .section_desc{background-color:#282828;border:1px solid #282828;border-top:none;color:#fff;font-size:10pt}#ratings-config #ratings-config_field_magic{margin:0 auto;display:block}#ratings-config .reset{color:#fff}',
     events: {
       init: () => {
@@ -204,6 +206,7 @@
    * Add template
    */
   const addTemplate = () => {
+    /* cspell: disable-next-line */
     const template = '<div class="external-ratings idYUsR"style=margin-right:.5rem></div><script id=external-ratings-template type=text/x-handlebars-template>{{#each ratings}}<div class="jQXoLQ rating-bar__base-button"> <div class="bufoWn">{{this.title}}</div><a class="ipc-button ipc-text-button ipc-button--core-baseAlt ipc-button--on-textPrimary jjcqHZ" role="button"{{#ifEqual this.url "N/A"}}{{else}}href="{{this.url}}{{/ifEqual}}"> <div class="ipc-button__text"> <div class="jodtvN"> <div class="dwhzFZ"> <img src="{{this.logo}}" alt="logo" width="24"> </div><div class="hmJkIS"> <div class="bmbYRW"> <span class="iTLWoV">{{this.rating}}</span>{{#ifEqual this.rating "N/A"}}<span></span>{{else}}<span>{{this.symbol}}</span>{{/ifEqual}}</div><div class="fKXaGo"></div>{{#ifEqual this.rating "N/A"}}<div class="jkCVKJ"></div>{{else}}{{#ifEqual this.title "TOMATOMETER"}}<div class="jkCVKJ">{{this.votes}}</div>{{else}}<div class="jkCVKJ" style="background-color:{{this.votes}};height: 10px;width: 100%;margin-top: 3px;margin-bottom: 3px;"></div>{{/ifEqual}}{{/ifEqual}}</div></div></div></a> </div>{{/each}}</script>'
     const target = '.hglRHk div[class^="RatingBar__ButtonContainer"] div[class^="RatingBarButtonBase__ContentWrap"]:nth-child(1)'
 
