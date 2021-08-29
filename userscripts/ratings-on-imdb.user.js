@@ -8,7 +8,7 @@
 // @description:it  Aggiunge valutazioni da Rotten Tomatoes e Metacritic a IMDb
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.5
+// @version         1.0.6
 //
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
