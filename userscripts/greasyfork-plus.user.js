@@ -8,13 +8,14 @@
 // @description:it  Aggiunge varie funzionalità, e migliora l'esperienza di Greasy Fork
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.2
+// @version         1.1.0
 //
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // @updateURL       https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
 // @downloadURL     https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
 //
+// @require         https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
 // @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@abce8796cedbe28ac8e072d9824c4b9342985098/lib/utils/utils.min.js
 // @require         https://cdn.jsdelivr.net/npm/gm4-polyfill@1.0.1/gm4-polyfill.min.js#sha256-qmLl2Ly0/+2K+HHP76Ul+Wpy1Z41iKtzptPD1Nt8gSk=
 // @require         https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js#sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=
@@ -28,6 +29,7 @@
 // @grant           GM.getValue
 // @grant           GM.info
 // @grant           GM.listValues
+// @grant           GM.registerMenuCommand
 // @grant           GM.setValue
 // @grant           GM.xmlHttpRequest
 //
@@ -35,6 +37,7 @@
 // @grant           GM_getValue
 // @grant           GM_info
 // @grant           GM_listValues
+// @grant           GM_registerMenuCommand
 // @grant           GM_setValue
 // @grant           GM_xmlhttpRequest
 //
@@ -42,10 +45,51 @@
 // @inject-into     page
 // ==/UserScript==
 
-/* global $, MonkeyUtils, VM */
+/* global $, GM_config, MonkeyUtils, VM */
 
 (() => {
   'use strict'
+
+  //* GM_config
+  GM_config.init({
+    id: 'config',
+    title: `${GM.info.script.name} v${GM.info.script.version} Settings`,
+    fields: {
+      hideNonLatinScripts: {
+        label: 'Hide non-Latin scripts',
+        section: ['Features'],
+        labelPos: 'right',
+        type: 'checkbox',
+        default: true
+      },
+      hideBlacklistedScripts: {
+        label: 'Hide blacklisted scripts',
+        labelPos: 'right',
+        type: 'checkbox',
+        default: true
+      },
+      addInstallButton: {
+        label: 'Add install button',
+        labelPos: 'right',
+        type: 'checkbox',
+        default: true
+      },
+      logging: {
+        label: 'Logging',
+        section: ['Develop'],
+        labelPos: 'right',
+        type: 'checkbox',
+        default: false
+      }
+    },
+    events: {
+      save: () => {
+        GM_config.close()
+        window.location.reload(false)
+      }
+    }
+  })
+  GM.registerMenuCommand('Configure', () => GM_config.open())
 
   //* MonkeyUtils
   const MU = new MonkeyUtils({
@@ -53,7 +97,7 @@
     version: GM.info.script.version,
     author: GM.info.script.author,
     color: '#ff0000',
-    logging: false
+    logging: GM_config.get('logging')
   })
   MU.init()
 
@@ -241,19 +285,21 @@
   $('.script-list li').each((index, element) => {
     const id = $(element).data('script-id')
 
-    hideNonLatinScripts(element)
-    hideBlacklistedScripts(element)
+    if (GM_config.get('hideNonLatinScripts')) hideNonLatinScripts(element)
+    if (GM_config.get('hideBlacklistedScripts')) hideBlacklistedScripts(element)
 
-    getData(id).then((data) => {
-      const version = data.version
-      const url = data.code_url
+    if (GM_config.get('addInstallButton')) {
+      getData(id).then((data) => {
+        const version = data.version
+        const url = data.code_url
 
-      isInstalled(data.name, data.namespace).then((data) => {
-        const update = compareVersions(version, data)
-        const label = getLabel(update)
+        isInstalled(data.name, data.namespace).then((data) => {
+          const update = compareVersions(version, data)
+          const label = getLabel(update)
 
-        addInstallButton(element, url, label, version)
+          addInstallButton(element, url, label, version)
+        }).catch((error) => MU.error(error))
       }).catch((error) => MU.error(error))
-    }).catch((error) => MU.error(error))
+    }
   })
 })()
