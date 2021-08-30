@@ -8,7 +8,7 @@
 // @description:it  Aggiunge varie funzionalità, e migliora l'esperienza di Greasy Fork
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.2.0
+// @version         1.2.1
 //
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -273,7 +273,7 @@
   const addInstallButton = (element, url, label, version) => {
     $(element)
       .find('.badge-js, .badge-css')
-      .after(`<a class="install-link" href="${url}" style="float: right; zoom: 0.7; text-decoration: none;">${label} ${version}</a>`)
+      .after(`<a class="install-link" href="${url}" style="float: right; zoom: 0.7; -moz-transform: scale(0.7); text-decoration: none;">${label} ${version}</a>`)
   }
 
   /**
