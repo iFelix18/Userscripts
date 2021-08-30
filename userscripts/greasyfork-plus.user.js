@@ -20,7 +20,7 @@
 // /* cSpell: enable */
 // @copyright         2021, Davide (https://github.com/iFelix18)
 // @license           MIT
-// @version           1.2.2
+// @version           1.3.0
 //
 // @homepageURL       https://github.com/iFelix18/Userscripts#readme
 // @supportURL        https://github.com/iFelix18/Userscripts/issues
@@ -68,26 +68,32 @@
     title: `${GM.info.script.name} v${GM.info.script.version} Settings`,
     fields: {
       hideNonLatinScripts: {
-        label: 'Hide non-Latin scripts',
+        label: 'Hide non-Latin scripts, press "Ctrl + Alt + L" to show non-Latin scripts',
         section: ['Features'],
         labelPos: 'right',
         type: 'checkbox',
         default: true
       },
       hideBlacklistedScripts: {
-        label: 'Hide blacklisted scripts',
+        label: 'Hide blacklisted scripts, press "Ctrl + Alt + B" to show Blacklisted scripts',
         labelPos: 'right',
         type: 'checkbox',
         default: true
       },
-      addInstallButton: {
-        label: 'Add install button',
+      hideScript: {
+        label: 'Add a button to hide the script, press "Ctrl + Alt + H" to show Hidden scripts',
+        labelPos: 'right',
+        type: 'checkbox',
+        default: true
+      },
+      installButton: {
+        label: 'Add a button to install the script directly',
         labelPos: 'right',
         type: 'checkbox',
         default: true
       },
       showTotalInstalls: {
-        label: 'Show total installs on your profile',
+        label: 'Shows the number of daily and total installations on the user profile',
         labelPos: 'right',
         type: 'checkbox',
         default: true
@@ -183,6 +189,9 @@
   })
   VM.shortcut.register('ctrl-alt-b', () => {
     $('.script-list li.blacklisted').toggle()
+  })
+  VM.shortcut.register('ctrl-alt-h', () => {
+    $('.script-list li.hidden').toggle()
   })
 
   //* Functions
@@ -330,6 +339,41 @@
     })
   }
 
+  /**
+   * Hide scripts
+   * @param {Object} element
+   * @param {number} id
+   */
+  const hideScript = async (element, id) => {
+    // add button to hide the script
+    $(element)
+      .find('.badge-js, .badge-css')
+      .after('<span class="block-button" role="button" style="cursor: pointer; text-decoration: underline; zoom: 0.7; -moz-transform: scale(0.7);">Hide this script</span>')
+
+    // if is in list hide it
+    if (id in JSON.parse(await GM.getValue('hiddenList', '{}'))) {
+      $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)').hide()
+    }
+
+    // on click...
+    $(element).find('.block-button').click(async () => {
+      const hiddenList = JSON.parse(await GM.getValue('hiddenList', '{}'))
+
+      // ...if it is not in the list add it and hide it...
+      if (!(id in hiddenList)) {
+        hiddenList[id] = id
+
+        GM.setValue('hiddenList', JSON.stringify(hiddenList))
+        $(element).hide(750).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
+      } else { // ...else remove it
+        delete hiddenList[id]
+
+        GM.setValue('hiddenList', JSON.stringify(hiddenList))
+        $(element).removeClass('hidden').css('background-color', '')
+      }
+    })
+  }
+
   //* Script
   clearOldCache()
 
@@ -338,8 +382,9 @@
 
     if (GM_config.get('hideNonLatinScripts')) hideNonLatinScripts(element)
     if (GM_config.get('hideBlacklistedScripts')) hideBlacklistedScripts(element)
+    if (GM_config.get('hideScript')) hideScript(element, id)
 
-    if (GM_config.get('addInstallButton')) {
+    if (GM_config.get('installButton')) {
       getData(id).then((data) => {
         const version = data.version
         const url = data.code_url
