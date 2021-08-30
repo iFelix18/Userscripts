@@ -20,7 +20,7 @@
 // /* cSpell: enable */
 // @copyright         2021, Davide (https://github.com/iFelix18)
 // @license           MIT
-// @version           1.3.0
+// @version           1.3.1
 //
 // @homepageURL       https://github.com/iFelix18/Userscripts#readme
 // @supportURL        https://github.com/iFelix18/Userscripts/issues
@@ -348,7 +348,7 @@
     // add button to hide the script
     $(element)
       .find('.badge-js, .badge-css')
-      .after('<span class="block-button" role="button" style="cursor: pointer; text-decoration: underline; zoom: 0.7; -moz-transform: scale(0.7);">Hide this script</span>')
+      .before('<span class="block-button" role="button" style="cursor: pointer; text-decoration: underline; font-size: 70%">Hide this script</span>')
 
     // if is in list hide it
     if (id in JSON.parse(await GM.getValue('hiddenList', '{}'))) {
