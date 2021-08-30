@@ -20,7 +20,7 @@
 // /* cSpell: enable */
 // @copyright         2021, Davide (https://github.com/iFelix18)
 // @license           MIT
-// @version           1.3.1
+// @version           1.3.2
 //
 // @homepageURL       https://github.com/iFelix18/Userscripts#readme
 // @supportURL        https://github.com/iFelix18/Userscripts/issues
@@ -135,43 +135,57 @@
   const locales = { /* cSpell: disable */
     de: {
       downgrade: 'Auf zurückstufen',
+      hide: 'Dieses skript ausblenden',
       install: 'Installieren',
+      notHide: 'Dieses skript nicht ausblenden',
       reinstall: 'Erneut installieren',
       update: 'Auf aktualisieren'
     },
     en: {
       downgrade: 'Downgrade to',
+      hide: 'Hide this script',
       install: 'Install',
+      notHide: 'Not hide this script',
       reinstall: 'Reinstall',
       update: 'Update to'
     },
     es: {
       downgrade: 'Degradar a',
+      hide: 'Ocultar este script',
       install: 'Instalar',
+      notHide: 'No ocultar este script',
       reinstall: 'Reinstalar',
       update: 'Actualizar a'
     },
     fr: {
       downgrade: 'Revenir à',
+      hide: 'Cacher ce script',
       install: 'Installer',
+      notHide: 'Ne pas cacher ce script',
       reinstall: 'Réinstaller',
       update: 'Mettre à'
     },
     it: {
       downgrade: 'Riporta a',
+      hide: 'Nascondi questo script',
       install: 'Installa',
+      notHide: 'Non nascondere questo script',
       reinstall: 'Reinstalla',
       update: 'Aggiorna a'
     },
     ru: {
       downgrade: 'Откатить до',
+      hide: 'Скрыть этот скрипт',
       install: 'Установить',
+      notHide: 'Не скрывать этот сценарий',
       reinstall: 'Переустановить',
       update: 'Обновить до'
     },
     'zh-CN': {
       downgrade: '降级到',
+      hide: '隐藏此脚本',
       install: '安装',
+      notHide: '不隐藏此脚本',
       reinstall: '重新安装',
       update: '更新到'
     }
@@ -302,7 +316,7 @@
    * @param {number} update
    * @returns {string}
    */
-  const getLabel = (update) => {
+  const installLabel = (update) => {
     if (update === null) {
       return locales[lang] ? locales[lang].install : locales.en.install
     } else if (update === 1) {
@@ -312,6 +326,15 @@
     } else {
       return locales[lang] ? locales[lang].reinstall : locales.en.reinstall
     }
+  }
+
+  /**
+   * Return label for the hide script button
+   * @param {boolean} hidden
+   * @returns {string}
+   */
+  const blockLabel = (hidden) => {
+    return hidden ? locales[lang] ? locales[lang].notHide : locales.en.notHide : locales[lang] ? locales[lang].hide : locales.en.hide
   }
 
   /**
@@ -345,15 +368,15 @@
    * @param {number} id
    */
   const hideScript = async (element, id) => {
-    // add button to hide the script
-    $(element)
-      .find('.badge-js, .badge-css')
-      .before('<span class="block-button" role="button" style="cursor: pointer; text-decoration: underline; font-size: 70%">Hide this script</span>')
-
     // if is in list hide it
     if (id in JSON.parse(await GM.getValue('hiddenList', '{}'))) {
       $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)').hide()
     }
+
+    // add button to hide the script
+    $(element)
+      .find('.badge-js, .badge-css')
+      .before(`<span class="block-button" role="button" style="cursor: pointer; text-decoration: underline; font-size: 70%">${blockLabel($(element).hasClass('hidden'))}</span>`)
 
     // on click...
     $(element).find('.block-button').click(async () => {
@@ -364,12 +387,21 @@
         hiddenList[id] = id
 
         GM.setValue('hiddenList', JSON.stringify(hiddenList))
-        $(element).hide(750).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
+        $(element)
+          .hide(750)
+          .addClass('hidden')
+          .css('background-color', 'rgba(255, 0, 0, 0.10)')
+          .find('.block-button')
+          .text(blockLabel($(element).hasClass('hidden')))
       } else { // ...else remove it
         delete hiddenList[id]
 
         GM.setValue('hiddenList', JSON.stringify(hiddenList))
-        $(element).removeClass('hidden').css('background-color', '')
+        $(element)
+          .removeClass('hidden')
+          .css('background-color', '')
+          .find('.block-button')
+          .text(blockLabel($(element).hasClass('hidden')))
       }
     })
   }
@@ -391,7 +423,7 @@
 
         isInstalled(data.name, data.namespace).then((data) => {
           const update = compareVersions(version, data)
-          const label = getLabel(update)
+          const label = installLabel(update)
 
           addInstallButton(element, url, label, version)
         }).catch((error) => MU.error(error))
