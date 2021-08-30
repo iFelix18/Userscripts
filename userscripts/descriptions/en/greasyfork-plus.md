@@ -1,6 +1,6 @@
 # Greasy Fork+
 
-### Adds various features, and improves the [Greasy Fork](https://greasyfork.org/) experience
+### Adds various features and improves the [Greasy Fork](https://greasyfork.org/) experience
 
 [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/userscripts/meta/greasyfork-plus.meta.js&style=flat-square)](#) [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/greasyfork-plus.user.js?style=flat-square)](#)
 

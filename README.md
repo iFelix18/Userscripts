@@ -67,7 +67,7 @@ Readme languages:
 ---
 
 *   ### Greasy Fork+
-    #### Adds various features, and improves the [Greasy Fork](https://greasyfork.org/) experience
+    #### Adds various features and improves the [Greasy Fork](https://greasyfork.org/) experience
 
     [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/userscripts/meta/greasyfork-plus.meta.js&style=flat-square)](#)
     [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/greasyfork-plus.user.js?style=flat-square)](#)
@@ -93,7 +93,7 @@ Readme languages:
 ---
 
 *   ### OpenUserJS+
-    #### Adds various features, and improves the [OpenUserJS](https://openuserjs.org/) experience
+    #### Adds various features and improves the [OpenUserJS](https://openuserjs.org/) experience
 
     [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/userscripts/meta/openuserjs-plus.meta.js&style=flat-square)](#)
     [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/openuserjs-plus.user.js?style=flat-square)](#)
