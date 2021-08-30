@@ -21,3 +21,9 @@
     - [Tampermonkey](https://www.tampermonkey.net/)
 2. Installalo da questa pagina.
 3. Fatto!
+
+---
+
+## Screenshots
+
+Pulsante installa:<br>[![Before](https://i.imgur.com/3LQLR3B.png "Install button")](#)

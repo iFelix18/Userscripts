@@ -78,6 +78,17 @@ Readme languages:
     - Hide all non-Latin scripts (press `Ctrl + Alt + L` to show again)
     - Hide all scripts with blacklisted words (press `Ctrl + Alt + B` to show again)
     - Show a button to install the script directly, which shows the version of the script, and which changes dynamically according to your version, if any, already installed (dynamic changes only work if you are using Violentmonkey or Tampermonkey)
+    - Shows the number of daily and total installations on the user profile
+
+    <details>
+    <summary>Screenshots</summary>
+
+    Install button, examples of how it can change dynamically:<br>[![Before](https://i.imgur.com/CO8wjFn.png "Install button")](#)
+
+    
+    Number of installations:<br>[![After](https://i.imgur.com/1DlTEZV.png "Number of installations")](#)
+
+    </details>
 
 ---
 
@@ -93,6 +104,13 @@ Readme languages:
     - Hide all non-Latin scripts (press `Ctrl + Alt + L` to show again)
     - Hide all scripts with blacklisted words (press `Ctrl + Alt + B` to show again)
     - Show a button to install the script directly
+
+    <details>
+    <summary>Screenshots</summary>
+
+    Install button:<br>[![Before](https://i.imgur.com/3LQLR3B.png "Install button")](#)
+
+    </details>
 
 ---
 
