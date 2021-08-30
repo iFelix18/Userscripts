@@ -8,7 +8,7 @@
 // @description:it  Aggiunge varie funzionalità, e migliora l'esperienza di Greasy Fork
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.1.0
+// @version         1.2.0
 //
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -74,6 +74,12 @@
         type: 'checkbox',
         default: true
       },
+      showTotalInstalls: {
+        label: 'Show total installs on your profile',
+        labelPos: 'right',
+        type: 'checkbox',
+        default: true
+      },
       logging: {
         label: 'Logging',
         section: ['Develop'],
@@ -122,6 +128,9 @@
       update: 'Aggiorna a'
     }
   }
+  const scriptList = $('.script-list')
+  const userScriptList = $('#user-script-list')
+  const listSort = $('#script-list-sort')
 
   MU.log(nonLatins)
   MU.log(blacklist)
@@ -282,7 +291,7 @@
   //* Script
   clearOldCache()
 
-  $('.script-list li').each((index, element) => {
+  scriptList.find('li').each((index, element) => {
     const id = $(element).data('script-id')
 
     if (GM_config.get('hideNonLatinScripts')) hideNonLatinScripts(element)
@@ -302,4 +311,21 @@
       }).catch((error) => MU.error(error))
     }
   })
+
+  if (GM_config.get('showTotalInstalls')) {
+    if (userScriptList.length) {
+      const dailyInstalls = []
+      const totalInstalls = []
+
+      userScriptList.find('li dd.script-list-daily-installs').each((index, element) => {
+        dailyInstalls.push(parseInt($(element).text().replace(/\D/g, ''), 10))
+      })
+      userScriptList.find('li dd.script-list-total-installs').each((index, element) => {
+        totalInstalls.push(parseInt($(element).text().replace(/\D/g, ''), 10))
+      })
+
+      listSort.find('.list-option.list-current:nth-child(1), .list-option:not(list-current):nth-child(1) a').append(`<span> (${dailyInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
+      listSort.find('.list-option.list-current:nth-child(2), .list-option:not(list-current):nth-child(2) a').append(`<span> (${totalInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
+    }
+  }
 })()

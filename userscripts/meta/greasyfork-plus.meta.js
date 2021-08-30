@@ -8,5 +8,5 @@
 // @description:it  Aggiunge varie funzionalità, e migliora l'esperienza di Greasy Fork
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.1.0
+// @version         1.2.0
 // ==/UserScript==
