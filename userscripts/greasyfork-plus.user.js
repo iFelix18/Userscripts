@@ -1,48 +1,60 @@
 // ==UserScript==
-// @name            Greasy Fork+
-// @name:it         Greasy Fork+
-// @author          Davide <iFelix18@protonmail.com>
-// @namespace       https://github.com/iFelix18
-// @icon            https://www.google.com/s2/favicons?sz=64&domain=greasyfork.org
-// @description     Adds various features, and improves the Greasy Fork experience
-// @description:it  Aggiunge varie funzionalità, e migliora l'esperienza di Greasy Fork
-// @copyright       2021, Davide (https://github.com/iFelix18)
-// @license         MIT
-// @version         1.2.1
+// @name              Greasy Fork+
+// @name:de           Greasy Fork+
+// @name:es           Greasy Fork+
+// @name:fr           Greasy Fork+
+// @name:it           Greasy Fork+
+// @name:ru           Greasy Fork+
+// @name:zh-CN        Greasy Fork+
+// @author            Davide <iFelix18@protonmail.com>
+// @namespace         https://github.com/iFelix18
+// @icon              https://www.google.com/s2/favicons?sz=64&domain=greasyfork.org
+// /* cSpell: disable */
+// @description       Adds various features and improves the Greasy Fork experience
+// @description:de    Fügt verschiedene Funktionen hinzu und verbessert das Greasy Fork-Erlebnis
+// @description:es    Agrega varias funciones y mejora la experiencia de Greasy Fork
+// @description:fr    Ajoute diverses fonctionnalités et améliore l'expérience Greasy Fork
+// @description:it    Aggiunge varie funzionalità e migliora l'esperienza di Greasy Fork
+// @description:ru    Добавляет различные функции и улучшает работу с Greasy Fork
+// @description:zh-CN 添加各种功能并改善 Greasy Fork 体验
+// /* cSpell: enable */
+// @copyright         2021, Davide (https://github.com/iFelix18)
+// @license           MIT
+// @version           1.2.2
 //
-// @homepageURL     https://github.com/iFelix18/Userscripts#readme
-// @supportURL      https://github.com/iFelix18/Userscripts/issues
-// @updateURL       https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
-// @downloadURL     https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
+// @homepageURL       https://github.com/iFelix18/Userscripts#readme
+// @supportURL        https://github.com/iFelix18/Userscripts/issues
+// @updateURL         https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
+// @downloadURL       https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
 //
-// @require         https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@abce8796cedbe28ac8e072d9824c4b9342985098/lib/utils/utils.min.js
-// @require         https://cdn.jsdelivr.net/npm/gm4-polyfill@1.0.1/gm4-polyfill.min.js#sha256-qmLl2Ly0/+2K+HHP76Ul+Wpy1Z41iKtzptPD1Nt8gSk=
-// @require         https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js#sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=
-// @require         https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.4/dist/index.js#sha256-ac//SadDzOEkne8ECdtu6YwY5YJj0oJBazsbYk/mvzg=
+// @require           https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
+// @require           https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@abce8796cedbe28ac8e072d9824c4b9342985098/lib/utils/utils.min.js
+// @require           https://cdn.jsdelivr.net/npm/gm4-polyfill@1.0.1/gm4-polyfill.min.js#sha256-qmLl2Ly0/+2K+HHP76Ul+Wpy1Z41iKtzptPD1Nt8gSk=
+// @require           https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js#sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=
+// @require           https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.4/dist/index.js#sha256-ac//SadDzOEkne8ECdtu6YwY5YJj0oJBazsbYk/mvzg=
 //
-// @match           *://greasyfork.org/*
-// @match           *://sleazyfork.org/*
-// @connect         greasyfork.org
+// @match             *://greasyfork.org/*
+// @match             *://sleazyfork.org/*
+// @connect           greasyfork.org
 //
-// @grant           GM.deleteValue
-// @grant           GM.getValue
-// @grant           GM.info
-// @grant           GM.listValues
-// @grant           GM.registerMenuCommand
-// @grant           GM.setValue
-// @grant           GM.xmlHttpRequest
+// @grant             GM.deleteValue
+// @grant             GM.getValue
+// @grant             GM.info
+// @grant             GM.listValues
+// @grant             GM.registerMenuCommand
+// @grant             GM.setValue
+// @grant             GM.xmlHttpRequest
 //
-// @grant           GM_deleteValue
-// @grant           GM_getValue
-// @grant           GM_info
-// @grant           GM_listValues
-// @grant           GM_registerMenuCommand
-// @grant           GM_setValue
-// @grant           GM_xmlhttpRequest
+// @grant             GM_deleteValue
+// @grant             GM_getValue
+// @grant             GM_info
+// @grant             GM_listValues
+// @grant             GM_registerMenuCommand
+// @grant             GM_setValue
+// @grant             GM_xmlhttpRequest
 //
-// @run-at          document-idle
-// @inject-into     page
+// @run-at            document-idle
+// @inject-into       page
 // ==/UserScript==
 
 /* global $, GM_config, MonkeyUtils, VM */
@@ -110,24 +122,54 @@
   //* Constants
   const cachePeriod = 1800000 // 0.5 hours
   const nonLatins = /[^\p{Script=Latin}\p{Script=Common}\p{Script=Inherited}]/gu
-  const blacklist = new RegExp([ /* cspell: disable-next-line */
+  const blacklist = new RegExp([ /* cSpell: disable-next-line */
     '\\bagar((.)?io)?\\b', '\\bagma((.)?io)?\\b', '\\baimbot\\b', '\\barras((.)?io)?\\b', '\\bbot(s)?\\b', '\\bbubble((.)?am)?\\b', '\\bcheat(s)?\\b', '\\bdiep((.)?io)?\\b', '\\bfreebitco((.)?in)?\\b', '\\bgota((.)?io)?\\b', '\\bhack(s)?\\b', '\\bkrunker((.)?io)?\\b', '\\blostworld((.)?io)?\\b', '\\bmoomoo((.)?io)?\\b', '\\broblox(.com)?\\b', '\\bshell\\sshockers\\b', '\\bshellshock((.)?io)?\\b', '\\bshellshockers\\b', '\\bskribbl((.)?io)?\\b', '\\bslither((.)?io)?\\b', '\\bsurviv((.)?io)?\\b', '\\btaming((.)?io)?\\b', '\\bvenge((.)?io)?\\b', '\\bvertix((.)?io)?\\b', '\\bzombs((.)?io)?\\b', '\\p{Extended_Pictographic}'
   ].join('|'), 'giu')
   const lang = $('html').attr('lang')
-  const locales = {
+  const locales = { /* cSpell: disable */
+    de: {
+      downgrade: 'Auf zurückstufen',
+      install: 'Installieren',
+      reinstall: 'Erneut installieren',
+      update: 'Auf aktualisieren'
+    },
     en: {
       downgrade: 'Downgrade to',
       install: 'Install',
       reinstall: 'Reinstall',
       update: 'Update to'
     },
+    es: {
+      downgrade: 'Degradar a',
+      install: 'Instalar',
+      reinstall: 'Reinstalar',
+      update: 'Actualizar a'
+    },
+    fr: {
+      downgrade: 'Revenir à',
+      install: 'Installer',
+      reinstall: 'Réinstaller',
+      update: 'Mettre à'
+    },
     it: {
       downgrade: 'Riporta a',
       install: 'Installa',
       reinstall: 'Reinstalla',
       update: 'Aggiorna a'
+    },
+    ru: {
+      downgrade: 'Откатить до',
+      install: 'Установить',
+      reinstall: 'Переустановить',
+      update: 'Обновить до'
+    },
+    'zh-CN': {
+      downgrade: '降级到',
+      install: '安装',
+      reinstall: '重新安装',
+      update: '更新到'
     }
-  }
+  } /* cSpell: enable */
   const scriptList = $('.script-list')
   const userScriptList = $('#user-script-list')
   const listSort = $('#script-list-sort')
