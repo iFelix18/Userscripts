@@ -10,7 +10,8 @@
 
 * Hide all non-Latin scripts (press `Ctrl + Alt + L` to show again)
 * Hide all scripts with blacklisted words (press `Ctrl + Alt + B` to show again)
-* Show a button to install the script directly, which shows the version of the script, and which changes dynamically according to your version, if any, already installed (dynamic changes only work if you are using Violentmonkey or Tampermonkey)
+* Add a button to hide the script (press `Ctrl + Alt + H` to show again)
+* Add a button to install the script directly, which shows the version of the script, and which changes dynamically according to your version, if any, already installed (dynamic changes only work if you are using Violentmonkey or Tampermonkey)
 * Shows the number of daily and total installations on the user profile
 
 ---
@@ -27,6 +28,6 @@
 
 ## Screenshots
 
+Hide script button:<br>[![Before](https://i.imgur.com/5H1YJRM.png "Hide script button")](#)
 Install button, examples of how it can change dynamically:<br>[![Before](https://i.imgur.com/CO8wjFn.png "Install button")](#)
-
 Number of installations:<br>[![After](https://i.imgur.com/1DlTEZV.png "Number of installations")](#)

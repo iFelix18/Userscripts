@@ -59,7 +59,6 @@ Lingue readme:
     <summary>Screenshots</summary>
 
     Prima:<br>[![Before](https://i.imgur.com/eQrDc84.png "Before")](#)
-
     Dopo:<br>[![After](https://i.imgur.com/g2aeM9h.png "After")](#)
 
     </details>
@@ -77,15 +76,15 @@ Lingue readme:
 
     - Nascondi tutti gli script non latini (premi `Ctrl + Alt + L` per mostrarli di nuovo)
     - Nascondi tutti gli script con parole nella blacklist (premi `Ctrl + Alt + B` per mostrarli di nuovo)
-    - Mostra un pulsante per installare direttamente lo script, che mostra la versione dello script e che cambia dinamicamente in base alla tua versione, se presente, già installata (il cambio dinamico funziona solo se stai utilizzando Violentmonkey o Tampermonkey)
+    - Aggiunge un pulsante per nascondere lo script (premi `Ctrl + Alt + H` per mostrarli di nuovo)
+    - Aggiunge un pulsante per installare direttamente lo script, che mostra la versione dello script e che cambia dinamicamente in base alla tua versione, se presente, già installata (il cambio dinamico funziona solo se stai utilizzando Violentmonkey o Tampermonkey)
     - Mostra il numero di installazioni giornaliere e totali sul profilo utente
 
     <details>
     <summary>Screenshots</summary>
 
-    Pulsante installa, esempi di come può cambiare dinamicamente:<br>[![Before](https://i.imgur.com/CO8wjFn.png "Install button")](#)
-
-    
+    Pulsante nascondi script:<br>[![Before](https://i.imgur.com/5H1YJRM.png "Hide script button")](#)
+    Pulsante installa, esempi di come può cambiare dinamicamente:<br>[![Before](https://i.imgur.com/CO8wjFn.png "Install button")](#)    
     Numero di installazioni:<br>[![After](https://i.imgur.com/1DlTEZV.png "Number of installations")](#)
 
     </details>
