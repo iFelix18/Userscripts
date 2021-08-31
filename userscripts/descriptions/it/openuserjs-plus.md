@@ -10,7 +10,8 @@
 
 * Nascondi tutti gli script non latini (premi `Ctrl + Alt + L` per mostrarli di nuovo)
 * Nascondi tutti gli script con parole nella blacklist (premi `Ctrl + Alt + B` per mostrarli di nuovo)
-* Mostra un pulsante per installare direttamente lo script
+* Aggiunge un pulsante per nascondere lo script (premi `Ctrl + Alt + H` per mostrarli di nuovo)
+* Aggiunge un pulsante per installare direttamente lo script
 
 ---
 
@@ -26,4 +27,5 @@
 
 ## Screenshots
 
-Pulsante installa:<br>[![Before](https://i.imgur.com/3LQLR3B.png "Install button")](#)
+Pulsante nascondi script:<br>[![Hide script button](https://i.imgur.com/8sRWP33.png "Hide script button")](#)
+Pulsante installa:<br>[![Install button](https://i.imgur.com/3LQLR3B.png "Install button")](#)

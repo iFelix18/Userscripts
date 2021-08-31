@@ -10,7 +10,8 @@
 
 * Hide all non-Latin scripts (press `Ctrl + Alt + L` to show again)
 * Hide all scripts with blacklisted words (press `Ctrl + Alt + B` to show again)
-* Show a button to install the script directly
+* Add a button to hide the script (press `Ctrl + Alt + H` to show again)
+* Add a button to install the script directly
 
 ---
 
@@ -26,4 +27,5 @@
 
 ## Screenshots
 
-Install button:<br>[![Before](https://i.imgur.com/3LQLR3B.png "Install button")](#)
+Hide script button:<br>[![Hide script button](https://i.imgur.com/8sRWP33.png "Hide script button")](#)
+Install button:<br>[![Install button](https://i.imgur.com/3LQLR3B.png "Install button")](#)

@@ -28,6 +28,6 @@
 
 ## Screenshots
 
-Pulsante nascondi script:<br>[![Before](https://i.imgur.com/PFRM1SW.png "Hide script button")](#)
-Pulsante installa, esempi di come può cambiare dinamicamente:<br>[![Before](https://i.imgur.com/CO8wjFn.png "Install button")](#)    
-Numero di installazioni:<br>[![After](https://i.imgur.com/1DlTEZV.png "Number of installations")](#)
+Pulsante nascondi script:<br>[![Hide script button](https://i.imgur.com/PFRM1SW.png "Hide script button")](#)
+Pulsante installa, esempi di come può cambiare dinamicamente:<br>[![Install button](https://i.imgur.com/CO8wjFn.png "Install button")](#)    
+Numero di installazioni:<br>[![Number of installations](https://i.imgur.com/1DlTEZV.png "Number of installations")](#)

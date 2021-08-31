@@ -83,9 +83,9 @@ Lingue readme:
     <details>
     <summary>Screenshots</summary>
 
-    Pulsante nascondi script:<br>[![Before](https://i.imgur.com/PFRM1SW.png "Hide script button")](#)
-    Pulsante installa, esempi di come può cambiare dinamicamente:<br>[![Before](https://i.imgur.com/CO8wjFn.png "Install button")](#)    
-    Numero di installazioni:<br>[![After](https://i.imgur.com/1DlTEZV.png "Number of installations")](#)
+    Pulsante nascondi script:<br>[![Hide script button](https://i.imgur.com/PFRM1SW.png "Hide script button")](#)
+    Pulsante installa, esempi di come può cambiare dinamicamente:<br>[![Install button](https://i.imgur.com/CO8wjFn.png "Install button")](#)    
+    Numero di installazioni:<br>[![Number of installations](https://i.imgur.com/1DlTEZV.png "Number of installations")](#)
 
     </details>
 
@@ -102,12 +102,14 @@ Lingue readme:
 
     - Nascondi tutti gli script non latini (premi `Ctrl + Alt + L` per mostrarli di nuovo)
     - Nascondi tutti gli script con parole nella blacklist (premi `Ctrl + Alt + B` per mostrarli di nuovo)
-    - Mostra un pulsante per installare direttamente lo script
+    - Aggiunge un pulsante per nascondere lo script (premi `Ctrl + Alt + H` per mostrarli di nuovo)
+    - Aggiunge un pulsante per installare direttamente lo script
 
     <details>
     <summary>Screenshots</summary>
 
-    Pulsante installa:<br>[![Before](https://i.imgur.com/3LQLR3B.png "Install button")](#)
+    Pulsante nascondi script:<br>[![Hide script button](https://i.imgur.com/8sRWP33.png "Hide script button")](#)
+    Pulsante installa:<br>[![Install button](https://i.imgur.com/3LQLR3B.png "Install button")](#)
 
     </details>
 
