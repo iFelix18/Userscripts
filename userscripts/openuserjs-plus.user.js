@@ -20,7 +20,7 @@
 // /* cSpell: enable */
 // @copyright         2021, Davide (https://github.com/iFelix18)
 // @license           MIT
-// @version           1.1.1
+// @version           1.2.0
 //
 // @homepageURL       https://github.com/iFelix18/Userscripts#readme
 // @supportURL        https://github.com/iFelix18/Userscripts/issues
@@ -34,6 +34,10 @@
 // @require           https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.4/dist/index.js#sha256-ac//SadDzOEkne8ECdtu6YwY5YJj0oJBazsbYk/mvzg=
 //
 // @match             *://openuserjs.org/*
+//
+// @compatible        chrome
+// @compatible        edge
+// @compatible        firefox
 //
 // @grant             GM.getValue
 // @grant             GM.info
@@ -60,20 +64,26 @@
     title: `${GM.info.script.name} v${GM.info.script.version} Settings`,
     fields: {
       hideNonLatinScripts: {
-        label: 'Hide non-Latin scripts',
+        label: 'Hide non-Latin scripts, press "Ctrl + Alt + L" to show non-Latin scripts',
         section: ['Features'],
         labelPos: 'right',
         type: 'checkbox',
         default: true
       },
       hideBlacklistedScripts: {
-        label: 'Hide blacklisted scripts',
+        label: 'Hide blacklisted scripts, press "Ctrl + Alt + B" to show Blacklisted scripts',
         labelPos: 'right',
         type: 'checkbox',
         default: true
       },
-      addInstallButton: {
-        label: 'Add install button',
+      hideScript: {
+        label: 'Add a button to hide the script, press "Ctrl + Alt + H" to show Hidden scripts',
+        labelPos: 'right',
+        type: 'checkbox',
+        default: true
+      },
+      installButton: {
+        label: 'Add a button to install the script directly',
         labelPos: 'right',
         type: 'checkbox',
         default: true
@@ -121,6 +131,9 @@
   VM.shortcut.register('ctrl-alt-b', () => {
     $('.panel-default > .table .tr-link.blacklisted').toggle()
   })
+  VM.shortcut.register('ctrl-alt-h', () => {
+    $('.panel-default > .table .tr-link.hidden-script').toggle()
+  })
 
   //* Functions
   /**
@@ -154,6 +167,77 @@
   }
 
   /**
+   * Hide scripts
+   * @param {Object} element
+   * @param {boolean} list
+   */
+  const hideScript = async (element, list) => {
+    let name
+
+    if (list) {
+      name = $(element).find('.tr-link-a b').text()
+    } else {
+      name = $(element).find('.script-name').text()
+    }
+
+    if (!name) return
+
+    // if is in list hide it
+    if (name in JSON.parse(await GM.getValue('hiddenList', '{}')) && list) {
+      $(element).addClass('hidden-script').css('background-color', 'rgba(255, 0, 0, 0.10)').hide()
+    } else if (name in JSON.parse(await GM.getValue('hiddenList', '{}')) && !list) {
+      $(element).addClass('hidden-script').find('.col-sm-8, .col-sm-8 .panel-body').css('background-color', 'rgba(255, 0, 0, 0.10)')
+    }
+
+    // add button to hide the script
+    if (list) {
+      $(element)
+        .find('td:nth-child(1) span:last-of-type')
+        .after(`<span class="block-button" role="button" style="cursor: pointer; margin-left: 1ex;">${blockLabel($(element).hasClass('hidden-script'))}</span>`)
+    } else {
+      $(element)
+        .find('.script-name')
+        .after(`<span class="block-button" role="button" style="cursor: pointer; margin-left: 1ex; font-size: 70%;">${blockLabel($(element).hasClass('hidden-script'))}</span>`)
+    }
+
+    // on click...
+    $(element).find('.block-button').click(async (event) => {
+      event.stopPropagation()
+
+      const hiddenList = JSON.parse(await GM.getValue('hiddenList', '{}'))
+
+      // ...if it is not in the list add it and hide it...
+      if (!(name in hiddenList)) {
+        hiddenList[name] = name
+
+        GM.setValue('hiddenList', JSON.stringify(hiddenList))
+
+        if (list) {
+          $(element).hide(750).addClass('hidden-script').css('background-color', 'rgba(255, 0, 0, 0.10)')
+            .find('.block-button').text(blockLabel($(element).hasClass('hidden-script')))
+        } else {
+          $(element).addClass('hidden-script')
+            .find('.col-sm-8, .col-sm-8 .panel-body').css('background-color', 'rgba(255, 0, 0, 0.10)')
+            .find('.block-button').text(blockLabel($(element).hasClass('hidden-script')))
+        }
+      } else { // ...else remove it
+        delete hiddenList[name]
+
+        GM.setValue('hiddenList', JSON.stringify(hiddenList))
+        if (list) {
+          $(element).removeClass('hidden-script').css('background-color', '')
+            .find('.block-button').text(blockLabel($(element).hasClass('hidden-script')))
+        } else {
+          console.log('sbloccato')
+          $(element).removeClass('hidden-script')
+            .find('.col-sm-8, .col-sm-8 .panel-body').css('background-color', '')
+            .find('.block-button').text(blockLabel($(element).hasClass('hidden-script')))
+        }
+      }
+    })
+  }
+
+  /**
    * Shows a button to install the script
    * @param {Object} element
    */
@@ -172,10 +256,25 @@
     }
   }
 
+  /**
+   * Return label for the hide script button
+   * @param {boolean} hidden
+   * @returns {string}
+   */
+  const blockLabel = (hidden) => {
+    return hidden ? '✓ Not hide this script' : '🛇 Hide this script'
+  }
+
   //* Script
   $('.panel-default > .table .tr-link').each((index, element) => {
     if (GM_config.get('hideNonLatinScripts')) hideNonLatinScripts(element)
     if (GM_config.get('hideBlacklistedScripts')) hideBlacklistedScripts(element)
-    if (GM_config.get('addInstallButton')) addInstallButton(element)
+    if (GM_config.get('hideScript')) hideScript(element, true)
+    if (GM_config.get('installButton')) addInstallButton(element)
   })
+
+  if (window.location.pathname.indexOf('/scripts/') > -1) {
+    const element = $('#body > .container-fluid')
+    if (GM_config.get('hideScript')) hideScript(element, false)
+  }
 })()
