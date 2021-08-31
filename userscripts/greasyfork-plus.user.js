@@ -20,7 +20,7 @@
 // /* cSpell: enable */
 // @copyright         2021, Davide (https://github.com/iFelix18)
 // @license           MIT
-// @version           1.3.2
+// @version           1.3.3
 //
 // @homepageURL       https://github.com/iFelix18/Userscripts#readme
 // @supportURL        https://github.com/iFelix18/Userscripts/issues
@@ -36,6 +36,10 @@
 // @match             *://greasyfork.org/*
 // @match             *://sleazyfork.org/*
 // @connect           greasyfork.org
+//
+// @compatible        chrome
+// @compatible        edge
+// @compatible        firefox
 //
 // @grant             GM.deleteValue
 // @grant             GM.getValue
@@ -135,57 +139,57 @@
   const locales = { /* cSpell: disable */
     de: {
       downgrade: 'Auf zurückstufen',
-      hide: 'Dieses skript ausblenden',
+      hide: '🛇 Dieses skript ausblenden',
       install: 'Installieren',
-      notHide: 'Dieses skript nicht ausblenden',
+      notHide: '✓ Dieses skript nicht ausblenden',
       reinstall: 'Erneut installieren',
       update: 'Auf aktualisieren'
     },
     en: {
       downgrade: 'Downgrade to',
-      hide: 'Hide this script',
+      hide: '🛇 Hide this script',
       install: 'Install',
-      notHide: 'Not hide this script',
+      notHide: '✓ Not hide this script',
       reinstall: 'Reinstall',
       update: 'Update to'
     },
     es: {
       downgrade: 'Degradar a',
-      hide: 'Ocultar este script',
+      hide: '🛇 Ocultar este script',
       install: 'Instalar',
-      notHide: 'No ocultar este script',
+      notHide: '✓ No ocultar este script',
       reinstall: 'Reinstalar',
       update: 'Actualizar a'
     },
     fr: {
       downgrade: 'Revenir à',
-      hide: 'Cacher ce script',
+      hide: '🛇 Cacher ce script',
       install: 'Installer',
-      notHide: 'Ne pas cacher ce script',
+      notHide: '✓ Ne pas cacher ce script',
       reinstall: 'Réinstaller',
       update: 'Mettre à'
     },
     it: {
       downgrade: 'Riporta a',
-      hide: 'Nascondi questo script',
+      hide: '🛇 Nascondi questo script',
       install: 'Installa',
-      notHide: 'Non nascondere questo script',
+      notHide: '✓ Non nascondere questo script',
       reinstall: 'Reinstalla',
       update: 'Aggiorna a'
     },
     ru: {
       downgrade: 'Откатить до',
-      hide: 'Скрыть этот скрипт',
+      hide: '🛇 Скрыть этот скрипт',
       install: 'Установить',
-      notHide: 'Не скрывать этот сценарий',
+      notHide: '✓ Не скрывать этот сценарий',
       reinstall: 'Переустановить',
       update: 'Обновить до'
     },
     'zh-CN': {
       downgrade: '降级到',
-      hide: '隐藏此脚本',
+      hide: '🛇 隐藏此脚本',
       install: '安装',
-      notHide: '不隐藏此脚本',
+      notHide: '✓ 不隐藏此脚本',
       reinstall: '重新安装',
       update: '更新到'
     }
@@ -193,6 +197,7 @@
   const scriptList = $('.script-list')
   const userScriptList = $('#user-script-list')
   const listSort = $('#script-list-sort')
+  const scriptInfo = $('#script-info')
 
   MU.log(nonLatins)
   MU.log(blacklist)
@@ -367,16 +372,24 @@
    * @param {Object} element
    * @param {number} id
    */
-  const hideScript = async (element, id) => {
+  const hideScript = async (element, id, list) => {
     // if is in list hide it
-    if (id in JSON.parse(await GM.getValue('hiddenList', '{}'))) {
+    if (id in JSON.parse(await GM.getValue('hiddenList', '{}')) && list) {
       $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)').hide()
+    } else if (id in JSON.parse(await GM.getValue('hiddenList', '{}')) && !list) {
+      $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
     }
 
     // add button to hide the script
-    $(element)
-      .find('.badge-js, .badge-css')
-      .before(`<span class="block-button" role="button" style="cursor: pointer; text-decoration: underline; font-size: 70%">${blockLabel($(element).hasClass('hidden'))}</span>`)
+    if (list) {
+      $(element)
+        .find('.badge-js, .badge-css')
+        .before(`<span class="block-button" role="button" style="cursor: pointer; font-size: 70%">${blockLabel($(element).hasClass('hidden'))}</span>`)
+    } else {
+      $(element)
+        .find('header h2')
+        .append(`<span class="block-button" role="button" style="cursor: pointer; font-size: 50%; margin-left: 1ex;">${blockLabel($(element).hasClass('hidden'))}</span>`)
+    }
 
     // on click...
     $(element).find('.block-button').click(async () => {
@@ -387,21 +400,20 @@
         hiddenList[id] = id
 
         GM.setValue('hiddenList', JSON.stringify(hiddenList))
-        $(element)
-          .hide(750)
-          .addClass('hidden')
-          .css('background-color', 'rgba(255, 0, 0, 0.10)')
-          .find('.block-button')
-          .text(blockLabel($(element).hasClass('hidden')))
+
+        if (list) {
+          $(element).hide(750).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
+            .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
+        } else {
+          $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
+            .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
+        }
       } else { // ...else remove it
         delete hiddenList[id]
 
         GM.setValue('hiddenList', JSON.stringify(hiddenList))
-        $(element)
-          .removeClass('hidden')
-          .css('background-color', '')
-          .find('.block-button')
-          .text(blockLabel($(element).hasClass('hidden')))
+        $(element).removeClass('hidden').css('background-color', '')
+          .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
       }
     })
   }
@@ -414,7 +426,7 @@
 
     if (GM_config.get('hideNonLatinScripts')) hideNonLatinScripts(element)
     if (GM_config.get('hideBlacklistedScripts')) hideBlacklistedScripts(element)
-    if (GM_config.get('hideScript')) hideScript(element, id)
+    if (GM_config.get('hideScript')) hideScript(element, id, true)
 
     if (GM_config.get('installButton')) {
       getData(id).then((data) => {
@@ -445,6 +457,14 @@
 
       listSort.find('.list-option.list-current:nth-child(1), .list-option:not(list-current):nth-child(1) a').append(`<span> (${dailyInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
       listSort.find('.list-option.list-current:nth-child(2), .list-option:not(list-current):nth-child(2) a').append(`<span> (${totalInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
+    }
+  }
+
+  if (GM_config.get('hideScript')) {
+    if (scriptInfo.length) {
+      const id = $(scriptInfo).find('.install-link').data('script-id')
+
+      hideScript(scriptInfo, id, false)
     }
   }
 })()
