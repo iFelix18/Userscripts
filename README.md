@@ -83,7 +83,7 @@ Readme languages:
     <details>
     <summary>Screenshots</summary>
 
-    Hide script button:<br>[![Before](https://i.imgur.com/5H1YJRM.png "Hide script button")](#)
+    Hide script button:<br>[![Before](https://i.imgur.com/PFRM1SW.png "Hide script button")](#)
     Install button, examples of how it can change dynamically:<br>[![Before](https://i.imgur.com/CO8wjFn.png "Install button")](#)
     Number of installations:<br>[![After](https://i.imgur.com/1DlTEZV.png "Number of installations")](#)
 
