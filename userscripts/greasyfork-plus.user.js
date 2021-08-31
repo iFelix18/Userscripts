@@ -20,7 +20,7 @@
 // /* cSpell: enable */
 // @copyright         2021, Davide (https://github.com/iFelix18)
 // @license           MIT
-// @version           1.3.3
+// @version           1.3.4
 //
 // @homepageURL       https://github.com/iFelix18/Userscripts#readme
 // @supportURL        https://github.com/iFelix18/Userscripts/issues
@@ -245,6 +245,58 @@
   }
 
   /**
+   * Hide scripts
+   * @param {Object}  element
+   * @param {number}  id
+   * @param {boolean} list
+   */
+  const hideScript = async (element, id, list) => {
+    // if is in list hide it
+    if (id in JSON.parse(await GM.getValue('hiddenList', '{}')) && list) {
+      $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)').hide()
+    } else if (id in JSON.parse(await GM.getValue('hiddenList', '{}')) && !list) {
+      $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
+    }
+
+    // add button to hide the script
+    if (list) {
+      $(element)
+        .find('.badge-js, .badge-css')
+        .before(`<span class="block-button" role="button" style="cursor: pointer; font-size: 70%;">${blockLabel($(element).hasClass('hidden'))}</span>`)
+    } else {
+      $(element)
+        .find('header h2')
+        .append(`<span class="block-button" role="button" style="cursor: pointer; font-size: 50%; margin-left: 1ex;">${blockLabel($(element).hasClass('hidden'))}</span>`)
+    }
+
+    // on click...
+    $(element).find('.block-button').click(async () => {
+      const hiddenList = JSON.parse(await GM.getValue('hiddenList', '{}'))
+
+      // ...if it is not in the list add it and hide it...
+      if (!(id in hiddenList)) {
+        hiddenList[id] = id
+
+        GM.setValue('hiddenList', JSON.stringify(hiddenList))
+
+        if (list) {
+          $(element).hide(750).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
+            .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
+        } else {
+          $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
+            .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
+        }
+      } else { // ...else remove it
+        delete hiddenList[id]
+
+        GM.setValue('hiddenList', JSON.stringify(hiddenList))
+        $(element).removeClass('hidden').css('background-color', '')
+          .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
+      }
+    })
+  }
+
+  /**
    * Get data from Greasy Fork API
    * @param {number} id
    * @returns
@@ -364,57 +416,6 @@
     values.forEach(async (value) => {
       const cache = await GM.getValue(value) // get cache
       if ((Date.now() - cache.time) > cachePeriod) { GM.deleteValue(value) } // delete old cache
-    })
-  }
-
-  /**
-   * Hide scripts
-   * @param {Object} element
-   * @param {number} id
-   */
-  const hideScript = async (element, id, list) => {
-    // if is in list hide it
-    if (id in JSON.parse(await GM.getValue('hiddenList', '{}')) && list) {
-      $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)').hide()
-    } else if (id in JSON.parse(await GM.getValue('hiddenList', '{}')) && !list) {
-      $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
-    }
-
-    // add button to hide the script
-    if (list) {
-      $(element)
-        .find('.badge-js, .badge-css')
-        .before(`<span class="block-button" role="button" style="cursor: pointer; font-size: 70%">${blockLabel($(element).hasClass('hidden'))}</span>`)
-    } else {
-      $(element)
-        .find('header h2')
-        .append(`<span class="block-button" role="button" style="cursor: pointer; font-size: 50%; margin-left: 1ex;">${blockLabel($(element).hasClass('hidden'))}</span>`)
-    }
-
-    // on click...
-    $(element).find('.block-button').click(async () => {
-      const hiddenList = JSON.parse(await GM.getValue('hiddenList', '{}'))
-
-      // ...if it is not in the list add it and hide it...
-      if (!(id in hiddenList)) {
-        hiddenList[id] = id
-
-        GM.setValue('hiddenList', JSON.stringify(hiddenList))
-
-        if (list) {
-          $(element).hide(750).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
-            .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
-        } else {
-          $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
-            .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
-        }
-      } else { // ...else remove it
-        delete hiddenList[id]
-
-        GM.setValue('hiddenList', JSON.stringify(hiddenList))
-        $(element).removeClass('hidden').css('background-color', '')
-          .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
-      }
     })
   }
 
