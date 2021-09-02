@@ -13,6 +13,7 @@
 * Add a button to hide the script (press `Ctrl + Alt + H` to show again)
 * Add a button to install the script directly, which shows the version of the script, and which changes dynamically according to your version, if any, already installed (dynamic changes only work if you are using Violentmonkey or Tampermonkey)
 * Shows the number of daily and total installations on the user profile
+* Get notified whenever your total installs got over one of your set milestones
 
 ---
 
@@ -28,6 +29,18 @@
 
 ## Screenshots
 
-Hide script button:<br>[![Hide script button](https://i.imgur.com/PFRM1SW.png "Hide script button")](#)
-Install button, examples of how it can change dynamically:<br>[![Install button](https://i.imgur.com/CO8wjFn.png "Install button")](#)
-Number of installations:<br>[![Number of installations](https://i.imgur.com/1DlTEZV.png "Number of installations")](#)
+<div align="center">
+
+| [![Hide script button](https://i.imgur.com/PFRM1SW.png "Hide script button")](#) |
+|:--:| 
+| *Hide script button* |
+
+| [![Install button](https://i.imgur.com/CO8wjFn.png "Install button")](#) |
+|:--:|
+| *Install button, examples of how it can dynamically change according to your installed version* |
+
+| [![Number of installations](https://i.imgur.com/1DlTEZV.png "Number of installations")](#) | [![Milestone notification](https://i.imgur.com/Q3wXatS.png "Milestone notification")](#) |
+|:--:|:--:| 
+| *Number of installations* | *Milestone notification* |
+  
+<div>

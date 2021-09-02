@@ -58,8 +58,17 @@ Lingue readme:
     <details>
     <summary>Screenshots</summary>
 
-    Prima:<br>[![Before](https://i.imgur.com/eQrDc84.png "Before")](#)
-    Dopo:<br>[![After](https://i.imgur.com/g2aeM9h.png "After")](#)
+    <div align="center">
+
+      | [![Before](https://i.imgur.com/eQrDc84.png "Prima")](#) |
+      |:--:| 
+      | *Prima* |
+      
+      | [![After](https://i.imgur.com/g2aeM9h.png "Dopo")](#) |
+      |:--:|
+      | *Dopo* |
+      
+    </div>
 
     </details>
 
@@ -74,18 +83,35 @@ Lingue readme:
     [![OpenUserJS Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/openuserjs/branches/master/iFelix18/Greasy_Fork%2B&style=flat-square)](https://openuserjs.org/scripts/iFelix18/Greasy_Fork+)
     [![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Click here!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js)
 
+    <p>
+
     - Nascondi tutti gli script non latini (premi `Ctrl + Alt + L` per mostrarli di nuovo)
     - Nascondi tutti gli script con parole nella blacklist (premi `Ctrl + Alt + B` per mostrarli di nuovo)
     - Aggiunge un pulsante per nascondere lo script (premi `Ctrl + Alt + H` per mostrarli di nuovo)
     - Aggiunge un pulsante per installare direttamente lo script, che mostra la versione dello script e che cambia dinamicamente in base alla tua versione, se presente, già installata (il cambio dinamico funziona solo se stai utilizzando Violentmonkey o Tampermonkey)
     - Mostra il numero di installazioni giornaliere e totali sul profilo utente
+    - Ricevi una notifica ogni volta che le tue installazioni totali superano uno dei traguardi prefissati
+    
+    </p>
 
     <details>
     <summary>Screenshots</summary>
 
-    Pulsante nascondi script:<br>[![Hide script button](https://i.imgur.com/PFRM1SW.png "Hide script button")](#)
-    Pulsante installa, esempi di come può cambiare dinamicamente:<br>[![Install button](https://i.imgur.com/CO8wjFn.png "Install button")](#)    
-    Numero di installazioni:<br>[![Number of installations](https://i.imgur.com/1DlTEZV.png "Number of installations")](#)
+    <div align="center">
+
+      | [![Hide script button](https://i.imgur.com/PFRM1SW.png "Pulsante nascondi script")](#) |
+      |:--:| 
+      | *Pulsante nascondi script* |
+      
+      | [![Install button](https://i.imgur.com/CO8wjFn.png "Pulsante installa")](#) |
+      |:--:|
+      | *Pulsante installa, esempi di come può cambiare dinamicamente in base alla versione installata* |
+
+      | [![Number of installations](https://i.imgur.com/1DlTEZV.png "Numero di installazioni")](#) | [![Milestone notification](https://i.imgur.com/Q3wXatS.png "Notifica traguardo")](#) |
+      |:--:|:--:| 
+      | *Numero di installazioni* | *Notifica traguardo* |
+      
+    </div>
 
     </details>
 
@@ -100,16 +126,29 @@ Lingue readme:
     [![OpenUserJS Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/openuserjs/branches/master/iFelix18/OpenUserJS%2B&style=flat-square)](https://openuserjs.org/scripts/iFelix18/OpenUserJS+)
     [![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Click here!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js)
 
+    <p>
+
     - Nascondi tutti gli script non latini (premi `Ctrl + Alt + L` per mostrarli di nuovo)
     - Nascondi tutti gli script con parole nella blacklist (premi `Ctrl + Alt + B` per mostrarli di nuovo)
     - Aggiunge un pulsante per nascondere lo script (premi `Ctrl + Alt + H` per mostrarli di nuovo)
     - Aggiunge un pulsante per installare direttamente lo script
+    
+    </p>
 
     <details>
     <summary>Screenshots</summary>
 
-    Pulsante nascondi script:<br>[![Hide script button](https://i.imgur.com/8sRWP33.png "Hide script button")](#)
-    Pulsante installa:<br>[![Install button](https://i.imgur.com/3LQLR3B.png "Install button")](#)
+    <div align="center">
+
+      | [![Hide script button](https://i.imgur.com/8sRWP33.png "Pulsante nascondi script")](#) |
+      |:--:| 
+      | *Pulsante nascondi script* |
+      
+      | [![Install button](https://i.imgur.com/3LQLR3B.png "Pulsante installa")](#) |
+      |:--:|
+      | *Pulsante installa* |
+      
+    </div>
 
     </details>
 

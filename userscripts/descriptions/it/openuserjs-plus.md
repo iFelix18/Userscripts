@@ -27,5 +27,14 @@
 
 ## Screenshots
 
-Pulsante nascondi script:<br>[![Hide script button](https://i.imgur.com/8sRWP33.png "Hide script button")](#)
-Pulsante installa:<br>[![Install button](https://i.imgur.com/3LQLR3B.png "Install button")](#)
+<div align="center">
+
+| [![Hide script button](https://i.imgur.com/8sRWP33.png "Pulsante nascondi script")](#) |
+|:--:| 
+| *Pulsante nascondi script* |
+
+| [![Install button](https://i.imgur.com/3LQLR3B.png "Pulsante installa")](#) |
+|:--:|
+| *Pulsante installa* |
+
+<div>

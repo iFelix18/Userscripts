@@ -19,8 +19,14 @@
 
 ## Screenshots
 
-Prima:
-[![Before](https://i.imgur.com/eQrDc84.png "Before")](#)
+<div align="center">
 
-Dopo:
-[![After](https://i.imgur.com/g2aeM9h.png "After")](#)
+| [![Before](https://i.imgur.com/eQrDc84.png "Prima")](#) |
+|:--:| 
+| *Prima* |
+
+| [![After](https://i.imgur.com/g2aeM9h.png "Dopo")](#) |
+|:--:|
+| *Dopo* |
+
+</div>

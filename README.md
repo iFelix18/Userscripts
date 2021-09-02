@@ -58,8 +58,17 @@ Readme languages:
     <details>
     <summary>Screenshots</summary>
 
-    Before:<br>[![Before](https://i.imgur.com/eQrDc84.png "Before")](#)
-    After:<br>[![After](https://i.imgur.com/g2aeM9h.png "After")](#)
+    <div align="center">
+
+      | [![Before](https://i.imgur.com/eQrDc84.png "Before")](#) |
+      |:--:| 
+      | *Before* |
+      
+      | [![After](https://i.imgur.com/g2aeM9h.png "After")](#) |
+      |:--:|
+      | *After* |
+      
+    </div>
 
     </details>
 
@@ -74,18 +83,35 @@ Readme languages:
     [![OpenUserJS Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/openuserjs/branches/master/iFelix18/Greasy_Fork%2B&style=flat-square)](https://openuserjs.org/scripts/iFelix18/Greasy_Fork+)
     [![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Click here!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js)
 
+    <p>
+
     - Hide all non-Latin scripts (press `Ctrl + Alt + L` to show again)
     - Hide all scripts with blacklisted words (press `Ctrl + Alt + B` to show again)
     - Add a button to hide the script (press `Ctrl + Alt + H` to show again)
     - Add a button to install the script directly, which shows the version of the script, and which changes dynamically according to your version, if any, already installed (dynamic changes only work if you are using Violentmonkey or Tampermonkey)
     - Shows the number of daily and total installations on the user profile
+    - Get notified whenever your total installs got over one of your set milestones
+    
+    </p>
 
     <details>
     <summary>Screenshots</summary>
 
-    Hide script button:<br>[![Hide script button](https://i.imgur.com/PFRM1SW.png "Hide script button")](#)
-    Install button, examples of how it can change dynamically:<br>[![Install button](https://i.imgur.com/CO8wjFn.png "Install button")](#)
-    Number of installations:<br>[![Number of installations](https://i.imgur.com/1DlTEZV.png "Number of installations")](#)
+    <div align="center">
+
+      | [![Hide script button](https://i.imgur.com/PFRM1SW.png "Hide script button")](#) |
+      |:--:| 
+      | *Hide script button* |
+      
+      | [![Install button](https://i.imgur.com/CO8wjFn.png "Install button")](#) |
+      |:--:|
+      | *Install button, examples of how it can dynamically change according to your installed version* |
+
+      | [![Number of installations](https://i.imgur.com/1DlTEZV.png "Number of installations")](#) | [![Milestone notification](https://i.imgur.com/Q3wXatS.png "Milestone notification")](#) |
+      |:--:|:--:| 
+      | *Number of installations* | *Milestone notification* |
+      
+    </div>
 
     </details>
 
@@ -100,16 +126,29 @@ Readme languages:
     [![OpenUserJS Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/openuserjs/branches/master/iFelix18/OpenUserJS%2B&style=flat-square)](https://openuserjs.org/scripts/iFelix18/OpenUserJS+)
     [![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Click here!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js)
 
+    <p>
+
     - Hide all non-Latin scripts (press `Ctrl + Alt + L` to show again)
     - Hide all scripts with blacklisted words (press `Ctrl + Alt + B` to show again)
     - Add a button to hide the script (press `Ctrl + Alt + H` to show again)
     - Add a button to install the script directly
+    
+    </p>
 
     <details>
     <summary>Screenshots</summary>
 
-    Hide script button:<br>[![Hide script button](https://i.imgur.com/8sRWP33.png "Hide script button")](#)
-    Install button:<br>[![Install button](https://i.imgur.com/3LQLR3B.png "Install button")](#)
+    <div align="center">
+
+      | [![Hide script button](https://i.imgur.com/8sRWP33.png "Hide script button")](#) |
+      |:--:| 
+      | *Hide script button* |
+      
+      | [![Install button](https://i.imgur.com/3LQLR3B.png "Install button")](#) |
+      |:--:|
+      | *Install button* |
+      
+    </div>
 
     </details>
 

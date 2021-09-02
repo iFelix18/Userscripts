@@ -27,5 +27,14 @@
 
 ## Screenshots
 
-Hide script button:<br>[![Hide script button](https://i.imgur.com/8sRWP33.png "Hide script button")](#)
-Install button:<br>[![Install button](https://i.imgur.com/3LQLR3B.png "Install button")](#)
+<div align="center">
+
+| [![Hide script button](https://i.imgur.com/8sRWP33.png "Hide script button")](#) |
+|:--:| 
+| *Hide script button* |
+
+| [![Install button](https://i.imgur.com/3LQLR3B.png "Install button")](#) |
+|:--:|
+| *Install button* |
+
+<div>

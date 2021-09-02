@@ -13,6 +13,7 @@
 * Aggiunge un pulsante per nascondere lo script (premi `Ctrl + Alt + H` per mostrarli di nuovo)
 * Aggiunge un pulsante per installare direttamente lo script, che mostra la versione dello script e che cambia dinamicamente in base alla tua versione, se presente, già installata (il cambio dinamico funziona solo se stai utilizzando Violentmonkey o Tampermonkey)
 * Mostra il numero di installazioni giornaliere e totali sul profilo utente
+* Ricevi una notifica ogni volta che le tue installazioni totali superano uno dei traguardi prefissati
 
 ---
 
@@ -28,6 +29,18 @@
 
 ## Screenshots
 
-Pulsante nascondi script:<br>[![Hide script button](https://i.imgur.com/PFRM1SW.png "Hide script button")](#)
-Pulsante installa, esempi di come può cambiare dinamicamente:<br>[![Install button](https://i.imgur.com/CO8wjFn.png "Install button")](#)    
-Numero di installazioni:<br>[![Number of installations](https://i.imgur.com/1DlTEZV.png "Number of installations")](#)
+<div align="center">
+
+| [![Hide script button](https://i.imgur.com/PFRM1SW.png "Pulsante nascondi script")](#) |
+|:--:| 
+| *Pulsante nascondi script* |
+
+| [![Install button](https://i.imgur.com/CO8wjFn.png "Pulsante installa")](#) |
+|:--:|
+| *Pulsante installa, esempi di come può cambiare dinamicamente in base alla versione installata* |
+
+| [![Number of installations](https://i.imgur.com/1DlTEZV.png "Numero di installazioni")](#) | [![Milestone notification](https://i.imgur.com/Q3wXatS.png "Notifica traguardo")](#) |
+|:--:|:--:| 
+| *Numero di installazioni* | *Notifica traguardo* |
+
+<div>

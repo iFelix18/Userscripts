@@ -19,8 +19,14 @@
 
 ## Screenshots
 
-Before:
-[![Before](https://i.imgur.com/eQrDc84.png "Before")](#)
+<div align="center">
 
-After:
-[![After](https://i.imgur.com/g2aeM9h.png "After")](#)
+| [![Before](https://i.imgur.com/eQrDc84.png "Before")](#) |
+|:--:| 
+| *Before* |
+
+| [![After](https://i.imgur.com/g2aeM9h.png "After")](#) |
+|:--:|
+| *After* |
+
+<div>
