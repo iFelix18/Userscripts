@@ -132,6 +132,7 @@ Lingue readme:
     - Nascondi tutti gli script con parole nella blacklist (premi `Ctrl + Alt + B` per mostrarli di nuovo)
     - Aggiunge un pulsante per nascondere lo script (premi `Ctrl + Alt + H` per mostrarli di nuovo)
     - Aggiunge un pulsante per installare direttamente lo script
+    - Ricevi una notifica ogni volta che le tue installazioni totali superano uno dei traguardi prefissati
     
     </p>
 
@@ -147,6 +148,10 @@ Lingue readme:
       | [![Install button](https://i.imgur.com/3LQLR3B.png "Pulsante installa")](#) |
       |:--:|
       | *Pulsante installa* |
+
+      | [![Milestone notification](https://i.imgur.com/H93HBvL.png "Notifica traguardo")](#) |
+      |:--:|
+      | *Notifica traguardo* |
       
     </div>
 

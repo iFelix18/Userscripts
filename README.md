@@ -132,6 +132,7 @@ Readme languages:
     - Hide all scripts with blacklisted words (press `Ctrl + Alt + B` to show again)
     - Add a button to hide the script (press `Ctrl + Alt + H` to show again)
     - Add a button to install the script directly
+    - Get notified whenever your total installs got over one of your set milestones
     
     </p>
 
@@ -147,6 +148,10 @@ Readme languages:
       | [![Install button](https://i.imgur.com/3LQLR3B.png "Install button")](#) |
       |:--:|
       | *Install button* |
+
+      | [![Milestone notification](https://i.imgur.com/H93HBvL.png "Milestone notification")](#) |
+      |:--:|
+      | *Milestone notification* |
       
     </div>
 
