@@ -9,7 +9,6 @@
 // @author            Davide <iFelix18@protonmail.com>
 // @namespace         https://github.com/iFelix18
 // @icon              https://www.google.com/s2/favicons?sz=64&domain=openuserjs.org
-// /* cSpell: disable */
 // @description       Adds various features and improves the OpenUserJS experience
 // @description:de    Fügt verschiedene Funktionen hinzu und verbessert das OpenUserJS-Erlebnis
 // @description:es    Agrega varias funciones y mejora la experiencia de OpenUserJS
@@ -17,10 +16,9 @@
 // @description:it    Aggiunge varie funzionalità e migliora l'esperienza di OpenUserJS
 // @description:ru    Добавляет различные функции и улучшает работу с OpenUserJS
 // @description:zh-CN 添加各种功能并改善 OpenUserJS 体验
-// /* cSpell: enable */
 // @copyright         2021, Davide (https://github.com/iFelix18)
 // @license           MIT
-// @version           1.3.0
+// @version           1.3.1
 //
 // @homepageURL       https://github.com/iFelix18/Userscripts#readme
 // @supportURL        https://github.com/iFelix18/Userscripts/issues
