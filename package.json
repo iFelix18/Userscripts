@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "My userscripts",
   "scripts": {
+    "lint": "eslint . --ext .js",
     "compress": "gulp compress",
     "start": "gulp default",
     "update": "updates -u & yarn install"
@@ -22,15 +23,30 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-greasemonkey": "^1.0.1",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
     "gulp": "^4.0.2",
     "gulp-minify": "^3.1.0",
-    "standard": "^16.0.3",
     "updates": "^12.1.0",
     "yarn": "^1.22.11"
   },
-  "standard": {
-    "globals": [
-      "GM"
-    ]
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+    },
+    "extends": [
+      "standard",
+      "greasemonkey"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 12
+    },
+    "rules": {}
   }
 }
