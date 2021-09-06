@@ -9,7 +9,6 @@
 // @author            Davide <iFelix18@protonmail.com>
 // @namespace         https://github.com/iFelix18
 // @icon              https://www.google.com/s2/favicons?sz=64&domain=greasyfork.org
-// /* cSpell: disable */
 // @description       Adds various features and improves the Greasy Fork experience
 // @description:de    Fügt verschiedene Funktionen hinzu und verbessert das Greasy Fork-Erlebnis
 // @description:es    Agrega varias funciones y mejora la experiencia de Greasy Fork
@@ -17,10 +16,9 @@
 // @description:it    Aggiunge varie funzionalità e migliora l'esperienza di Greasy Fork
 // @description:ru    Добавляет различные функции и улучшает работу с Greasy Fork
 // @description:zh-CN 添加各种功能并改善 Greasy Fork 体验
-// /* cSpell: enable */
 // @copyright         2021, Davide (https://github.com/iFelix18)
 // @license           MIT
-// @version           1.4.0
+// @version           1.4.1
 //
 // @homepageURL       https://github.com/iFelix18/Userscripts#readme
 // @supportURL        https://github.com/iFelix18/Userscripts/issues
@@ -169,7 +167,7 @@
       hide: '🛇 Dieses skript ausblenden',
       install: 'Installieren',
       notHide: '✓ Dieses skript nicht ausblenden',
-      notification: 'Herzlichen Glückwunsch, Ihre Skripte haben den Meilenstein von insgesamt $1 Installationen überschritten!',
+      milestone: 'Herzlichen Glückwunsch, Ihre Skripte haben den Meilenstein von insgesamt $1 Installationen überschritten!',
       reinstall: 'Erneut installieren',
       update: 'Auf aktualisieren'
     },
@@ -178,7 +176,7 @@
       hide: '🛇 Hide this script',
       install: 'Install',
       notHide: '✓ Not hide this script',
-      notification: 'Congrats, your scripts got over the milestone of $1 total installs!',
+      milestone: 'Congrats, your scripts got over the milestone of $1 total installs!',
       reinstall: 'Reinstall',
       update: 'Update to'
     },
@@ -187,7 +185,7 @@
       hide: '🛇 Ocultar este script',
       install: 'Instalar',
       notHide: '✓ No ocultar este script',
-      notification: '¡Felicidades, sus scripts superaron el hito de $1 instalaciones totales!',
+      milestone: '¡Felicidades, sus scripts superaron el hito de $1 instalaciones totales!',
       reinstall: 'Reinstalar',
       update: 'Actualizar a'
     },
@@ -196,7 +194,7 @@
       hide: '🛇 Cacher ce script',
       install: 'Installer',
       notHide: '✓ Ne pas cacher ce script',
-      notification: 'Félicitations, vos scripts ont franchi le cap des $1 installations au total!',
+      milestone: 'Félicitations, vos scripts ont franchi le cap des $1 installations au total!',
       reinstall: 'Réinstaller',
       update: 'Mettre à'
     },
@@ -205,7 +203,7 @@
       hide: '🛇 Nascondi questo script',
       install: 'Installa',
       notHide: '✓ Non nascondere questo script',
-      notification: 'Congratulazioni, i tuoi script hanno superato il traguardo di $1 installazioni totali!',
+      milestone: 'Congratulazioni, i tuoi script hanno superato il traguardo di $1 installazioni totali!',
       reinstall: 'Reinstalla',
       update: 'Aggiorna a'
     },
@@ -214,7 +212,7 @@
       hide: '🛇 Скрыть этот скрипт',
       install: 'Установить',
       notHide: '✓ Не скрывать этот сценарий',
-      notification: 'Поздравляем, ваши скрипты преодолели рубеж в $1 установок!',
+      milestone: 'Поздравляем, ваши скрипты преодолели рубеж в $1 установок!',
       reinstall: 'Переустановить',
       update: 'Обновить до'
     },
@@ -223,7 +221,7 @@
       hide: '🛇 隐藏此脚本',
       install: '安装',
       notHide: '✓ 不隐藏此脚本',
-      notification: '恭喜，您的脚本超过了 $1 次总安装的里程碑！',
+      milestone: '恭喜，您的脚本超过了 $1 次总安装的里程碑！',
       reinstall: '重新安装',
       update: '更新到'
     }
@@ -556,7 +554,7 @@
         GM.setValue('lastMilestone', milestone)
 
         GM.notification({
-          text: (locales[lang] ? locales[lang].notification : locales.en.notification).replace('$1', milestone.toLocaleString()),
+          text: (locales[lang] ? locales[lang].milestone : locales.en.milestone).replace('$1', milestone.toLocaleString()),
           title: GM.info.script.name,
           image: logo,
           onclick: () => {
