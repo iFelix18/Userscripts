@@ -1,58 +1,53 @@
 // ==UserScript==
-// @name              Ratings on IMDb
-// @name:de           Bewertungen auf IMDb
-// @name:es           Calificaciones en IMDb
-// @name:fr           Notes sur IMDb
-// @name:it           Valutazioni su IMDb
-// @name:ru           Рейтинги на IMDb
-// @name:zh-CN        IMDb 上的评分
-// @author            Davide <iFelix18@protonmail.com>
-// @namespace         https://github.com/iFelix18
-// @icon              https://www.google.com/s2/favicons?sz=64&domain=imdb.com
-// @description       Adds ratings from Rotten Tomatoes and Metacritic to IMDb
-// @description:de    Fügt Bewertungen von Rotten Tomatoes und Metacritic zu IMDb . hinzu
-// @description:es    Agrega calificaciones de Rotten Tomatoes y Metacritic a IMDb
-// @description:fr    Ajoute des notes de Rotten Tomatoes et Metacritic à IMDb
-// @description:it    Aggiunge valutazioni da Rotten Tomatoes e Metacritic a IMDb
-// @description:ru    Добавляет рейтинги от Rotten Tomatoes и Metacritic в IMDb
-// @description:zh-CN 将烂番茄和 Metacritic 的评分添加到 IMDb
-// @copyright         2021, Davide (https://github.com/iFelix18)
-// @license           MIT
-// @version           1.0.7
-//
-// @homepageURL       https://github.com/iFelix18/Userscripts#readme
-// @supportURL        https://github.com/iFelix18/Userscripts/issues
-// @updateURL         https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/ratings-on-imdb.meta.js
-// @downloadURL       https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js
-//
-// @require           https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require           https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@abce8796cedbe28ac8e072d9824c4b9342985098/lib/utils/utils.min.js
-// @require           https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@bced30119a3304aff1c4f71c77bd1781cefde396/lib/api/omdb.min.js
-// @require           https://cdn.jsdelivr.net/npm/gm4-polyfill@1.0.1/gm4-polyfill.min.js#sha256-qmLl2Ly0/+2K+HHP76Ul+Wpy1Z41iKtzptPD1Nt8gSk=
-// @require           https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js#sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=
-// @require           https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js#sha256-ZSnrWNaPzGe8v25yP0S6YaMaDLMTDHC+4mHTw0xydEk=
-//
-// @match             *://www.imdb.com/title/*
-// @connect           omdbapi.com
-//
-// @grant             GM.deleteValue
-// @grant             GM.getValue
-// @grant             GM.info
-// @grant             GM.listValues
-// @grant             GM.registerMenuCommand
-// @grant             GM.setValue
-// @grant             GM.xmlHttpRequest
-//
-// @grant             GM_deleteValue
-// @grant             GM_getValue
-// @grant             GM_info
-// @grant             GM_listValues
-// @grant             GM_registerMenuCommand
-// @grant             GM_setValue
-// @grant             GM_xmlhttpRequest
-//
-// @run-at            document-start
-// @inject-into       page
+// @name               Ratings on IMDb
+// @name:de            Bewertungen auf IMDb
+// @name:es            Calificaciones en IMDb
+// @name:fr            Notes sur IMDb
+// @name:it            Valutazioni su IMDb
+// @name:ru            Рейтинги на IMDb
+// @name:zh-CN         IMDb 上的评分
+// @author             Davide <iFelix18@protonmail.com>
+// @namespace          https://github.com/iFelix18
+// @icon               https://www.google.com/s2/favicons?sz=64&domain=imdb.com
+// @description        Adds ratings from Rotten Tomatoes and Metacritic to IMDb
+// @description:de     Fügt Bewertungen von Rotten Tomatoes und Metacritic zu IMDb . hinzu
+// @description:es     Agrega calificaciones de Rotten Tomatoes y Metacritic a IMDb
+// @description:fr     Ajoute des notes de Rotten Tomatoes et Metacritic à IMDb
+// @description:it     Aggiunge valutazioni da Rotten Tomatoes e Metacritic a IMDb
+// @description:ru     Добавляет рейтинги от Rotten Tomatoes и Metacritic в IMDb
+// @description:zh-CN  将烂番茄和 Metacritic 的评分添加到 IMDb
+// @copyright          2021, Davide (https://github.com/iFelix18)
+// @license            MIT
+// @version            1.0.8
+// @homepage           https://github.com/iFelix18/Userscripts#readme
+// @homepageURL        https://github.com/iFelix18/Userscripts#readme
+// @supportURL         https://github.com/iFelix18/Userscripts/issues
+// @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/ratings-on-imdb.meta.js
+// @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js
+// @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@abce8796cedbe28ac8e072d9824c4b9342985098/lib/utils/utils.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@bced30119a3304aff1c4f71c77bd1781cefde396/lib/api/omdb.min.js
+// @require            https://cdn.jsdelivr.net/npm/gm4-polyfill@1.0.1/gm4-polyfill.min.js#sha256-qmLl2Ly0/+2K+HHP76Ul+Wpy1Z41iKtzptPD1Nt8gSk=
+// @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js#sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=
+// @require            https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js#sha256-ZSnrWNaPzGe8v25yP0S6YaMaDLMTDHC+4mHTw0xydEk=
+// @match              *://www.imdb.com/title/*
+// @connect            omdbapi.com
+// @grant              GM.deleteValue
+// @grant              GM.getValue
+// @grant              GM.info
+// @grant              GM.listValues
+// @grant              GM.registerMenuCommand
+// @grant              GM.setValue
+// @grant              GM.xmlHttpRequest
+// @grant              GM_deleteValue
+// @grant              GM_getValue
+// @grant              GM_info
+// @grant              GM_listValues
+// @grant              GM_registerMenuCommand
+// @grant              GM_setValue
+// @grant              GM_xmlhttpRequest
+// @run-at             document-start
+// @inject-into        page
 // ==/UserScript==
 
 /* global $, GM_config, Handlebars, MonkeyUtils, OMDb */
