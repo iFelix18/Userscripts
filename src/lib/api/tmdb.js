@@ -7,11 +7,11 @@
 // @description     TMDb API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.3.1
+// @version         1.4.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @require         https://cdn.jsdelivr.net/gh/greasemonkey/gm4-polyfill@master/gm4-polyfill.js
+// @require         https://cdn.jsdelivr.net/npm/gm4-polyfill@1.0.1/gm4-polyfill.min.js#sha256-qmLl2Ly0/+2K+HHP76Ul+Wpy1Z41iKtzptPD1Nt8gSk=
 // @include         *
 // @connect         api.themoviedb.org
 // @grant           GM.xmlHttpRequest
@@ -75,6 +75,30 @@
         GM.xmlHttpRequest({
           method: 'GET',
           url: `${this._config.url}/tv/${id}/season/${season}/episode/${episode}?api_key=${this._config.apikey}&language=${this._config.language}`,
+          headers: this._headers,
+          onload: (response) => {
+            this._debug(response)
+            if (response.readyState === 4) {
+              resolve(JSON.parse(response.responseText))
+            } else {
+              reject(response)
+            }
+          }
+        })
+      })
+    }
+
+    /**
+     * Returns external ids
+     * @param {string} type  Type. For example: movie
+     * @param {number} id    TMDb ID
+     * @returns {Object}
+     */
+    externalIDs (type, id) {
+      return new Promise((resolve, reject) => {
+        GM.xmlHttpRequest({
+          method: 'GET',
+          url: `${this._config.url}/${type}/${id}/external_ids?api_key=${this._config.apikey}`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
