@@ -31,13 +31,32 @@ Readme languages:
   [![OpenUserJS Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/openuserjs/branches/master/iFelix18/Ratings_on_IMDb&style=flat-square)](https://openuserjs.org/scripts/iFelix18/Ratings_on_IMDb)
   [![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Click here!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js)
 
-  >**Note**: After installation, enter your [OMDb APIKey](https://www.omdbapi.com/apikey.aspx) in the script settings.
+  >**Note**: After installation, enter your [OMDb API Key](https://www.omdbapi.com/apikey.aspx) in the script settings.
 
   |                               Screenshots                               |
   | :---------------------------------------------------------------------: |
   | [![Before](https://i.imgur.com/eQrDc84.png "Before")](#ratings-on-imdb) |
   |                                *Before*                                 |
   |  [![After](https://i.imgur.com/g2aeM9h.png "After")](#ratings-on-imdb)  |
+  |                                 *After*                                 |
+
+* ### Ratings on TMDb
+
+  Adds ratings from IMDb, Rotten Tomatoes and Metacritic to [TMDb](https://www.themoviedb.org/)
+
+  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/userscripts/meta/ratings-on-tmdb.meta.js&style=flat-square)](#ratings-on-tmdb)
+  [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/ratings-on-tmdb.user.js?style=flat-square)](#ratings-on-tmdb)
+  [![Greasy Fork Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/greasyfork/branches/master/432136&style=flat-square)](https://greasyfork.org/it/scripts/432136-ratings-on-tmdb)
+  [![OpenUserJS Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/openuserjs/branches/master/iFelix18/Ratings_on_TMDb&style=flat-square)](hhttps://openuserjs.org/scripts/iFelix18/Ratings_on_TMDb)
+  [![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Click here!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js)
+
+  >**Note**: After installation, enter your [TMDb API Key](https://developers.themoviedb.org/3/) and your [OMDb API Key](https://www.omdbapi.com/apikey.aspx) in the script settings.
+
+  |                               Screenshots                               |
+  | :---------------------------------------------------------------------: |
+  | [![Before](https://i.imgur.com/9GLb8i7.png "Before")](#ratings-on-tmdb) |
+  |                                *Before*                                 |
+  |  [![After](https://i.imgur.com/n60aZve.png "After")](#ratings-on-tmdb)  |
   |                                 *After*                                 |
 
 * ### Greasy Fork+
