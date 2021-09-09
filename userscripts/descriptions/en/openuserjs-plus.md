@@ -2,7 +2,7 @@
 
 Adds various features and improves the [OpenUserJS](https://openuserjs.org/) experience
 
-[![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/userscripts/meta/openuserjs-plus.meta.js&style=flat-square)](#openuserjs)
+[![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js&style=flat-square)](#openuserjs)
 [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/openuserjs-plus.user.js?style=flat-square)](#openuserjs)
 
 Features:

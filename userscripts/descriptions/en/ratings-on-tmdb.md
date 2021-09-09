@@ -2,7 +2,7 @@
 
 Adds ratings from IMDb, Rotten Tomatoes and Metacritic to [TMDb](https://www.themoviedb.org/)
 
-[![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/userscripts/meta/ratings-on-tmdb.meta.js&style=flat-square)](#ratings-on-tmdb)
+[![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js&style=flat-square)](#ratings-on-tmdb)
 [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/ratings-on-tmdb.user.js?style=flat-square)](#ratings-on-tmdb)
 
 >**Note**: After installation, enter your [TMDb API Key](https://developers.themoviedb.org/3/) and your [OMDb API Key](https://www.omdbapi.com/apikey.aspx) in the script settings.

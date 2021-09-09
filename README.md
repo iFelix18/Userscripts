@@ -25,7 +25,7 @@ Readme languages:
 
   Adds ratings from Rotten Tomatoes and Metacritic to [IMDb](https://www.imdb.com/)
 
-  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/userscripts/meta/ratings-on-imdb.meta.js&style=flat-square)](#ratings-on-imdb)
+  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/ratings-on-imdb.meta.js&style=flat-square)](#ratings-on-imdb)
   [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/ratings-on-imdb.user.js?style=flat-square)](#ratings-on-imdb)
   [![Greasy Fork Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/greasyfork/branches/master/431189&style=flat-square)](https://greasyfork.org/scripts/431189-ratings-on-imdb)
   [![OpenUserJS Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/openuserjs/branches/master/iFelix18/Ratings_on_IMDb&style=flat-square)](https://openuserjs.org/scripts/iFelix18/Ratings_on_IMDb)
@@ -44,7 +44,7 @@ Readme languages:
 
   Adds ratings from IMDb, Rotten Tomatoes and Metacritic to [TMDb](https://www.themoviedb.org/)
 
-  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/userscripts/meta/ratings-on-tmdb.meta.js&style=flat-square)](#ratings-on-tmdb)
+  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js&style=flat-square)](#ratings-on-tmdb)
   [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/ratings-on-tmdb.user.js?style=flat-square)](#ratings-on-tmdb)
   [![Greasy Fork Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/greasyfork/branches/master/432136&style=flat-square)](https://greasyfork.org/it/scripts/432136-ratings-on-tmdb)
   [![OpenUserJS Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/openuserjs/branches/master/iFelix18/Ratings_on_TMDb&style=flat-square)](hhttps://openuserjs.org/scripts/iFelix18/Ratings_on_TMDb)
@@ -63,7 +63,7 @@ Readme languages:
 
   Adds various features and improves the [Greasy Fork](https://greasyfork.org/) experience
 
-  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/userscripts/meta/greasyfork-plus.meta.js&style=flat-square)](#greasy-fork)
+  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js&style=flat-square)](#greasy-fork)
   [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/greasyfork-plus.user.js?style=flat-square)](#greasy-fork)
   [![Greasy Fork Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/greasyfork/branches/master/431584&style=flat-square)](https://greasyfork.org/scripts/431584-greasy-fork)
   [![OpenUserJS Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/openuserjs/branches/master/iFelix18/Greasy_Fork%2B&style=flat-square)](https://openuserjs.org/scripts/iFelix18/Greasy_Fork+)
@@ -93,7 +93,7 @@ Readme languages:
 
   Adds various features and improves the [OpenUserJS](https://openuserjs.org/) experience
 
-  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/userscripts/meta/openuserjs-plus.meta.js&style=flat-square)](#openuserjs)
+  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js&style=flat-square)](#openuserjs)
   [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/openuserjs-plus.user.js?style=flat-square)](#openuserjs)
   [![Greasy Fork Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/greasyfork/branches/master/431585&style=flat-square)](https://greasyfork.org/scripts/431585-openuserjs)
   [![OpenUserJS Installs](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/openuserjs/branches/master/iFelix18/OpenUserJS%2B&style=flat-square)](https://openuserjs.org/scripts/iFelix18/OpenUserJS+)
@@ -122,22 +122,22 @@ Readme languages:
 
 * ### Monkey Utils
 
-  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/lib/utils/utils.min.js&style=flat-square)](#monkey-utils)
+  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/utils/utils.min.js&style=flat-square)](#monkey-utils)
   [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/lib/utils/utils.min.js?style=flat-square)](#monkey-utils)
 
 * ### OMDb API
 
-  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/lib/api/omdb.min.js&style=flat-square)](#omdb-api)
+  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/api/omdb.min.js&style=flat-square)](#omdb-api)
   [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/lib/api/omdb.min.js?style=flat-square)](#omdb-api)
 
 * ### TMDb API
 
-  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/lib/api/tmdb.min.js&style=flat-square)](#tmdb-api)
+  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/api/tmdb.min.js&style=flat-square)](#tmdb-api)
   [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/lib/api/tmdb.min.js?style=flat-square)](#tmdb-api)
 
 * ### Trakt API
 
-  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/Userscripts/lib/api/trakt.min.js&style=flat-square)](#trakt-api)
+  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/api/trakt.min.js&style=flat-square)](#trakt-api)
   [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/lib/api/trakt.min.js?style=flat-square)](#trakt-api)
 
 ---
