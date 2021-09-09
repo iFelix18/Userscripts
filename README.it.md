@@ -4,7 +4,7 @@ I miei script e le mie librerie
 
 [![Stars](https://img.shields.io/github/stars/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/stargazers)
 [![Watchers](https://img.shields.io/github/watchers/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/watchers)
-[![Scripts](https://img.shields.io/badge/scripts-3-orange?style=flat-square)](https://github.com/iFelix18/Userscripts/tree/master/userscripts)
+[![Scripts](https://img.shields.io/badge/scripts-4-orange?style=flat-square)](https://github.com/iFelix18/Userscripts/tree/master/userscripts)
 [![Libraries](https://img.shields.io/badge/librearies-4-orange?style=flat-square)](https://github.com/iFelix18/Userscripts/tree/master/src/lib)
 [![Open Issues](https://img.shields.io/github/issues-raw/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/issues)
 [![Closed Issues](https://img.shields.io/github/issues-closed-raw/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/issues?q=is%3Aissue+is%3Aclosed)
