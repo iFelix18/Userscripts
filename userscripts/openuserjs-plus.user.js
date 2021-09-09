@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.3.2
+// @version            1.3.3
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -127,7 +127,7 @@
     '\\bagar((.)?io)?\\b', '\\bagma((.)?io)?\\b', '\\baimbot\\b', '\\barras((.)?io)?\\b', '\\bbot(s)?\\b', '\\bbubble((.)?am)?\\b', '\\bcheat(s)?\\b', '\\bdiep((.)?io)?\\b', '\\bfreebitco((.)?in)?\\b', '\\bgota((.)?io)?\\b', '\\bhack(s)?\\b', '\\bkrunker((.)?io)?\\b', '\\blostworld((.)?io)?\\b', '\\bmoomoo((.)?io)?\\b', '\\broblox(.com)?\\b', '\\bshell\\sshockers\\b', '\\bshellshock((.)?io)?\\b', '\\bshellshockers\\b', '\\bskribbl((.)?io)?\\b', '\\bslither((.)?io)?\\b', '\\bsurviv((.)?io)?\\b', '\\btaming((.)?io)?\\b', '\\bvenge((.)?io)?\\b', '\\bvertix((.)?io)?\\b', '\\bzombs((.)?io)?\\b', '\\p{Extended_Pictographic}'
   ].join('|'), 'giu')
   const milestones = GM_config.get('milestoneNotification').replace(/\s/g, '').split(',').map(Number)
-  const userID = $('a[title="My profile"]')
+  const userID = $('a[title="My profile"]').text()
 
   MU.log(nonLatins)
   MU.log(blacklist)
@@ -308,7 +308,7 @@
   if (GM_config.get('milestoneNotification')) {
     if (!userID) return
 
-    getUserData($(userID).text()).then(async (data) => {
+    getUserData(userID).then(async (data) => {
       const totalInstalls = $(data).find('.dl-horizontal dt:contains("Total installs")').next('dd').text()
       const lastMilestone = await GM.getValue('lastMilestone', 0)
       const milestone = $($.grep(milestones, (milestone) => totalInstalls >= milestone)).get(-1)
