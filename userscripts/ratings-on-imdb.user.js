@@ -18,7 +18,7 @@
 // @description:zh-CN  将烂番茄和 Metacritic 的评分添加到 IMDb
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.0.9
+// @version            1.1.0
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -57,7 +57,7 @@
 
   //* GM_config
   GM_config.init({
-    id: 'ratings-config',
+    id: 'config',
     title: `${GM.info.script.name} v${GM.info.script.version} Settings`,
     fields: {
       OMDbApiKey: {
@@ -97,8 +97,7 @@
         }
       }
     },
-    /* cspell: disable-next-line */
-    css: '#ratings-config{background-color:#343434;color:#fff}#ratings-config *{font-family:varela round,helvetica neue,Helvetica,Arial,sans-serif}#ratings-config .section_header{background-color:#282828;border:1px solid #282828;border-bottom:none;color:#fff;font-size:10pt}#ratings-config .section_desc{background-color:#282828;border:1px solid #282828;border-top:none;color:#fff;font-size:10pt}#ratings-config #ratings-config_field_magic{margin:0 auto;display:block}#ratings-config .reset{color:#fff}',
+    css: ':root{--mainBackground:#343433;--background:#282828;--text:#fff}#config{background-color:var(--mainBackground);color:var(--text)}#config .section_header{background-color:var(--background);border-bottom:none;border:1px solid var(--background);color:var(--text)}#config .section_desc{background-color:var(--background);border-top:none;border:1px solid var(--background);color:var(--text)}#config .reset{color:var(--text)}',
     events: {
       init: () => {
         if (!GM_config.isOpen && GM_config.get('OMDbApiKey') === '') {
@@ -126,7 +125,7 @@
     color: '#ff0000',
     logging: GM_config.get('logging')
   })
-  MU.init('ratings-config')
+  MU.init('config')
 
   //* OMDb API
   const omdb = new OMDb({
@@ -212,7 +211,7 @@
    */
   const addTemplate = () => {
     /* cspell: disable-next-line */
-    const template = '<div class="external-ratings idYUsR" style="margin-right:.5rem"></div><script id="external-ratings-template" type="text/x-handlebars-template">{{#each ratings}}<div class="{{this.source}}-rating rating-bar__base-button jQXoLQ"> <div class="external-rating-title bufoWn" style="text-transform: uppercase;" >{{this.source}}</div><a class="external-rating-link ipc-button ipc-text-button ipc-button--core-baseAlt ipc-button--on-textPrimary" href="{{this.url}}" > <div class="ipc-button__text"> <div class="jodtvN"> <div class="external-rating-logo dwhzFZ"> <img src="{{this.logo}}" alt="logo" width="24"/> </div><div class="hmJkIS"> <div class="bmbYRW"> <span class="external-rating-vote iTLWoV">{{this.rating}}</span>{{#ifEqual this.rating "N/A"}}{{else}}<span class="external-rating-symbol">{{this.symbol}}</span>{{/ifEqual}}</div><div class="fKXaGo"></div>{{#ifEqual this.rating "N/A"}}{{else}}{{#ifEqual this.source "metascore"}}<div class="external-rating-votes jkCVKJ" style="display: flex; align-items: center; align-content: center; justify-content: center; background: linear-gradient(to top, transparent 0, transparent 25%,{{this.votes}} 25%,{{this.votes}} 75%, transparent 75%, transparent 100%); color:transparent; width:100%;" >{{this.rating}}</div>{{else}}<div class="external-rating-votes jkCVKJ">{{this.votes}}</div>{{/ifEqual}}{{/ifEqual}}</div></div></div></a> </div>{{/each}}</script>'
+    const template = '<div class="external-ratings idYUsR" style=margin-right:.5rem></div><script id=external-ratings-template type=text/x-handlebars-template>{{#each ratings}} {{log this}}<div class="jQXoLQ rating-bar__base-button {{this.source}}-rating"><div class="bufoWn external-rating-title" style=text-transform:uppercase>{{this.source}}</div><a class="external-rating-link ipc-button ipc-button--core-baseAlt ipc-button--on-textPrimary ipc-text-button" href={{this.url}}><div class=ipc-button__text><div class=jodtvN><div class="dwhzFZ external-rating-logo"><img alt=logo src={{this.logo}} width=24></div><div class=hmJkIS><div class=bmbYRW><span class="external-rating-vote iTLWoV">{{this.rating}} </span>{{#ifEqual this.rating "N/A"}} {{else}} <span class=external-rating-symbol>{{this.symbol}} </span>{{/ifEqual}}</div><div class=fKXaGo></div>{{#ifEqual this.rating "N/A"}} {{else}} {{#ifEqual this.source "metascore"}}<div class="external-rating-votes jkCVKJ" style="display:flex;align-items:center;align-content:center;justify-content:center;background:linear-gradient(to top,transparent 0,transparent 25%,{{this.votes}} 25%,{{this.votes}} 75%,transparent 75%,transparent 100%);color:transparent;width:100%">{{this.rating}}</div>{{else}}<div class="external-rating-votes jkCVKJ">{{this.votes}}</div>{{/ifEqual}} {{/ifEqual}}</div></div></div></a></div>{{/each}}</script>'
     const target = '.hglRHk div[class^="RatingBar__ButtonContainer"] div[class^="RatingBarButtonBase__ContentWrap"]:nth-child(1)'
 
     $(template).insertAfter(target)
