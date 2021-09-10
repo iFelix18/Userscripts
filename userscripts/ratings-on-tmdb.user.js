@@ -18,7 +18,7 @@
 // @description:zh-CN  将 IMDb、Rotten Tomatoes 和 Metacritic 的评分添加到 TMDb
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.0.0
+// @version            1.1.0
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -73,7 +73,7 @@
 
   //* GM_config
   GM_config.init({
-    id: 'ratings-config',
+    id: 'config',
     title: `${GM.info.script.name} v${GM.info.script.version} Settings`,
     fields: {
       TMDbApiKey: {
@@ -121,8 +121,7 @@
         }
       }
     },
-    /* cspell: disable-next-line */
-    css: '#ratings-config{background-color:#343434;color:#fff}#ratings-config *{font-family:varela round,helvetica neue,Helvetica,Arial,sans-serif}#ratings-config .section_header{background-color:#282828;border:1px solid #282828;border-bottom:none;color:#fff;font-size:10pt}#ratings-config .section_desc{background-color:#282828;border:1px solid #282828;border-top:none;color:#fff;font-size:10pt}#ratings-config #ratings-config_field_magic{margin:0 auto;display:block}#ratings-config .reset{color:#fff}',
+    css: ':root{--mainBackground:#343433;--background:#282828;--text:#fff}#config{background-color:var(--mainBackground);color:var(--text)}#config .section_header{background-color:var(--background);border-bottom:none;border:1px solid var(--background);color:var(--text)}#config .section_desc{background-color:var(--background);border-top:none;border:1px solid var(--background);color:var(--text)}#config .reset{color:var(--text)}',
     events: {
       init: () => {
         if (!GM_config.isOpen && (GM_config.get('TMDbApiKey') === '' | GM_config.get('OMDbApiKey') === '')) {
@@ -150,7 +149,7 @@
     color: '#ff0000',
     logging: GM_config.get('logging')
   })
-  MU.init('ratings-config')
+  MU.init('config')
 
   //* TMDb API
   const tmdb = new TMDb({
@@ -239,7 +238,7 @@
    * Add template
    */
   const addTemplate = () => {
-    const template = '<li class=external-ratings style=display:flex;margin-right:0></li><script id=external-ratings-template type=text/x-handlebars-template>{{#each ratings}}<div class="{{this.source}}-rating" style="display: inline-flex; align-items: center; margin-right: 20px;"> <div class="logo" style="display: inline-flex;"> <img src="{{this.logo}}" alt="logo" width="46"> </div><div class="text" style="font-weight: 700; margin-left: 6px; display: inline-flex; flex-direction: column; align-items: flex-start;"> <div class="vote" style="display: flex; align-items: center; align-content: center; justify-content: center;">{{this.rating}}{{#ifEqual this.rating "N/A"}}{{else}}<span style="font-weight: 400; font-size: 80%; opacity: 0.8;">{{this.symbol}}</span>{{/ifEqual}}</div>{{#ifEqual this.votes "N/A"}}{{else}}{{#ifEqual this.source "metascore"}}<div class="votes" style="display: flex; align-items: center; align-content: center; justify-content: center; background: linear-gradient(to top, transparent 0, transparent 25%,{{this.votes}} 25%,{{this.votes}} 75%, transparent 75%, transparent 100%); color:transparent;">{{this.rating}}</div>{{else}}<div class="votes" style="font-weight: 400; opacity: 0.8;">{{this.votes}}</div>{{/ifEqual}}{{/ifEqual}}</div></div>{{/each}}</script>'
+    const template = '<li class=external-ratings style=display:flex;margin-right:0></li><script id=external-ratings-template type=text/x-handlebars-template>{{#each ratings}}<div class={{this.source}}-rating style=display:inline-flex;align-items:center;margin-right:20px><div class=logo style=display:inline-flex><img alt=logo src={{this.logo}} width=46></div><div class=text style=font-weight:700;margin-left:6px;display:inline-flex;flex-direction:column;align-items:flex-start><div class=vote style=display:flex;align-items:center;align-content:center;justify-content:center>{{this.rating}} {{#ifEqual this.rating "N/A"}} {{else}} <span style=font-weight:400;font-size:80%;opacity:.8>{{this.symbol}} </span>{{/ifEqual}}</div>{{#ifEqual this.votes "N/A"}} {{else}} {{#ifEqual this.source "metascore"}}<div class=votes style="display:flex;align-items:center;align-content:center;justify-content:center;background:linear-gradient(to top,transparent 0,transparent 25%,{{this.votes}} 25%,{{this.votes}} 75%,transparent 75%,transparent 100%);color:transparent">{{this.rating}}</div>{{else}}<div class=votes style=font-weight:400;opacity:.8>{{this.votes}}</div>{{/ifEqual}} {{/ifEqual}}</div></div>{{/each}}</script>'
     const target = 'section.inner_content section.header ul.actions li.chart'
 
     $(template).insertAfter(target)
