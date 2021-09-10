@@ -1,12 +1,14 @@
 'use strict'
 
 const { dest, series, src, watch } = require('gulp')
+const bump = require('gulp-bump')
 const cleanCSS = require('gulp-clean-css')
 const flatmap = require('gulp-flatmap')
 const fs = require('fs')
 const htmlmin = require('gulp-html-minifier-terser')
 const minify = require('gulp-minify')
 const replace = require('gulp-replace')
+const userscript = require('userscript-meta')
 
 // paths
 const paths = {
@@ -21,6 +23,10 @@ const paths = {
   lib: {
     dest: 'lib/',
     src: 'src/lib/**/*.js'
+  },
+  meta: {
+    dest: 'userscripts/meta/',
+    src: 'userscripts/meta/'
   },
   userscripts: {
     dest: 'userscripts/',
@@ -92,7 +98,27 @@ const replaceHandlebars = () => {
     }))
 }
 
+// bump meta version
+const bumpMeta = () => {
+  return src(paths.userscripts.src)
+    .pipe(flatmap((stream, file) => {
+      const fileName = file.basename.replace('.user', '.meta')
+      const contents = file.contents.toString('utf8')
+      const { version } = userscript.parse(contents)
+
+      return src(`${paths.meta.src}${fileName}`)
+        .pipe(bump({ version: version }))
+        .pipe(dest(paths.meta.dest))
+    }))
+}
+
 // watch
+const watchUserscripts = () => {
+  watch(paths.userscripts.src, {
+    ignoreInitial: false
+  }, series(bumpMeta))
+}
+
 const watchJS = () => {
   watch(paths.lib.src, {
     ignoreInitial: false
@@ -113,6 +139,7 @@ const watchHandlebars = () => {
 
 // default
 const defaultTask = () => {
+  watchUserscripts()
   watchJS()
   watchCSS()
   watchHandlebars()
