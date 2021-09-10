@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.4.2
+// @version            1.4.3
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -127,6 +127,7 @@
         }
       }
     },
+    css: ':root{--mainBackground:#343433;--background:#282828;--text:#fff}#config{background-color:var(--mainBackground);color:var(--text)}#config .section_header{background-color:var(--background);border-bottom:none;border:1px solid var(--background);color:var(--text)}#config .section_desc{background-color:var(--background);border-top:none;border:1px solid var(--background);color:var(--text)}#config .reset{color:var(--text)}',
     events: {
       save: () => {
         GM_config.close()
