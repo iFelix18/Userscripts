@@ -82,7 +82,7 @@ const replaceHandlebars = () => {
     .pipe(flatmap((stream, file) => {
       const fileName = file.stem.replace('.user', '')
 
-      if (fs.existsSync(`template/handlebars/${fileName}.hbs`)) {
+      if (fs.existsSync(`template/${fileName}.hbs`)) {
         return src(file.path)
           .pipe(replace(/(?<=(const template = )')(.*?)(?=')/g, fs.readFileSync(`template/${fileName}.hbs`, 'utf8')))
           .pipe(dest('userscripts/'))
