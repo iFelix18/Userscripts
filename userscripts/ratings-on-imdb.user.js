@@ -18,7 +18,7 @@
 // @description:zh-CN  将烂番茄和 Metacritic 的评分添加到 IMDb
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.1.0
+// @version            1.1.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -211,7 +211,7 @@
    */
   const addTemplate = () => {
     /* cspell: disable-next-line */
-    const template = '<div class="external-ratings idYUsR" style=margin-right:.5rem></div><script id=external-ratings-template type=text/x-handlebars-template>{{#each ratings}} {{log this}}<div class="jQXoLQ rating-bar__base-button {{this.source}}-rating"><div class="bufoWn external-rating-title" style=text-transform:uppercase>{{this.source}}</div><a class="external-rating-link ipc-button ipc-button--core-baseAlt ipc-button--on-textPrimary ipc-text-button" href={{this.url}}><div class=ipc-button__text><div class=jodtvN><div class="dwhzFZ external-rating-logo"><img alt=logo src={{this.logo}} width=24></div><div class=hmJkIS><div class=bmbYRW><span class="external-rating-vote iTLWoV">{{this.rating}} </span>{{#ifEqual this.rating "N/A"}} {{else}} <span class=external-rating-symbol>{{this.symbol}} </span>{{/ifEqual}}</div><div class=fKXaGo></div>{{#ifEqual this.rating "N/A"}} {{else}} {{#ifEqual this.source "metascore"}}<div class="external-rating-votes jkCVKJ" style="display:flex;align-items:center;align-content:center;justify-content:center;background:linear-gradient(to top,transparent 0,transparent 25%,{{this.votes}} 25%,{{this.votes}} 75%,transparent 75%,transparent 100%);color:transparent;width:100%">{{this.rating}}</div>{{else}}<div class="external-rating-votes jkCVKJ">{{this.votes}}</div>{{/ifEqual}} {{/ifEqual}}</div></div></div></a></div>{{/each}}</script>'
+    const template = '<div class="external-ratings idYUsR" style=margin-right:.5rem></div><script id=external-ratings-template type=text/x-handlebars-template>{{#each ratings}}<div class="jQXoLQ rating-bar__base-button {{this.source}}-rating"><div class="bufoWn external-rating-title" style=text-transform:uppercase>{{this.source}}</div><a class="external-rating-link ipc-button ipc-button--core-baseAlt ipc-button--on-textPrimary ipc-text-button" href={{this.url}}><div class=ipc-button__text><div class=jodtvN><div class="dwhzFZ external-rating-logo"><img alt=logo src={{this.logo}} width=24></div><div class=hmJkIS><div class=bmbYRW><span class="external-rating-vote iTLWoV">{{this.rating}} </span>{{#ifEqual this.rating "N/A"}} {{else}} <span class=external-rating-symbol>{{this.symbol}} </span>{{/ifEqual}}</div><div class=fKXaGo></div>{{#ifEqual this.rating "N/A"}} {{else}} {{#ifEqual this.source "metascore"}}<div class="external-rating-votes jkCVKJ" style="display:flex;align-items:center;align-content:center;justify-content:center;background:linear-gradient(to top,transparent 0,transparent 25%,{{this.votes}} 25%,{{this.votes}} 75%,transparent 75%,transparent 100%);color:transparent;width:100%">{{this.rating}}</div>{{else}}<div class="external-rating-votes jkCVKJ">{{this.votes}}</div>{{/ifEqual}} {{/ifEqual}}</div></div></div></a></div>{{/each}}</script>'
     const target = '.hglRHk div[class^="RatingBar__ButtonContainer"] div[class^="RatingBarButtonBase__ContentWrap"]:nth-child(1)'
 
     $(template).insertAfter(target)
