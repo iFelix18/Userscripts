@@ -1,6 +1,6 @@
 'use strict'
 
-const { dest, series, src, watch } = require('gulp')
+const { dest, parallel, series, src, watch } = require('gulp')
 const bump = require('gulp-bump')
 const cleanCSS = require('gulp-clean-css')
 const flatmap = require('gulp-flatmap')
@@ -137,13 +137,5 @@ const watchHandlebars = () => {
   }, series(minifyHandlebars, replaceHandlebars))
 }
 
-// default
-const defaultTask = () => {
-  watchUserscripts()
-  watchJS()
-  watchCSS()
-  watchHandlebars()
-}
-
 // exports
-exports.default = defaultTask
+exports.default = parallel(watchUserscripts, watchJS, watchCSS, watchHandlebars)
