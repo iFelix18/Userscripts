@@ -18,7 +18,7 @@
 // @description:zh-CN  将 IMDb、Rotten Tomatoes 和 Metacritic 的评分添加到 TMDb
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.1.0
+// @version            1.1.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -215,21 +215,51 @@
         rating: response.imdbRating,
         source: 'imdb',
         symbol: '/10',
-        votes: response.imdbVotes !== 'N/A' ? parseFloat(response.imdbVotes.replace(/,/g, '')) >= 1000 ? `${Math.round(parseFloat(response.imdbVotes.replace(/,/g, '')) / 1000, 1)}k` : `${parseFloat(response.imdbVotes.replace(/,/g, ''))}` : 'N/A'
+        votes: (
+          response.imdbVotes !== 'N/A'
+            ? parseFloat(response.imdbVotes.replace(/,/g, '')) >= 1000
+              ? `${Math.round(parseFloat(response.imdbVotes.replace(/,/g, '')) / 1000, 1)}k`
+              : `${parseFloat(response.imdbVotes.replace(/,/g, ''))}`
+            : 'N/A'
+        )
       },
       {
-        logo: response.Ratings[1] !== undefined && response.Ratings[1].Source === 'Rotten Tomatoes' ? parseFloat(response.Ratings[1].Value) < 60 ? logos.rotten : logos.fresh : logos.fresh,
-        rating: response.Ratings[1] !== undefined && response.Ratings[1].Source === 'Rotten Tomatoes' ? response.Ratings[1].Value.replace(/%/g, '') : 'N/A',
+        logo: (
+          response.Ratings[1] !== undefined && response.Ratings[1].Source === 'Rotten Tomatoes'
+            ? parseFloat(response.Ratings[1].Value) < 60
+              ? logos.rotten
+              : logos.fresh
+            : logos.fresh
+        ),
+        rating: (
+          response.Ratings[1] !== undefined && response.Ratings[1].Source === 'Rotten Tomatoes'
+            ? response.Ratings[1].Value.replace(/%/g, '')
+            : 'N/A'
+        ),
         source: 'tomatoes',
         symbol: '%',
-        votes: response.Ratings[1] !== undefined && response.Ratings[1].Source === 'Rotten Tomatoes' ? parseFloat(response.Ratings[1].Value) < 60 ? 'Rotten' : 'Fresh' : 'N/A'
+        votes: (
+          response.Ratings[1] !== undefined && response.Ratings[1].Source === 'Rotten Tomatoes'
+            ? parseFloat(response.Ratings[1].Value) < 60
+              ? 'Rotten'
+              : 'Fresh'
+            : 'N/A'
+        )
       },
       {
         logo: logos.metacritic,
         rating: response.Metascore,
         source: 'metascore',
         symbol: '',
-        votes: response.Metascore !== 'N/A' ? response.Metascore < 40 ? '#ff0000' : response.Metascore >= 40 && response.Metascore <= 60 ? '#ffcc33' : '#66cc33' : 'N/A'
+        votes: (
+          response.Metascore !== 'N/A'
+            ? response.Metascore < 40
+              ? '#ff0000'
+              : response.Metascore >= 40 && response.Metascore <= 60
+                ? '#ffcc33'
+                : '#66cc33'
+            : 'N/A'
+        )
       }
     ])
   }
@@ -238,7 +268,7 @@
    * Add template
    */
   const addTemplate = () => {
-    const template = '<li class=external-ratings style=display:flex;margin-right:0></li><script id=external-ratings-template type=text/x-handlebars-template>{{#each ratings}}<div class={{this.source}}-rating style=display:inline-flex;align-items:center;margin-right:20px><div class=logo style=display:inline-flex><img alt=logo src={{this.logo}} width=46></div><div class=text style=font-weight:700;margin-left:6px;display:inline-flex;flex-direction:column;align-items:flex-start><div class=vote style=display:flex;align-items:center;align-content:center;justify-content:center>{{this.rating}} {{#ifEqual this.rating "N/A"}} {{else}} <span style=font-weight:400;font-size:80%;opacity:.8>{{this.symbol}} </span>{{/ifEqual}}</div>{{#ifEqual this.votes "N/A"}} {{else}} {{#ifEqual this.source "metascore"}}<div class=votes style="display:flex;align-items:center;align-content:center;justify-content:center;background:linear-gradient(to top,transparent 0,transparent 25%,{{this.votes}} 25%,{{this.votes}} 75%,transparent 75%,transparent 100%);color:transparent">{{this.rating}}</div>{{else}}<div class=votes style=font-weight:400;opacity:.8>{{this.votes}}</div>{{/ifEqual}} {{/ifEqual}}</div></div>{{/each}}</script>'
+    const template = '<li class=external-ratings style=display:flex;margin-right:0></li><script id=external-ratings-template type=text/x-handlebars-template>{{#each ratings}} {{#ifEqual this.rating "N/A"}} {{else}}<div class={{this.source}}-rating style=display:inline-flex;align-items:center;margin-right:20px><div class=logo style=display:inline-flex><img alt=logo src={{this.logo}} width=46></div><div class=text style=font-weight:700;margin-left:6px;display:inline-flex;flex-direction:column;align-items:flex-start><div class=vote style=display:flex;align-items:center;align-content:center;justify-content:center>{{this.rating}} {{#ifEqual this.rating "N/A"}} {{else}} <span style=font-weight:400;font-size:80%;opacity:.8>{{this.symbol}} </span>{{/ifEqual}}</div>{{#ifEqual this.votes "N/A"}} {{else}} {{#ifEqual this.source "metascore"}}<div class=votes style="display:flex;align-items:center;align-content:center;justify-content:center;background:linear-gradient(to top,transparent 0,transparent 25%,{{this.votes}} 25%,{{this.votes}} 75%,transparent 75%,transparent 100%);color:transparent">{{this.rating}}</div>{{else}}<div class=votes style=font-weight:400;opacity:.8>{{this.votes}}</div>{{/ifEqual}} {{/ifEqual}}</div></div>{{/ifEqual}} {{/each}}</script>'
     const target = 'section.inner_content section.header ul.actions li.chart'
 
     $(template).insertAfter(target)
@@ -266,6 +296,7 @@
 
     tmdb.externalIDs(type, id).then((response) => {
       const id = response.imdb_id
+
       if (!id) return
 
       MU.log(`ID is '${id}'`)
@@ -277,6 +308,7 @@
         const template = Handlebars.compile($('#external-ratings-template').html())
         const context = { ratings: response }
         const compile = template(context)
+
         $('.external-ratings').html(compile)
       }).catch((error) => MU.error(error))
     }).catch((error) => MU.error(error))
