@@ -7,7 +7,7 @@
 // @description     TMDb API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.4.0
+// @version         1.4.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -19,8 +19,6 @@
 // ==/UserScript==
 
 (() => {
-  'use strict'
-
   /**
    * TMDb API
    * @class
@@ -35,7 +33,7 @@
      * @param {boolean} [config.debug=false]                        Debug
      */
     constructor (config = {}) {
-      if (!config.apikey) throw Error('TMDb API Key is required')
+      if (!config.apikey) throw new Error('TMDb API Key is required')
 
       /**
        * @private
