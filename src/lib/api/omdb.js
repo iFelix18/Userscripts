@@ -7,7 +7,7 @@
 // @description     OMDb API for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.1.0
+// @version         1.1.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -19,8 +19,6 @@
 // ==/UserScript==
 
 (() => {
-  'use strict'
-
   /**
    * OMDb API
    * https://www.omdbapi.com/
@@ -76,8 +74,8 @@
       const query = {
         id: research.id || '',
         title: research.title || '',
-        type: research.type || null,
-        year: research.year || null,
+        type: research.type || undefined,
+        year: research.year || undefined,
         plot: research.plot || 'short'
       }
 
@@ -98,9 +96,9 @@
             } else {
               (query.id === '' && query.title === '')
                 ? reject(new Error('A search query (IMDb ID or Title) is required.'))
-                : data.Response === 'False'
-                  ? reject(new Error(data.Error))
-                  : reject(new Error(response))
+                : (data.Response === 'False'
+                    ? reject(new Error(data.Error))
+                    : reject(new Error(response)))
             }
           }
         })
@@ -119,8 +117,8 @@
     search (research = {}) {
       const query = {
         search: research.search || '',
-        type: research.type || null,
-        year: research.year || null,
+        type: research.type || undefined,
+        year: research.year || undefined,
         page: research.page || '1'
       }
 
@@ -137,9 +135,9 @@
             } else {
               query.search === ''
                 ? reject(new Error('A search query is required.'))
-                : data.Response === 'False'
-                  ? reject(new Error(data.Error))
-                  : reject(new Error(response))
+                : (data.Response === 'False'
+                    ? reject(new Error(data.Error))
+                    : reject(new Error(response)))
             }
           }
         })
