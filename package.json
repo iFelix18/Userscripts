@@ -5,8 +5,7 @@
   "scripts": {
     "start": "gulp default",
     "lint": "eslint . --ext .json,.js",
-    "lint:md": "markdownlint-cli2 **/*.md !**/node_modules/** !LICENSE.md",
-    "update": "updates -u & yarn install"
+    "lint:md": "markdownlint-cli2 **/*.md !**/node_modules/** !LICENSE.md"
   },
   "homepage": "https://github.com/iFelix18/Userscripts#readme",
   "repository": {
@@ -23,6 +22,10 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/eslint-parser": "^7.15.7",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/register": "^7.15.3",
     "eslint": "^7.32.0",
     "eslint-config-greasemonkey": "^1.0.1",
     "eslint-config-standard": "^16.0.3",
@@ -30,6 +33,7 @@
     "eslint-plugin-json": "^3.1.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-unicorn": "^36.0.0",
     "eslint-plugin-userscripts": "^0.0.2",
     "gulp": "^4.0.2",
     "gulp-bump": "^3.2.0",
@@ -40,7 +44,6 @@
     "gulp-replace": "^1.1.3",
     "markdownlint": "^0.24.0",
     "markdownlint-cli2": "^0.3.0",
-    "updates": "^12.2.0",
     "userscript-meta": "^1.0.1",
     "yarn": "^1.22.11"
   }
