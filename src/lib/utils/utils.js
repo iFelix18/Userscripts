@@ -7,7 +7,7 @@
 // @description     Utils for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.2.1
+// @version         2.2.2
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -18,8 +18,6 @@
 // ==/UserScript==
 
 (() => {
-  'use strict'
-
   /**
    * Utils for my userscripts
    * @class
@@ -35,9 +33,9 @@
      * @param {string} [config.logging=false] Logging
      */
     constructor (config = {}) {
-      if (!config.name) throw Error('Userscript name is required')
-      if (!config.version) throw Error('Userscript version is required')
-      if (!config.author) throw Error('Userscript author is required')
+      if (!config.name) throw new Error('Userscript name is required')
+      if (!config.version) throw new Error('Userscript version is required')
+      if (!config.author) throw new Error('Userscript author is required')
 
       /**
        * @private
@@ -45,7 +43,7 @@
       this._config = {
         name: config.name.toUpperCase(),
         version: config.version,
-        author: config.author.match(/^(.*?)(\s<\S+@\S+\.\S+>)/) ? config.author.match(/^(.*?)(\s<\S+@\S+\.\S+>)/)[1] : config.author,
+        author: /^(.*?)(\s<\S+@\S+\.\S+>)/.test(config.author) ? config.author.match(/^(.*?)(\s<\S+@\S+\.\S+>)/)[1] : config.author,
         color: config.color || 'red',
         logging: config.logging || false
       }
@@ -62,9 +60,9 @@
 
       if (id && this._config.logging === true) {
         const data = JSON.parse(await GM.getValue(id))
-        Object.keys(data).forEach((key) => {
+        for (const key of Object.keys(data)) {
           console.log(`${this._config.name}:`, `${key} is "${data[key]}"`)
-        })
+        }
       }
     }
 
@@ -100,7 +98,7 @@
      * @returns {string}
      */
     short (message) {
-      return message.split(/\s+/).slice(0, 6).join(' ').concat(' [...]')
+      return [...message.split(/\s+/).slice(0, 6).join(' '), ' [...]']
     }
   }
 })()
