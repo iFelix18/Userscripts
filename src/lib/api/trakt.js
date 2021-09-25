@@ -7,7 +7,7 @@
 // @description     Trakt API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.4.1
+// @version         1.4.2
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -19,8 +19,6 @@
 // ==/UserScript==
 
 (() => {
-  'use strict'
-
   /**
    * Trakt.tv API
    * https://trakt.docs.apiary.io/
@@ -35,7 +33,7 @@
      * @param {boolean} [config.debug=false]                Debug
      */
     constructor (config = {}) {
-      if (!config.clientID) throw Error('Trakt Client ID is required')
+      if (!config.clientID) throw new Error('Trakt Client ID is required')
 
       /**
        * @private
