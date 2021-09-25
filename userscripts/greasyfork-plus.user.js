@@ -18,14 +18,14 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.4.3
+// @version            1.4.4
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
 // @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@abce8796cedbe28ac8e072d9824c4b9342985098/lib/utils/utils.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@7abdd3baa19d3ec6c216587a226171d71a922469/lib/utils/utils.min.js
 // @require            https://cdn.jsdelivr.net/npm/gm4-polyfill@1.0.1/gm4-polyfill.min.js#sha256-qmLl2Ly0/+2K+HHP76Ul+Wpy1Z41iKtzptPD1Nt8gSk=
 // @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js#sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=
 // @require            https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.4/dist/index.js#sha256-ac//SadDzOEkne8ECdtu6YwY5YJj0oJBazsbYk/mvzg=
@@ -58,8 +58,6 @@
 /* global $, GM_config, MonkeyUtils, VM */
 
 (() => {
-  'use strict'
-
   //* GM_config
   GM_config.init({
     id: 'config',
@@ -117,10 +115,10 @@
         click: async () => {
           const values = await GM.listValues()
 
-          values.forEach(async (value) => {
+          for (const value of values) {
             const cache = await GM.getValue(value) // get cache
             if (cache.time) { GM.deleteValue(value) } // delete cache
-          })
+          }
 
           MU.log('cache cleared')
           GM_config.close()
@@ -148,13 +146,14 @@
   MU.init('config')
 
   //* Constants
-  const cachePeriod = 300000 // 5 minutes
+  const cachePeriod = 60_000 // 1 minute
   const logo = 'data:image/png;base64,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'
+  const color = 'rgba(255, 0, 0, 0.10)'
   const nonLatins = /[^\p{Script=Latin}\p{Script=Common}\p{Script=Inherited}]/gu
   const blacklist = new RegExp([ /* cSpell: disable-next-line */
     '\\bagar((.)?io)?\\b', '\\bagma((.)?io)?\\b', '\\baimbot\\b', '\\barras((.)?io)?\\b', '\\bbot(s)?\\b', '\\bbubble((.)?am)?\\b', '\\bcheat(s)?\\b', '\\bdiep((.)?io)?\\b', '\\bfreebitco((.)?in)?\\b', '\\bgota((.)?io)?\\b', '\\bhack(s)?\\b', '\\bkrunker((.)?io)?\\b', '\\blostworld((.)?io)?\\b', '\\bmoomoo((.)?io)?\\b', '\\broblox(.com)?\\b', '\\bshell\\sshockers\\b', '\\bshellshock((.)?io)?\\b', '\\bshellshockers\\b', '\\bskribbl((.)?io)?\\b', '\\bslither((.)?io)?\\b', '\\bsurviv((.)?io)?\\b', '\\btaming((.)?io)?\\b', '\\bvenge((.)?io)?\\b', '\\bvertix((.)?io)?\\b', '\\bzombs((.)?io)?\\b', '\\p{Extended_Pictographic}'
   ].join('|'), 'giu')
-  const milestones = GM_config.get('milestoneNotification').replace(/\s/g, '').split(',').map(Number)
+  const milestones = GM_config.get('milestoneNotification').replace(/\s/g, '').split(',').map((element) => Number(element))
   const lang = $('html').attr('lang')
   const locales = { /* cSpell: disable */
     de: {
@@ -252,8 +251,8 @@
 
     if (!name) return
 
-    if (name.match(nonLatins) || description.match(nonLatins)) {
-      $(element).addClass('non-latin').css('background-color', 'rgba(255, 0, 0, 0.10)').hide()
+    if (nonLatins.test(name) || nonLatins.test(description)) {
+      $(element).addClass('non-latin').css('background-color', color).hide()
     }
   }
 
@@ -267,8 +266,8 @@
 
     if (!name) return
 
-    if (name.match(blacklist) || description.match(blacklist)) {
-      $(element).addClass('blacklisted').css('background-color', 'rgba(255, 0, 0, 0.10)').hide()
+    if (blacklist.test(name) || blacklist.test(description)) {
+      $(element).addClass('blacklisted').css('background-color', color).hide()
     }
   }
 
@@ -281,9 +280,9 @@
   const hideScript = async (element, id, list) => {
     // if is in list hide it
     if (id in JSON.parse(await GM.getValue('hiddenList', '{}')) && list) {
-      $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)').hide()
+      $(element).addClass('hidden').css('background-color', color).hide()
     } else if (id in JSON.parse(await GM.getValue('hiddenList', '{}')) && !list) {
-      $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
+      $(element).addClass('hidden').css('background-color', color)
     }
 
     // add button to hide the script
@@ -308,10 +307,10 @@
         GM.setValue('hiddenList', JSON.stringify(hiddenList))
 
         if (list) {
-          $(element).hide(750).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
+          $(element).hide(750).addClass('hidden').css('background-color', color)
             .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
         } else {
-          $(element).addClass('hidden').css('background-color', 'rgba(255, 0, 0, 0.10)')
+          $(element).addClass('hidden').css('background-color', color)
             .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
         }
       } else { // ...else remove it
@@ -386,12 +385,12 @@
 
       if (window.external.Tampermonkey) {
         window.external.Tampermonkey.isInstalled(name, namespace, (data) => {
-          (data.installed) ? resolve(data.version) : resolve(null)
+          (data.installed) ? resolve(data.version) : resolve()
         })
         return
       }
 
-      resolve(null)
+      resolve()
     })
   }
 
@@ -402,15 +401,15 @@
    * @returns {number}
    */
   const compareVersions = (v1, v2) => {
-    if (v1 === null || v2 === null) return null
+    if (v1 === null || v2 === null) return
     if (v1 === v2) return 0
 
-    const sv1 = v1.split('.').map((i) => +i)
-    const sv2 = v2.split('.').map((i) => +i)
+    const sv1 = v1.split('.').map((index) => +index)
+    const sv2 = v2.split('.').map((index) => +index)
 
-    for (let i = 0; i < Math.max(sv1.length, sv2.length); i++) {
-      if (sv1[i] > sv2[i]) return 1
-      if (sv1[i] < sv2[i]) return -1
+    for (let index = 0; index < Math.max(sv1.length, sv2.length); index++) {
+      if (sv1[index] > sv2[index]) return 1
+      if (sv1[index] < sv2[index]) return -1
     }
 
     return 0
@@ -426,7 +425,7 @@
       const totalInstalls = []
 
       $.each(data.scripts, (index, element) => {
-        totalInstalls.push(parseInt(element.total_installs, 10))
+        totalInstalls.push(Number.parseInt(element.total_installs, 10))
       })
 
       resolve(totalInstalls.reduce((a, b) => a + b, 0))
@@ -439,14 +438,19 @@
    * @returns {string}
    */
   const installLabel = (update) => {
-    if (update === null) {
-      return locales[lang] ? locales[lang].install : locales.en.install
-    } else if (update === 1) {
-      return locales[lang] ? locales[lang].update : locales.en.update
-    } else if (update === -1) {
-      return locales[lang] ? locales[lang].downgrade : locales.en.downgrade
-    } else {
-      return locales[lang] ? locales[lang].reinstall : locales.en.reinstall
+    switch (update) {
+      case undefined: {
+        return locales[lang] ? locales[lang].install : locales.en.install
+      }
+      case 1: {
+        return locales[lang] ? locales[lang].update : locales.en.update
+      }
+      case -1: {
+        return locales[lang] ? locales[lang].downgrade : locales.en.downgrade
+      }
+      default: {
+        return locales[lang] ? locales[lang].reinstall : locales.en.reinstall
+      }
     }
   }
 
@@ -456,7 +460,7 @@
    * @returns {string}
    */
   const blockLabel = (hidden) => {
-    return hidden ? locales[lang] ? locales[lang].notHide : locales.en.notHide : locales[lang] ? locales[lang].hide : locales.en.hide
+    return hidden ? (locales[lang] ? locales[lang].notHide : locales.en.notHide) : (locales[lang] ? locales[lang].hide : locales.en.hide)
   }
 
   /**
@@ -478,10 +482,10 @@
   const clearOldCache = async () => {
     const values = await GM.listValues()
 
-    values.forEach(async (value) => {
+    for (const value of values) {
       const cache = await GM.getValue(value) // get cache
       if ((Date.now() - cache.time) > cachePeriod) { GM.deleteValue(value) } // delete old cache
-    })
+    }
   }
 
   //* Script
@@ -509,29 +513,25 @@
     }
   })
 
-  if (GM_config.get('hideScript')) {
-    if (scriptInfo.length) {
-      const id = $(scriptInfo).find('.install-link').data('script-id')
+  if (GM_config.get('hideScript') && scriptInfo.length > 0) {
+    const id = $(scriptInfo).find('.install-link').data('script-id')
 
-      hideScript(scriptInfo, id, false)
-    }
+    hideScript(scriptInfo, id, false)
   }
 
-  if (GM_config.get('showTotalInstalls')) {
-    if (userScriptList.length) {
-      const dailyInstalls = []
-      const totalInstalls = []
+  if (GM_config.get('showTotalInstalls') && userScriptList.length > 0) {
+    const dailyInstalls = []
+    const totalInstalls = []
 
-      userScriptList.find('li dd.script-list-daily-installs').each((index, element) => {
-        dailyInstalls.push(parseInt($(element).text().replace(/\D/g, ''), 10))
-      })
-      userScriptList.find('li dd.script-list-total-installs').each((index, element) => {
-        totalInstalls.push(parseInt($(element).text().replace(/\D/g, ''), 10))
-      })
+    userScriptList.find('li dd.script-list-daily-installs').each((index, element) => {
+      dailyInstalls.push(Number.parseInt($(element).text().replace(/\D/g, ''), 10))
+    })
+    userScriptList.find('li dd.script-list-total-installs').each((index, element) => {
+      totalInstalls.push(Number.parseInt($(element).text().replace(/\D/g, ''), 10))
+    })
 
-      listSort.find('.list-option.list-current:nth-child(1), .list-option:not(list-current):nth-child(1) a').append(`<span> (${dailyInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
-      listSort.find('.list-option.list-current:nth-child(2), .list-option:not(list-current):nth-child(2) a').append(`<span> (${totalInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
-    }
+    listSort.find('.list-option.list-current:nth-child(1), .list-option:not(list-current):nth-child(1) a').append(`<span> (${dailyInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
+    listSort.find('.list-option.list-current:nth-child(2), .list-option:not(list-current):nth-child(2) a').append(`<span> (${totalInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
   }
 
   if (GM_config.get('milestoneNotification')) {
