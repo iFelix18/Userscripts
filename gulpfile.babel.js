@@ -1,10 +1,9 @@
 import { dest, parallel, series, src, watch } from 'gulp'
-import { parse } from 'userscript-meta'
-import { readFileSync, existsSync } from 'node:fs'
-import bump from 'gulp-bump'
+import { parse, stringify } from 'userscript-meta'
+import { readFileSync, existsSync, writeFile } from 'node:fs'
 import cleanCSS from 'gulp-clean-css'
 import flatmap from 'gulp-flatmap'
-import htmlmin from 'gulp-html-minifier-terser'
+import htmlMinifier from 'gulp-html-minifier-terser'
 import minify from 'gulp-minify'
 import replace from 'gulp-replace'
 
@@ -55,7 +54,7 @@ const minifyCSS = () => {
 
 const minifyHandlebars = () => {
   return src(paths.handlebars.src)
-    .pipe(htmlmin({
+    .pipe(htmlMinifier({
       collapseBooleanAttributes: true,
       collapseWhitespace: true,
       minifyCSS: true,
@@ -93,17 +92,18 @@ const replaceHandlebars = () => {
     }))
 }
 
-// bump meta version
-const bumpMeta = () => {
+// bump meta
+const bumpMeta = (callback) => {
   return src(paths.userscripts.src)
     .pipe(flatmap((stream, file) => {
       const fileName = file.basename.replace('.user', '.meta')
       const contents = file.contents.toString('utf8')
-      const { version } = parse(contents)
+      const { name, author, namespace, description, copyright, license, version } = parse(contents)
+      const meta = stringify({ name, author, namespace, description, copyright, license, version })
 
-      return src(`${paths.meta.src}${fileName}`)
-        .pipe(bump({ version: version }))
-        .pipe(dest(paths.meta.dest))
+      writeFile(`${paths.meta.src}${fileName}`, meta, callback)
+
+      return stream
     }))
 }
 
