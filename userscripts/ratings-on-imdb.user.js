@@ -8,7 +8,7 @@
 // @name:zh-CN         IMDb 上的评分
 // @author             Davide <iFelix18@protonmail.com>
 // @namespace          https://github.com/iFelix18
-// @icon               https://www.google.com/s2/favicons?sz=64&domain=imdb.com
+// @icon               https://www.google.com/s2/favicons?domain=imdb.com
 // @description        Adds ratings from Rotten Tomatoes and Metacritic to IMDb
 // @description:de     Fügt Bewertungen von Rotten Tomatoes und Metacritic zu IMDb hinzu
 // @description:es     Agrega calificaciones de Rotten Tomatoes y Metacritic a IMDb
@@ -18,7 +18,7 @@
 // @description:zh-CN  将烂番茄和 Metacritic 的评分添加到 IMDb
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.1.3
+// @version            1.1.4
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
