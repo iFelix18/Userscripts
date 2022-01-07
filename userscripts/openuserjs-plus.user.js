@@ -8,7 +8,7 @@
 // @name:zh-CN         OpenUserJS+
 // @author             Davide <iFelix18@protonmail.com>
 // @namespace          https://github.com/iFelix18
-// @icon               https://www.google.com/s2/favicons?sz=64&domain=openuserjs.org
+// @icon               https://www.google.com/s2/favicons?domain=openuserjs.org
 // @description        Adds various features and improves the OpenUserJS experience
 // @description:de     Fügt verschiedene Funktionen hinzu und verbessert das OpenUserJS-Erlebnis
 // @description:es     Agrega varias funciones y mejora la experiencia de OpenUserJS
@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.3.5
+// @version            1.3.6
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
