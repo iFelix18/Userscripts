@@ -8,7 +8,7 @@
 // @name:zh-CN         TMDb 上的评分
 // @author             Davide <iFelix18@protonmail.com>
 // @namespace          https://github.com/iFelix18
-// @icon               https://www.google.com/s2/favicons?sz=64&domain=themoviedb.org
+// @icon               https://www.google.com/s2/favicons?domain=themoviedb.org
 // @description        Adds ratings from IMDb, Rotten Tomatoes and Metacritic to TMDb
 // @description:de     Fügt Bewertungen von IMDb, Rotten Tomatoes und Metacritic zu TMDb hinzu
 // @description:es     Agrega calificaciones de IMDb, Rotten Tomatoes y Metacritic a TMDb
@@ -18,7 +18,7 @@
 // @description:zh-CN  将 IMDb、Rotten Tomatoes 和 Metacritic 的评分添加到 TMDb
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.2.0
+// @version            1.2.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
