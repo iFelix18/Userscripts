@@ -9,7 +9,6 @@ I miei script e le mie librerie
 [![Open Issues](https://img.shields.io/github/issues-raw/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/issues)
 [![Closed Issues](https://img.shields.io/github/issues-closed-raw/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/issues?q=is%3Aissue+is%3Aclosed)
 [![Last Commit](https://img.shields.io/github/last-commit/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/commits/master)
-[![devDependencies](https://img.shields.io/david/dev/iFelix18/Userscripts?style=flat-square)](https://david-dm.org/iFelix18/Userscripts?type=dev)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen?style=flat-square)](https://standardjs.com)
 [![License](https://img.shields.io/github/license/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/blob/master/LICENSE.md)
 
