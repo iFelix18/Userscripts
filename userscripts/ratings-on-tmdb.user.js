@@ -18,19 +18,19 @@
 // @description:zh-CN  将 IMDb、Rotten Tomatoes 和 Metacritic 的评分添加到 TMDb
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.2.1
+// @version            1.2.2
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
 // @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@7abdd3baa19d3ec6c216587a226171d71a922469/lib/utils/utils.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@a028a624f673e5a45dd6c8173f47cb1a675578d3/lib/api/omdb.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@5d7b61ed59c1dca1a186d7bb67e40706d70a1b26/lib/api/tmdb.min.js
-// @require            https://cdn.jsdelivr.net/npm/gm4-polyfill@1.0.1/gm4-polyfill.min.js#sha256-qmLl2Ly0/+2K+HHP76Ul+Wpy1Z41iKtzptPD1Nt8gSk=
-// @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js#sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=
-// @require            https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js#sha256-ZSnrWNaPzGe8v25yP0S6YaMaDLMTDHC+4mHTw0xydEk=
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@2.2.2-utils/lib/utils/utils.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@1.1.1-omdb/lib/api/omdb.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@1.4.1-tmdb/lib/api/tmdb.min.js
+// @require            https://cdn.jsdelivr.net/npm/gm4-polyfill@1.0.1/gm4-polyfill.min.js
+// @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
+// @require            https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js
 // @match              *://www.themoviedb.org/movie/*
 // @match              *://www.themoviedb.org/tv/*
 // @exclude-match      *://www.themoviedb.org/*/cast
