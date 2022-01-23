@@ -16,11 +16,11 @@ Features:
 |                                            Screenshots                                             |
 | :------------------------------------------------------------------------------------------------: |
 |     [![Hide script button](https://i.imgur.com/8sRWP33.png "Hide script button")](#openuserjs)     |
-|                                        *Hide script button*                                        |
+|                                        _Hide script button_                                        |
 |         [![Install button](https://i.imgur.com/3LQLR3B.png "Install button")](#openuserjs)         |
-|                                          *Install button*                                          |
+|                                          _Install button_                                          |
 | [![Milestone notification](https://i.imgur.com/H93HBvL.png "Milestone notification")](#openuserjs) |
-|                                      *Milestone notification*                                      |
+|                                      _Milestone notification_                                      |
 
 ---
 

@@ -10,9 +10,9 @@ Aggiunge valutazioni da IMDb, Rotten Tomatoes e Metacritic a [TMDb](https://www.
 |                                Screenshots                                 |
 | :------------------------------------------------------------------------: |
 | [![Before](https://i.imgur.com/9GLb8i7.png "Prima")](#valutazioni-su-tmdb) |
-|                                  *Prima*                                   |
+|                                  _Prima_                                   |
 |  [![After](https://i.imgur.com/n60aZve.png "Dopo")](#valutazioni-su-tmdb)  |
-|                                   *Dopo*                                   |
+|                                   _Dopo_                                   |
 
 ---
 

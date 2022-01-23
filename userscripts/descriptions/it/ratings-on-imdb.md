@@ -10,9 +10,9 @@ Aggiunge valutazioni da Rotten Tomatoes e Metacritic a [IMDb](https://www.imdb.c
 |                                Screenshots                                 |
 | :------------------------------------------------------------------------: |
 | [![Before](https://i.imgur.com/eQrDc84.png "Prima")](#valutazioni-su-imdb) |
-|                                  *Prima*                                   |
+|                                  _Prima_                                   |
 |  [![After](https://i.imgur.com/g2aeM9h.png "Dopo")](#valutazioni-su-imdb)  |
-|                                   *Dopo*                                   |
+|                                   _Dopo_                                   |
 
 ---
 

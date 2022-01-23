@@ -35,9 +35,9 @@ Lingue readme:
   |                                Screenshots                                 |
   | :------------------------------------------------------------------------: |
   | [![Before](https://i.imgur.com/eQrDc84.png "Prima")](#valutazioni-su-imdb) |
-  |                                  *Prima*                                   |
+  |                                  _Prima_                                   |
   |  [![After](https://i.imgur.com/g2aeM9h.png "Dopo")](#valutazioni-su-imdb)  |
-  |                                   *Dopo*                                   |
+  |                                   _Dopo_                                   |
 
 * ### Valutazioni su TMDb
 
@@ -54,9 +54,9 @@ Lingue readme:
   |                                Screenshots                                 |
   | :------------------------------------------------------------------------: |
   | [![Before](https://i.imgur.com/9GLb8i7.png "Prima")](#valutazioni-su-tmdb) |
-  |                                  *Prima*                                   |
+  |                                  _Prima_                                   |
   |  [![After](https://i.imgur.com/n60aZve.png "Dopo")](#valutazioni-su-tmdb)  |
-  |                                   *Dopo*                                   |
+  |                                   _Dopo_                                   |
 
 * ### Greasy Fork+
 
@@ -80,13 +80,13 @@ Lingue readme:
   |                                              Screenshots                                              |
   | :---------------------------------------------------------------------------------------------------: |
   |   [![Hide script button](https://i.imgur.com/PFRM1SW.png "Pulsante nascondi script")](#greasy-fork)   |
-  |                                      *Pulsante nascondi script*                                       |
+  |                                      _Pulsante nascondi script_                                       |
   |        [![Install button](https://i.imgur.com/CO8wjFn.png "Pulsante installa")](#greasy-fork)         |
-  |    *Pulsante installa, esempi di come può cambiare dinamicamente in base alla versione installata*    |
+  |    _Pulsante installa, esempi di come può cambiare dinamicamente in base alla versione installata_    |
   | [![Number of installations](https://i.imgur.com/1DlTEZV.png "Numero di installazioni")](#greasy-fork) |
-  |                                       *Numero di installazioni*                                       |
+  |                                       _Numero di installazioni_                                       |
   |    [![Milestone notification](https://i.imgur.com/Q3wXatS.png "Notifica traguardo")](#greasy-fork)    |
-  |                                         *Notifica traguardo*                                          |
+  |                                         _Notifica traguardo_                                          |
 
 * ### OpenUserJS+
 
@@ -109,11 +109,11 @@ Lingue readme:
   |                                           Screenshots                                            |
   | :----------------------------------------------------------------------------------------------: |
   | [![Hide script button](https://i.imgur.com/8sRWP33.png "Pulsante nascondi script")](#openuserjs) |
-  |                                    *Pulsante nascondi script*                                    |
+  |                                    _Pulsante nascondi script_                                    |
   |      [![Install button](https://i.imgur.com/3LQLR3B.png "Pulsante installa")](#openuserjs)       |
-  |                                       *Pulsante installa*                                        |
+  |                                       _Pulsante installa_                                        |
   |  [![Milestone notification](https://i.imgur.com/H93HBvL.png "Notifica traguardo")](#openuserjs)  |
-  |                                       *Notifica traguardo*                                       |
+  |                                       _Notifica traguardo_                                       |
 
 ---
 

@@ -17,13 +17,13 @@ Features:
 |                                              Screenshots                                              |
 | :---------------------------------------------------------------------------------------------------: |
 |      [![Hide script button](https://i.imgur.com/PFRM1SW.png "Hide script button")](#greasy-fork)      |
-|                                         *Hide script button*                                          |
+|                                         _Hide script button_                                          |
 |          [![Install button](https://i.imgur.com/CO8wjFn.png "Install button")](#greasy-fork)          |
-|    *Install button, examples of how it can dynamically change according to your installed version*    |
+|    _Install button, examples of how it can dynamically change according to your installed version_    |
 | [![Number of installations](https://i.imgur.com/1DlTEZV.png "Number of installations")](#greasy-fork) |
-|                                       *Number of installations*                                       |
+|                                       _Number of installations_                                       |
 |  [![Milestone notification](https://i.imgur.com/Q3wXatS.png "Milestone notification")](#greasy-fork)  |
-|                                       *Milestone notification*                                        |
+|                                       _Milestone notification_                                        |
 
 ---
 

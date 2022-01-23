@@ -17,13 +17,13 @@ Caratteristiche:
 |                                              Screenshots                                              |
 | :---------------------------------------------------------------------------------------------------: |
 |   [![Hide script button](https://i.imgur.com/PFRM1SW.png "Pulsante nascondi script")](#greasy-fork)   |
-|                                      *Pulsante nascondi script*                                       |
+|                                      _Pulsante nascondi script_                                       |
 |        [![Install button](https://i.imgur.com/CO8wjFn.png "Pulsante installa")](#greasy-fork)         |
-|    *Pulsante installa, esempi di come può cambiare dinamicamente in base alla versione installata*    |
+|    _Pulsante installa, esempi di come può cambiare dinamicamente in base alla versione installata_    |
 | [![Number of installations](https://i.imgur.com/1DlTEZV.png "Numero di installazioni")](#greasy-fork) |
-|                                       *Numero di installazioni*                                       |
+|                                       _Numero di installazioni_                                       |
 |    [![Milestone notification](https://i.imgur.com/Q3wXatS.png "Notifica traguardo")](#greasy-fork)    |
-|                                         *Notifica traguardo*                                          |
+|                                         _Notifica traguardo_                                          |
 
 ---
 

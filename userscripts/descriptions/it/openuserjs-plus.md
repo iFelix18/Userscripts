@@ -16,11 +16,11 @@ Caratteristiche:
 |                                           Screenshots                                            |
 | :----------------------------------------------------------------------------------------------: |
 | [![Hide script button](https://i.imgur.com/8sRWP33.png "Pulsante nascondi script")](#openuserjs) |
-|                                    *Pulsante nascondi script*                                    |
+|                                    _Pulsante nascondi script_                                    |
 |      [![Install button](https://i.imgur.com/3LQLR3B.png "Pulsante installa")](#openuserjs)       |
-|                                       *Pulsante installa*                                        |
+|                                       _Pulsante installa_                                        |
 |  [![Milestone notification](https://i.imgur.com/H93HBvL.png "Notifica traguardo")](#openuserjs)  |
-|                                       *Notifica traguardo*                                       |
+|                                       _Notifica traguardo_                                       |
 
 ---
 

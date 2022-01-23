@@ -10,9 +10,9 @@ Adds ratings from IMDb, Rotten Tomatoes and Metacritic to [TMDb](https://www.the
 |                               Screenshots                               |
 | :---------------------------------------------------------------------: |
 | [![Before](https://i.imgur.com/9GLb8i7.png "Before")](#ratings-on-tmdb) |
-|                                *Before*                                 |
+|                                _Before_                                 |
 |  [![After](https://i.imgur.com/n60aZve.png "After")](#ratings-on-tmdb)  |
-|                                 *After*                                 |
+|                                 _After_                                 |
 
 ---
 
