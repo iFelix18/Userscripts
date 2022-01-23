@@ -7,15 +7,13 @@
 // @description     OMDb API for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.1.1
+// @version         1.2.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @require         https://cdn.jsdelivr.net/gh/greasemonkey/gm4-polyfill@master/gm4-polyfill.min.js
 // @include         *
 // @connect         omdbapi.com
 // @grant           GM.xmlHttpRequest
-// @grant           GM_xmlhttpRequest
 // ==/UserScript==
 
 (() => {
