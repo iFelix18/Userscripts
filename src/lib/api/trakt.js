@@ -7,15 +7,13 @@
 // @description     Trakt API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.4.2
+// @version         1.5.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @require         https://cdn.jsdelivr.net/gh/greasemonkey/gm4-polyfill@master/gm4-polyfill.js
 // @include         *
 // @connect         api.trakt.tv
 // @grant           GM.xmlHttpRequest
-// @grant           GM_xmlhttpRequest
 // ==/UserScript==
 
 (() => {
