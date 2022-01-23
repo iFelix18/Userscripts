@@ -7,20 +7,19 @@
 // @description     TMDb API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.4.1
+// @version         1.5.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @require         https://cdn.jsdelivr.net/npm/gm4-polyfill@1.0.1/gm4-polyfill.min.js#sha256-qmLl2Ly0/+2K+HHP76Ul+Wpy1Z41iKtzptPD1Nt8gSk=
 // @include         *
 // @connect         api.themoviedb.org
 // @grant           GM.xmlHttpRequest
-// @grant           GM_xmlhttpRequest
 // ==/UserScript==
 
 (() => {
   /**
    * TMDb API
+   * https://developers.themoviedb.org/3/
    * @class
    */
   this.TMDb = class {
