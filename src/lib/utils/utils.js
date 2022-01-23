@@ -7,14 +7,12 @@
 // @description     Utils for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.2.2
+// @version         2.3.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @require         https://cdn.jsdelivr.net/gh/greasemonkey/gm4-polyfill@master/gm4-polyfill.min.js
 // @include         *
 // @grant           GM.getValue
-// @grant           GM_getValue
 // ==/UserScript==
 
 (() => {
