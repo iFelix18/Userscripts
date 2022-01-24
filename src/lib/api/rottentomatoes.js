@@ -7,7 +7,7 @@
 // @description     Rotten Tomatoes API for my userscripts
 // @copyright       2022, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.0
+// @version         1.1.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -57,30 +57,30 @@
     /**
      * Returns the results of a search
      * @param {Object} research
-     * @param {string} [research.search=''] Item title to search for
-     * @param {string} [research.type=null] Type of result to return (movie, tvseries, franchise)
-     * @param {string} [research.limit=null] Type of result to return (movie, tvseries, franchise)
+     * @param {string} [research.query='']    Item title to search for
+     * @param {string} [research.type=null]   Type of result to return (movie or series)
+     * @param {string} [research.limit=null]  Limit
      * @returns {Object}
      */
     search (research = {}) {
-      const query = {
-        search: research.search || '',
-        type: research.type || undefined,
+      const search = {
+        query: research.query || '',
+        type: research.type === 'movie' ? 'movie' : (research.type === 'series' ? 'tvseries' : undefined),
         limit: research.limit || 25
       }
 
       return new Promise((resolve, reject) => {
         GM.xmlHttpRequest({
           method: 'GET',
-          url: `${this._config.url}/api/private/v2.0/search/?q=${encodeURIComponent(query.search)}&t=${query.type}&limit=${query.limit}`,
+          url: `${this._config.url}/api/private/v2.0/search/?q=${encodeURIComponent(search.query)}&t=${search.type}&limit=${search.limit}`,
           headers: this._headers,
           onload: (response) => {
             this._debug(response)
             const data = JSON.parse(response.responseText)
             if (response.readyState === 4 && response.responseText !== '[]') {
-              resolve(data)
+              resolve(research.type === 'movie' ? data.movies : (research.type === 'series' ? data.tvSeries : data))
             } else {
-              query.search === ''
+              search.query === ''
                 ? reject(new Error('A search query is required.'))
                 : reject(new Error(response))
             }
