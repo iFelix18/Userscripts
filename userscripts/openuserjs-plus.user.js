@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.3.7
+// @version            1.3.8
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -230,7 +230,6 @@
           $(element).removeClass('hidden-script').css('background-color', '')
             .find('.block-button').text(blockLabel($(element).hasClass('hidden-script')))
         } else {
-          console.log('sbloccato')
           $(element).removeClass('hidden-script')
             .find('.col-sm-8, .col-sm-8 .panel-body').css('background-color', '')
             .find('.block-button').text(blockLabel($(element).hasClass('hidden-script')))
