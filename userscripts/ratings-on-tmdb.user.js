@@ -18,17 +18,17 @@
 // @description:zh-CN  将 IMDb、Rotten Tomatoes 和 Metacritic 的评分添加到 TMDb
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.2.2
+// @version            1.3.0
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
 // @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@2.2.2-utils/lib/utils/utils.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@1.1.1-omdb/lib/api/omdb.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@1.4.1-tmdb/lib/api/tmdb.min.js
-// @require            https://cdn.jsdelivr.net/npm/gm4-polyfill@1.0.1/gm4-polyfill.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.0/lib/utils/utils.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@omdb-1.2.0/lib/api/omdb.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@tmdb-1.5.0/lib/api/tmdb.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@rottentomatoes-1.1.0/lib/api/rottentomatoes.min.js
 // @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require            https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js
 // @match              *://www.themoviedb.org/movie/*
@@ -49,6 +49,10 @@
 // @exclude-match      *://www.themoviedb.org/*/watch
 // @connect            omdbapi.com
 // @connect            api.themoviedb.org
+// @connect            rottentomatoes.com
+// @compatible         chrome
+// @compatible         edge
+// @compatible         firefox
 // @grant              GM.deleteValue
 // @grant              GM.getValue
 // @grant              GM.info
@@ -56,18 +60,11 @@
 // @grant              GM.registerMenuCommand
 // @grant              GM.setValue
 // @grant              GM.xmlHttpRequest
-// @grant              GM_deleteValue
-// @grant              GM_getValue
-// @grant              GM_info
-// @grant              GM_listValues
-// @grant              GM_registerMenuCommand
-// @grant              GM_setValue
-// @grant              GM_xmlhttpRequest
 // @run-at             document-start
 // @inject-into        page
 // ==/UserScript==
 
-/* global $, GM_config, Handlebars, MonkeyUtils, OMDb, TMDb */
+/* global $, GM_config, Handlebars, MonkeyUtils, OMDb, RottenTomatoes, TMDb */
 
 (() => {
   //* GM_config
@@ -162,6 +159,11 @@
     debug: GM_config.get('debugging')
   })
 
+  //* Rotten Tomatoes API
+  const tomato = new RottenTomatoes({
+    debug: GM_config.get('debugging')
+  })
+
   //* Handlebars
   Handlebars.registerHelper('ifEqual', function (a, b, options) {
     if (a === b) return options.fn(this)
@@ -187,16 +189,33 @@
     const cache = await GM.getValue(id) // get cache
 
     return new Promise((resolve, reject) => {
-      if (cache !== undefined && ((Date.now() - cache.time) < cachePeriod)) { // cache valid
+      if (cache !== undefined && ((Date.now() - cache.time) < cachePeriod) && !GM_config.get('debugging')) { // cache valid
+        const data = { omdb: cache.data.omdb, tomato: cache.data.tomato }
+
         MU.log(`${id} data from cache`)
-        resolve(elaborateResponse(cache.response))
+        resolve(elaborateData(data)) // resolve cached data
       } else { // cache not valid
         omdb.get({
           id: id
         }).then((response) => {
-          GM.setValue(id, { response, time: Date.now() }) // set cache
-          MU.log(`${id} data from OMDb`)
-          resolve(elaborateResponse(response))
+          const omdbData = response
+          const title = omdbData.Title
+          const year = Number.parseInt(/\d{4}/.exec(omdbData.Year)[0])
+          const type = omdbData.Type
+          const url = omdbData.tomatoURL
+
+          tomato.search({
+            query: title,
+            type: type
+          }).then((response) => {
+            const tomatoData = response.map((item) => item).find((item) => (new RegExp(item.url).test(url)) || (item.title === title && (item.year ? item.year : item.startYear) === year))
+            const data = { omdb: omdbData, tomato: tomatoData }
+
+            if (!GM_config.get('debugging')) GM.setValue(id, { data, time: Date.now() }) // set cache
+            MU.log(`${id} data from APIs`)
+            MU.log(data)
+            resolve(elaborateData(data)) // resolve data
+          }).catch((error) => MU.error(error))
         })
       }
     }).catch((error) => MU.error(error))
@@ -235,35 +254,35 @@
   }
 
   /**
-   * Returns elaborated response
-   * @param {Object} response
+   * Returns elaborated data
+   * @param {Object} data
    * @returns {Object}
    */
-  const elaborateResponse = (response) => {
+  const elaborateData = (data) => {
     return ([
       {
         logo: logos.imdb,
-        rating: response.imdbRating,
+        rating: data.omdb.imdbRating,
         source: 'imdb',
         symbol: '/10',
-        url: `https://www.imdb.com/title/${response.imdbID}/`,
-        votes: response.imdbVotes !== 'N/A' ? imdbVotes(response.imdbVotes) : 'N/A'
+        url: `https://www.imdb.com/title/${data.omdb.imdbID}/`,
+        votes: data.omdb.imdbVotes !== 'N/A' ? imdbVotes(data.omdb.imdbVotes) : 'N/A'
       },
       {
-        logo: response.Ratings[1] !== undefined && response.Ratings[1].Source === 'Rotten Tomatoes' ? RottenTomatoesRating(response.Ratings[1].Value).logo : logos.fresh,
-        rating: response.Ratings[1] !== undefined && response.Ratings[1].Source === 'Rotten Tomatoes' ? response.Ratings[1].Value.replace(/%/g, '') : 'N/A',
+        logo: data.tomato && data.tomato.meterScore ? RottenTomatoesRating(data.tomato.meterScore).logo : (data.omdb.Ratings[1] !== undefined && data.omdb.Ratings[1].Source === 'Rotten Tomatoes' ? RottenTomatoesRating(data.omdb.Ratings[1].Value).logo : logos.fresh),
+        rating: data.tomato && data.tomato.meterScore ? data.tomato.meterScore : (data.omdb.Ratings[1] !== undefined && data.omdb.Ratings[1].Source === 'Rotten Tomatoes' ? data.omdb.Ratings[1].Value.replace(/%/g, '') : 'N/A'),
         source: 'tomatoes',
         symbol: '%',
-        url: response.tomatoURL,
-        votes: response.Ratings[1] !== undefined && response.Ratings[1].Source === 'Rotten Tomatoes' ? RottenTomatoesRating(response.Ratings[1].Value).rating : 'N/A'
+        url: data.tomato && data.tomato.meterClass ? `https://www.rottentomatoes.com${data.tomato.url}/` : (data.omdb.tomatoURL ? data.omdb.tomatoURL : 'N/A'),
+        votes: data.tomato && data.tomato.meterClass ? RottenTomatoesRating(data.tomato.meterScore).rating : (data.omdb.Ratings[1] !== undefined && data.omdb.Ratings[1].Source === 'Rotten Tomatoes' ? RottenTomatoesRating(data.omdb.Ratings[1].Value).rating : 'N/A')
       },
       {
         logo: logos.metacritic,
-        rating: response.Metascore,
+        rating: data.omdb.Metascore,
         source: 'metascore',
         symbol: '',
-        url: `https://www.metacritic.com/search/${response.Type === 'series' ? 'tv' : response.Type}/${encodeURIComponent(response.Title)}/results`,
-        votes: response.Metascore !== 'N/A' ? MetascoreColor(response.Metascore) : 'N/A'
+        url: `https://www.metacritic.com/search/${data.omdb.Type === 'series' ? 'tv' : data.omdb.Type}/${encodeURIComponent(data.omdb.Title)}/results`,
+        votes: data.omdb.Metascore !== 'N/A' ? MetascoreColor(data.omdb.Metascore) : 'N/A'
       }
     ])
   }
