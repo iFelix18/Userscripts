@@ -7,11 +7,10 @@
 // @description     Trakt API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.5.0
+// @version         1.5.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @include         *
 // @connect         api.trakt.tv
 // @grant           GM.xmlHttpRequest
 // ==/UserScript==
