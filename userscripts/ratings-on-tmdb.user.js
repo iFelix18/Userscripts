@@ -18,17 +18,17 @@
 // @description:zh-CN  将 IMDb、Rotten Tomatoes 和 Metacritic 的评分添加到 TMDb
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.3.0
+// @version            1.3.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
 // @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.0/lib/utils/utils.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@omdb-1.2.0/lib/api/omdb.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@tmdb-1.5.0/lib/api/tmdb.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@rottentomatoes-1.1.0/lib/api/rottentomatoes.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.1/lib/utils/utils.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@omdb-1.2.1/lib/api/omdb.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@tmdb-1.5.1/lib/api/tmdb.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@rottentomatoes-1.1.1/lib/api/rottentomatoes.min.js
 // @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require            https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js
 // @match              *://www.themoviedb.org/movie/*
@@ -55,7 +55,6 @@
 // @compatible         firefox
 // @grant              GM.deleteValue
 // @grant              GM.getValue
-// @grant              GM.info
 // @grant              GM.listValues
 // @grant              GM.registerMenuCommand
 // @grant              GM.setValue
