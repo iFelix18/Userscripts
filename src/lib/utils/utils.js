@@ -7,11 +7,10 @@
 // @description     Utils for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.3.0
+// @version         2.3.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @include         *
 // @grant           GM.getValue
 // ==/UserScript==
 
@@ -24,10 +23,10 @@
     /**
      * Utils configuration
      * @param {Object} config
-     * @param {string} config.name Userscript name
-     * @param {string} config.version Userscript version
-     * @param {string} config.author Userscript author
-     * @param {string} [config.color='red'] Userscript header color
+     * @param {string} config.name            Userscript name
+     * @param {string} config.version         Userscript version
+     * @param {string} config.author          Userscript author
+     * @param {string} [config.color='red']   Userscript header color
      * @param {string} [config.logging=false] Logging
      */
     constructor (config = {}) {
@@ -66,7 +65,7 @@
 
     /**
      * Log, if logging is true
-     * @param {string} message
+     * @param {string} message Message
      */
     log (message) {
       if (this._config.logging === true) {
@@ -76,7 +75,7 @@
 
     /**
      * Error
-     * @param {string} message
+     * @param {string} message Message
      */
     error (message) {
       console.error(`${this._config.name}:`, message)
@@ -84,7 +83,7 @@
 
     /**
      * Alert
-     * @param {string} message
+     * @param {string} message Message
      */
     alert (message) {
       window.alert(`${this._config.name}: ${message}`)
@@ -92,7 +91,7 @@
 
     /**
      * Returns shortened version of a message
-     * @param {string} message
+     * @param {string} message Message
      * @returns {string}
      */
     short (message) {
