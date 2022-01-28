@@ -18,14 +18,14 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.4.7
+// @version            1.4.8
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
 // @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.0/lib/utils/utils.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.1/lib/utils/utils.min.js
 // @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require            https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.4/dist/index.js
 // @match              *://greasyfork.org/*
@@ -36,7 +36,6 @@
 // @compatible         firefox
 // @grant              GM.deleteValue
 // @grant              GM.getValue
-// @grant              GM.info
 // @grant              GM.listValues
 // @grant              GM.notification
 // @grant              GM.registerMenuCommand
