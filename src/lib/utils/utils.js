@@ -7,10 +7,11 @@
 // @description     Utils for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.3.3
+// @version         2.3.4
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
+// @grant           GM.getValue
 // ==/UserScript==
 
 (() => {
@@ -30,7 +31,6 @@
      */
     constructor (config = {}) {
       if (!config.name) throw new Error('Userscript name is required')
-      if (!config.version) throw new Error('Userscript version is required')
       if (!config.author) throw new Error('Userscript author is required')
 
       /**
@@ -38,7 +38,7 @@
        */
       this._config = {
         name: config.name.toUpperCase(),
-        version: config.version,
+        version: config.version || undefined,
         author: /^.*?\s<\S[^\s@]*@\S[^\s.]*\.\S+>/.test(config.author) ? config.author.match(/^(.*?)(\s<\S[^\s@]*@\S[^\s.]*\.\S+>)/)[1] : config.author,
         color: config.color || 'red',
         logging: config.logging || false
@@ -52,7 +52,7 @@
      * @param {string} id Config id
      */
     async init (id) {
-      console.log(`%c${this._config.name}\n` + `%cv${this._config.version} by ${this._config.author} is running!`, `color:${this._config.color};font-weight:bold;font-size:18px;`, '')
+      console.log(`%c${this._config.name}\n` + `${!this._config.version ? '%c' : `%cv${this._config.version} `}by ${this._config.author} is running!`, `color:${this._config.color};font-weight:bold;font-size:18px;`, '')
 
       if (id && this._config.logging === true) {
         const data = JSON.parse(await GM.getValue(id))
