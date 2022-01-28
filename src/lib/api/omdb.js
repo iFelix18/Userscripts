@@ -7,12 +7,11 @@
 // @description     OMDb API for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.2.1
+// @version         1.2.2
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
 // @connect         omdbapi.com
-// @grant           GM.xmlHttpRequest
 // ==/UserScript==
 
 (() => {
