@@ -7,7 +7,7 @@
 // @description     Utils for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.3.2
+// @version         2.3.3
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -39,7 +39,7 @@
       this._config = {
         name: config.name.toUpperCase(),
         version: config.version,
-        author: /^(.*?)(\s<\S+@\S+\.\S+>)/.test(config.author) ? config.author.match(/^(.*?)(\s<\S+@\S+\.\S+>)/)[1] : config.author,
+        author: /^.*?\s<\S[^\s@]*@\S[^\s.]*\.\S+>/.test(config.author) ? config.author.match(/^(.*?)(\s<\S[^\s@]*@\S[^\s.]*\.\S+>)/)[1] : config.author,
         color: config.color || 'red',
         logging: config.logging || false
       }
