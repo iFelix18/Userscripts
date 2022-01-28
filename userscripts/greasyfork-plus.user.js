@@ -8,7 +8,7 @@
 // @name:zh-CN         Greasy Fork+
 // @author             Davide <iFelix18@protonmail.com>
 // @namespace          https://github.com/iFelix18
-// @icon               https://www.google.com/s2/favicons?domain=greasyfork.org
+// @icon               https://www.google.com/s2/favicons?domain=https://greasyfork.org
 // @description        Adds various features and improves the Greasy Fork experience
 // @description:de     Fügt verschiedene Funktionen hinzu und verbessert das Greasy Fork-Erlebnis
 // @description:es     Agrega varias funciones y mejora la experiencia de Greasy Fork
@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.4.8
+// @version            1.4.9
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
