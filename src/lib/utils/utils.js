@@ -7,11 +7,10 @@
 // @description     Utils for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.3.1
+// @version         2.3.2
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @grant           GM.getValue
 // ==/UserScript==
 
 (() => {
