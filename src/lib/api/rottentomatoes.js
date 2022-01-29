@@ -7,10 +7,12 @@
 // @description     Rotten Tomatoes API for my userscripts
 // @copyright       2022, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.1.2
+// @version         1.1.3
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
+// @connect         rottentomatoes.com
+// @grant           GM.xmlHttpRequest
 // ==/UserScript==
 
 (() => {
