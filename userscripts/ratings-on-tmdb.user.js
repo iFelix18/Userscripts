@@ -8,7 +8,7 @@
 // @name:zh-CN         TMDb 上的评分
 // @author             Davide <iFelix18@protonmail.com>
 // @namespace          https://github.com/iFelix18
-// @icon               https://www.google.com/s2/favicons?domain=themoviedb.org
+// @icon               https://www.google.com/s2/favicons?sz=64&domain=https://themoviedb.org
 // @description        Adds ratings from IMDb, Rotten Tomatoes and Metacritic to TMDb
 // @description:de     Fügt Bewertungen von IMDb, Rotten Tomatoes und Metacritic zu TMDb hinzu
 // @description:es     Agrega calificaciones de IMDb, Rotten Tomatoes y Metacritic a TMDb
@@ -18,17 +18,17 @@
 // @description:zh-CN  将 IMDb、Rotten Tomatoes 和 Metacritic 的评分添加到 TMDb
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.3.1
+// @version            1.4.0
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
 // @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.1/lib/utils/utils.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@omdb-1.2.1/lib/api/omdb.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@tmdb-1.5.1/lib/api/tmdb.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@rottentomatoes-1.1.1/lib/api/rottentomatoes.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.4/lib/utils/utils.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@omdb-1.2.4/lib/api/omdb.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@tmdb-1.5.3/lib/api/tmdb.min.js
+// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@rottentomatoes-1.1.3/lib/api/rottentomatoes.min.js
 // @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require            https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js
 // @match              *://www.themoviedb.org/movie/*
@@ -53,6 +53,7 @@
 // @compatible         chrome
 // @compatible         edge
 // @compatible         firefox
+// @compatible         safari
 // @grant              GM.deleteValue
 // @grant              GM.getValue
 // @grant              GM.listValues
@@ -69,7 +70,7 @@
   //* GM_config
   GM_config.init({
     id: 'config',
-    title: `${GM.info.script.name} v${GM.info.script.version} Settings`,
+    title: 'Ratings on TMDb Settings',
     fields: {
       TMDbApiKey: {
         label: 'TMDb API Key',
@@ -125,22 +126,22 @@
       },
       save: () => {
         if (!GM_config.isOpen && (GM_config.get('TMDbApiKey') === '' | GM_config.get('OMDbApiKey') === '')) {
-          window.alert(`${GM.info.script.name}: check your settings and save`)
+          window.alert('Ratings on TMDb: check your settings and save')
         } else {
-          window.alert(`${GM.info.script.name}: settings saved`)
+          window.alert('Ratings on TMDb: settings saved')
           GM_config.close()
           window.location.reload(false)
         }
       }
     }
   })
-  GM.registerMenuCommand('Configure', () => GM_config.open())
+  if (typeof GM.registerMenuCommand !== 'undefined') { GM.registerMenuCommand('Configure', () => GM_config.open()) }
 
   //* MonkeyUtils
   const MU = new MonkeyUtils({
-    name: GM.info.script.name,
-    version: GM.info.script.version,
-    author: GM.info.script.author,
+    name: 'Ratings on TMDb',
+    version: typeof GM.info !== 'undefined' ? GM.info.script.version : '',
+    author: 'Davide',
     color: '#ff0000',
     logging: GM_config.get('logging')
   })
@@ -308,12 +309,25 @@
     }
   }
 
+  /**
+   * Add settings
+   */
+  const addSettings = () => {
+    $('footer nav div:last-child').after('<div><h3>Ratings on TMDb</h3><ul><li><a href=/settings/userscript>Userscript settings</a></ul></div>')
+
+    $(document).on('click', 'footer nav ul li a[href="/settings/userscript"]', (event) => {
+      event.preventDefault()
+      GM_config.open()
+    })
+  }
+
   //* Script
   $(document).ready(() => {
     clearOldCache()
+    addSettings()
 
-    const regex = /(?<=(movie|tv)\/)(.*?)(?=-)/g.exec(window.location.pathname)
-    const id = regex[0]
+    const regex = /(movie|tv)\/(.*?(?=-))/.exec(window.location.pathname)
+    const id = regex[2]
     const type = regex[1]
 
     tmdb.externalIDs(type, id).then((response) => {
