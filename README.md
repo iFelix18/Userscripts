@@ -138,6 +138,7 @@ Readme languages:
 1. Download one of these add-ons for your browser:
     * [Violentmonkey](https://violentmonkey.github.io/)
     * [Tampermonkey](https://www.tampermonkey.net/)
+    * [Userscripts](https://github.com/quoid/userscripts#readme)
 2. Install the userscript directly from GitHub by clicking on the related installation badge.
 3. In case, configure the script as as reported in its description.
 4. Done!
@@ -162,6 +163,7 @@ Use a specific version using a specific GitHub tag, for example:
 
 ## Credits
 
-This product uses the TMDb API but is not endorsed or certified by TMDb.  
-This product uses the Trakt API but is not endorsed or certified by Trakt.  
-This product uses the OMDb API.
+This product uses the TMDb API but is not endorsed or certified by TMDb.
+This product uses the Trakt API but is not endorsed or certified by Trakt.
+This product uses the OMDb API but is not endorsed or certified by OMDb.
+This product uses the Rotten Tomatoes API but is not endorsed or certified by Rotten Tomatoes.

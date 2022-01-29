@@ -21,6 +21,7 @@ Adds ratings from Rotten Tomatoes and Metacritic to [IMDb](https://www.imdb.com/
 1. Download one of these add-ons for your browser:
     * [Violentmonkey](https://violentmonkey.github.io/)
     * [Tampermonkey](https://www.tampermonkey.net/)
+    * [Userscripts](https://github.com/quoid/userscripts#readme)
 2. Install the userscript directly from GitHub by clicking on the related installation badge.
 3. In case, configure the script as as reported in its description.
 4. Done!
