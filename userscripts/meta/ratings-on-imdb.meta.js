@@ -5,5 +5,5 @@
 // @description Adds ratings from Rotten Tomatoes and Metacritic to IMDb
 // @copyright 2021, Davide (https://github.com/iFelix18)
 // @license MIT
-// @version 1.3.0
+// @version 2.0.0
 // ==/UserScript==
