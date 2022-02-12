@@ -13,15 +13,3 @@ Adds ratings from IMDb, Rotten Tomatoes and Metacritic to [TMDb](https://www.the
 |                                _Before_                                 |
 |  [![After](https://i.imgur.com/n60aZve.png "After")](#ratings-on-tmdb)  |
 |                                 _After_                                 |
-
----
-
-## How to install
-
-1. Download one of these add-ons for your browser:
-    * [Violentmonkey](https://violentmonkey.github.io/)
-    * [Tampermonkey](https://www.tampermonkey.net/)
-    * [Userscripts](https://github.com/quoid/userscripts#readme)
-2. Install the userscript directly from GitHub by clicking on the related installation badge.
-3. In case, configure the script as as reported in its description.
-4. Done!

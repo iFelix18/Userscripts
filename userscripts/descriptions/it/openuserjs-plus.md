@@ -21,15 +21,3 @@ Caratteristiche:
 |                                       _Pulsante installa_                                        |
 |  [![Milestone notification](https://i.imgur.com/H93HBvL.png "Notifica traguardo")](#openuserjs)  |
 |                                       _Notifica traguardo_                                       |
-
----
-
-## Come installare
-
-1. Scarica uno di questi add-on per il browser:
-    * [Violentmonkey](https://violentmonkey.github.io/)
-    * [Tampermonkey](https://www.tampermonkey.net/)
-    * [Userscripts](https://github.com/quoid/userscripts#readme)
-2. Installa l'userscript direttamente da GitHub facendo clic sul relativo badge di installazione.
-3. Nel caso, configura lo script come riportato nella sua descrizione.
-4. Fatto!
