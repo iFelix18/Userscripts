@@ -5,7 +5,7 @@ My scripts and libraries
 [![Stars](https://img.shields.io/github/stars/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/stargazers)
 [![Watchers](https://img.shields.io/github/watchers/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/watchers)
 [![Scripts](https://img.shields.io/badge/scripts-4-orange?style=flat-square)](https://github.com/iFelix18/Userscripts/tree/master/userscripts)
-[![Libraries](https://img.shields.io/badge/librearies-5-orange?style=flat-square)](https://github.com/iFelix18/Userscripts/tree/master/src/lib)
+[![Libraries](https://img.shields.io/badge/librearies-6-orange?style=flat-square)](https://github.com/iFelix18/Userscripts/tree/master/src/lib)
 [![Open Issues](https://img.shields.io/github/issues-raw/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/issues)
 [![Closed Issues](https://img.shields.io/github/issues-closed-raw/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/issues?q=is%3Aissue+is%3Aclosed)
 [![Last Commit](https://img.shields.io/github/last-commit/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/commits/master)
@@ -116,6 +116,11 @@ Readme languages:
   [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/utils/utils.min.js&style=flat-square)](#monkey-utils)
   [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/lib/utils/utils.min.js?style=flat-square)](#monkey-utils)
 
+* ### Ratings
+
+  [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/utils/ratings.min.js&style=flat-square)](#monkey-utils)
+  [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/lib/utils/ratings.min.js?style=flat-square)](#monkey-utils)
+
 * ### OMDb API
 
   [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/api/omdb.min.js&style=flat-square)](#omdb-api)
@@ -142,8 +147,8 @@ Readme languages:
 
 1. Download one of these add-ons for your browser:
     * [Violentmonkey](https://violentmonkey.github.io/)
-    * [Tampermonkey](https://www.tampermonkey.net/)
     * [Userscripts](https://github.com/quoid/userscripts#readme)
+    * [Tampermonkey](https://www.tampermonkey.net/)
 2. Install the userscript directly from GitHub by clicking on the related installation badge.
 3. In case, configure the script as as reported in its description.
 4. Done!
@@ -168,7 +173,7 @@ Use a specific version using a specific GitHub tag, for example:
 
 ## Credits
 
-This product uses the TMDb API but is not endorsed or certified by TMDb.
-This product uses the Trakt API but is not endorsed or certified by Trakt.
-This product uses the OMDb API but is not endorsed or certified by OMDb.
-This product uses the Rotten Tomatoes API but is not endorsed or certified by Rotten Tomatoes.
+This product uses the TMDb API but is not endorsed or certified by TMDb.  
+This product uses the Trakt API but is not endorsed or certified by Trakt.  
+This product uses the OMDb API but is not endorsed or certified by OMDb.  
+This product uses the Rotten Tomatoes API but is not endorsed or certified by Rotten Tomatoes.  
