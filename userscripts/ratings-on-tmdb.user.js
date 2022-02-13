@@ -8,7 +8,7 @@
 // @description:it  Aggiunge valutazioni da IMDb, Rotten Tomatoes e Metacritic a TMDb
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.0.0
+// @version         2.1.0
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -19,11 +19,13 @@
 // @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@tmdb-1.5.3/lib/api/tmdb.min.js
 // @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@omdb-1.2.4/lib/api/omdb.min.js
 // @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@rottentomatoes-1.1.3/lib/api/rottentomatoes.min.js
-// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@ratings-1.0.0/lib/utils/ratings.min.js
+// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@jikan-1.0.0/lib/api/jikan.min.js
+// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@ratings-2.0.0/lib/utils/ratings.min.js
 // @require         https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require         https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js
 // @match           *://www.themoviedb.org/movie/*
 // @match           *://www.themoviedb.org/tv/*
+// @connect         api.jikan.moe
 // @connect         api.themoviedb.org
 // @connect         omdbapi.com
 // @connect         rottentomatoes.com
@@ -143,6 +145,22 @@
 
   //* Functions
   /**
+   * Returns TMDb ID
+   * @returns {string}
+   */
+  const getID = () => {
+    return /(\d+)/.exec(window.location.pathname.split('/')[2])[0]
+  }
+
+  /**
+   * Returns TMDb type
+   * @returns {string}
+   */
+  const getType = () => {
+    return window.location.pathname.split('/')[1]
+  }
+
+  /**
    * Add template
    */
   const addTemplate = () => {
@@ -170,9 +188,10 @@
 
     if ($('section.inner_content section.header ul.actions li.chart').length === 0) return // check if it is on the main page
 
-    const regex = /(movie|tv)\/(.*?(?=-))/.exec(window.location.pathname)
-    const id = regex[2] // TMDb ID
-    const type = regex[1] // TMDB type
+    const id = getID() // TMDb ID
+    const type = getType() // TMDB type
+
+    if (!id) return // check if an ID exists
 
     tmdb.externalIDs(type, id).then((response) => {
       const id = response.imdb_id // IMDb ID
