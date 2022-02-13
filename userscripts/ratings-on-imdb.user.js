@@ -8,7 +8,7 @@
 // @description:it  Aggiunge valutazioni da Rotten Tomatoes e Metacritic a IMDb
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.0.0
+// @version         2.1.0
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -18,10 +18,12 @@
 // @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.4/lib/utils/utils.min.js
 // @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@omdb-1.2.4/lib/api/omdb.min.js
 // @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@rottentomatoes-1.1.3/lib/api/rottentomatoes.min.js
-// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@ratings-1.0.0/lib/utils/ratings.min.js
+// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@jikan-1.0.0/lib/api/jikan.min.js
+// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@ratings-2.0.0/lib/utils/ratings.min.js
 // @require         https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require         https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js
 // @match           *://www.imdb.com/title/*
+// @connect         api.jikan.moe
 // @connect         omdbapi.com
 // @connect         rottentomatoes.com
 // @grant           GM_getValue
@@ -126,6 +128,14 @@
 
   //* Functions
   /**
+   * Returns IMDb ID
+   * @returns {string}
+   */
+  const getID = () => {
+    return $('meta[property="imdb:pageConst"]').first().attr('content')
+  }
+
+  /**
    * Add template
    */
   const addTemplate = () => {
@@ -154,7 +164,7 @@
 
     if ($('.hglRHk div[class^="RatingBar__ButtonContainer"] div[class^="RatingBarButtonBase__ContentWrap"]:nth-child(1)').length === 0) return // check if it is on the main page
 
-    const id = $('meta[property="imdb:pageConst"]').first().attr('content') // IMDb ID
+    const id = getID() // IMDb ID
 
     if (!id) return // check if an ID exists
 
