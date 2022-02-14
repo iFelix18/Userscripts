@@ -4,11 +4,11 @@
 // @author          Davide <iFelix18@protonmail.com>
 // @namespace       https://github.com/iFelix18
 // @icon            https://www.google.com/s2/favicons?sz=32&domain=https://imdb.com
-// @description     Adds ratings from Rotten Tomatoes and Metacritic to IMDb
-// @description:it  Aggiunge valutazioni da Rotten Tomatoes e Metacritic a IMDb
+// @description     Adds ratings from Rotten Tomatoes, Metacritic and MyAnimeList to IMDb
+// @description:it  Aggiunge valutazioni Rotten Tomatoes, Metacritic e MyAnimeList a IMDb
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.1.0
+// @version         2.1.1
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
