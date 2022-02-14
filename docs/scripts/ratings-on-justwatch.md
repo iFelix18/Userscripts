@@ -1,6 +1,6 @@
 # Ratings on JustWatch
 
-Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [IMDb](https://www.justwatch.com/)
+Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [JustWatch](https://www.justwatch.com/)
 
 [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js&style=flat-square)](#ratings-on-justwatch)
 [![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/ratings-on-justwatch.user.js?style=flat-square)](#ratings-on-justwatch)
