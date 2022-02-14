@@ -4,11 +4,11 @@
 // @author          Davide <iFelix18@protonmail.com>
 // @namespace       https://github.com/iFelix18
 // @icon            https://www.google.com/s2/favicons?sz=64&domain=https://themoviedb.org
-// @description     Adds ratings from IMDb, Rotten Tomatoes and Metacritic to TMDb
-// @description:it  Aggiunge valutazioni da IMDb, Rotten Tomatoes e Metacritic a TMDb
+// @description     Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to TMDb
+// @description:it  Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a TMDb
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.1.0
+// @version         2.1.1
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
