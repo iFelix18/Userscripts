@@ -1,6 +1,11 @@
 # Trakt API
 
-[![Version](https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/trakt.min.js)](#trakt-api)
-[![Size](https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/lib/api/trakt.min.js?style=flat-square)](#trakt-api)
+[![Version][version-badge]][link]
+[![Size][size-badge]][link]
 
 TODO
+
+[link]: #trakt-api
+
+[version-badge]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/trakt.min.js
+[size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/lib/api/trakt.min.js
