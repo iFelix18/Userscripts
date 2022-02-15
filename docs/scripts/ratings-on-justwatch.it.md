@@ -2,9 +2,9 @@
 
 Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a [JustWatch](https://www.justwatch.com/)
 
-[![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js&style=flat-square)](#valutazioni-su-justwatch)
-[![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/ratings-on-justwatch.user.js?style=flat-square)](#valutazioni-su-justwatch)
-[![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Clicca qui!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js)
+[![Version](https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js)](#valutazioni-su-justwatch)
+[![Size](https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js?style=flat-square)](#valutazioni-su-justwatch)
+[![Install](https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Clicca qui!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js)
 
 >**Nota**: Dopo l'installazione, inserisci la tua [OMDb API Key](https://www.omdbapi.com/apikey.aspx) nelle impostazioni dello script.
 

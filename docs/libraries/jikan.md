@@ -1,6 +1,6 @@
 # Jikan API
 
-[![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/api/jikan.min.js&style=flat-square)](#jikan-api)
-[![Size](https://img.shields.io/github/size/iFelix18/Userscripts/lib/api/jikan.min.js?style=flat-square)](#jikan-api)
+[![Version](https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/jikan.min.js)](#jikan-api)
+[![Size](https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/lib/api/jikan.min.js?style=flat-square)](#jikan-api)
 
 TODO

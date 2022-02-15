@@ -1,6 +1,6 @@
 # Monkey Utils
 
-[![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/utils/utils.min.js&style=flat-square)](#monkey-utils)
-[![Size](https://img.shields.io/github/size/iFelix18/Userscripts/lib/utils/utils.min.js?style=flat-square)](#monkey-utils)
+[![Version](https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/utils.min.js)](#monkey-utils)
+[![Size](https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/lib/utils/utils.min.js?style=flat-square)](#monkey-utils)
 
 TODO

@@ -2,9 +2,9 @@
 
 Aggiunge varie funzionalità e migliora l'esperienza di [OpenUserJS](https://openuserjs.org/)
 
-[![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js&style=flat-square)](#openuserjs)
-[![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/openuserjs-plus.user.js?style=flat-square)](#openuserjs)
-[![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Clicca qui!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js)
+[![Version](https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js)](#openuserjs)
+[![Size](https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js?style=flat-square)](#openuserjs)
+[![Install](https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Clicca qui!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js)
 
 Caratteristiche:
 >

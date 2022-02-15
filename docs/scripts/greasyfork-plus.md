@@ -2,9 +2,9 @@
 
 Adds various features and improves the [Greasy Fork](https://greasyfork.org/) experience
 
-[![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js&style=flat-square)](#greasy-fork)
-[![Size](https://img.shields.io/github/size/iFelix18/Userscripts/userscripts/greasyfork-plus.user.js?style=flat-square)](#greasy-fork)
-[![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Click here!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js)
+[![Version](https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js)](#greasy-fork)
+[![Size](https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js?style=flat-square)](#greasy-fork)
+[![Install](https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Click here!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js)
 
 Features:
 >
