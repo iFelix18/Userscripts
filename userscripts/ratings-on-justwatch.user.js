@@ -8,12 +8,12 @@
 // @description:it  Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a JustWatch
 // @copyright       2022, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.1
+// @version         1.0.2
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
-// @updateURL       https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/meta/ratings-on-justwatch.meta.js
-// @downloadURL     https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-justwatch.user.js
+// @updateURL       https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js
+// @downloadURL     https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js
 // @require         https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
 // @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.4/lib/utils/utils.min.js
 // @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@omdb-1.2.4/lib/api/omdb.min.js
