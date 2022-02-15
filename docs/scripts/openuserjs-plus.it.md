@@ -30,7 +30,7 @@ Caratteristiche:
 [size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js
 [install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Clicca qui!"
 
-[download-link]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js "Clicca qui!"
+[download-link]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/openuserjs-plus.user.js "Clicca qui!"
 
 [screenshot-1]: /docs/screenshots/openuserjs-plus_hide-script-button.png?raw=true "Pulsante nascondi script"
 [screenshot-2]: /docs/screenshots/openuserjs-plus_install-button.png?raw=true "Pulsante installa"

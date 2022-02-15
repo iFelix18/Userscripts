@@ -32,7 +32,7 @@ Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [TMDb][tm
 [size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
 [install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Click here!"
 
-[download-link]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js "Click here!"
+[download-link]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-tmdb.user.js "Click here!"
 
 [screenshot-1]: /docs/screenshots/ratings-on-tmdb_movie-before.png?raw=true "Before"
 [screenshot-2]: /docs/screenshots/ratings-on-tmdb_movie-after.png?raw=true "After"

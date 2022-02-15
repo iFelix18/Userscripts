@@ -31,7 +31,7 @@ Aggiunge valutazioni da Rotten Tomatoes, Metacritic e MyAnimeList a [IMDb][imdb-
 [size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js
 [install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Clicca qui!"
 
-[download-link]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js "Clicca qui!"
+[download-link]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-imdb.user.js "Clicca qui!"
 
 [screenshot-1]: /docs/screenshots/ratings-on-imdb_movie-before.png?raw=true "Prima"
 [screenshot-2]: /docs/screenshots/ratings-on-imdb_movie-after.png?raw=true "Dopo"
