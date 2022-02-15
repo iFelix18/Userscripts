@@ -1,10 +1,10 @@
 # OpenUserJS+
 
-Adds various features and improves the [OpenUserJS](https://openuserjs.org/) experience
+Adds various features and improves the [OpenUserJS][openuserjs-link] experience
 
-[![Version](https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js)](#openuserjs)
-[![Size](https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js?style=flat-square)](#openuserjs)
-[![Install](https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Click here!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js)
+[![Version][version-badge]][link]
+[![Size][size-badge]][link]
+[![Install][install-badge]][download-link]
 
 Features:
 >
@@ -14,11 +14,24 @@ Features:
 >* Add a button to install the script directly
 >* Get notified whenever your total installs got over one of your set milestones
 
-|                                                               Screenshots                                                                |
-| :--------------------------------------------------------------------------------------------------------------------------------------: |
-|       [![Hide script button](/docs/screenshots/openuserjs-plus_hide-script-button.png?raw=true "Hide script button")](#openuserjs)       |
-|                                                           _Hide script button_                                                           |
-|             [![Install button](/docs/screenshots/openuserjs-plus_install-button.png?raw=true "Install button")](#openuserjs)             |
-|                                                             _Install button_                                                             |
-| [![Milestone notification](/docs/screenshots/openuserjs-plus_milestone-notification.png?raw=true "Milestone notification")](#openuserjs) |
-|                                                         _Milestone notification_                                                         |
+|                   Screenshots                   |
+| :---------------------------------------------: |
+|   [![Hide script button][screenshot-1]][link]   |
+|              _Hide script button_               |
+|     [![Install button][screenshot-2]][link]     |
+|                _Install button_                 |
+| [![Milestone notification][screenshot-3]][link] |
+|            _Milestone notification_             |
+
+[link]: #openuserjs
+[openuserjs-link]: https://openuserjs.org/
+
+[version-badge]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js
+[size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js
+[install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Click here!"
+
+[download-link]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js "Click here!"
+
+[screenshot-1]: /docs/screenshots/openuserjs-plus_hide-script-button.png?raw=true "Hide script button"
+[screenshot-2]: /docs/screenshots/openuserjs-plus_install-button.png?raw=true "Install button"
+[screenshot-3]: /docs/screenshots/openuserjs-plus_milestone-notification.png?raw=true "Milestone notification"

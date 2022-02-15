@@ -1,10 +1,10 @@
 # Greasy Fork+
 
-Adds various features and improves the [Greasy Fork](https://greasyfork.org/) experience
+Adds various features and improves the [Greasy Fork][greasyfork-link] experience
 
-[![Version](https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js)](#greasy-fork)
-[![Size](https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js?style=flat-square)](#greasy-fork)
-[![Install](https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Click here!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js)
+[![Version][version-badge]][link]
+[![Size][size-badge]][link]
+[![Install][install-badge]][download-link]
 
 Features:
 >
@@ -15,13 +15,27 @@ Features:
 >* Shows the number of daily and total installations on the user profile
 >* Get notified whenever your total installs got over one of your set milestones
 
-|                                                                 Screenshots                                                                  |
-| :------------------------------------------------------------------------------------------------------------------------------------------: |
-|        [![Hide script button](/docs/screenshots/greasyfork-plus_hide-script-button.png?raw=true "Hide script button")](#greasy-fork)         |
-|                                                             _Hide script button_                                                             |
-|              [![Install button](/docs/screenshots/greasyfork-plus_install-button.gif?raw=true "Install button")](#greasy-fork)               |
-|                       _Install button, examples of how it can dynamically change according to your installed version_                        |
-| [![Number of installations](/docs/screenshots/greasyfork-plus_number-of-installations.png?raw=true "Number of installations")](#greasy-fork) |
-|                                                          _Number of installations_                                                           |
-|  [![Milestone notification](/docs/screenshots/greasyfork-plus_milestone-notification.png?raw=true "Milestone notification")](#greasy-fork)   |
-|                                                           _Milestone notification_                                                           |
+|                                           Screenshots                                           |
+| :---------------------------------------------------------------------------------------------: |
+|                           [![Hide script button][screenshot-1]][link]                           |
+|                                      _Hide script button_                                       |
+|                             [![Install button][screenshot-2]][link]                             |
+| _Install button, examples of how it can dynamically change according to your installed version_ |
+|                        [![Number of installations][screenshot-3]][link]                         |
+|                                    _Number of installations_                                    |
+|                         [![Milestone notification][screenshot-4]][link]                         |
+|                                    _Milestone notification_                                     |
+
+[link]: #greasy-fork
+[greasyfork-link]: https://greasyfork.org/
+
+[version-badge]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
+[size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
+[install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Click here!"
+
+[download-link]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js "Click here!"
+
+[screenshot-1]: /docs/screenshots/greasyfork-plus_hide-script-button.png?raw=true "Hide script button"
+[screenshot-2]: /docs/screenshots/greasyfork-plus_install-button.gif?raw=true "Install button"
+[screenshot-3]: /docs/screenshots/greasyfork-plus_number-of-installations.png?raw=true "Number of installations"
+[screenshot-4]: /docs/screenshots/greasyfork-plus_milestone-notification.png?raw=true "Milestone notification"

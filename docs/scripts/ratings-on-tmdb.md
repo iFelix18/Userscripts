@@ -1,24 +1,42 @@
 # Ratings on TMDb
 
-Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [TMDb](https://www.themoviedb.org/)
+Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [TMDb][tmdb-link]
 
-[![Version](https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js)](#ratings-on-tmdb)
-[![Size](https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js?style=flat-square)](#ratings-on-tmdb)
-[![Install](https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Click here!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js)
+[![Version][version-badge]][link]
+[![Size][size-badge]][link]
+[![Install][install-badge]][download-link]
 
->**Note**: After installation, enter your [TMDb API Key](https://developers.themoviedb.org/3/) and your [OMDb API Key](https://www.omdbapi.com/apikey.aspx) in the script settings.
+>**Note**: After installation, enter your [TMDb API Key][tmdb-api] and your [OMDb API Key][omdb-api] in the script settings.
 
-|                                             Screenshots                                             |
-| :-------------------------------------------------------------------------------------------------: |
-| [![Before](/docs/screenshots/ratings-on-tmdb_movie-before.png?raw=true "Before")](#ratings-on-tmdb) |
-|                                           _Movie before_                                            |
-|  [![After](/docs/screenshots/ratings-on-tmdb_movie-after.png?raw=true "After")](#ratings-on-tmdb)   |
-|                                            _Movie after_                                            |
-| [![Before](/docs/screenshots/ratings-on-tmdb_show-before.png?raw=true "Before")](#ratings-on-tmdb)  |
-|                                            _Show before_                                            |
-|   [![After](/docs/screenshots/ratings-on-tmdb_show-after.png?raw=true "After")](#ratings-on-tmdb)   |
-|                                            _Show after_                                             |
-| [![Before](/docs/screenshots/ratings-on-tmdb_anime-before.png?raw=true "Before")](#ratings-on-tmdb) |
-|                                           _Anime before_                                            |
-|  [![After](/docs/screenshots/ratings-on-tmdb_anime-after.png?raw=true "After")](#ratings-on-tmdb)   |
-|                                            _Anime after_                                            |
+|           Screenshots           |
+| :-----------------------------: |
+| [![Before][screenshot-1]][link] |
+|         _Movie before_          |
+| [![After][screenshot-2]][link]  |
+|          _Movie after_          |
+| [![Before][screenshot-3]][link] |
+|          _Show before_          |
+| [![After][screenshot-4]][link]  |
+|          _Show after_           |
+| [![Before][screenshot-5]][link] |
+|         _Anime before_          |
+| [![After][screenshot-6]][link]  |
+|          _Anime after_          |
+
+[link]: #ratings-on-tmdb
+[tmdb-link]: https://www.themoviedb.org/
+[tmdb-api]: https://developers.themoviedb.org/3/
+[omdb-api]: https://www.omdbapi.com/apikey.aspx
+
+[version-badge]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
+[size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
+[install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Click here!"
+
+[download-link]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js "Click here!"
+
+[screenshot-1]: /docs/screenshots/ratings-on-tmdb_movie-before.png?raw=true "Before"
+[screenshot-2]: /docs/screenshots/ratings-on-tmdb_movie-after.png?raw=true "After"
+[screenshot-3]: /docs/screenshots/ratings-on-tmdb_show-before.png?raw=true "Before"
+[screenshot-4]: /docs/screenshots/ratings-on-tmdb_show-after.png?raw=true "After"
+[screenshot-5]: /docs/screenshots/ratings-on-tmdb_anime-before.png?raw=true "Before"
+[screenshot-6]: /docs/screenshots/ratings-on-tmdb_anime-after.png?raw=true "After"

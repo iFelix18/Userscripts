@@ -1,10 +1,10 @@
 # OpenUserJS+
 
-Aggiunge varie funzionalità e migliora l'esperienza di [OpenUserJS](https://openuserjs.org/)
+Aggiunge varie funzionalità e migliora l'esperienza di [OpenUserJS][openuserjs-link]
 
-[![Version](https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js)](#openuserjs)
-[![Size](https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js?style=flat-square)](#openuserjs)
-[![Install](https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Clicca qui!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js)
+[![Version][version-badge]][link]
+[![Size][size-badge]][link]
+[![Install][install-badge]][download-link]
 
 Caratteristiche:
 >
@@ -14,11 +14,24 @@ Caratteristiche:
 >* Aggiunge un pulsante per installare direttamente lo script
 >* Ricevi una notifica ogni volta che le tue installazioni totali superano uno dei traguardi prefissati
 
-|                                                             Screenshots                                                              |
-| :----------------------------------------------------------------------------------------------------------------------------------: |
-|  [![Hide script button](/docs/screenshots/openuserjs-plus_hide-script-button.png?raw=true "Pulsante nascondi script")](#openuserjs)  |
-|                                                      _Pulsante nascondi script_                                                      |
-|         [![Install button](/docs/screenshots/openuserjs-plus_install-button.png?raw=true "Pulsante installa")](#openuserjs)          |
-|                                                         _Pulsante installa_                                                          |
-| [![Milestone notification](/docs/screenshots/openuserjs-plus_milestone-notification.png?raw=true "Notifica traguardo")](#openuserjs) |
-|                                                         _Notifica traguardo_                                                         |
+|                   Screenshots                   |
+| :---------------------------------------------: |
+|   [![Hide script button][screenshot-1]][link]   |
+|           _Pulsante nascondi script_            |
+|     [![Install button][screenshot-2]][link]     |
+|               _Pulsante installa_               |
+| [![Milestone notification][screenshot-3]][link] |
+|              _Notifica traguardo_               |
+
+[link]: #openuserjs
+[openuserjs-link]: https://openuserjs.org/
+
+[version-badge]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js
+[size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js
+[install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Clicca qui!"
+
+[download-link]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js "Clicca qui!"
+
+[screenshot-1]: /docs/screenshots/openuserjs-plus_hide-script-button.png?raw=true "Pulsante nascondi script"
+[screenshot-2]: /docs/screenshots/openuserjs-plus_install-button.png?raw=true "Pulsante installa"
+[screenshot-3]: /docs/screenshots/openuserjs-plus_milestone-notification.png?raw=true "Notifica traguardo"

@@ -1,24 +1,42 @@
 # Valutazioni su TMDb
 
-Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a [TMDb](https://www.themoviedb.org/)
+Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a [TMDb]
 
-[![Version](https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js)](#valutazioni-su-tmdb)
-[![Size](https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js?style=flat-square)](#valutazioni-su-tmdb)
-[![Install](https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Clicca qui!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js)
+[![Version][version-badge]][link]
+[![Size][size-badge]][link]
+[![Install][install-badge]][download-link]
 
->**Note**: Dopo l'installazione, inserisci la tua [TMDb API Key](https://developers.themoviedb.org/3/) e la tua [OMDb API Key](https://www.omdbapi.com/apikey.aspx) nelle impostazioni dello script.
+>**Note**: Dopo l'installazione, inserisci la tua [TMDb API Key][tmdb-api] e la tua [OMDb API Key][omdb-api] nelle impostazioni dello script.
 
-|                                              Screenshots                                               |
-| :----------------------------------------------------------------------------------------------------: |
-| [![Before](/docs/screenshots/ratings-on-tmdb_movie-before.png?raw=true "Prima")](#valutazioni-su-tmdb) |
-|                                              _Film prima_                                              |
-|  [![After](/docs/screenshots/ratings-on-tmdb_movie-after.png?raw=true "Dopo")](#valutazioni-su-tmdb)   |
-|                                              _Film dopo_                                               |
-| [![Before](/docs/screenshots/ratings-on-tmdb_show-before.png?raw=true "Prima")](#valutazioni-su-tmdb)  |
-|                                             _Serie prima_                                              |
-|   [![After](/docs/screenshots/ratings-on-tmdb_show-after.png?raw=true "Dopo")](#valutazioni-su-tmdb)   |
-|                                              _Serie dopo_                                              |
-| [![Before](/docs/screenshots/ratings-on-tmdb_anime-before.png?raw=true "Prima")](#valutazioni-su-tmdb) |
-|                                             _Anime prima_                                              |
-|  [![After](/docs/screenshots/ratings-on-tmdb_anime-after.png?raw=true "Dopo")](#valutazioni-su-tmdb)   |
-|                                              _Anime dopo_                                              |
+|           Screenshots           |
+| :-----------------------------: |
+| [![Before][screenshot-1]][link] |
+|          _Film prima_           |
+| [![After][screenshot-2]][link]  |
+|           _Film dopo_           |
+| [![Before][screenshot-3]][link] |
+|          _Serie prima_          |
+| [![After][screenshot-4]][link]  |
+|          _Serie dopo_           |
+| [![Before][screenshot-5]][link] |
+|          _Anime prima_          |
+| [![After][screenshot-6]][link]  |
+|          _Anime dopo_           |
+
+[link]: #valutazioni-su-tmdb
+[tmdb-link]: https://www.themoviedb.org/
+[tmdb-api]: https://developers.themoviedb.org/3/
+[omdb-api]: https://www.omdbapi.com/apikey.aspx
+
+[version-badge]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
+[size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
+[install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Clicca qui!"
+
+[download-link]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js "Clicca qui!"
+
+[screenshot-1]: /docs/screenshots/ratings-on-tmdb_movie-before.png?raw=true "Prima"
+[screenshot-2]: /docs/screenshots/ratings-on-tmdb_movie-after.png?raw=true "Dopo"
+[screenshot-3]: /docs/screenshots/ratings-on-tmdb_show-before.png?raw=true "Prima"
+[screenshot-4]: /docs/screenshots/ratings-on-tmdb_show-after.png?raw=true "Dopo"
+[screenshot-5]: /docs/screenshots/ratings-on-tmdb_anime-before.png?raw=true "Prima"
+[screenshot-6]: /docs/screenshots/ratings-on-tmdb_anime-after.png?raw=true "Dopo"
