@@ -5,5 +5,5 @@
 // @description Adds various features and improves the Greasy Fork experience
 // @copyright 2021, Davide (https://github.com/iFelix18)
 // @license MIT
-// @version 1.4.9
+// @version 1.4.10
 // ==/UserScript==
