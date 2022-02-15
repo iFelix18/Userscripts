@@ -103,44 +103,44 @@ This product uses the Rotten Tomatoes API but is not endorsed or certified by Ro
 
 [install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Clicca qui!"
 
-[scripts]: #scripts
+[scripts]: #scripts "Versione"
 
-[ratings-on-tmdb-link]: /docs/scripts/ratings-on-tmdb.it.md
-[ratings-on-imdb-link]: /docs/scripts/ratings-on-imdb.it.md
-[ratings-on-justwatch-link]: /docs/scripts/ratings-on-justwatch.it.md
-[openuserjs-plus-link]: /docs/scripts/openuserjs-plus.it.md
-[greasyfork-plus-link]: /docs/scripts/greasyfork-plus.it.md
+[ratings-on-tmdb-link]: /docs/scripts/ratings-on-tmdb.it.md "Più info"
+[ratings-on-imdb-link]: /docs/scripts/ratings-on-imdb.it.md "Più info"
+[ratings-on-justwatch-link]: /docs/scripts/ratings-on-justwatch.it.md "Più info"
+[openuserjs-plus-link]: /docs/scripts/openuserjs-plus.it.md "Più info"
+[greasyfork-plus-link]: /docs/scripts/greasyfork-plus.it.md "Più info"
 
-[ratings-on-tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
-[ratings-on-imdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-imdb.meta.js
-[ratings-on-justwatch-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js
-[openuserjs-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js
-[greasyfork-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
+[ratings-on-tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js "Versione"
+[ratings-on-imdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-imdb.meta.js "Versione"
+[ratings-on-justwatch-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js "Versione"
+[openuserjs-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js "Versione"
+[greasyfork-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js "Versione"
 
-[ratings-on-tmdb-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
-[ratings-on-imdb-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js
-[ratings-on-justwatch-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js
-[openuserjs-plus-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js
-[greasyfork-plus-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
+[ratings-on-tmdb-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js "Clicca qui!"
+[ratings-on-imdb-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js "Clicca qui!"
+[ratings-on-justwatch-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js "Clicca qui!"
+[openuserjs-plus-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js "Clicca qui!"
+[greasyfork-plus-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js "Clicca qui!"
 
-[libraries]: #libraries
+[libraries]: #libraries "Versione"
 
-[utils-link]: /docs/libraries/utils.md
-[ratings-link]: /docs/libraries/ratings.md
-[trakt-link]: /docs/libraries/trakt.md
-[tmdb-link]: /docs/libraries/tmdb.md
-[omdb-link]: /docs/libraries/omdb.md
-[rottentomatoes-link]: /docs/libraries/rottentomatoes.md
-[jikan-link]: /docs/libraries/jikan.md
+[utils-link]: /docs/libraries/utils.md "Più info"
+[ratings-link]: /docs/libraries/ratings.md "Più info"
+[trakt-link]: /docs/libraries/trakt.md "Più info"
+[tmdb-link]: /docs/libraries/tmdb.md "Più info"
+[omdb-link]: /docs/libraries/omdb.md "Più info"
+[rottentomatoes-link]: /docs/libraries/rottentomatoes.md "Più info"
+[jikan-link]: /docs/libraries/jikan.md "Più info"
 
-[utils-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/utils.min.js
-[ratings-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/ratings.min.js
-[trakt-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/trakt.min.js
-[tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/tmdb.min.js
-[omdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/omdb.min.js
-[rottentomatoes-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/rottentomatoes.min.js
-[jikan-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/jikan.min.js
+[utils-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/utils.min.js "Versione"
+[ratings-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/ratings.min.js "Versione"
+[trakt-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/trakt.min.js "Versione"
+[tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/tmdb.min.js "Versione"
+[omdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/omdb.min.js "Versione"
+[rottentomatoes-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/rottentomatoes.min.js "Versione"
+[jikan-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/jikan.min.js "Versione"
 
 [violentmonkey-link]: https://violentmonkey.github.io/
-[userscripts-link]: https://github.com/quoid/userscripts/
+[userscripts-link]: https://github.com/quoid/userscripts
 [tampermonkey-link]: https://www.tampermonkey.net/
