@@ -9,6 +9,7 @@ I miei script e le mie librerie
 [![Open Issues][open-issues-badge]][open-issues-link]
 [![Closed Issues][closed-issues-badge]][closed-issues-link]
 [![Last Commit][last-commit-badge]][last-commit-link]
+[![jsDelivr Hits][jsdelivr-hits-badge]][jsdelivr-hits-link]
 [![JavaScript Style Guide][style-guide-badge]][style-guide-link]
 [![License][license-badge]][license-link]
 
@@ -79,24 +80,26 @@ This product uses the Trakt API but is not endorsed or certified by Trakt.
 This product uses the OMDb API but is not endorsed or certified by OMDb.  
 This product uses the Rotten Tomatoes API but is not endorsed or certified by Rotten Tomatoes.  
 
-[stars-badge]: https://flat.badgen.net/github/stars/iFelix18/Userscripts
-[stars-link]: https://github.com/iFelix18/Userscripts/stargazers
-[watchers-badge]: https://flat.badgen.net/github/watchers/iFelix18/Userscripts
-[watchers-link]: https://github.com/iFelix18/Userscripts/watchers
-[scripts-badge]: https://flat.badgen.net/badge/scripts/5/orange
-[scripts-link]: https://github.com/iFelix18/Userscripts/tree/master/userscripts
-[libraries-badge]: https://flat.badgen.net/badge/libraries/7/orange
-[libraries-link]: https://github.com/iFelix18/Userscripts/tree/master/src/lib
-[open-issues-badge]: https://flat.badgen.net/github/open-issues/iFelix18/Userscripts
-[open-issues-link]: https://github.com/iFelix18/Userscripts/issues
-[closed-issues-badge]: https://flat.badgen.net/github/closed-issues/iFelix18/Userscripts
-[closed-issues-link]: https://github.com/iFelix18/Userscripts/issues?q=is%3Aissue+is%3Aclosed
-[last-commit-badge]: https://flat.badgen.net/github/last-commit/iFelix18/Userscripts
-[last-commit-link]: https://github.com/iFelix18/Userscripts/commits/master
-[style-guide-badge]: https://flat.badgen.net/badge/code%20style/standard/44CC11
-[style-guide-link]: https://standardjs.com
-[license-badge]: https://flat.badgen.net/github/license/iFelix18/Userscripts
-[license-link]: https://github.com/iFelix18/Userscripts/blob/master/LICENSE.md
+[stars-badge]: https://flat.badgen.net/github/stars/iFelix18/Userscripts "stars"
+[stars-link]: https://github.com/iFelix18/Userscripts/stargazers "stars"
+[watchers-badge]: https://flat.badgen.net/github/watchers/iFelix18/Userscripts "watchers"
+[watchers-link]: https://github.com/iFelix18/Userscripts/watchers "watchers"
+[scripts-badge]: https://flat.badgen.net/badge/scripts/5/orange "scripts"
+[scripts-link]: https://github.com/iFelix18/Userscripts/tree/master/userscripts "scripts"
+[libraries-badge]: https://flat.badgen.net/badge/libraries/7/orange "libraries"
+[libraries-link]: https://github.com/iFelix18/Userscripts/tree/master/src/lib "libraries"
+[open-issues-badge]: https://flat.badgen.net/github/open-issues/iFelix18/Userscripts "open issues"
+[open-issues-link]: https://github.com/iFelix18/Userscripts/issues "open issues"
+[closed-issues-badge]: https://flat.badgen.net/github/closed-issues/iFelix18/Userscripts "closed issues"
+[closed-issues-link]: https://github.com/iFelix18/Userscripts/issues?q=is%3Aissue+is%3Aclosed "closed issues"
+[last-commit-badge]: https://flat.badgen.net/github/last-commit/iFelix18/Userscripts "last commit"
+[last-commit-link]: https://github.com/iFelix18/Userscripts/commits/master "last commit"
+[jsdelivr-hits-badge]: https://flat.badgen.net/jsdelivr/hits/gh/iFelix18/Userscripts?color=FF5627 "jsDelivr"
+[jsdelivr-hits-link]: https://www.jsdelivr.com/package/gh/iFelix18/Userscripts "jsDelivr"
+[style-guide-badge]: https://flat.badgen.net/badge/code%20style/standard/44CC11 "code style"
+[style-guide-link]: https://standardjs.com "code style"
+[license-badge]: https://flat.badgen.net/github/license/iFelix18/Userscripts "license"
+[license-link]: https://github.com/iFelix18/Userscripts/blob/master/LICENSE.md "license"
 
 [readme-en]: /README.md "English"
 [readme-it]: /README.it.md "Italiano"
@@ -141,6 +144,6 @@ This product uses the Rotten Tomatoes API but is not endorsed or certified by Ro
 [rottentomatoes-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/rottentomatoes.min.js "Versione"
 [jikan-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/jikan.min.js "Versione"
 
-[violentmonkey-link]: https://violentmonkey.github.io/
-[userscripts-link]: https://github.com/quoid/userscripts
-[tampermonkey-link]: https://www.tampermonkey.net/
+[violentmonkey-link]: https://violentmonkey.github.io/ "Download Violentmonkey"
+[userscripts-link]: https://github.com/quoid/userscripts "Download Userscripts"
+[tampermonkey-link]: https://www.tampermonkey.net/ "Download Tampermonkey"
