@@ -1,45 +1,34 @@
 // ==UserScript==
-// @name               OpenUserJS+
-// @name:de            OpenUserJS+
-// @name:es            OpenUserJS+
-// @name:fr            OpenUserJS+
-// @name:it            OpenUserJS+
-// @name:ru            OpenUserJS+
-// @name:zh-CN         OpenUserJS+
-// @author             Davide <iFelix18@protonmail.com>
-// @namespace          https://github.com/iFelix18
-// @icon               https://www.google.com/s2/favicons?domain=openuserjs.org
-// @description        Adds various features and improves the OpenUserJS experience
-// @description:de     Fügt verschiedene Funktionen hinzu und verbessert das OpenUserJS-Erlebnis
-// @description:es     Agrega varias funciones y mejora la experiencia de OpenUserJS
-// @description:fr     Ajoute diverses fonctionnalités et améliore l'expérience OpenUserJS
-// @description:it     Aggiunge varie funzionalità e migliora l'esperienza di OpenUserJS
-// @description:ru     Добавляет различные функции и улучшает работу с OpenUserJS
-// @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
-// @copyright          2021, Davide (https://github.com/iFelix18)
-// @license            MIT
-// @version            1.4.1
-// @homepage           https://github.com/iFelix18/Userscripts#readme
-// @homepageURL        https://github.com/iFelix18/Userscripts#readme
-// @supportURL         https://github.com/iFelix18/Userscripts/issues
-// @updateURL          https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/meta/openuserjs-plus.meta.js
-// @downloadURL        https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/openuserjs-plus.user.js
-// @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require            https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.1/lib/utils/utils.min.js
-// @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
-// @require            https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.4/dist/index.js
-// @match              *://openuserjs.org/*
-// @connect            openuserjs.org
-// @compatible         chrome
-// @compatible         edge
-// @compatible         firefox
-// @grant              GM.getValue
-// @grant              GM.notification
-// @grant              GM.registerMenuCommand
-// @grant              GM.setValue
-// @grant              GM.xmlHttpRequest
-// @run-at             document-idle
-// @inject-into        page
+// @name            OpenUserJS+
+// @name:it         OpenUserJS+
+// @author          Davide <iFelix18@protonmail.com>
+// @namespace       https://github.com/iFelix18
+// @icon            https://www.google.com/s2/favicons?domain=openuserjs.org
+// @description     Adds various features and improves the OpenUserJS experience
+// @description:it  Aggiunge varie funzionalità e migliora l'esperienza di OpenUserJS
+// @copyright       2021, Davide (https://github.com/iFelix18)
+// @license         MIT
+// @version         1.4.2
+// @homepage        https://github.com/iFelix18/Userscripts#readme
+// @homepageURL     https://github.com/iFelix18/Userscripts#readme
+// @supportURL      https://github.com/iFelix18/Userscripts/issues
+// @updateURL       https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/meta/openuserjs-plus.meta.js
+// @downloadURL     https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/openuserjs-plus.user.js
+// @require         https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
+// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.4/lib/utils/utils.min.js
+// @require         https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
+// @require         https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6/dist/index.js
+// @match           *://openuserjs.org/*
+// @connect         openuserjs.org
+// @grant           GM_getValue
+// @grant           GM_setValue
+// @grant           GM.getValue
+// @grant           GM.notification
+// @grant           GM.registerMenuCommand
+// @grant           GM.setValue
+// @grant           GM.xmlHttpRequest
+// @run-at          document-idle
+// @inject-into     page
 // ==/UserScript==
 
 /* global $, GM_config, MonkeyUtils, VM */
