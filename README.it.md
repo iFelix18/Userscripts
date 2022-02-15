@@ -2,55 +2,54 @@
 
 I miei script e le mie librerie
 
-[![Stars](https://img.shields.io/github/stars/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/stargazers)
-[![Watchers](https://img.shields.io/github/watchers/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/watchers)
-[![Scripts](https://img.shields.io/badge/scripts-5-orange?style=flat-square)](https://github.com/iFelix18/Userscripts/tree/master/userscripts)
-[![Libraries](https://img.shields.io/badge/librearies-7-orange?style=flat-square)](https://github.com/iFelix18/Userscripts/tree/master/src/lib)
-[![Repo Size](https://img.shields.io/github/repo-size/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/tree/master)
-[![Open Issues](https://img.shields.io/github/issues-raw/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/issues)
-[![Closed Issues](https://img.shields.io/github/issues-closed-raw/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/issues?q=is%3Aissue+is%3Aclosed)
-[![Last Commit](https://img.shields.io/github/last-commit/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/commits/master)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen?style=flat-square)](https://standardjs.com)
-[![License](https://img.shields.io/github/license/iFelix18/Userscripts?style=flat-square)](https://github.com/iFelix18/Userscripts/blob/master/LICENSE.md)
+[![Stars][stars-badge]][stars-link]
+[![Watchers][watchers-badge]][watchers-link]
+[![Scripts][scripts-badge]][scripts-link]
+[![Libraries][libraries-badge]][libraries-link]
+[![Open Issues][open-issues-badge]][open-issues-link]
+[![Closed Issues][closed-issues-badge]][closed-issues-link]
+[![Last Commit][last-commit-badge]][last-commit-link]
+[![JavaScript Style Guide][style-guide-badge]][style-guide-link]
+[![License][license-badge]][license-link]
 
 Lingue readme:
-•[_en_](/README.md "English")
-•[_it_](/README.it.md "Italiano")
+•[_en_][readme-en]
+•[_it_][readme-it]
 
 ---
 
 ## Scripts
 
-|                               _Script_                               |                                                                                                      _Versione_                                                                                                       |                                                                                                        _Installa_                                                                                                        |
-| :------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|      [Valutazioni su TMDb](/docs/scripts/ratings-on-tmdb.it.md)      |   [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js&style=flat-square)](#scripts)    |   [![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Clicca qui!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js)    |
-|      [Valutazioni su IMDb](/docs/scripts/ratings-on-imdb.it.md)      |   [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/ratings-on-imdb.meta.js&style=flat-square)](#scripts)    |   [![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Clicca qui!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js)    |
-| [Valutazioni su JustWatch](/docs/scripts/ratings-on-justwatch.it.md) | [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js&style=flat-square)](#scripts) | [![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Clicca qui!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js) |
-|          [OpenUserJS+](/docs/scripts/openuserjs-plus.it.md)          |   [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js&style=flat-square)](#scripts)    |   [![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Clicca qui!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js)    |
-|         [Greasy Fork+](/docs/scripts/greasyfork-plus.it.md)          |   [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js&style=flat-square)](#scripts)    |   [![Install](https://img.shields.io/badge/install%20directly%20from-GitHub-blue?style=flat-square "Clicca qui!")](https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js)    |
+|                       _Script_                        |                     _Versione_                      |                         _Installa_                         |
+| :---------------------------------------------------: | :-------------------------------------------------: | :--------------------------------------------------------: |
+|      [Valutazioni su TMDb][ratings-on-tmdb-link]      |   [![Version][ratings-on-tmdb-version]][scripts]    |   [![Install][install-badge]][ratings-on-tmdb-download]    |
+|      [Valutazioni su IMDb][ratings-on-imdb-link]      |   [![Version][ratings-on-imdb-version]][scripts]    |   [![Install][install-badge]][ratings-on-imdb-download]    |
+| [Valutazioni su JustWatch][ratings-on-justwatch-link] | [![Version][ratings-on-justwatch-version]][scripts] | [![Install][install-badge]][ratings-on-justwatch-download] |
+|          [OpenUserJS+][openuserjs-plus-link]          |   [![Version][openuserjs-plus-version]][scripts]    |   [![Install][install-badge]][openuserjs-plus-download]    |
+|         [Greasy Fork+][greasyfork-plus-link]          |   [![Version][greasyfork-plus-version]][scripts]    |   [![Install][install-badge]][greasyfork-plus-download]    |
 
 ---
 
 ## Librerie
 
-|                        _Libreria_                        |                                                                                               _Versione_                                                                                               |
-| :------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|         [Monkey Utils](/docs/libraries/utils.md)         |    [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/utils/utils.min.js&style=flat-square)](#librerie)     |
-|          [Ratings](/docs/libraries/ratings.md)           |   [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/utils/ratings.min.js&style=flat-square)](#librerie)    |
-|          [Trakt API](/docs/libraries/trakt.md)           |     [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/api/trakt.min.js&style=flat-square)](#librerie)      |
-|           [TMDb API](/docs/libraries/tmdb.md)            |      [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/api/tmdb.min.js&style=flat-square)](#librerie)      |
-|           [OMDb API](/docs/libraries/omdb.md)            |      [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/api/omdb.min.js&style=flat-square)](#librerie)      |
-| [Rotten Tomatoes API](/docs/libraries/rottentomatoes.md) | [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/api/rottentomatoes.min.js&style=flat-square)](#librerie) |
-|          [Jikan API](/docs/libraries/jikan.md)           |     [![Version](https://img.shields.io/endpoint?url=https://runkit.io/ifelix18/userscript-version/branches/master/iFelix18/Userscripts/master/lib/api/jikan.min.js&style=flat-square)](#librerie)      |
+|                 _Libreria_                 |                   _Versione_                    |
+| :----------------------------------------: | :---------------------------------------------: |
+|         [Monkey Utils][utils-link]         |     [![Version][utils-version]][libraries]      |
+|          [Ratings][ratings-link]           |    [![Version][ratings-version]][libraries]     |
+|          [Trakt API][trakt-link]           |     [![Version][trakt-version]][libraries]      |
+|           [TMDb API][tmdb-link]            |      [![Version][tmdb-version]][libraries]      |
+|           [OMDb API][omdb-link]            |      [![Version][omdb-version]][libraries]      |
+| [Rotten Tomatoes API][rottentomatoes-link] | [![Version][rottentomatoes-version]][libraries] |
+|          [Jikan API][jikan-link]           |     [![Version][jikan-version]][libraries]      |
 
 ---
 
 ## Come installare gli script
 
 1. Scarica uno di questi add-on per il browser:
-    * [Violentmonkey](https://violentmonkey.github.io/)
-    * [Userscripts](https://github.com/quoid/userscripts)
-    * [Tampermonkey](https://www.tampermonkey.net/)
+    * [Violentmonkey][violentmonkey-link]
+    * [Userscripts][userscripts-link]
+    * [Tampermonkey][tampermonkey-link]
 2. Installa l'userscript direttamente da GitHub facendo clic sul relativo badge di installazione.
 3. Nel caso, configura lo script come riportato nella sua descrizione.
 4. Fatto!
@@ -79,3 +78,69 @@ This product uses the TMDb API but is not endorsed or certified by TMDb.
 This product uses the Trakt API but is not endorsed or certified by Trakt.  
 This product uses the OMDb API but is not endorsed or certified by OMDb.  
 This product uses the Rotten Tomatoes API but is not endorsed or certified by Rotten Tomatoes.  
+
+[stars-badge]: https://flat.badgen.net/github/stars/iFelix18/Userscripts
+[stars-link]: https://github.com/iFelix18/Userscripts/stargazers
+[watchers-badge]: https://flat.badgen.net/github/watchers/iFelix18/Userscripts
+[watchers-link]: https://github.com/iFelix18/Userscripts/watchers
+[scripts-badge]: https://flat.badgen.net/badge/scripts/5/orange
+[scripts-link]: https://github.com/iFelix18/Userscripts/tree/master/userscripts
+[libraries-badge]: https://flat.badgen.net/badge/libraries/7/orange
+[libraries-link]: https://github.com/iFelix18/Userscripts/tree/master/src/lib
+[open-issues-badge]: https://flat.badgen.net/github/open-issues/iFelix18/Userscripts
+[open-issues-link]: https://github.com/iFelix18/Userscripts/issues
+[closed-issues-badge]: https://flat.badgen.net/github/closed-issues/iFelix18/Userscripts
+[closed-issues-link]: https://github.com/iFelix18/Userscripts/issues?q=is%3Aissue+is%3Aclosed
+[last-commit-badge]: https://flat.badgen.net/github/last-commit/iFelix18/Userscripts
+[last-commit-link]: https://github.com/iFelix18/Userscripts/commits/master
+[style-guide-badge]: https://flat.badgen.net/badge/code%20style/standard/44CC11
+[style-guide-link]: https://standardjs.com
+[license-badge]: https://flat.badgen.net/github/license/iFelix18/Userscripts
+[license-link]: https://github.com/iFelix18/Userscripts/blob/master/LICENSE.md
+
+[readme-en]: /README.md "English"
+[readme-it]: /README.it.md "Italiano"
+
+[install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Clicca qui!"
+
+[scripts]: #scripts
+
+[ratings-on-tmdb-link]: /docs/scripts/ratings-on-tmdb.it.md
+[ratings-on-imdb-link]: /docs/scripts/ratings-on-imdb.it.md
+[ratings-on-justwatch-link]: /docs/scripts/ratings-on-justwatch.it.md
+[openuserjs-plus-link]: /docs/scripts/openuserjs-plus.it.md
+[greasyfork-plus-link]: /docs/scripts/greasyfork-plus.it.md
+
+[ratings-on-tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
+[ratings-on-imdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-imdb.meta.js
+[ratings-on-justwatch-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js
+[openuserjs-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js
+[greasyfork-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
+
+[ratings-on-tmdb-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
+[ratings-on-imdb-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js
+[ratings-on-justwatch-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js
+[openuserjs-plus-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js
+[greasyfork-plus-download]: https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
+
+[libraries]: #libraries
+
+[utils-link]: /docs/libraries/utils.md
+[ratings-link]: /docs/libraries/ratings.md
+[trakt-link]: /docs/libraries/trakt.md
+[tmdb-link]: /docs/libraries/tmdb.md
+[omdb-link]: /docs/libraries/omdb.md
+[rottentomatoes-link]: /docs/libraries/rottentomatoes.md
+[jikan-link]: /docs/libraries/jikan.md
+
+[utils-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/utils.min.js
+[ratings-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/ratings.min.js
+[trakt-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/trakt.min.js
+[tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/tmdb.min.js
+[omdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/omdb.min.js
+[rottentomatoes-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/rottentomatoes.min.js
+[jikan-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/jikan.min.js
+
+[violentmonkey-link]: https://violentmonkey.github.io/
+[userscripts-link]: https://github.com/quoid/userscripts/
+[tampermonkey-link]: https://www.tampermonkey.net/
