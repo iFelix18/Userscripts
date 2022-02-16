@@ -7,7 +7,7 @@
 // @description     Ratings for my userscripts
 // @copyright       2022, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.0.0
+// @version         2.0.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -176,7 +176,11 @@
                 query: title,
                 type: type
               }).then((response) => {
-                const tomatoData = response.map((item) => item).find((item) => (new RegExp(item.url).test(url)) || ((item.name ? this._n(item.name) : this._n(item.title)) === this._n(title) && (item.year ? item.year : item.startYear) === year))
+                let tomatoData
+
+                if (response) {
+                  tomatoData = response.map((item) => item).find((item) => (new RegExp(item.url).test(url)) || ((item.name ? this._n(item.name) : this._n(item.title)) === this._n(title) && (item.year ? item.year : item.startYear) === year))
+                }
 
                 this._mal.search({
                   query: title,
