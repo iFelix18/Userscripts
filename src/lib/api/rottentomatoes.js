@@ -7,7 +7,7 @@
 // @description     Rotten Tomatoes API for my userscripts
 // @copyright       2022, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.1.3
+// @version         1.1.4
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -77,7 +77,7 @@
             this._debug(response)
             const data = JSON.parse(response.responseText)
             if (response.readyState === 4 && response.responseText !== '[]') {
-              resolve(research.type === 'movie' ? data.movies : (research.type === 'series' ? data.tvSeries : data))
+              resolve(research.type === 'movie' ? data.movies : (research.type === 'series' ? data.tvSeries : undefined))
             } else {
               search.query === ''
                 ? reject(new Error('A search query is required.'))
