@@ -8,7 +8,7 @@
 // @description:it  Aggiunge varie funzionalità e migliora l'esperienza di Greasy Fork
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.4.13
+// @version         1.4.14
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -222,7 +222,8 @@
   //* Functions
   /**
    * Hide all scripts with non-Latin characters in the name or description
-   * @param {Object} element
+   *
+   * @param {object} element Script
    */
   const hideNonLatinScripts = (element) => {
     const name = $(element).find('.script-link').text()
@@ -237,7 +238,8 @@
 
   /**
    * Hide all scripts with blacklisted words in the name or description
-   * @param {Object} element
+   *
+   * @param {object} element Script
    */
   const hideBlacklistedScripts = (element) => {
     const name = $(element).find('.script-link').text()
@@ -252,9 +254,10 @@
 
   /**
    * Hide scripts
-   * @param {Object}  element
-   * @param {number}  id
-   * @param {boolean} list
+   *
+   * @param {object} element Script
+   * @param {number} id Script ID
+   * @param {boolean} list Is list
    */
   const hideScript = async (element, id, list) => {
     // if is in list hide it
@@ -304,8 +307,9 @@
 
   /**
    * Get script data from Greasy Fork API
-   * @param {number} id
-   * @returns {Promise}
+   *
+   * @param {number} id Script ID
+   * @returns {Promise} Script data
    */
   const getScriptData = async (id) => {
     const cache = await GM.getValue(id) // get cache
@@ -332,8 +336,9 @@
 
   /**
    * Get user data from Greasy Fork API
-   * @param {string} userID
-   * @returns {Promise}
+   *
+   * @param {string} userID User ID
+   * @returns {Promise} User data
    */
   const getUserData = (userID) => {
     return new Promise((resolve, reject) => {
@@ -351,9 +356,10 @@
 
   /**
    * Returns installed version
-   * @param {string} name
-   * @param {string} namespace
-   * @returns
+   *
+   * @param {string} name Script name
+   * @param {string} namespace Script namespace
+   * @returns {string} Installed version
    */
   const isInstalled = (name, namespace) => {
     return new Promise((resolve, reject) => {
@@ -375,9 +381,10 @@
 
   /**
    * Compare two version
-   * @param {string} v1
-   * @param {string} v2
-   * @returns {number}
+   *
+   * @param {string} v1 First version
+   * @param {string} v2 Second version
+   * @returns {number} Comparison value
    */
   const compareVersions = (v1, v2) => {
     if (v1 === null || v2 === null) return
@@ -396,8 +403,9 @@
 
   /**
    * Get user total installs
-   * @param {object} data
-   * @returns {Promise}
+   *
+   * @param {object} data Data
+   * @returns {Promise} Total installs
    */
   const getTotalInstalls = (data) => {
     return new Promise((resolve, reject) => {
@@ -413,8 +421,9 @@
 
   /**
    * Return label for the install button
-   * @param {number} update
-   * @returns {string}
+   *
+   * @param {number} update Update value
+   * @returns {string} Label
    */
   const installLabel = (update) => {
     switch (update) {
@@ -435,8 +444,9 @@
 
   /**
    * Return label for the hide script button
-   * @param {boolean} hidden
-   * @returns {string}
+   *
+   * @param {boolean} hidden Is hidden
+   * @returns {string} Label
    */
   const blockLabel = (hidden) => {
     return hidden ? (locales[lang] ? locales[lang].notHide : locales.en.notHide) : (locales[lang] ? locales[lang].hide : locales.en.hide)
@@ -444,10 +454,11 @@
 
   /**
    * Shows a button to install the script
-   * @param {Object} element
-   * @param {string} url
-   * @param {string} label
-   * @param {string} version
+   *
+   * @param {object} element Script
+   * @param {string} url Script URL
+   * @param {string} label Label
+   * @param {string} version Script version
    */
   const addInstallButton = (element, url, label, version) => {
     $(element)
