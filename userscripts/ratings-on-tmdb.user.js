@@ -8,7 +8,7 @@
 // @description:it  Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a TMDb
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.1.3
+// @version         2.1.4
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -146,7 +146,8 @@
   //* Functions
   /**
    * Returns TMDb ID
-   * @returns {string}
+   *
+   * @returns {string} ID
    */
   const getID = () => {
     return /(\d+)/.exec(window.location.pathname.split('/')[2])[0]
@@ -154,7 +155,8 @@
 
   /**
    * Returns TMDb type
-   * @returns {string}
+   *
+   * @returns {string} Type
    */
   const getType = () => {
     return window.location.pathname.split('/')[1]
