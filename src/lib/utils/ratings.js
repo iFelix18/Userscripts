@@ -7,7 +7,7 @@
 // @description     Ratings for my userscripts
 // @copyright       2022, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.0.2
+// @version         2.0.3
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
