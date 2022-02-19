@@ -7,7 +7,7 @@
 // @description     OMDb API for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.2.4
+// @version         1.2.5
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -18,16 +18,18 @@
 (() => {
   /**
    * OMDb API
-   * https://www.omdbapi.com/
+   *
+   * @see https://www.omdbapi.com/
    * @class
    */
   this.OMDb = class {
     /**
      * API configuration
-     * @param {Object} config
-     * @param {string} config.apikey                          OMDb API Key
+     *
+     * @param {object} config Configuration
+     * @param {string} config.apikey OMDb API Key
      * @param {string} [config.url='https://www.omdbapi.com'] OMDb API URL
-     * @param {boolean} [config.debug=false]                  Debug
+     * @param {boolean} [config.debug=false] Debug
      */
     constructor (config = {}) {
       if (!config.apikey) throw new Error('OMDb API Key is required')
@@ -50,6 +52,7 @@
       }
 
       /**
+       * @param {object} response GM.xmlHttpRequest response
        * @private
        */
       this._debug = (response) => {
@@ -59,13 +62,14 @@
 
     /**
      * Returns the results of a search by id or title
-     * @param {Object} research
-     * @param {string} [research.id='']         A valid IMDb ID (e.g. tt1285016)
-     * @param {string} [research.title='']      Movie title to search for
-     * @param {string} [research.type=null]     Type of result to return (movie, series, episode)
-     * @param {number} [research.year=null]     Year of release
-     * @param {string} [research.plot='short']  Return short or full plot (short, full)
-     * @returns {object}
+     *
+     * @param {object} research Research object
+     * @param {string} [research.id=''] A valid IMDb ID (e.g. tt1285016)
+     * @param {string} [research.title=''] Movie title to search for
+     * @param {string} [research.type=null] Type of result to return (movie, series, episode)
+     * @param {number} [research.year=null] Year of release
+     * @param {string} [research.plot='short'] Return short or full plot (short, full)
+     * @returns {object} Search results
      */
     get (research = {}) {
       const query = {
@@ -104,12 +108,13 @@
 
     /**
      * Returns the results of a search
-     * @param {Object} research
+     *
+     * @param {object} research Research object
      * @param {string} [research.search=''] Movie title to search for
      * @param {string} [research.type=null] Type of result to return (movie, series, episode)
      * @param {number} [research.year=null] Year of release
-     * @param {string} [research.page='1']  Page number to return (1-100)
-     * @returns {Object}
+     * @param {string} [research.page='1'] Page number to return (1-100)
+     * @returns {object} Search results
      */
     search (research = {}) {
       const query = {
