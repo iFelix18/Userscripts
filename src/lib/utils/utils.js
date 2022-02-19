@@ -7,7 +7,7 @@
 // @description     Utils for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.3.4
+// @version         2.3.5
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -17,16 +17,18 @@
 (() => {
   /**
    * Utils for my userscripts
+   *
    * @class
    */
   this.MonkeyUtils = class {
     /**
      * Utils configuration
-     * @param {Object} config
-     * @param {string} config.name            Userscript name
-     * @param {string} config.version         Userscript version
-     * @param {string} config.author          Userscript author
-     * @param {string} [config.color='red']   Userscript header color
+     *
+     * @param {object} config Configuration
+     * @param {string} config.name Userscript name
+     * @param {string} config.version Userscript version
+     * @param {string} config.author Userscript author
+     * @param {string} [config.color='red'] Userscript header color
      * @param {string} [config.logging=false] Logging
      */
     constructor (config = {}) {
@@ -49,6 +51,7 @@
      * Initialize utils
      * log userscript header
      * and, if logging is true, script config values
+     *
      * @param {string} id Config id
      */
     async init (id) {
@@ -64,6 +67,7 @@
 
     /**
      * Log, if logging is true
+     *
      * @param {string} message Message
      */
     log (message) {
@@ -74,6 +78,7 @@
 
     /**
      * Error
+     *
      * @param {string} message Message
      */
     error (message) {
@@ -82,6 +87,7 @@
 
     /**
      * Alert
+     *
      * @param {string} message Message
      */
     alert (message) {
@@ -90,8 +96,9 @@
 
     /**
      * Returns shortened version of a message
+     *
      * @param {string} message Message
-     * @returns {string}
+     * @returns {string} Shortened message
      */
     short (message) {
       return [...message.split(/\s+/).slice(0, 6).join(' '), ' [...]']
