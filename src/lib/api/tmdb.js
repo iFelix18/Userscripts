@@ -7,7 +7,7 @@
 // @description     TMDb API for my userscripts
 // @copyright       2020, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.5.3
+// @version         1.5.4
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -18,17 +18,19 @@
 (() => {
   /**
    * TMDb API
-   * https://developers.themoviedb.org/3/
+   *
+   * @see https://developers.themoviedb.org/3/
    * @class
    */
   this.TMDb = class {
     /**
      * API configuration
-     * @param {Object} config
-     * @param {string} config.apikey                                TMDb API Key
-     * @param {string} [config.language='en']                       TMDb API language
-     * @param {string} [config.url='https://api.themoviedb.org/3']  TMDb API URL
-     * @param {boolean} [config.debug=false]                        Debug
+     *
+     * @param {object} config Configuration
+     * @param {string} config.apikey TMDb API Key
+     * @param {string} [config.language='en'] TMDb API language
+     * @param {string} [config.url='https://api.themoviedb.org/3'] TMDb API URL
+     * @param {boolean} [config.debug=false] Debug
      */
     constructor (config = {}) {
       if (!config.apikey) throw new Error('TMDb API Key is required')
@@ -52,6 +54,7 @@
       }
 
       /**
+       * @param {object} response GM.xmlHttpRequest response
        * @private
        */
       this._debug = (response) => {
@@ -61,10 +64,11 @@
 
     /**
      * Returns the primary details about a TV episode
-     * @param {number} id       TV show TMDb ID
-     * @param {number} season   TV show season number
-     * @param {number} episode  TV show episode number
-     * @returns {Object}
+     *
+     * @param {number} id TV show TMDb ID
+     * @param {number} season TV show season number
+     * @param {number} episode TV show episode number
+     * @returns {object} TV episode details
      */
     episodeDetails (id, season, episode) {
       return new Promise((resolve, reject) => {
@@ -85,10 +89,11 @@
     }
 
     /**
-     * Returns external ids
-     * @param {string} type  Type. For example: movie
-     * @param {number} id    TMDb ID
-     * @returns {Object}
+     * Returns external IDs
+     *
+     * @param {string} type Type. For example: movie
+     * @param {number} id TMDb ID
+     * @returns {object} External IDs
      */
     externalIDs (type, id) {
       return new Promise((resolve, reject) => {
@@ -110,9 +115,10 @@
 
     /**
      * Returns images
-     * @param {string} type  Image type. For example: movie
-     * @param {number} id    TMDb ID
-     * @returns {Object}
+     *
+     * @param {string} type Image type. For example: movie
+     * @param {number} id TMDb ID
+     * @returns {object} Images
      */
     images (type, id) {
       return new Promise((resolve, reject) => {
@@ -134,8 +140,9 @@
 
     /**
      * Returns the primary details about a movie
+     *
      * @param {number} id Movie TMDb ID
-     * @returns {Object}
+     * @returns {object} Movie details
      */
     moviesDetails (id) {
       return new Promise((resolve, reject) => {
@@ -157,9 +164,10 @@
 
     /**
      * Returns the primary details about a TV season
-     * @param {number} id     TV show TMDb ID
+     *
+     * @param {number} id TV show TMDb ID
      * @param {number} season TV show season number
-     * @returns {Object}
+     * @returns {object} TV season details
      */
     seasonDetails (id, season) {
       return new Promise((resolve, reject) => {
@@ -181,8 +189,9 @@
 
     /**
      * Returns the primary details about a TV show
+     *
      * @param {number} id TV show TMDb ID
-     * @returns {Object}
+     * @returns {object} TV show details
      */
     tvDetails (id) {
       return new Promise((resolve, reject) => {
