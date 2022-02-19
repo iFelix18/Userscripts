@@ -7,7 +7,7 @@
 // @description     Jikan API for my userscripts
 // @copyright       2022, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.0
+// @version         1.0.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -18,15 +18,17 @@
 (() => {
   /**
    * Jikan API
-   * https://jikan.moe/
+   *
+   * @see https://jikan.moe/
    * @class
    */
   this.Jikan = class {
     /**
      * API configuration
-     * @param {Object}   config
-     * @param {string}  [config.url='https://api.jikan.moe']  Jikan API URL
-     * @param {boolean} [config.debug=false]                  Debug
+     *
+     * @param {object} config Configuration
+     * @param {string} [config.url='https://api.jikan.moe'] Jikan API URL
+     * @param {boolean} [config.debug=false] Debug
      */
     constructor (config = {}) {
       /**
@@ -46,6 +48,7 @@
       }
 
       /**
+       * @param {object} response GM.xmlHttpRequest response
        * @private
        */
       this._debug = (response) => {
@@ -55,12 +58,13 @@
 
     /**
      * Returns the results of a search
-     * @param {Object}     research
-     * @param {string}    [research.search='']      Anime title to search for
-     * @param {string}    [research.type=undefined] Type of result to return
-     * @param {number}    [research.limit=25]       Limit
-     * @param {number}    [research.page=1]         Page number to return
-     * @returns {Object}
+     *
+     * @param {object} research Research object
+     * @param {string} [research.search=''] Anime title to search for
+     * @param {string} [research.type=undefined] Type of result to return
+     * @param {number} [research.limit=25] Limit
+     * @param {number} [research.page=1] Page number to return
+     * @returns {object} Search results
      */
     search (research = {}) {
       const search = {
