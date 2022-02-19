@@ -35,7 +35,7 @@ Readme languages:
 
 |                 _Library_                  |                      _Version_                       |
 | :----------------------------------------: | :--------------------------------------------------: |
-|         [Monkey Utils][utils-link]         |     [![Version][utils-version]][libraries-link]      |
+|           [My Utils][utils-link]           |     [![Version][utils-version]][libraries-link]      |
 |          [Ratings][ratings-link]           |    [![Version][ratings-version]][libraries-link]     |
 |          [Trakt API][trakt-link]           |     [![Version][trakt-version]][libraries-link]      |
 |           [TMDb API][tmdb-link]            |      [![Version][tmdb-version]][libraries-link]      |
