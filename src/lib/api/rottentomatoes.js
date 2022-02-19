@@ -7,7 +7,7 @@
 // @description     Rotten Tomatoes API for my userscripts
 // @copyright       2022, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.1.4
+// @version         1.1.5
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -18,15 +18,17 @@
 (() => {
   /**
    * Rotten Tomatoes API
-   * https://www.rottentomatoes.com/
+   *
+   * @see https://www.rottentomatoes.com/
    * @class
    */
   this.RottenTomatoes = class {
     /**
      * API configuration
-     * @param {Object} config
-     * @param {string} [config.url='https://www.rottentomatoes.com']  Rotten Tomatoes API URL
-     * @param {boolean} [config.debug=false]                          Debug
+     *
+     * @param {object} config Configuration
+     * @param {string} [config.url='https://www.rottentomatoes.com'] Rotten Tomatoes API URL
+     * @param {boolean} [config.debug=false] Debug
      */
     constructor (config = {}) {
       /**
@@ -46,6 +48,7 @@
       }
 
       /**
+       * @param {object} response GM.xmlHttpRequest response
        * @private
        */
       this._debug = (response) => {
@@ -55,11 +58,12 @@
 
     /**
      * Returns the results of a search
-     * @param {Object} research
-     * @param {string} [research.query='']    Item title to search for
-     * @param {string} [research.type=null]   Type of result to return (movie or series)
-     * @param {string} [research.limit=null]  Limit
-     * @returns {Object}
+     *
+     * @param {object} research Research object
+     * @param {string} [research.query=''] Item title to search for
+     * @param {string} [research.type=null] Type of result to return (movie or series)
+     * @param {string} [research.limit=null] Limit
+     * @returns {object} Search results
      */
     search (research = {}) {
       const search = {
