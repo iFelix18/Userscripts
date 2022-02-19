@@ -8,7 +8,7 @@
 // @description:it  Aggiunge valutazioni Rotten Tomatoes, Metacritic e MyAnimeList a IMDb
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.1.3
+// @version         2.1.4
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -129,7 +129,8 @@
   //* Functions
   /**
    * Returns IMDb ID
-   * @returns {string}
+   *
+   * @returns {string} ID
    */
   const getID = () => {
     return $('meta[property="imdb:pageConst"]').first().attr('content')
