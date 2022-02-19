@@ -7,7 +7,7 @@
 // @description     Utils for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         3.0.0
+// @version         3.0.1
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -118,7 +118,7 @@
     if (oldConfig) {
       GM.setValue(newID, oldConfig) // set new config
       GM.deleteValue(oldID) // delete old config
-      console.log('migration completed')
+      window.location.reload(false)
     }
   }
 })()
