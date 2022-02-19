@@ -8,7 +8,7 @@
 // @description:it  Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a JustWatch
 // @copyright       2022, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.0.2
+// @version         1.0.3
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -130,7 +130,8 @@
   //* Functions
   /**
    * Returns IMDb ID
-   * @returns {string}
+   *
+   * @returns {string} ID
    */
   const getID = () => {
     const link = $('.title-info:not(.visible-xs) a[href^="https://www.imdb.com/"]').attr('href') // IMDb link
@@ -171,7 +172,6 @@
 
   /**
    * Add ratings
-   * @returns
    */
   const addRatings = async () => {
     clearOldCache() // clear old cache
