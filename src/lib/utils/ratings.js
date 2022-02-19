@@ -7,7 +7,7 @@
 // @description     Ratings for my userscripts
 // @copyright       2022, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.0.1
+// @version         2.0.2
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
@@ -20,17 +20,19 @@
 (() => {
   /**
    * Ratings for my userscripts
+   *
    * @class
    */
   this.Ratings = class {
     /**
      * Ratings configuration
-     * @param {Object}   config
-     * @param {string}   config.omdb_apikey                                   OMDb API Key
-     * @param {string}  [config.omdb_url='https://www.omdbapi.com']           OMDb API URL
-     * @param {string}  [config.tomato_url='https://www.rottentomatoes.com']  Rotten Tomatoes API URL
-     * @param {number}   config.cache_period                                  Cache Period
-     * @param {boolean} [config.debug=false]                                  Debug
+     *
+     * @param {object} config Configuration
+     * @param {string} config.omdb_apikey OMDb API Key
+     * @param {string} [config.omdb_url='https://www.omdbapi.com'] OMDb API URL
+     * @param {string} [config.tomato_url='https://www.rottentomatoes.com'] Rotten Tomatoes API URL
+     * @param {number} config.cache_period Cache Period
+     * @param {boolean} [config.debug=false] Debug
      */
     constructor (config = {}) {
       if (!config.omdb_apikey) throw new Error('OMDb API Key is required')
@@ -50,8 +52,9 @@
 
       /**
        * Debug
+       *
        * @private
-       * @param {*} log
+       * @param {*} log log
        */
       this._debug = (log) => {
         if (this._config.debug) console.log(log)
@@ -59,6 +62,7 @@
 
       /**
        * OMDb API
+       *
        * @private
        */
       this._omdb = new OMDb({
@@ -69,6 +73,7 @@
 
       /**
        * Rotten Tomatoes API
+       *
        * @private
        */
       this._tomato = new RottenTomatoes({
@@ -78,6 +83,7 @@
 
       /**
        * Jikan API
+       *
        * @private
        */
       this._mal = new Jikan({
@@ -87,6 +93,7 @@
 
       /**
        * Sources logos
+       *
        * @private
        */
       this._logos = {
@@ -99,8 +106,9 @@
 
       /**
        * Return formatted votes
-       * @param {number}          votes Formatted votes
-       * @returns {string|number}
+       *
+       * @param {number} votes Votes
+       * @returns {string|number} Formatted votes
        */
       this._votes = (votes) => {
         return votes >= 1000 ? `${Math.round(votes / 1000, 1)}k` : votes
@@ -108,9 +116,10 @@
 
       /**
        * Return Tomatometer logo
+       *
        * @private
-       * @param {number}    score  Rotten Tomatoes score
-       * @returns {string}
+       * @param {number} score Rotten Tomatoes score
+       * @returns {string} Rotten Tomatoes logo
        */
       this._tomatoLogo = (score) => {
         return score < 60 ? this._logos.rotten : this._logos.fresh
@@ -118,9 +127,10 @@
 
       /**
        * Return Tomatometer score
+       *
        * @private
-       * @param {number}    score  Rotten Tomatoes score
-       * @returns {string}
+       * @param {number} score Rotten Tomatoes score
+       * @returns {string} Rotten Tomatoes score
        */
       this._tomatoScore = (score) => {
         return score < 60 ? 'Rotten' : 'Fresh'
@@ -128,9 +138,10 @@
 
       /**
        * Return Metascore color
+       *
        * @private
-       * @param {number}    metascore Metascore
-       * @returns {string}
+       * @param {number} metascore Metascore
+       * @returns {string} Metascore color
        */
       this._color = (metascore) => {
         return metascore < 40 ? '#ff0000' : (metascore >= 40 && metascore <= 60 ? '#ffcc33' : '#66cc33')
@@ -138,8 +149,9 @@
 
       /**
        * Normalizze a string
-       * @param   {string}  string
-       * @returns
+       *
+       * @param {string} string String
+       * @returns {string} Normalizzed string
        */
       this._n = (string) => {
         return string.replace(/\p{P}\s/gu, ' ').toLowerCase()
@@ -148,8 +160,9 @@
 
     /**
      * Returns ratings from APIs
-     * @param   {string}  id  IMDb ID
-     * @returns {Promise}
+     *
+     * @param {string} id IMDb ID
+     * @returns {Promise} Ratings
      */
     async get (id) {
       const cache = await GM.getValue(id) // get cache
@@ -206,10 +219,11 @@
     }
 
     /**
-   * Returns elaborated data
-   * @param   {Object}  data        data ratings from APIs
-   * @returns {Promise}
-   */
+     * Returns elaborated data
+     *
+     * @param {object} data data ratings from APIs
+     * @returns {Promise} Elaborated ratings
+     */
     async elaborate (data) {
       try {
         return await new Promise((resolve, reject) => {
