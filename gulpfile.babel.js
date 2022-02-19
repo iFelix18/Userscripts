@@ -40,7 +40,7 @@ const minifyJS = () => {
       },
       noSource: true,
       preserveComments: (node, comment) => {
-        return !comment.value.startsWith('*')
+        return (comment.value.startsWith(' ==') || comment.value.startsWith(' @'))
       }
     }))
     .pipe(dest(paths.lib.dest))
