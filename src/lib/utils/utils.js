@@ -3,15 +3,17 @@
 // @namespace       https://github.com/iFelix18
 // @exclude         *
 // ==UserLibrary==
-// @name            Monkey Utils
+// @name            My Utils
 // @description     Utils for my userscripts
 // @copyright       2019, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.3.5
+// @version         3.0.0
 // @homepageURL     https://github.com/iFelix18/Userscripts
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
+// @grant           GM.deleteValue
 // @grant           GM.getValue
+// @grant           GM.setValue
 // ==/UserScript==
 
 (() => {
@@ -20,7 +22,7 @@
    *
    * @class
    */
-  this.MonkeyUtils = class {
+  this.MyUtils = class {
     /**
      * Utils configuration
      *
@@ -52,7 +54,7 @@
      * log userscript header
      * and, if logging is true, script config values
      *
-     * @param {string} id Config id
+     * @param {string} id Config ID
      */
     async init (id) {
       console.log(`%c${this._config.name}\n` + `${!this._config.version ? '%c' : `%cv${this._config.version} `}by ${this._config.author} is running!`, `color:${this._config.color};font-weight:bold;font-size:18px;`, '')
@@ -102,6 +104,21 @@
      */
     short (message) {
       return [...message.split(/\s+/).slice(0, 6).join(' '), ' [...]']
+    }
+  }
+
+  /**
+   * Migrate configuration
+   *
+   * @param {string} oldID Old config ID
+   * @param {string} newID New config ID
+   */
+  this.migrateConfig = async (oldID, newID) => {
+    const oldConfig = await GM.getValue(oldID) // get old config
+    if (oldConfig) {
+      GM.setValue(newID, oldConfig) // set new config
+      GM.deleteValue(oldID) // delete old config
+      console.log('migration completed')
     }
   }
 })()
