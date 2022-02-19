@@ -8,7 +8,7 @@
 // @description:it  Aggiunge varie funzionalità e migliora l'esperienza di OpenUserJS
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.4.3
+// @version         1.4.4
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -127,7 +127,8 @@
   //* Functions
   /**
    * Hide all scripts with non-Latin characters in the name or description
-   * @param {Object} element
+   *
+   * @param {object} element Script
    */
   const hideNonLatinScripts = (element) => {
     const name = $(element).find('.tr-link-a b').text()
@@ -142,7 +143,8 @@
 
   /**
    * Hide all scripts with blacklisted words in the name or description
-   * @param {Object} element
+   *
+   * @param {object} element Script
    */
   const hideBlacklistedScripts = (element) => {
     const name = $(element).find('.tr-link-a b').text()
@@ -157,8 +159,9 @@
 
   /**
    * Hide scripts
-   * @param {Object} element
-   * @param {boolean} list
+   *
+   * @param {object} element SCript
+   * @param {boolean} list Is list
    */
   const hideScript = async (element, list) => {
     const name = list ? $(element).find('.tr-link-a b').text() : $(element).find('.script-name').text()
@@ -221,8 +224,9 @@
 
   /**
    * Get user data from Greasy Fork API
-   * @param {string} userID
-   * @returns {Promise}
+   *
+   * @param {string} userID User ID
+   * @returns {Promise} User data
    */
   const getUserData = (userID) => {
     return new Promise((resolve, reject) => {
@@ -240,7 +244,8 @@
 
   /**
    * Shows a button to install the script
-   * @param {Object} element
+   *
+   * @param {object} element Script
    */
   const addInstallButton = (element) => {
     const regex = /\/scripts\//g
@@ -259,8 +264,9 @@
 
   /**
    * Return label for the hide script button
-   * @param {boolean} hidden
-   * @returns {string}
+   *
+   * @param {boolean} hidden Is hidden
+   * @returns {string} Label
    */
   const blockLabel = (hidden) => {
     return hidden ? '✓ Not hide this script' : '🛇 Hide this script'
