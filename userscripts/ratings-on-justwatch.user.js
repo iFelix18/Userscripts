@@ -8,7 +8,7 @@
 // @description:it  Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a JustWatch
 // @copyright       2022, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.1.0
+// @version         1.1.1
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -42,7 +42,7 @@
 /* global $, GM_config, Handlebars, migrateConfig, MyUtils, Ratings, VM */
 
 (() => {
-  migrateConfig('trakt-config', 'ratings-on-justwatch') // migrate to the new config ID
+  migrateConfig('config', 'ratings-on-justwatch') // migrate to the new config ID
 
   //* GM_config
   GM_config.init({
