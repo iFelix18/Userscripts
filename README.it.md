@@ -5,7 +5,7 @@ I miei script e le mie librerie
 [![Stars][stars-badge]][stars-link]
 [![Watchers][watchers-badge]][watchers-link]
 [![Scripts][userscripts-badge]][userscripts-link]
-[![Libraries][libraries-badge]][libraries-link]
+[![Libraries][userlibraries-badge]][userlibraries-link]
 [![Open Issues][open-issues-badge]][open-issues-link]
 [![Closed Issues][closed-issues-badge]][closed-issues-link]
 [![Last Commit][last-commit-badge]][last-commit-link]
@@ -42,6 +42,7 @@ Lingue readme:
 |           [OMDb API][omdb-link]            |      [![Version][omdb-version]][libraries-link]      |
 | [Rotten Tomatoes API][rottentomatoes-link] | [![Version][rottentomatoes-version]][libraries-link] |
 |          [Jikan API][jikan-link]           |     [![Version][jikan-version]][libraries-link]      |
+|         [Wikidata][wikidata-link]          |    [![Version][wikidata-version]][libraries-link]    |
 
 ---
 
@@ -75,10 +76,11 @@ Utilizzare una versione specifica utilizzando uno specifico tag GitHub, ad esemp
 
 ## Credits
 
-This product uses the TMDb API but is not endorsed or certified by TMDb.  
-This product uses the Trakt API but is not endorsed or certified by Trakt.  
 This product uses the OMDb API but is not endorsed or certified by OMDb.  
 This product uses the Rotten Tomatoes API but is not endorsed or certified by Rotten Tomatoes.  
+This product uses the TMDb API but is not endorsed or certified by TMDb.  
+This product uses the Trakt API but is not endorsed or certified by Trakt.  
+This product uses Wikidata data but is not endorsed or certified by Wikidata.  
 
 [stars-badge]: https://flat.badgen.net/github/stars/iFelix18/Userscripts
 [stars-link]: https://github.com/iFelix18/Userscripts/stargazers
@@ -86,8 +88,8 @@ This product uses the Rotten Tomatoes API but is not endorsed or certified by Ro
 [watchers-link]: https://github.com/iFelix18/Userscripts/watchers
 [userscripts-badge]: https://flat.badgen.net/badge/scripts/5/orange
 [userscripts-link]: https://github.com/iFelix18/Userscripts/tree/master/userscripts
-[libraries-badge]: https://flat.badgen.net/badge/libraries/7/orange
-[libraries-link]: https://github.com/iFelix18/Userscripts/tree/master/src/lib
+[userlibraries-badge]: https://flat.badgen.net/badge/libraries/8/orange
+[userlibraries-link]: https://github.com/iFelix18/Userscripts/tree/master/src/lib
 [open-issues-badge]: https://flat.badgen.net/github/open-issues/iFelix18/Userscripts
 [open-issues-link]: https://github.com/iFelix18/Userscripts/issues
 [closed-issues-badge]: https://flat.badgen.net/github/closed-issues/iFelix18/Userscripts
@@ -150,6 +152,9 @@ This product uses the Rotten Tomatoes API but is not endorsed or certified by Ro
 
 [jikan-link]: /docs/libraries/jikan.md "Più info"
 [jikan-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/jikan.min.js
+
+[wikidata-link]: /docs/libraries/wikidata.md "Più info"
+[wikidata-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/wikidata.min.js
 
 [violentmonkey-link]: https://violentmonkey.github.io/
 [userscripts-link]: https://github.com/quoid/userscripts
