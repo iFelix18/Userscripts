@@ -8,7 +8,7 @@
 // @description:it  Aggiunge varie funzionalità e migliora l'esperienza di Greasy Fork
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.5.0
+// @version         1.5.1
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -37,11 +37,11 @@
 /* global $, GM_config, migrateConfig, MyUtils, VM */
 
 (() => {
-  migrateConfig('trakt-config', 'ratings-on-trakt') // migrate to the new config ID
+  migrateConfig('trakt-config', 'greasyfork-plus') // migrate to the new config ID
 
   //* GM_config
   GM_config.init({
-    id: 'config',
+    id: 'greasyfork-plus',
     title: `Greasy Fork+ v${GM.info.script.version} Settings`,
     fields: {
       hideNonLatinScripts: {
@@ -124,7 +124,7 @@
     color: '#ff0000',
     logging: GM_config.get('logging')
   })
-  MU.init('config')
+  MU.init('greasyfork-plus')
 
   //* Constants
   const cachePeriod = 60_000 // 1 minute
