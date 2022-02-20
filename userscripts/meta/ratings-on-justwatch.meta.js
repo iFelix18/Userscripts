@@ -5,5 +5,5 @@
 // @description Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to JustWatch
 // @copyright 2022, Davide (https://github.com/iFelix18)
 // @license MIT
-// @version 1.0.3
+// @version 1.1.0
 // ==/UserScript==
