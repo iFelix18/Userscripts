@@ -8,14 +8,14 @@
 // @description:it  Aggiunge varie funzionalità e migliora l'esperienza di Greasy Fork
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         1.4.14
+// @version         1.5.0
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
 // @updateURL       https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
 // @downloadURL     https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
 // @require         https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.4/lib/utils/utils.min.js
+// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-3.0.1/lib/utils/utils.min.js
 // @require         https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require         https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6/dist/index.js
 // @match           *://greasyfork.org/*
@@ -31,16 +31,18 @@
 // @grant           GM.setValue
 // @grant           GM.xmlHttpRequest
 // @run-at          document-idle
-// @inject-into     page
+// @inject-into     content
 // ==/UserScript==
 
-/* global $, GM_config, MonkeyUtils, VM */
+/* global $, GM_config, migrateConfig, MyUtils, VM */
 
 (() => {
+  migrateConfig('trakt-config', 'ratings-on-trakt') // migrate to the new config ID
+
   //* GM_config
   GM_config.init({
     id: 'config',
-    title: `${GM.info.script.name} v${GM.info.script.version} Settings`,
+    title: `Greasy Fork+ v${GM.info.script.version} Settings`,
     fields: {
       hideNonLatinScripts: {
         label: 'Hide non-Latin scripts, press "Ctrl + Alt + L" to show non-Latin scripts',
@@ -104,7 +106,7 @@
         }
       }
     },
-    css: ':root{--mainBackground:#343433;--background:#282828;--text:#fff}#config{background-color:var(--mainBackground);color:var(--text)}#config .section_header{background-color:var(--background);border-bottom:none;border:1px solid var(--background);color:var(--text)}#config .section_desc{background-color:var(--background);border-top:none;border:1px solid var(--background);color:var(--text)}#config .reset{color:var(--text)}',
+    css: ':root{--mainBackground:#343433;--background:#282828;--text:#fff}body{background-color:var(--mainBackground)!important;color:var(--text)!important}body .section_header{background-color:var(--background)!important;border-bottom:none!important;border:1px solid var(--background)!important;color:var(--text)!important}body .section_desc{background-color:var(--background)!important;border-top:none!important;border:1px solid var(--background)!important;color:var(--text)!important}body .reset{color:var(--text)!important}',
     events: {
       save: () => {
         GM_config.close()
@@ -112,13 +114,13 @@
       }
     }
   })
-  GM.registerMenuCommand('Configure', () => GM_config.open())
+  if (GM.info.scriptHandler !== 'Userscripts') GM.registerMenuCommand('Configure', () => GM_config.open()) //! Userscripts Safari: GM.registerMenuCommand is missing
 
-  //* MonkeyUtils
-  const MU = new MonkeyUtils({
-    name: GM.info.script.name,
+  //* MyUtils
+  const MU = new MyUtils({
+    name: 'Greasy Fork+',
     version: GM.info.script.version,
-    author: GM.info.script.author,
+    author: 'Davide',
     color: '#ff0000',
     logging: GM_config.get('logging')
   })
@@ -540,7 +542,7 @@
 
         GM.notification({
           text: (locales[lang] ? locales[lang].milestone : locales.en.milestone).replace('$1', milestone.toLocaleString()),
-          title: GM.info.script.name,
+          title: 'Greasy Fork+',
           image: logo,
           onclick: () => {
             window.location = `https://${window.location.hostname}${userID}#user-script-list-section`
