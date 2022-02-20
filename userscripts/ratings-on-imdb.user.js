@@ -8,7 +8,7 @@
 // @description:it  Aggiunge valutazioni Rotten Tomatoes, Metacritic e MyAnimeList a IMDb
 // @copyright       2021, Davide (https://github.com/iFelix18)
 // @license         MIT
-// @version         2.2.0
+// @version         2.2.1
 // @homepage        https://github.com/iFelix18/Userscripts#readme
 // @homepageURL     https://github.com/iFelix18/Userscripts#readme
 // @supportURL      https://github.com/iFelix18/Userscripts/issues
@@ -41,7 +41,7 @@
 /* global $, GM_config, Handlebars, migrateConfig, MyUtils, Ratings */
 
 (() => {
-  migrateConfig('trakt-config', 'ratings-on-imdb') // migrate to the new config ID
+  migrateConfig('config', 'ratings-on-imdb') // migrate to the new config ID
 
   //* GM_config
   GM_config.init({
