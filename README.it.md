@@ -4,7 +4,7 @@ I miei script e le mie librerie
 
 [![Stars][stars-badge]][stars-link]
 [![Watchers][watchers-badge]][watchers-link]
-[![Scripts][scripts-badge]][scripts-link]
+[![Scripts][userscripts-badge]][userscripts-link]
 [![Libraries][libraries-badge]][libraries-link]
 [![Open Issues][open-issues-badge]][open-issues-link]
 [![Closed Issues][closed-issues-badge]][closed-issues-link]
@@ -84,8 +84,8 @@ This product uses the Rotten Tomatoes API but is not endorsed or certified by Ro
 [stars-link]: https://github.com/iFelix18/Userscripts/stargazers
 [watchers-badge]: https://flat.badgen.net/github/watchers/iFelix18/Userscripts
 [watchers-link]: https://github.com/iFelix18/Userscripts/watchers
-[scripts-badge]: https://flat.badgen.net/badge/scripts/5/orange
-[scripts-link]: https://github.com/iFelix18/Userscripts/tree/master/userscripts
+[userscripts-badge]: https://flat.badgen.net/badge/scripts/5/orange
+[userscripts-link]: https://github.com/iFelix18/Userscripts/tree/master/userscripts
 [libraries-badge]: https://flat.badgen.net/badge/libraries/7/orange
 [libraries-link]: https://github.com/iFelix18/Userscripts/tree/master/src/lib
 [open-issues-badge]: https://flat.badgen.net/github/open-issues/iFelix18/Userscripts
@@ -109,39 +109,46 @@ This product uses the Rotten Tomatoes API but is not endorsed or certified by Ro
 [scripts-link]: #scripts
 
 [ratings-on-tmdb-link]: /docs/scripts/ratings-on-tmdb.it.md "Più info"
-[ratings-on-imdb-link]: /docs/scripts/ratings-on-imdb.it.md "Più info"
-[ratings-on-justwatch-link]: /docs/scripts/ratings-on-justwatch.it.md "Più info"
-[openuserjs-plus-link]: /docs/scripts/openuserjs-plus.it.md "Più info"
-[greasyfork-plus-link]: /docs/scripts/greasyfork-plus.it.md "Più info"
-
 [ratings-on-tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
-[ratings-on-imdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-imdb.meta.js
-[ratings-on-justwatch-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js
-[openuserjs-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js
-[greasyfork-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
-
 [ratings-on-tmdb-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-tmdb.user.js "Clicca qui!"
+
+[ratings-on-imdb-link]: /docs/scripts/ratings-on-imdb.it.md "Più info"
+[ratings-on-imdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-imdb.meta.js
 [ratings-on-imdb-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-imdb.user.js "Clicca qui!"
+
+[ratings-on-justwatch-link]: /docs/scripts/ratings-on-justwatch.it.md "Più info"
+[ratings-on-justwatch-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js
 [ratings-on-justwatch-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-justwatch.user.js "Clicca qui!"
+
+[openuserjs-plus-link]: /docs/scripts/openuserjs-plus.it.md "Più info"
+[openuserjs-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js
 [openuserjs-plus-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/openuserjs-plus.user.js "Clicca qui!"
+
+[greasyfork-plus-link]: /docs/scripts/greasyfork-plus.it.md "Più info"
+[greasyfork-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
 [greasyfork-plus-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/greasyfork-plus.user.js "Clicca qui!"
 
 [libraries-link]: #libraries
 
 [utils-link]: /docs/libraries/utils.md "Più info"
-[ratings-link]: /docs/libraries/ratings.md "Più info"
-[trakt-link]: /docs/libraries/trakt.md "Più info"
-[tmdb-link]: /docs/libraries/tmdb.md "Più info"
-[omdb-link]: /docs/libraries/omdb.md "Più info"
-[rottentomatoes-link]: /docs/libraries/rottentomatoes.md "Più info"
-[jikan-link]: /docs/libraries/jikan.md "Più info"
-
 [utils-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/utils.min.js
+
+[ratings-link]: /docs/libraries/ratings.md "Più info"
 [ratings-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/ratings.min.js
+
+[trakt-link]: /docs/libraries/trakt.md "Più info"
 [trakt-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/trakt.min.js
+
+[tmdb-link]: /docs/libraries/tmdb.md "Più info"
 [tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/tmdb.min.js
+
+[omdb-link]: /docs/libraries/omdb.md "Più info"
 [omdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/omdb.min.js
+
+[rottentomatoes-link]: /docs/libraries/rottentomatoes.md "Più info"
 [rottentomatoes-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/rottentomatoes.min.js
+
+[jikan-link]: /docs/libraries/jikan.md "Più info"
 [jikan-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/jikan.min.js
 
 [violentmonkey-link]: https://violentmonkey.github.io/
