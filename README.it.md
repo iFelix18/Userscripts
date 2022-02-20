@@ -4,8 +4,8 @@ I miei script e le mie librerie
 
 [![Stars][stars-badge]][stars-link]
 [![Watchers][watchers-badge]][watchers-link]
-[![Scripts][userscripts-badge]][userscripts-link]
-[![Libraries][userlibraries-badge]][userlibraries-link]
+[![Scripts][scripts-badge]][scripts-link]
+[![Libraries][libraries-badge]][libraries-link]
 [![Open Issues][open-issues-badge]][open-issues-link]
 [![Closed Issues][closed-issues-badge]][closed-issues-link]
 [![Last Commit][last-commit-badge]][last-commit-link]
@@ -21,28 +21,28 @@ Lingue readme:
 
 ## Scripts
 
-|                       _Script_                        |                        _Versione_                        |                         _Installa_                         |
-| :---------------------------------------------------: | :------------------------------------------------------: | :--------------------------------------------------------: |
-|      [Valutazioni su TMDb][ratings-on-tmdb-link]      |   [![Version][ratings-on-tmdb-version]][scripts-link]    |   [![Install][install-badge]][ratings-on-tmdb-download]    |
-|      [Valutazioni su IMDb][ratings-on-imdb-link]      |   [![Version][ratings-on-imdb-version]][scripts-link]    |   [![Install][install-badge]][ratings-on-imdb-download]    |
-| [Valutazioni su JustWatch][ratings-on-justwatch-link] | [![Version][ratings-on-justwatch-version]][scripts-link] | [![Install][install-badge]][ratings-on-justwatch-download] |
-|          [OpenUserJS+][openuserjs-plus-link]          |   [![Version][openuserjs-plus-version]][scripts-link]    |   [![Install][install-badge]][openuserjs-plus-download]    |
-|         [Greasy Fork+][greasyfork-plus-link]          |   [![Version][greasyfork-plus-version]][scripts-link]    |   [![Install][install-badge]][greasyfork-plus-download]    |
+|                       _Script_                        |                     _Versione_                      |                         _Installa_                         |
+| :---------------------------------------------------: | :-------------------------------------------------: | :--------------------------------------------------------: |
+|      [Valutazioni su TMDb][ratings-on-tmdb-link]      |   [![Version][ratings-on-tmdb-version]][scripts]    |   [![Install][install-badge]][ratings-on-tmdb-download]    |
+|      [Valutazioni su IMDb][ratings-on-imdb-link]      |   [![Version][ratings-on-imdb-version]][scripts]    |   [![Install][install-badge]][ratings-on-imdb-download]    |
+| [Valutazioni su JustWatch][ratings-on-justwatch-link] | [![Version][ratings-on-justwatch-version]][scripts] | [![Install][install-badge]][ratings-on-justwatch-download] |
+|          [OpenUserJS+][openuserjs-plus-link]          |   [![Version][openuserjs-plus-version]][scripts]    |   [![Install][install-badge]][openuserjs-plus-download]    |
+|         [Greasy Fork+][greasyfork-plus-link]          |   [![Version][greasyfork-plus-version]][scripts]    |   [![Install][install-badge]][greasyfork-plus-download]    |
 
 ---
 
 ## Librerie
 
-|                 _Libreria_                 |                      _Versione_                      |
-| :----------------------------------------: | :--------------------------------------------------: |
-|           [My Utils][utils-link]           |     [![Version][utils-version]][libraries-link]      |
-|          [Ratings][ratings-link]           |    [![Version][ratings-version]][libraries-link]     |
-|          [Trakt API][trakt-link]           |     [![Version][trakt-version]][libraries-link]      |
-|           [TMDb API][tmdb-link]            |      [![Version][tmdb-version]][libraries-link]      |
-|           [OMDb API][omdb-link]            |      [![Version][omdb-version]][libraries-link]      |
-| [Rotten Tomatoes API][rottentomatoes-link] | [![Version][rottentomatoes-version]][libraries-link] |
-|          [Jikan API][jikan-link]           |     [![Version][jikan-version]][libraries-link]      |
-|         [Wikidata][wikidata-link]          |    [![Version][wikidata-version]][libraries-link]    |
+|                 _Libreria_                 |                   _Versione_                    |
+| :----------------------------------------: | :---------------------------------------------: |
+|           [My Utils][utils-link]           |     [![Version][utils-version]][libraries]      |
+|          [Ratings][ratings-link]           |    [![Version][ratings-version]][libraries]     |
+|          [Trakt API][trakt-link]           |     [![Version][trakt-version]][libraries]      |
+|           [TMDb API][tmdb-link]            |      [![Version][tmdb-version]][libraries]      |
+|           [OMDb API][omdb-link]            |      [![Version][omdb-version]][libraries]      |
+| [Rotten Tomatoes API][rottentomatoes-link] | [![Version][rottentomatoes-version]][libraries] |
+|          [Jikan API][jikan-link]           |     [![Version][jikan-version]][libraries]      |
+|         [Wikidata][wikidata-link]          |    [![Version][wikidata-version]][libraries]    |
 
 ---
 
@@ -86,10 +86,10 @@ This product uses Wikidata data but is not endorsed or certified by Wikidata.
 [stars-link]: https://github.com/iFelix18/Userscripts/stargazers
 [watchers-badge]: https://flat.badgen.net/github/watchers/iFelix18/Userscripts
 [watchers-link]: https://github.com/iFelix18/Userscripts/watchers
-[userscripts-badge]: https://flat.badgen.net/badge/scripts/5/orange
-[userscripts-link]: https://github.com/iFelix18/Userscripts/tree/master/userscripts
-[userlibraries-badge]: https://flat.badgen.net/badge/libraries/8/orange
-[userlibraries-link]: https://github.com/iFelix18/Userscripts/tree/master/src/lib
+[scripts-badge]: https://flat.badgen.net/badge/scripts/5/orange
+[scripts-link]: https://github.com/iFelix18/Userscripts/tree/master/userscripts
+[libraries-badge]: https://flat.badgen.net/badge/libraries/8/orange
+[libraries-link]: https://github.com/iFelix18/Userscripts/tree/master/src/lib
 [open-issues-badge]: https://flat.badgen.net/github/open-issues/iFelix18/Userscripts
 [open-issues-link]: https://github.com/iFelix18/Userscripts/issues
 [closed-issues-badge]: https://flat.badgen.net/github/closed-issues/iFelix18/Userscripts
@@ -108,7 +108,7 @@ This product uses Wikidata data but is not endorsed or certified by Wikidata.
 
 [install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Clicca qui!"
 
-[scripts-link]: #scripts
+[scripts]: #scripts
 
 [ratings-on-tmdb-link]: /docs/scripts/ratings-on-tmdb.it.md "Più info"
 [ratings-on-tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
@@ -130,7 +130,7 @@ This product uses Wikidata data but is not endorsed or certified by Wikidata.
 [greasyfork-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
 [greasyfork-plus-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/greasyfork-plus.user.js "Clicca qui!"
 
-[libraries-link]: #libraries
+[libraries]: #librerie
 
 [utils-link]: /docs/libraries/utils.md "Più info"
 [utils-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/utils.min.js
@@ -157,5 +157,5 @@ This product uses Wikidata data but is not endorsed or certified by Wikidata.
 [wikidata-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/wikidata.min.js
 
 [violentmonkey-link]: https://violentmonkey.github.io/
-[userscripts-link]: https://github.com/quoid/userscripts
+[userscripts-link]: https://github.com/quoid/userscripts/#userscripts-safari
 [tampermonkey-link]: https://www.tampermonkey.net/
