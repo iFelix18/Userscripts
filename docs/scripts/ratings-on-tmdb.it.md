@@ -1,6 +1,6 @@
 # Valutazioni su TMDb
 
-Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a [TMDb]
+Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a [TMDb][tmdb-link]
 
 [![Version][version-badge]][link]
 [![Size][size-badge]][link]
