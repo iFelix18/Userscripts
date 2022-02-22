@@ -1,18 +1,19 @@
 // ==UserScript==
-// @author          Davide <iFelix18@protonmail.com>
-// @namespace       https://github.com/iFelix18
-// @exclude         *
+// @author       Davide <iFelix18@protonmail.com>
+// @namespace    https://github.com/iFelix18
+// @exclude      *
 // ==UserLibrary==
-// @name            Rotten Tomatoes API
-// @description     Rotten Tomatoes API for my userscripts
-// @copyright       2022, Davide (https://github.com/iFelix18)
-// @license         MIT
-// @version         1.1.5
-// @homepageURL     https://github.com/iFelix18/Userscripts
-// @supportURL      https://github.com/iFelix18/Userscripts/issues
+// @name         Rotten Tomatoes API
+// @description  Rotten Tomatoes API for my userscripts
+// @copyright    2022, Davide (https://github.com/iFelix18)
+// @license      MIT
+// @version      1.1.6
+// @homepage     https://github.com/iFelix18/Userscripts
+// @homepageURL  https://github.com/iFelix18/Userscripts
+// @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @connect         rottentomatoes.com
-// @grant           GM.xmlHttpRequest
+// @connect      rottentomatoes.com
+// @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
 (() => {
