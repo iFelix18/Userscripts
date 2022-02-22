@@ -1,18 +1,19 @@
 // ==UserScript==
-// @author          Davide <iFelix18@protonmail.com>
-// @namespace       https://github.com/iFelix18
-// @exclude         *
+// @author       Davide <iFelix18@protonmail.com>
+// @namespace    https://github.com/iFelix18
+// @exclude      *
 // ==UserLibrary==
-// @name            Trakt API
-// @description     Trakt API for my userscripts
-// @copyright       2020, Davide (https://github.com/iFelix18)
-// @license         MIT
-// @version         1.5.4
-// @homepageURL     https://github.com/iFelix18/Userscripts
-// @supportURL      https://github.com/iFelix18/Userscripts/issues
+// @name         Trakt API
+// @description  Trakt API for my userscripts
+// @copyright    2020, Davide (https://github.com/iFelix18)
+// @license      MIT
+// @version      1.5.5
+// @homepage     https://github.com/iFelix18/Userscripts
+// @homepageURL  https://github.com/iFelix18/Userscripts
+// @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @connect         api.trakt.tv
-// @grant           GM.xmlHttpRequest
+// @connect      api.trakt.tv
+// @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
 (() => {
