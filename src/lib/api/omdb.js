@@ -1,18 +1,19 @@
 // ==UserScript==
-// @author          Davide <iFelix18@protonmail.com>
-// @namespace       https://github.com/iFelix18
-// @exclude         *
+// @author       Davide <iFelix18@protonmail.com>
+// @namespace    https://github.com/iFelix18
+// @exclude      *
 // ==UserLibrary==
-// @name            OMDb API
-// @description     OMDb API for my userscripts
-// @copyright       2019, Davide (https://github.com/iFelix18)
-// @license         MIT
-// @version         1.2.5
-// @homepageURL     https://github.com/iFelix18/Userscripts
-// @supportURL      https://github.com/iFelix18/Userscripts/issues
+// @name         OMDb API
+// @description  OMDb API for my userscripts
+// @copyright    2019, Davide (https://github.com/iFelix18)
+// @license      MIT
+// @version      1.2.6
+// @homepage     https://github.com/iFelix18/Userscripts
+// @homepageURL  https://github.com/iFelix18/Userscripts
+// @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @connect         omdbapi.com
-// @grant           GM.xmlHttpRequest
+// @connect      omdbapi.com
+// @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
 (() => {
