@@ -1,18 +1,19 @@
 // ==UserScript==
-// @author          Davide <iFelix18@protonmail.com>
-// @namespace       https://github.com/iFelix18
-// @exclude         *
+// @author       Davide <iFelix18@protonmail.com>
+// @namespace    https://github.com/iFelix18
+// @exclude      *
 // ==UserLibrary==
-// @name            Wikidata
-// @description     Wikidata for my userscripts
-// @copyright       2022, Davide (https://github.com/iFelix18)
-// @license         MIT
-// @version         1.0.0
-// @homepageURL     https://github.com/iFelix18/Userscripts
-// @supportURL      https://github.com/iFelix18/Userscripts/issues
+// @name         Wikidata
+// @description  Wikidata for my userscripts
+// @copyright    2022, Davide (https://github.com/iFelix18)
+// @license      MIT
+// @version      1.0.1
+// @homepage     https://github.com/iFelix18/Userscripts
+// @homepageURL  https://github.com/iFelix18/Userscripts
+// @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @connect         query.wikidata.org
-// @grant           GM.xmlHttpRequest
+// @connect      query.wikidata.org
+// @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
 (() => {
