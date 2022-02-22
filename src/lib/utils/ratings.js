@@ -1,18 +1,19 @@
 // ==UserScript==
-// @author          Davide <iFelix18@protonmail.com>
-// @namespace       https://github.com/iFelix18
-// @exclude         *
+// @author       Davide <iFelix18@protonmail.com>
+// @namespace    https://github.com/iFelix18
+// @exclude      *
 // ==UserLibrary==
-// @name            Ratings
-// @description     Ratings for my userscripts
-// @copyright       2022, Davide (https://github.com/iFelix18)
-// @license         MIT
-// @version         2.0.3
-// @homepageURL     https://github.com/iFelix18/Userscripts
-// @supportURL      https://github.com/iFelix18/Userscripts/issues
+// @name         Ratings
+// @description  Ratings for my userscripts
+// @copyright    2022, Davide (https://github.com/iFelix18)
+// @license      MIT
+// @version      2.0.4
+// @homepage     https://github.com/iFelix18/Userscripts
+// @homepageURL  https://github.com/iFelix18/Userscripts
+// @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @grant           GM.getValue
-// @grant           GM.setValue
+// @grant        GM.getValue
+// @grant        GM.setValue
 // ==/UserScript==
 
 /* global Jikan, OMDb, RottenTomatoes */
