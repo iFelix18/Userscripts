@@ -1,19 +1,20 @@
 // ==UserScript==
-// @author          Davide <iFelix18@protonmail.com>
-// @namespace       https://github.com/iFelix18
-// @exclude         *
+// @author       Davide <iFelix18@protonmail.com>
+// @namespace    https://github.com/iFelix18
+// @exclude      *
 // ==UserLibrary==
-// @name            My Utils
-// @description     Utils for my userscripts
-// @copyright       2019, Davide (https://github.com/iFelix18)
-// @license         MIT
-// @version         3.0.1
-// @homepageURL     https://github.com/iFelix18/Userscripts
-// @supportURL      https://github.com/iFelix18/Userscripts/issues
+// @name         My Utils
+// @description  Utils for my userscripts
+// @copyright    2019, Davide (https://github.com/iFelix18)
+// @license      MIT
+// @version      3.0.2
+// @homepage     https://github.com/iFelix18/Userscripts
+// @homepageURL  https://github.com/iFelix18/Userscripts
+// @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @grant           GM.deleteValue
-// @grant           GM.getValue
-// @grant           GM.setValue
+// @grant        GM.deleteValue
+// @grant        GM.getValue
+// @grant        GM.setValue
 // ==/UserScript==
 
 (() => {
