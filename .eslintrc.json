@@ -30,6 +30,20 @@
       "plugins": [
         "userscripts"
       ]
+    },
+    {
+      "files": "src/lib/**/*.js",
+      "extends": [
+        "plugin:userscripts/recommended"
+      ],
+      "plugins": [
+        "userscripts"
+      ],
+      "rules": {
+        "userscripts/filename-user": 0,
+        "userscripts/no-invalid-metadata": 0,
+        "userscripts/require-name": 0
+      }
     }
   ]
 }
