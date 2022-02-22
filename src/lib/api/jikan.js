@@ -1,18 +1,19 @@
 // ==UserScript==
-// @author          Davide <iFelix18@protonmail.com>
-// @namespace       https://github.com/iFelix18
-// @exclude         *
+// @author       Davide <iFelix18@protonmail.com>
+// @namespace    https://github.com/iFelix18
+// @exclude      *
 // ==UserLibrary==
-// @name            Jikan API
-// @description     Jikan API for my userscripts
-// @copyright       2022, Davide (https://github.com/iFelix18)
-// @license         MIT
-// @version         1.0.1
-// @homepageURL     https://github.com/iFelix18/Userscripts
-// @supportURL      https://github.com/iFelix18/Userscripts/issues
+// @name         Jikan API
+// @description  Jikan API for my userscripts
+// @copyright    2022, Davide (https://github.com/iFelix18)
+// @license      MIT
+// @version      1.0.2
+// @homepage     https://github.com/iFelix18/Userscripts
+// @homepageURL  https://github.com/iFelix18/Userscripts
+// @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @connect         api.jikan.moe
-// @grant           GM.xmlHttpRequest
+// @connect      api.jikan.moe
+// @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
 (() => {
