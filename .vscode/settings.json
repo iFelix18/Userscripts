@@ -1,6 +1,7 @@
 {
   "[markdown]": {
-    "editor.formatOnSave": false
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
   },
   "[javascript]": {
     "editor.formatOnSave": false
@@ -18,6 +19,7 @@
     "**/template/*.hbs": "plaintext"
   },
   "files.insertFinalNewline": true,
+  "markdownlint.ignore": ".markdownlintignore",
   "search.exclude": {
     "**/node_modules": true
   }
