@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.5.5
+// @version            1.5.6
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -543,7 +543,7 @@
   if (GM_config.get('milestoneNotification')) {
     if (!userID) return
 
-    getUserData(userID.match(/(?<=s\/).*?(?=-)/g)).then((data) => {
+    getUserData(userID.match(/\d+(?=\D)/g)).then((data) => {
       getTotalInstalls(data).then(async (totalInstalls) => {
         const lastMilestone = await GM.getValue('lastMilestone', 0)
         const milestone = $($.grep(milestones, (milestone) => totalInstalls >= milestone)).get(-1)
