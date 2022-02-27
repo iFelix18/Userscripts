@@ -1,50 +1,51 @@
 // ==UserScript==
-// @name            Greasy Fork+
-// @name:de         Greasy Fork+
-// @name:es         Greasy Fork+
-// @name:fr         Greasy Fork+
-// @name:it         Greasy Fork+
-// @name:ru         Greasy Fork+
-// @name:zh-CN      Greasy Fork+
-// @author          Davide <iFelix18@protonmail.com>
-// @namespace       https://github.com/iFelix18
-// @icon            https://www.google.com/s2/favicons?domain=https://greasyfork.org
-// @description     Adds various features and improves the Greasy Fork experience
-// @description:de  Fügt verschiedene Funktionen hinzu und verbessert das Greasy Fork-Erlebnis
-// @description:es  Agrega varias funciones y mejora la experiencia de Greasy Fork
-// @description:fr  Ajoute diverses fonctionnalités et améliore l'expérience Greasy Fork
-// @description:it  Aggiunge varie funzionalità e migliora l'esperienza di Greasy Fork
-// @description:ru  Добавляет различные функции и улучшает работу с Greasy Fork
-// @copyright       2021, Davide (https://github.com/iFelix18)
-// @license         MIT
-// @version         1.5.3
-// @homepage        https://github.com/iFelix18/Userscripts#readme
-// @homepageURL     https://github.com/iFelix18/Userscripts#readme
-// @supportURL      https://github.com/iFelix18/Userscripts/issues
-// @updateURL       https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
-// @downloadURL     https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
-// @require         https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require         https://cdn.jsdelivr.net/npm/@ifelix18/utils@3.0.4
-// @require         https://cdn.jsdelivr.net/npm/jquery@3.6.0
-// @require         https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6
-// @match           *://greasyfork.org/*
-// @match           *://sleazyfork.org/*
-// @connect         greasyfork.org
-// @compatible      chrome
-// @compatible      edge
-// @compatible      firefox
-// @compatible      safari
-// @grant           GM_getValue
-// @grant           GM_setValue
-// @grant           GM.deleteValue
-// @grant           GM.getValue
-// @grant           GM.listValues
-// @grant           GM.notification
-// @grant           GM.registerMenuCommand
-// @grant           GM.setValue
-// @grant           GM.xmlHttpRequest
-// @run-at          document-idle
-// @inject-into     page
+// @name               Greasy Fork+
+// @name:de            Greasy Fork+
+// @name:es            Greasy Fork+
+// @name:fr            Greasy Fork+
+// @name:it            Greasy Fork+
+// @name:ru            Greasy Fork+
+// @name:zh-CN         Greasy Fork+
+// @author             Davide <iFelix18@protonmail.com>
+// @namespace          https://github.com/iFelix18
+// @icon               https://www.google.com/s2/favicons?domain=https://greasyfork.org
+// @description        Adds various features and improves the Greasy Fork experience
+// @description:de     Fügt verschiedene Funktionen hinzu und verbessert das Greasy Fork-Erlebnis
+// @description:es     Agrega varias funciones y mejora la experiencia de Greasy Fork
+// @description:fr     Ajoute diverses fonctionnalités et améliore l'expérience Greasy Fork
+// @description:it     Aggiunge varie funzionalità e migliora l'esperienza di Greasy Fork
+// @description:ru     Добавляет различные функции и улучшает работу с Greasy Fork
+// @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
+// @copyright          2021, Davide (https://github.com/iFelix18)
+// @license            MIT
+// @version            1.5.4
+// @homepage           https://github.com/iFelix18/Userscripts#readme
+// @homepageURL        https://github.com/iFelix18/Userscripts#readme
+// @supportURL         https://github.com/iFelix18/Userscripts/issues
+// @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
+// @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
+// @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
+// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@3.0.4
+// @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0
+// @require            https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6
+// @match              *://greasyfork.org/*
+// @match              *://sleazyfork.org/*
+// @connect            greasyfork.org
+// @compatible         chrome
+// @compatible         edge
+// @compatible         firefox
+// @compatible         safari
+// @grant              GM_getValue
+// @grant              GM_setValue
+// @grant              GM.deleteValue
+// @grant              GM.getValue
+// @grant              GM.listValues
+// @grant              GM.notification
+// @grant              GM.registerMenuCommand
+// @grant              GM.setValue
+// @grant              GM.xmlHttpRequest
+// @run-at             document-idle
+// @inject-into        page
 // ==/UserScript==
 
 /* global $, GM_config, migrateConfig, MyUtils, VM */
