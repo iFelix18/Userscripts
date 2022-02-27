@@ -7,7 +7,7 @@
 // @description  OMDb API for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      1.2.6
+// @version      1.2.9
 // @homepage     https://github.com/iFelix18/Userscripts
 // @homepageURL  https://github.com/iFelix18/Userscripts
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
