@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.5.4
+// @version            1.5.5
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -556,7 +556,7 @@
 
         GM.notification({
           text: (locales[lang] ? locales[lang].milestone : locales.en.milestone).replace('$1', milestone.toLocaleString()),
-          title: 'Greasy Fork+',
+          title: GM.info.script.name,
           image: logo,
           onclick: () => {
             window.location = `https://${window.location.hostname}${userID}#user-script-list-section`
