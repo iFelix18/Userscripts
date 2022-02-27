@@ -3,7 +3,6 @@ import { parse, stringify } from 'userscript-meta'
 import { readFileSync, existsSync, writeFile } from 'node:fs'
 import cleanCSS from 'gulp-clean-css'
 import flatmap from 'gulp-flatmap'
-import flatten from 'gulp-flatten'
 import htmlMinifier from 'gulp-html-minifier-terser'
 import minify from 'gulp-minify'
 import replace from 'gulp-replace'
@@ -19,8 +18,8 @@ const paths = {
     src: 'userscripts/src/handlebars/*.hbs'
   },
   lib: {
-    dest: 'lib/',
-    src: 'packages/**/lib/*.js'
+    dest: 'packages/',
+    src: ['packages/**/lib/*.js', '!packages/**/lib/*.min.js']
   },
   meta: {
     dest: 'userscripts/meta/',
@@ -44,7 +43,6 @@ const minifyJS = () => {
         return (comment.value.startsWith(' ==') || comment.value.startsWith(' @'))
       }
     }))
-    .pipe(flatten())
     .pipe(dest(paths.lib.dest))
 }
 

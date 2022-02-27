@@ -4339,14 +4339,6 @@ gulp-flatmap@^1.0.2:
     plugin-error "0.1.2"
     through2 "2.0.3"
 
-gulp-flatten@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/gulp-flatten/-/gulp-flatten-0.4.0.tgz#d9ac819416c30fd5dfb3dea9da79c83a1bcd61d1"
-  integrity sha512-eg4spVTAiv1xXmugyaCxWne1oPtNG0UHEtABx5W8ScLiqAYceyYm6GYA36x0Qh8KOIXmAZV97L2aYGnKREG3Sg==
-  dependencies:
-    plugin-error "^0.1.2"
-    through2 "^2.0.0"
-
 gulp-html-minifier-terser@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/gulp-html-minifier-terser/-/gulp-html-minifier-terser-6.0.1.tgz#5e734eff620eee2c393edc8d4fd34ee97e606454"
