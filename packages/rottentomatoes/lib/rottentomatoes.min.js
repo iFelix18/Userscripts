@@ -7,7 +7,7 @@
 // @description  Rotten Tomatoes API for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      1.1.6
+// @version      1.1.9
 // @homepage     https://github.com/iFelix18/Userscripts
 // @homepageURL  https://github.com/iFelix18/Userscripts
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
