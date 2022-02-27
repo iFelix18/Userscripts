@@ -7,7 +7,7 @@
 // @description  Trakt API for my userscripts
 // @copyright    2020, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      1.5.5
+// @version      1.5.8
 // @homepage     https://github.com/iFelix18/Userscripts
 // @homepageURL  https://github.com/iFelix18/Userscripts
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
