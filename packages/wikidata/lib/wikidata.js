@@ -7,7 +7,7 @@
 // @description  Wikidata for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.0.0
+// @version      2.0.3
 // @homepage     https://github.com/iFelix18/Userscripts
 // @homepageURL  https://github.com/iFelix18/Userscripts
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
