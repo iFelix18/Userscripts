@@ -1,6 +1,6 @@
 {
   "name": "@ifelix18/rottentomatoes",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Rotten Tomatoes API for my userscripts",
   "scripts": {},
   "homepage": "https://github.com/iFelix18/Userscripts/tree/master/packages/rottentomatoes#readme",
