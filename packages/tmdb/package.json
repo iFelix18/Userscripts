@@ -1,6 +1,6 @@
 {
   "name": "@ifelix18/tmdb",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "description": "TMDb API for my userscripts",
   "scripts": {},
   "homepage": "https://github.com/iFelix18/Userscripts/tree/master/packages/tmdb#readme",
