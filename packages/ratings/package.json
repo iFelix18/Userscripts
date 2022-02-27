@@ -1,0 +1,30 @@
+{
+  "name": "@ifelix18/ratings",
+  "version": "3.0.0",
+  "description": "Ratings for my userscripts",
+  "scripts": {},
+  "homepage": "https://github.com/iFelix18/Userscripts/tree/master/packages/ratings#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iFelix18/Userscripts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iFelix18/Userscripts/issues"
+  },
+  "author": {
+    "name": "Davide",
+    "email": "iFelix18@protonmail.com",
+    "url": "https://twitter.com/iFeIix18"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/ratings.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ]
+}

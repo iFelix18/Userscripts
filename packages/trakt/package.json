@@ -1,0 +1,30 @@
+{
+  "name": "@ifelix18/trakt",
+  "version": "1.5.5",
+  "description": "Trakt API for my userscripts",
+  "scripts": {},
+  "homepage": "https://github.com/iFelix18/Userscripts/tree/master/packages/trakt#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iFelix18/Userscripts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iFelix18/Userscripts/issues"
+  },
+  "author": {
+    "name": "Davide",
+    "email": "iFelix18@protonmail.com",
+    "url": "https://twitter.com/iFeIix18"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/trakt.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ]
+}

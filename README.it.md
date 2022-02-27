@@ -89,7 +89,7 @@ This product uses Wikidata data but is not endorsed or certified by Wikidata.
 [scripts-badge]: https://flat.badgen.net/badge/scripts/5/orange
 [scripts-link]: https://github.com/iFelix18/Userscripts/tree/master/userscripts
 [libraries-badge]: https://flat.badgen.net/badge/libraries/8/orange
-[libraries-link]: https://github.com/iFelix18/Userscripts/tree/master/src/lib
+[libraries-link]: https://github.com/iFelix18/Userscripts/tree/master/packages
 [open-issues-badge]: https://flat.badgen.net/github/open-issues/iFelix18/Userscripts
 [open-issues-link]: https://github.com/iFelix18/Userscripts/issues
 [closed-issues-badge]: https://flat.badgen.net/github/closed-issues/iFelix18/Userscripts
@@ -110,50 +110,50 @@ This product uses Wikidata data but is not endorsed or certified by Wikidata.
 
 [scripts]: #scripts
 
-[ratings-on-tmdb-link]: /docs/scripts/ratings-on-tmdb.it.md "Più info"
+[ratings-on-tmdb-link]: /userscripts/docs/ratings-on-tmdb.it.md "Più info"
 [ratings-on-tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
 [ratings-on-tmdb-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-tmdb.user.js "Clicca qui!"
 
-[ratings-on-imdb-link]: /docs/scripts/ratings-on-imdb.it.md "Più info"
+[ratings-on-imdb-link]: /userscripts/docs/ratings-on-imdb.it.md "Più info"
 [ratings-on-imdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-imdb.meta.js
 [ratings-on-imdb-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-imdb.user.js "Clicca qui!"
 
-[ratings-on-justwatch-link]: /docs/scripts/ratings-on-justwatch.it.md "Più info"
+[ratings-on-justwatch-link]: /userscripts/docs/ratings-on-justwatch.it.md "Più info"
 [ratings-on-justwatch-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js
 [ratings-on-justwatch-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-justwatch.user.js "Clicca qui!"
 
-[openuserjs-plus-link]: /docs/scripts/openuserjs-plus.it.md "Più info"
+[openuserjs-plus-link]: /userscripts/docs/openuserjs-plus.it.md "Più info"
 [openuserjs-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js
 [openuserjs-plus-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/openuserjs-plus.user.js "Clicca qui!"
 
-[greasyfork-plus-link]: /docs/scripts/greasyfork-plus.it.md "Più info"
+[greasyfork-plus-link]: /userscripts/docs/greasyfork-plus.it.md "Più info"
 [greasyfork-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
 [greasyfork-plus-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/greasyfork-plus.user.js "Clicca qui!"
 
 [libraries]: #librerie
 
-[utils-link]: /docs/libraries/utils.md "Più info"
+[utils-link]: /packages/utils "Più info"
 [utils-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/utils.min.js
 
-[ratings-link]: /docs/libraries/ratings.md "Più info"
+[ratings-link]: /packages/ratings "Più info"
 [ratings-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/ratings.min.js
 
-[trakt-link]: /docs/libraries/trakt.md "Più info"
+[trakt-link]: /packages/trakt "Più info"
 [trakt-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/trakt.min.js
 
-[tmdb-link]: /docs/libraries/tmdb.md "Più info"
+[tmdb-link]: /packages/tmdb "Più info"
 [tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/tmdb.min.js
 
-[omdb-link]: /docs/libraries/omdb.md "Più info"
+[omdb-link]: /packages/omdb "Più info"
 [omdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/omdb.min.js
 
-[rottentomatoes-link]: /docs/libraries/rottentomatoes.md "Più info"
+[rottentomatoes-link]: /packages/rottentomatoes "Più info"
 [rottentomatoes-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/rottentomatoes.min.js
 
-[jikan-link]: /docs/libraries/jikan.md "Più info"
+[jikan-link]: /packages/jikan "Più info"
 [jikan-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/jikan.min.js
 
-[wikidata-link]: /docs/libraries/wikidata.md "Più info"
+[wikidata-link]: /packages/wikidata "Più info"
 [wikidata-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/wikidata.min.js
 
 [violentmonkey-link]: https://violentmonkey.github.io/

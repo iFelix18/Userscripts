@@ -1,0 +1,30 @@
+{
+  "name": "@ifelix18/omdb",
+  "version": "1.2.6",
+  "description": "OMDb API for my userscripts",
+  "scripts": {},
+  "homepage": "https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iFelix18/Userscripts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iFelix18/Userscripts/issues"
+  },
+  "author": {
+    "name": "Davide",
+    "email": "iFelix18@protonmail.com",
+    "url": "https://twitter.com/iFeIix18"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/omdb.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ]
+}

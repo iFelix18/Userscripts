@@ -1,0 +1,30 @@
+{
+  "name": "@ifelix18/jikan",
+  "version": "1.0.2",
+  "description": "Jikan API for my userscripts",
+  "scripts": {},
+  "homepage": "https://github.com/iFelix18/Userscripts/tree/master/packages/jikan#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iFelix18/Userscripts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iFelix18/Userscripts/issues"
+  },
+  "author": {
+    "name": "Davide",
+    "email": "iFelix18@protonmail.com",
+    "url": "https://twitter.com/iFeIix18"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/jikan.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ]
+}

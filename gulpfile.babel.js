@@ -3,6 +3,7 @@ import { parse, stringify } from 'userscript-meta'
 import { readFileSync, existsSync, writeFile } from 'node:fs'
 import cleanCSS from 'gulp-clean-css'
 import flatmap from 'gulp-flatmap'
+import flatten from 'gulp-flatten'
 import htmlMinifier from 'gulp-html-minifier-terser'
 import minify from 'gulp-minify'
 import replace from 'gulp-replace'
@@ -10,16 +11,16 @@ import replace from 'gulp-replace'
 // paths
 const paths = {
   css: {
-    dest: 'template/',
-    src: 'src/template/css/*.css'
+    dest: 'tempfiles/',
+    src: 'userscripts/src/css/*.css'
   },
   handlebars: {
-    dest: 'template/',
-    src: 'src/template/handlebars/*.hbs'
+    dest: 'tempfiles/',
+    src: 'userscripts/src/handlebars/*.hbs'
   },
   lib: {
     dest: 'lib/',
-    src: 'src/lib/**/*.js'
+    src: 'packages/**/lib/*.js'
   },
   meta: {
     dest: 'userscripts/meta/',
@@ -43,6 +44,7 @@ const minifyJS = () => {
         return (comment.value.startsWith(' ==') || comment.value.startsWith(' @'))
       }
     }))
+    .pipe(flatten())
     .pipe(dest(paths.lib.dest))
 }
 
@@ -52,7 +54,7 @@ const minifyCSS = () => {
     .pipe(dest(paths.css.dest))
 }
 
-const minifyHandlebars = () => {
+const minifyHBS = () => {
   return src(paths.handlebars.src)
     .pipe(htmlMinifier({
       collapseBooleanAttributes: true,
@@ -74,20 +76,20 @@ const replaceCSS = () => {
   return src(paths.userscripts.src)
     .pipe(flatmap((stream, file) => {
       return src(file.path)
-        .pipe(replace(/(?<=(css: )')(.*?)(?=')/g, readFileSync('template/config.css', 'utf8')))
-        .pipe(dest('userscripts/'))
+        .pipe(replace(/(?<=(css: )')(.*?)(?=')/g, readFileSync('tempfiles/config.css', 'utf8')))
+        .pipe(dest(paths.userscripts.dest))
     }))
 }
 
-const replaceHandlebars = () => {
+const replaceHBS = () => {
   return src(paths.userscripts.src)
     .pipe(flatmap((stream, file) => {
       const fileName = file.stem.replace('.user', '')
 
-      return existsSync(`template/${fileName}.hbs`)
+      return existsSync(`tempfiles/${fileName}.hbs`)
         ? src(file.path)
-          .pipe(replace(/(?<=(const template = )')(.*?)(?=')/g, readFileSync(`template/${fileName}.hbs`, 'utf8')))
-          .pipe(dest('userscripts/'))
+          .pipe(replace(/(?<=(const template = )')(.*?)(?=')/g, readFileSync(`tempfiles/${fileName}.hbs`, 'utf8')))
+          .pipe(dest(paths.userscripts.dest))
         : stream
     }))
 }
@@ -108,7 +110,7 @@ const bumpMeta = (callback) => {
 }
 
 // watch
-const watchUserscripts = () => {
+const watchUserJS = () => {
   watch(paths.userscripts.src, {
     ignoreInitial: false
   }, series(bumpMeta))
@@ -126,12 +128,12 @@ const watchCSS = () => {
   }, series(minifyCSS, replaceCSS))
 }
 
-const watchHandlebars = () => {
+const watchHBS = () => {
   watch(paths.handlebars.src, {
     ignoreInitial: false
-  }, series(minifyHandlebars, replaceHandlebars))
+  }, series(minifyHBS, replaceHBS))
 }
 
 // export
-const _default = parallel(watchUserscripts, watchJS, watchCSS, watchHandlebars)
+const _default = parallel(watchUserJS, watchJS, watchCSS, watchHBS)
 export { _default as default }
