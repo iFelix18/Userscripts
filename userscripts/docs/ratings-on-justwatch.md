@@ -27,7 +27,7 @@ Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [JustWatc
 
 [version-badge]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js
 [size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js
-[install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Click here!"
+[install-badge]: https://flat.badgen.net/badge/install%20directly%20from/jsDelivr/blue "Click here!"
 
 [download-link]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-justwatch.user.js "Click here!"
 

@@ -11,6 +11,7 @@ My scripts and libraries
 [![Last Commit][last-commit-badge]][last-commit-link]
 [![jsDelivr Hits][jsdelivr-hits-badge]][jsdelivr-hits-link]
 [![JavaScript Style Guide][style-guide-badge]][style-guide-link]
+[![Lerna][lerna-badge]][lerna-link]
 [![License][license-badge]][license-link]
 
 Readme languages:
@@ -100,13 +101,15 @@ This product uses Wikidata data but is not endorsed or certified by Wikidata.
 [jsdelivr-hits-link]: https://www.jsdelivr.com/package/gh/iFelix18/Userscripts
 [style-guide-badge]: https://flat.badgen.net/badge/code%20style/standard/44CC11
 [style-guide-link]: https://standardjs.com
+[lerna-badge]: https://flat.badgen.net/badge/maintained%20with/lerna/CC00FF
+[lerna-link]: https://lerna.js.org/
 [license-badge]: https://flat.badgen.net/github/license/iFelix18/Userscripts
 [license-link]: https://github.com/iFelix18/Userscripts/blob/master/LICENSE.md
 
 [readme-en]: /README.md "English"
 [readme-it]: /README.it.md "Italiano"
 
-[install-badge]: https://flat.badgen.net/badge/install%20directly%20from/GitHub/blue "Click here!"
+[install-badge]: https://flat.badgen.net/badge/install%20directly%20from/jsDelivr/blue "Click here!"
 
 [scripts]: #scripts
 
