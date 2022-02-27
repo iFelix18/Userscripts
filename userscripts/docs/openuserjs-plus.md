@@ -2,9 +2,7 @@
 
 Adds various features and improves the [OpenUserJS][openuserjs-link] experience
 
-[![Version][version-badge]][link]
-[![Size][size-badge]][link]
-[![Install][install-badge]][download-link]
+[![Version][version-badge]][link] [![Size][size-badge]][link] [![Install][install-badge]][download-link]
 
 Features:
 >

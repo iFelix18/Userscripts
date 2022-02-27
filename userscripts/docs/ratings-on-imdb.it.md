@@ -2,9 +2,7 @@
 
 Aggiunge valutazioni da Rotten Tomatoes, Metacritic e MyAnimeList a [IMDb][imdb-link]
 
-[![Version][version-badge]][link]
-[![Size][size-badge]][link]
-[![Install][install-badge]][download-link]
+[![Version][version-badge]][link] [![Size][size-badge]][link] [![Install][install-badge]][download-link]
 
 >**Nota**: Dopo l'installazione, inserisci la tua [OMDb API Key][omdb-api] nelle impostazioni dello script.
 

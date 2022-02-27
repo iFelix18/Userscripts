@@ -2,9 +2,7 @@
 
 Aggiunge varie funzionalità e migliora l'esperienza di [OpenUserJS][openuserjs-link]
 
-[![Version][version-badge]][link]
-[![Size][size-badge]][link]
-[![Install][install-badge]][download-link]
+[![Version][version-badge]][link] [![Size][size-badge]][link] [![Install][install-badge]][download-link]
 
 Caratteristiche:
 >
