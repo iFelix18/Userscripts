@@ -32,6 +32,6 @@ Caratteristiche:
 
 [download-link]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/openuserjs-plus.user.js "Clicca qui!"
 
-[screenshot-1]: /userscripts/docs/screenshots/openuserjs-plus_hide-script-button.png?raw=true "Pulsante nascondi script"
-[screenshot-2]: /userscripts/docs/screenshots/openuserjs-plus_install-button.png?raw=true "Pulsante installa"
-[screenshot-3]: /userscripts/docs/screenshots/openuserjs-plus_milestone-notification.png?raw=true "Notifica traguardo"
+[screenshot-1]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_hide-script-button.png?raw=true "Pulsante nascondi script"
+[screenshot-2]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_install-button.png?raw=true "Pulsante installa"
+[screenshot-3]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_milestone-notification.png?raw=true "Notifica traguardo"

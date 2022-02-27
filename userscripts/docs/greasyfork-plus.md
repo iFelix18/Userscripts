@@ -35,7 +35,7 @@ Features:
 
 [download-link]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/greasyfork-plus.user.js "Click here!"
 
-[screenshot-1]: /userscripts/docs/screenshots/greasyfork-plus_hide-script-button.png?raw=true "Hide script button"
-[screenshot-2]: /userscripts/docs/screenshots/greasyfork-plus_install-button.gif?raw=true "Install button"
-[screenshot-3]: /userscripts/docs/screenshots/greasyfork-plus_number-of-installations.png?raw=true "Number of installations"
-[screenshot-4]: /userscripts/docs/screenshots/greasyfork-plus_milestone-notification.png?raw=true "Milestone notification"
+[screenshot-1]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/greasyfork-plus_hide-script-button.png?raw=true "Hide script button"
+[screenshot-2]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/greasyfork-plus_install-button.gif?raw=true "Install button"
+[screenshot-3]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/greasyfork-plus_number-of-installations.png?raw=true "Number of installations"
+[screenshot-4]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/greasyfork-plus_milestone-notification.png?raw=true "Milestone notification"

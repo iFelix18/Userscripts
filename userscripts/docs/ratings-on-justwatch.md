@@ -33,9 +33,9 @@ Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [JustWatc
 
 [download-link]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-justwatch.user.js "Click here!"
 
-[screenshot-1]: /userscripts/docs/screenshots/ratings-on-justwatch_movie-before.png?raw=true "Before"
-[screenshot-2]: /userscripts/docs/screenshots/ratings-on-justwatch_movie-after.png?raw=true "After"
-[screenshot-3]: /userscripts/docs/screenshots/ratings-on-justwatch_show-before.png?raw=true "Before"
-[screenshot-4]: /userscripts/docs/screenshots/ratings-on-justwatch_show-after.png?raw=true "After"
-[screenshot-5]: /userscripts/docs/screenshots/ratings-on-justwatch_anime-before.png?raw=true "Before"
-[screenshot-6]: /userscripts/docs/screenshots/ratings-on-justwatch_anime-after.png?raw=true "After"
+[screenshot-1]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-justwatch_movie-before.png?raw=true "Before"
+[screenshot-2]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-justwatch_movie-after.png?raw=true "After"
+[screenshot-3]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-justwatch_show-before.png?raw=true "Before"
+[screenshot-4]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-justwatch_show-after.png?raw=true "After"
+[screenshot-5]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-justwatch_anime-before.png?raw=true "Before"
+[screenshot-6]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-justwatch_anime-after.png?raw=true "After"

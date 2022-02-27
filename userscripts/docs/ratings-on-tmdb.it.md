@@ -34,9 +34,9 @@ Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a [TMDb]
 
 [download-link]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-tmdb.user.js "Clicca qui!"
 
-[screenshot-1]: /userscripts/docs/screenshots/ratings-on-tmdb_movie-before.png?raw=true "Prima"
-[screenshot-2]: /userscripts/docs/screenshots/ratings-on-tmdb_movie-after.png?raw=true "Dopo"
-[screenshot-3]: /userscripts/docs/screenshots/ratings-on-tmdb_show-before.png?raw=true "Prima"
-[screenshot-4]: /userscripts/docs/screenshots/ratings-on-tmdb_show-after.png?raw=true "Dopo"
-[screenshot-5]: /userscripts/docs/screenshots/ratings-on-tmdb_anime-before.png?raw=true "Prima"
-[screenshot-6]: /userscripts/docs/screenshots/ratings-on-tmdb_anime-after.png?raw=true "Dopo"
+[screenshot-1]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-tmdb_movie-before.png?raw=true "Prima"
+[screenshot-2]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-tmdb_movie-after.png?raw=true "Dopo"
+[screenshot-3]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-tmdb_show-before.png?raw=true "Prima"
+[screenshot-4]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-tmdb_show-after.png?raw=true "Dopo"
+[screenshot-5]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-tmdb_anime-before.png?raw=true "Prima"
+[screenshot-6]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-tmdb_anime-after.png?raw=true "Dopo"
