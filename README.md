@@ -136,28 +136,28 @@ This product uses Wikidata data but is not endorsed or certified by Wikidata.
 [libraries]: #libraries
 
 [utils-link]: /packages/utils "More info"
-[utils-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/utils.min.js
+[utils-version]: https://flat.badgen.net/npm/v/@ifelix18/utils
 
 [ratings-link]: /packages/ratings "More info"
-[ratings-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/utils/ratings.min.js
+[ratings-version]: https://flat.badgen.net/npm/v/@ifelix18/ratings
 
 [trakt-link]: /packages/trakt "More info"
-[trakt-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/trakt.min.js
+[trakt-version]: https://flat.badgen.net/npm/v/@ifelix18/trakt
 
 [tmdb-link]: /packages/tmdb "More info"
-[tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/tmdb.min.js
+[tmdb-version]: https://flat.badgen.net/npm/v/@ifelix18/tmdb
 
 [omdb-link]: /packages/omdb "More info"
-[omdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/omdb.min.js
+[omdb-version]: https://flat.badgen.net/npm/v/@ifelix18/omdb
 
 [rottentomatoes-link]: /packages/rottentomatoes "More info"
-[rottentomatoes-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/rottentomatoes.min.js
+[rottentomatoes-version]: https://flat.badgen.net/npm/v/@ifelix18/rottentomatoes
 
 [jikan-link]: /packages/jikan "More info"
-[jikan-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/jikan.min.js
+[jikan-version]: https://flat.badgen.net/npm/v/@ifelix18/jikan
 
 [wikidata-link]: /packages/wikidata "More info"
-[wikidata-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/lib/api/wikidata.min.js
+[wikidata-version]: https://flat.badgen.net/npm/v/@ifelix18/wikidata
 
 [violentmonkey-link]: https://violentmonkey.github.io/
 [userscripts-link]: https://github.com/quoid/userscripts/#userscripts-safari
