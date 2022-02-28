@@ -23,6 +23,8 @@ Features:
 |                                    _Number of installations_                                    |
 |                         [![Milestone notification][screenshot-4]][link]                         |
 |                                    _Milestone notification_                                     |
+|                             [![Settings page][screenshot-5]][link]                              |
+|                                         _Settings page_                                         |
 
 [link]: #greasy-fork
 [greasyfork-link]: https://greasyfork.org/
@@ -37,3 +39,4 @@ Features:
 [screenshot-2]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/greasyfork-plus_install-button.gif?raw=true "Install button"
 [screenshot-3]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/greasyfork-plus_number-of-installations.png?raw=true "Number of installations"
 [screenshot-4]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/greasyfork-plus_milestone-notification.png?raw=true "Milestone notification"
+[screenshot-5]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/greasyfork-plus_settings-page.png?raw=true "Settings page"
