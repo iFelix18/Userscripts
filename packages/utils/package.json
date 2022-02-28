@@ -1,6 +1,6 @@
 {
   "name": "@ifelix18/utils",
-  "version": "3.0.4",
+  "version": "4.0.0",
   "description": "Utils for my userscripts",
   "homepage": "https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme",
   "bugs": {
@@ -16,7 +16,7 @@
     "email": "iFelix18@protonmail.com",
     "url": "https://twitter.com/iFeIix18"
   },
-  "main": "lib/utils.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib"
   },
