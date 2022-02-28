@@ -1,28 +1,28 @@
 {
   "name": "userscripts",
   "version": "1.0.0",
+  "private": true,
   "description": "My userscripts and libraries",
-  "scripts": {
-    "start": "gulp default",
-    "lint": "eslint . --ext .json,.js",
-    "lint:md": "markdownlint-cli2 **/*.md !**/node_modules/** !LICENSE.md",
-    "update": "updates -u & yarn install"
-  },
   "homepage": "https://github.com/iFelix18/Userscripts#readme",
+  "bugs": {
+    "url": "https://github.com/iFelix18/Userscripts/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iFelix18/Userscripts.git"
   },
-  "bugs": {
-    "url": "https://github.com/iFelix18/Userscripts/issues"
-  },
+  "license": "MIT",
   "author": {
     "name": "Davide",
     "email": "iFelix18@protonmail.com",
     "url": "https://twitter.com/iFeIix18"
   },
-  "license": "MIT",
-  "private": true,
+  "scripts": {
+    "lint": "eslint . --ext .json,.js",
+    "lint:md": "markdownlint-cli2 **/*.md !**/node_modules/** !LICENSE.md",
+    "start": "gulp default",
+    "update": "updates -u & yarn install"
+  },
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",

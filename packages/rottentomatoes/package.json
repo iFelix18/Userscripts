@@ -2,23 +2,19 @@
   "name": "@ifelix18/rottentomatoes",
   "version": "1.1.9",
   "description": "Rotten Tomatoes API for my userscripts",
-  "scripts": {},
   "homepage": "https://github.com/iFelix18/Userscripts/tree/master/packages/rottentomatoes#readme",
+  "bugs": {
+    "url": "https://github.com/iFelix18/Userscripts/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/iFelix18/Userscripts.git"
   },
-  "bugs": {
-    "url": "https://github.com/iFelix18/Userscripts/issues"
-  },
+  "license": "MIT",
   "author": {
     "name": "Davide",
     "email": "iFelix18@protonmail.com",
     "url": "https://twitter.com/iFeIix18"
-  },
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
   },
   "main": "lib/rottentomatoes.js",
   "directories": {
@@ -26,5 +22,9 @@
   },
   "files": [
     "lib"
-  ]
+  ],
+  "scripts": {},
+  "publishConfig": {
+    "access": "public"
+  }
 }
