@@ -1,106 +1,134 @@
 // ==UserScript==
-// @name            OpenUserJS+
-// @name:it         OpenUserJS+
-// @author          Davide <iFelix18@protonmail.com>
-// @namespace       https://github.com/iFelix18
-// @icon            https://www.google.com/s2/favicons?domain=openuserjs.org
-// @description     Adds various features and improves the OpenUserJS experience
-// @description:it  Aggiunge varie funzionalità e migliora l'esperienza di OpenUserJS
-// @copyright       2021, Davide (https://github.com/iFelix18)
-// @license         MIT
-// @version         1.5.1
-// @homepage        https://github.com/iFelix18/Userscripts#readme
-// @homepageURL     https://github.com/iFelix18/Userscripts#readme
-// @supportURL      https://github.com/iFelix18/Userscripts/issues
-// @updateURL       https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js
-// @downloadURL     https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js
-// @require         https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require         https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-3.0.1/lib/utils/utils.min.js
-// @require         https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
-// @require         https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6/dist/index.js
-// @match           *://openuserjs.org/*
-// @connect         openuserjs.org
-// @grant           GM_getValue
-// @grant           GM_setValue
-// @grant           GM.deleteValue
-// @grant           GM.getValue
-// @grant           GM.notification
-// @grant           GM.registerMenuCommand
-// @grant           GM.setValue
-// @grant           GM.xmlHttpRequest
-// @run-at          document-idle
-// @inject-into     content
+// @name               OpenUserJS+
+// @name:de            OpenUserJS+
+// @name:es            OpenUserJS+
+// @name:fr            OpenUserJS+
+// @name:it            OpenUserJS+
+// @name:ru            OpenUserJS+
+// @name:zh-CN         OpenUserJS+
+// @author             Davide <iFelix18@protonmail.com>
+// @namespace          https://github.com/iFelix18
+// @icon               https://www.google.com/s2/favicons?domain=openuserjs.org
+// @description        Adds various features and improves the OpenUserJS experience
+// @description:de     Fügt verschiedene Funktionen hinzu und verbessert das OpenUserJS-Erlebnis
+// @description:es     Agrega varias funciones y mejora la experiencia de OpenUserJS
+// @description:fr     Ajoute diverses fonctionnalités et améliore l'expérience OpenUserJS
+// @description:it     Aggiunge varie funzionalità e migliora l'esperienza di OpenUserJS
+// @description:ru     Добавляет различные функции и улучшает работу с OpenUserJS
+// @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
+// @copyright          2021, Davide (https://github.com/iFelix18)
+// @license            MIT
+// @version            1.6.0
+// @homepage           https://github.com/iFelix18/Userscripts#readme
+// @homepageURL        https://github.com/iFelix18/Userscripts#readme
+// @supportURL         https://github.com/iFelix18/Userscripts/issues
+// @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js
+// @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js
+// @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
+// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@4.0.0/lib/index.min.js
+// @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
+// @require            https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6/dist/index.min.js
+// @match              *://openuserjs.org/*
+// @connect            openuserjs.org
+// @grant              GM_getValue
+// @grant              GM_setValue
+// @grant              GM.deleteValue
+// @grant              GM.getValue
+// @grant              GM.notification
+// @grant              GM.registerMenuCommand
+// @grant              GM.setValue
+// @grant              GM.xmlHttpRequest
+// @run-at             document-idle
+// @inject-into        page
 // ==/UserScript==
 
-/* global $, GM_config, migrateConfig, MyUtils, VM */
+/* global $, GM_configStruct, MU, VM */
 
-(() => {
-  migrateConfig('config', 'openuserjs-plus') // migrate to the new config ID
+(async () => {
+  MU.migrateConfig('config', 'openuserjs-plus') // migrate to the new config ID
 
   //* GM_config
-  GM_config.init({
-    id: 'openuserjs-plus',
-    title: `OpenUserJS+ v${GM.info.script.version} Settings`,
-    fields: {
-      hideNonLatinScripts: {
-        label: 'Hide non-Latin scripts, press "Ctrl + Alt + L" to show non-Latin scripts',
-        section: ['Features'],
-        labelPos: 'right',
-        type: 'checkbox',
-        default: true
-      },
-      hideBlacklistedScripts: {
-        label: 'Hide blacklisted scripts, press "Ctrl + Alt + B" to show Blacklisted scripts',
-        labelPos: 'right',
-        type: 'checkbox',
-        default: true
-      },
-      hideScript: {
-        label: 'Add a button to hide the script, press "Ctrl + Alt + H" to show Hidden scripts',
-        labelPos: 'right',
-        type: 'checkbox',
-        default: true
-      },
-      installButton: {
-        label: 'Add a button to install the script directly',
-        labelPos: 'right',
-        type: 'checkbox',
-        default: true
-      },
-      milestoneNotification: {
-        label: 'Get notified whenever your total installs got over any of these milestone (leave blank to disable) - Separate milestones with a comma!',
-        labelPos: 'left',
-        type: 'text',
-        title: 'Separate milestones with a comma!',
-        size: 150,
-        default: '10, 100, 500, 1000, 2500, 5000, 10000, 100000, 1000000'
-      },
-      logging: {
-        label: 'Logging',
-        section: ['Develop'],
-        labelPos: 'right',
-        type: 'checkbox',
-        default: false
-      }
+  const config = new GM_configStruct()
+  const fields = {
+    hideNonLatinScripts: {
+      label: 'Hide non-Latin scripts, press "Ctrl + Alt + L" to show non-Latin scripts',
+      section: ['Features'],
+      labelPos: 'right',
+      type: 'checkbox',
+      default: true
     },
-    css: ':root{--mainBackground:#343433;--background:#282828;--text:#fff}body{background-color:var(--mainBackground)!important;color:var(--text)!important}body .section_header{background-color:var(--background)!important;border-bottom:none!important;border:1px solid var(--background)!important;color:var(--text)!important}body .section_desc{background-color:var(--background)!important;border-top:none!important;border:1px solid var(--background)!important;color:var(--text)!important}body .reset{color:var(--text)!important}',
-    events: {
-      save: () => {
-        GM_config.close()
-        window.location.reload(false)
-      }
+    hideBlacklistedScripts: {
+      label: 'Hide blacklisted scripts, press "Ctrl + Alt + B" to show Blacklisted scripts',
+      labelPos: 'right',
+      type: 'checkbox',
+      default: true
+    },
+    hideScript: {
+      label: 'Add a button to hide the script, press "Ctrl + Alt + H" to show Hidden scripts',
+      labelPos: 'right',
+      type: 'checkbox',
+      default: true
+    },
+    installButton: {
+      label: 'Add a button to install the script directly',
+      labelPos: 'right',
+      type: 'checkbox',
+      default: true
+    },
+    milestoneNotification: {
+      label: 'Get notified whenever your total installs got over any of these milestone (leave blank to disable) - Separate milestones with a comma!',
+      labelPos: 'left',
+      type: 'text',
+      title: 'Separate milestones with a comma!',
+      size: 150,
+      default: '10, 100, 500, 1000, 2500, 5000, 10000, 100000, 1000000'
+    },
+    logging: {
+      label: 'Logging',
+      section: ['Develop'],
+      labelPos: 'right',
+      type: 'checkbox',
+      default: false
     }
-  })
-  if (GM.info.scriptHandler !== 'Userscripts') GM.registerMenuCommand('Configure', () => GM_config.open()) //! Userscripts Safari: GM.registerMenuCommand is missing
+  }
+
+  if (document.location.pathname === '/settings') {
+    document.title = `${GM.info.script.name} Settings`
+    config.init({
+      frame: $('.panel-default').empty().get(0),
+      id: 'openuserjs-plus',
+      title: `${GM.info.script.name} v${GM.info.script.version} Settings`,
+      fields: fields,
+      css: '#openuserjs-plus *{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif!important;color:#2c3e50!important}#openuserjs-plus{background-color:#fff!important;border-radius:4px!important;border:1px solid transparent!important;box-shadow:0 1px 1px rgba(0,0,0,.05)!important;box-sizing:border-box!important;height:auto!important;list-style-type:none!important;margin-bottom:0!important;margin-bottom:20px;margin-left:auto!important;margin-right:auto!important;margin-top:0!important;max-height:none!important;max-width:none!important;padding:0 30em 0!important;position:static!important;width:auto!important}#openuserjs-plus .config_header{display:block!important;font-size:1.5em!important;font-weight:700!important;margin-bottom:.83em!important;margin-left:0!important;margin-right:0!important;margin-top:.83em!important}#openuserjs-plus .field_label{font-size:.85em!important;font-weight:600!important;margin-left:6px!important}#openuserjs-plus .section_header{background-color:#2c3e50!important;border-color:#202d3b!important;border:1px solid transparent!important}#openuserjs-plus_closeBtn{display:none!important}',
+      events: {
+        init: () => {
+          config.open()
+        },
+        save: () => {
+          window.location = document.referrer
+        }
+      }
+    })
+  } else {
+    config.init({
+      id: 'openuserjs-plus',
+      title: `${GM.info.script.name} v${GM.info.script.version} Settings`,
+      fields: fields,
+      events: {
+        init: () => {
+          if (GM.info.scriptHandler !== 'Userscripts') { //! Userscripts Safari: GM.registerMenuCommand is missing
+            GM.registerMenuCommand('Configure', () => config.open())
+          }
+        },
+        save: () => {
+          config.close()
+          setTimeout(window.location.reload(false), 500)
+        }
+      }
+    })
+  }
 
   //* MyUtils
-  const MU = new MyUtils({
-    name: 'OpenUserJS+',
-    version: GM.info.script.version,
-    author: 'Davide',
-    color: '#ff0000',
-    logging: GM_config.get('logging')
-  })
   MU.init('openuserjs-plus')
 
   //* Constants
@@ -110,24 +138,33 @@
   const blacklist = new RegExp([ /* cspell: disable-next-line */
     '\\bagar((.)?io)?\\b', '\\bagma((.)?io)?\\b', '\\baimbot\\b', '\\barras((.)?io)?\\b', '\\bbot(s)?\\b', '\\bbubble((.)?am)?\\b', '\\bcheat(s)?\\b', '\\bdiep((.)?io)?\\b', '\\bfreebitco((.)?in)?\\b', '\\bgota((.)?io)?\\b', '\\bhack(s)?\\b', '\\bkrunker((.)?io)?\\b', '\\blostworld((.)?io)?\\b', '\\bmoomoo((.)?io)?\\b', '\\broblox(.com)?\\b', '\\bshell\\sshockers\\b', '\\bshellshock((.)?io)?\\b', '\\bshellshockers\\b', '\\bskribbl((.)?io)?\\b', '\\bslither((.)?io)?\\b', '\\bsurviv((.)?io)?\\b', '\\btaming((.)?io)?\\b', '\\bvenge((.)?io)?\\b', '\\bvertix((.)?io)?\\b', '\\bzombs((.)?io)?\\b', '\\p{Extended_Pictographic}'
   ].join('|'), 'giu')
-  const milestones = GM_config.get('milestoneNotification').replace(/\s/g, '').split(',').map((element) => Number(element))
+  const milestones = config.get('milestoneNotification').replace(/\s/g, '').split(',').map((element) => Number(element))
   const userID = $('a[title="My profile"]').text()
 
   MU.log(nonLatins)
   MU.log(blacklist)
 
   //* Shortcuts
-  VM.shortcut.register('ctrl-alt-l', () => {
+  const { register } = VM.shortcut
+  register('ctrl-alt-l', () => {
     $('.panel-default > .table .tr-link.non-latin').toggle()
   })
-  VM.shortcut.register('ctrl-alt-b', () => {
+  register('ctrl-alt-b', () => {
     $('.panel-default > .table .tr-link.blacklisted').toggle()
   })
-  VM.shortcut.register('ctrl-alt-h', () => {
+  register('ctrl-alt-h', () => {
     $('.panel-default > .table .tr-link.hidden-script').toggle()
   })
 
   //* Functions
+  /**
+   * Adds a button for script configuration to the menu
+   */
+  const addMenu = () => {
+    const menu = `<li class='${GM.info.script.name.toLowerCase().replace(/\s/g, '_')}_settings'><a href='/settings' title='Settings'>${GM.info.script.name} settings</a></li>`
+    $('.navbar-collapse-top > .navbar-right > li').first().before(menu)
+  }
+
   /**
    * Hide all scripts with non-Latin characters in the name or description
    *
@@ -276,40 +313,45 @@
   }
 
   //* Script
+  addMenu()
   $('.panel-default > .table .tr-link').each((index, element) => {
-    if (GM_config.get('hideNonLatinScripts')) hideNonLatinScripts(element)
-    if (GM_config.get('hideBlacklistedScripts')) hideBlacklistedScripts(element)
-    if (GM_config.get('hideScript')) hideScript(element, true)
-    if (GM_config.get('installButton')) addInstallButton(element)
+    if (config.get('hideNonLatinScripts')) hideNonLatinScripts(element)
+    if (config.get('hideBlacklistedScripts')) hideBlacklistedScripts(element)
+    if (config.get('hideScript')) hideScript(element, true)
+    if (config.get('installButton')) addInstallButton(element)
   })
 
   if (window.location.pathname.includes('/scripts/')) {
     const element = $('#body > .container-fluid')
-    if (GM_config.get('hideScript')) hideScript(element, false)
+    if (config.get('hideScript')) hideScript(element, false)
   }
 
-  if (GM_config.get('milestoneNotification')) {
+  if (config.get('milestoneNotification')) {
     if (!userID) return
 
-    getUserData(userID).then(async (data) => {
-      const totalInstalls = $(data).find('.dl-horizontal dt:contains("Total installs")').next('dd').text()
-      const lastMilestone = await GM.getValue('lastMilestone', 0)
-      const milestone = $($.grep(milestones, (milestone) => totalInstalls >= milestone)).get(-1)
+    const userData = await getUserData(userID).then()
+    const totalInstalls = $(userData).find('.dl-horizontal dt:contains("Total installs")').next('dd').text()
+    const lastMilestone = await GM.getValue('lastMilestone', 0)
+    const milestone = $($.grep(milestones, (milestone) => totalInstalls >= milestone)).get(-1)
 
-      MU.log(`total installs are "${totalInstalls}", milestone reached is "${milestone}", last milestone reached is "${lastMilestone}"`)
+    MU.log(`total installs are "${totalInstalls}", milestone reached is "${milestone}", last milestone reached is "${lastMilestone}"`)
 
-      if (milestone <= lastMilestone) return
+    if (milestone <= lastMilestone) return
 
-      GM.setValue('lastMilestone', milestone)
+    GM.setValue('lastMilestone', milestone)
 
+    const text = `Congrats, your scripts got over the milestone of ${milestone.toLocaleString()} total installs!`
+    if (GM.info.scriptHandler !== 'Userscripts') { //! Userscripts Safari: GM.notification is missing
       GM.notification({
-        text: `Congrats, your scripts got over the milestone of ${milestone.toLocaleString()} total installs!`,
+        text: text,
         title: 'OpenUserJS+',
         image: logo,
         onclick: () => {
           window.location = `https://openuserjs.org/users/${$(userID).text()}/scripts`
         }
       })
-    }).catch((error) => MU.error(error))
+    } else {
+      MU.alert(text)
+    }
   }
 })()

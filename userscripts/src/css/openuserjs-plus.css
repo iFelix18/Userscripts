@@ -1,0 +1,50 @@
+#openuserjs-plus * {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  color: #2c3e50 !important;
+}
+
+#openuserjs-plus {
+  background-color: #fff !important;
+  border-radius: 4px !important;
+  border: 1px solid transparent !important;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05) !important;
+  box-sizing: border-box !important;
+  height: auto !important;
+  list-style-type: none !important;
+  margin-bottom: 0 !important;
+  margin-bottom: 20px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 0 !important;
+  max-height: none !important;
+  max-width: none !important;
+  padding: 0 30em 0 !important;
+  position: static !important;
+  width: auto !important;
+}
+
+#openuserjs-plus .config_header {
+  display: block !important;
+  font-size: 1.5em !important;
+  font-weight: bold !important;
+  margin-bottom: 0.83em !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 0.83em !important;
+}
+
+#openuserjs-plus .field_label {
+  font-size: 0.85em !important;
+  font-weight: 600 !important;
+  margin-left: 6px !important;
+}
+
+#openuserjs-plus .section_header {
+  background-color: #2c3e50 !important;
+  border-color: #202d3b !important;
+  border: 1px solid transparent !important;
+}
+
+#openuserjs-plus_closeBtn {
+  display: none !important;
+}
