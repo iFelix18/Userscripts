@@ -27,7 +27,7 @@ Features:
 [link]: #greasy-fork
 [greasyfork-link]: https://greasyfork.org/
 
-[version-badge]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
+[version-badge]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/greasyfork-plus
 [size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
 [install-badge]: https://flat.badgen.net/badge/install%20directly%20from/jsDelivr/blue "Click here!"
 

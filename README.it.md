@@ -114,23 +114,23 @@ This product uses Wikidata data but is not endorsed or certified by Wikidata.
 [scripts]: #scripts
 
 [ratings-on-tmdb-link]: /userscripts/docs/ratings-on-tmdb.it.md "Più info"
-[ratings-on-tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
+[ratings-on-tmdb-version]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/ratings-on-tmdb
 [ratings-on-tmdb-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-tmdb.user.js "Clicca qui!"
 
 [ratings-on-imdb-link]: /userscripts/docs/ratings-on-imdb.it.md "Più info"
-[ratings-on-imdb-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-imdb.meta.js
+[ratings-on-imdb-version]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/ratings-on-imdb
 [ratings-on-imdb-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-imdb.user.js "Clicca qui!"
 
 [ratings-on-justwatch-link]: /userscripts/docs/ratings-on-justwatch.it.md "Più info"
-[ratings-on-justwatch-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js
+[ratings-on-justwatch-version]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/ratings-on-justwatch
 [ratings-on-justwatch-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/ratings-on-justwatch.user.js "Clicca qui!"
 
 [openuserjs-plus-link]: /userscripts/docs/openuserjs-plus.it.md "Più info"
-[openuserjs-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/openuserjs-plus.meta.js
+[openuserjs-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/openuserjs-plus
 [openuserjs-plus-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/openuserjs-plus.user.js "Clicca qui!"
 
 [greasyfork-plus-link]: /userscripts/docs/greasyfork-plus.it.md "Più info"
-[greasyfork-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
+[greasyfork-plus-version]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/greasyfork-plus
 [greasyfork-plus-download]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/greasyfork-plus.user.js "Clicca qui!"
 
 [libraries]: #librerie

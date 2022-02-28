@@ -25,7 +25,7 @@ Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a [JustW
 [justwatch-link]: https://www.justwatch.com/
 [omdb-api]: https://www.omdbapi.com/apikey.aspx
 
-[version-badge]: https://flat.badgen.net/runkit/iFelix18/version/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js
+[version-badge]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/ratings-on-justwatch
 [size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js
 [install-badge]: https://flat.badgen.net/badge/install%20directly%20from/jsDelivr/blue "Clicca qui!"
 
