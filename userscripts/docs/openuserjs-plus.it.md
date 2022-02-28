@@ -20,6 +20,8 @@ Caratteristiche:
 |               _Pulsante installa_               |
 | [![Milestone notification][screenshot-3]][link] |
 |              _Notifica traguardo_               |
+|     [![Settings page][screenshot-4]][link]      |
+|              _Pagina impostazioni_              |
 
 [link]: #openuserjs
 [openuserjs-link]: https://openuserjs.org/
@@ -33,3 +35,4 @@ Caratteristiche:
 [screenshot-1]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_hide-script-button.png?raw=true "Pulsante nascondi script"
 [screenshot-2]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_install-button.png?raw=true "Pulsante installa"
 [screenshot-3]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_milestone-notification.png?raw=true "Notifica traguardo"
+[screenshot-4]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_settings-page.png?raw=true "Pagina impostazioni"
