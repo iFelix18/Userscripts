@@ -18,16 +18,16 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.5.6
+// @version            1.7.0
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
 // @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@3.0.4
-// @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0
-// @require            https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6
+// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@4.0.0/lib/index.min.js
+// @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
+// @require            https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6/dist/index.min.js
 // @match              *://greasyfork.org/*
 // @match              *://sleazyfork.org/*
 // @connect            greasyfork.org
@@ -48,96 +48,114 @@
 // @inject-into        page
 // ==/UserScript==
 
-/* global $, GM_config, migrateConfig, MyUtils, VM */
+/* global $, GM_configStruct, MU, VM */
 
-(() => {
-  migrateConfig('config', 'greasyfork-plus') // migrate to the new config ID
+(async () => {
+  MU.migrateConfig('config', 'greasyfork-plus') // migrate to the new config ID
 
   //* GM_config
-  GM_config.init({
-    id: 'greasyfork-plus',
-    title: `${GM.info.script.name} v${GM.info.script.version} Settings`,
-    fields: {
-      hideNonLatinScripts: {
-        label: 'Hide non-Latin scripts, press "Ctrl + Alt + L" to show non-Latin scripts',
-        section: ['Features'],
-        labelPos: 'right',
-        type: 'checkbox',
-        default: true
-      },
-      hideBlacklistedScripts: {
-        label: 'Hide blacklisted scripts, press "Ctrl + Alt + B" to show Blacklisted scripts',
-        labelPos: 'right',
-        type: 'checkbox',
-        default: true
-      },
-      hideScript: {
-        label: 'Add a button to hide the script, press "Ctrl + Alt + H" to show Hidden scripts',
-        labelPos: 'right',
-        type: 'checkbox',
-        default: true
-      },
-      installButton: {
-        label: 'Add a button to install the script directly',
-        labelPos: 'right',
-        type: 'checkbox',
-        default: true
-      },
-      showTotalInstalls: {
-        label: 'Shows the number of daily and total installations on the user profile',
-        labelPos: 'right',
-        type: 'checkbox',
-        default: true
-      },
-      milestoneNotification: {
-        label: 'Get notified whenever your total installs got over any of these milestone (leave blank to disable) - Separate milestones with a comma!',
-        labelPos: 'left',
-        type: 'text',
-        title: 'Separate milestones with a comma!',
-        size: 150,
-        default: '10, 100, 500, 1000, 2500, 5000, 10000, 100000, 1000000'
-      },
-      logging: {
-        label: 'Logging',
-        section: ['Develop'],
-        labelPos: 'right',
-        type: 'checkbox',
-        default: false
-      },
-      clearCache: {
-        label: 'Clear the cache',
-        type: 'button',
-        click: async () => {
-          const values = await GM.listValues()
-
-          for (const value of values) {
-            const cache = await GM.getValue(value) // get cache
-            if (cache.time) { GM.deleteValue(value) } // delete cache
-          }
-
-          MU.log('cache cleared')
-          GM_config.close()
-        }
-      }
+  const config = new GM_configStruct()
+  const fields = {
+    hideNonLatinScripts: {
+      label: 'Hide non-Latin scripts, press "Ctrl + Alt + L" to show non-Latin scripts',
+      section: ['Features'],
+      labelPos: 'right',
+      type: 'checkbox',
+      default: true
     },
-    css: ':root{--mainBackground:#343433;--background:#282828;--text:#fff}body{background-color:var(--mainBackground)!important;color:var(--text)!important}body .section_header{background-color:var(--background)!important;border-bottom:none!important;border:1px solid var(--background)!important;color:var(--text)!important}body .section_desc{background-color:var(--background)!important;border-top:none!important;border:1px solid var(--background)!important;color:var(--text)!important}body .reset{color:var(--text)!important}',
-    events: {
-      save: () => {
-        GM_config.close()
-        window.location.reload(false)
+    hideBlacklistedScripts: {
+      label: 'Hide blacklisted scripts, press "Ctrl + Alt + B" to show Blacklisted scripts',
+      labelPos: 'right',
+      type: 'checkbox',
+      default: true
+    },
+    hideScript: {
+      label: 'Add a button to hide the script, press "Ctrl + Alt + H" to show Hidden scripts',
+      labelPos: 'right',
+      type: 'checkbox',
+      default: true
+    },
+    installButton: {
+      label: 'Add a button to install the script directly',
+      labelPos: 'right',
+      type: 'checkbox',
+      default: true
+    },
+    showTotalInstalls: {
+      label: 'Shows the number of daily and total installations on the user profile',
+      labelPos: 'right',
+      type: 'checkbox',
+      default: true
+    },
+    milestoneNotification: {
+      label: 'Get notified whenever your total installs got over any of these milestone (leave blank to disable) - Separate milestones with a comma!',
+      labelPos: 'left',
+      type: 'text',
+      title: 'Separate milestones with a comma!',
+      size: 150,
+      default: '10, 100, 500, 1000, 2500, 5000, 10000, 100000, 1000000'
+    },
+    logging: {
+      label: 'Logging',
+      section: ['Develop'],
+      labelPos: 'right',
+      type: 'checkbox',
+      default: false
+    },
+    clearCache: {
+      label: 'Clear the cache',
+      type: 'button',
+      click: async () => {
+        const values = await GM.listValues()
+
+        for (const value of values) {
+          const cache = await GM.getValue(value) // get cache
+          if (cache.time) { GM.deleteValue(value) } // delete cache
+        }
+
+        MU.alert('cache cleared')
       }
     }
-  })
-  if (GM.info.scriptHandler !== 'Userscripts') GM.registerMenuCommand('Configure', () => GM_config.open()) //! Userscripts Safari: GM.registerMenuCommand is missing
+  }
 
-  //* MyUtils
-  const MU = new MyUtils({
-    name: GM.info.script.name,
-    version: GM.info.script.version,
-    author: GM.info.script.author,
-    color: '#ff0000',
-    logging: GM_config.get('logging')
-  })
+  if (document.location.pathname === '/settings') {
+    $('html').attr('style', 'background: none !important;')
+    document.title = `${GM.info.script.name} Settings`
+    config.init({
+      frame: $('body > .width-constraint').empty().get(0),
+      id: 'greasyfork-plus',
+      title: `${GM.info.script.name} v${GM.info.script.version} Settings`,
+      fields: fields,
+      css: '#greasyfork-plus *{font-family:Open Sans,sans-serif,Segoe UI Emoji!important}#greasyfork-plus{background-color:#fff!important;border-radius:5px!important;border:1px solid #bbb!important;box-shadow:0 0 5px #ddd!important;box-sizing:border-box!important;height:auto!important;list-style-type:none!important;margin-bottom:0!important;margin-left:auto!important;margin-right:auto!important;margin-top:14px!important;max-height:none!important;max-width:1200px!important;padding:0 1em 1em!important;position:static!important;width:auto!important}#greasyfork-plus .config_header{display:block!important;font-size:1.5em!important;font-weight:700!important;margin-bottom:.83em!important;margin-left:0!important;margin-right:0!important;margin-top:.83em!important}#greasyfork-plus .field_label{font-size:.85em!important;font-weight:500!important}#greasyfork-plus .section_header{background-color:#670000!important;background-image:linear-gradient(#670000,#900)!important;border:1px solid transparent!important}#greasyfork-plus_closeBtn{display:none!important}',
+      events: {
+        init: () => {
+          config.open()
+        },
+        save: () => {
+          window.location = document.referrer
+        }
+      }
+    })
+  } else {
+    config.init({
+      id: 'greasyfork-plus',
+      title: `${GM.info.script.name} v${GM.info.script.version} Settings`,
+      fields: fields,
+      events: {
+        init: () => {
+          if (GM.info.scriptHandler !== 'Userscripts') { //! Userscripts Safari: GM.registerMenuCommand is missing
+            GM.registerMenuCommand('Configure', () => config.open())
+          }
+        },
+        save: () => {
+          config.close()
+          setTimeout(window.location.reload(false), 500)
+        }
+      }
+    })
+  }
+
+  //* Utils
   MU.init('greasyfork-plus')
 
   //* Constants
@@ -148,7 +166,7 @@
   const blacklist = new RegExp([ /* cSpell: disable-next-line */
     '\\bagar((.)?io)?\\b', '\\bagma((.)?io)?\\b', '\\baimbot\\b', '\\barras((.)?io)?\\b', '\\bbot(s)?\\b', '\\bbubble((.)?am)?\\b', '\\bcheat(s)?\\b', '\\bdiep((.)?io)?\\b', '\\bfreebitco((.)?in)?\\b', '\\bgota((.)?io)?\\b', '\\bhack(s)?\\b', '\\bkrunker((.)?io)?\\b', '\\blostworld((.)?io)?\\b', '\\bmoomoo((.)?io)?\\b', '\\broblox(.com)?\\b', '\\bshell\\sshockers\\b', '\\bshellshock((.)?io)?\\b', '\\bshellshockers\\b', '\\bskribbl((.)?io)?\\b', '\\bslither((.)?io)?\\b', '\\bsurviv((.)?io)?\\b', '\\btaming((.)?io)?\\b', '\\bvenge((.)?io)?\\b', '\\bvertix((.)?io)?\\b', '\\bzombs((.)?io)?\\b', '\\p{Extended_Pictographic}'
   ].join('|'), 'giu')
-  const milestones = GM_config.get('milestoneNotification').replace(/\s/g, '').split(',').map((element) => Number(element))
+  const milestones = config.get('milestoneNotification').replace(/\s/g, '').split(',').map((element) => Number(element))
   const lang = $('html').attr('lang')
   const locales = { /* cSpell: disable */
     de: {
@@ -225,17 +243,26 @@
   MU.log(blacklist)
 
   //* Shortcuts
-  VM.shortcut.register('ctrl-alt-l', () => {
+  const { register } = VM.shortcut
+  register('ctrl-alt-l', () => {
     $('.script-list li.non-latin').toggle()
   })
-  VM.shortcut.register('ctrl-alt-b', () => {
+  register('ctrl-alt-b', () => {
     $('.script-list li.blacklisted').toggle()
   })
-  VM.shortcut.register('ctrl-alt-h', () => {
+  register('ctrl-alt-h', () => {
     $('.script-list li.hidden').toggle()
   })
 
   //* Functions
+  /**
+   * Adds a button for script configuration to the menu
+   */
+  const addMenu = () => {
+    const menu = `<li class='${GM.info.script.name.toLowerCase().replace(/\s/g, '_')}_settings'><a href='/settings'>${GM.info.script.name} settings</a></li>`
+    $('#site-nav > nav > li').first().before(menu)
+  }
+
   /**
    * Hide all scripts with non-Latin characters in the name or description
    *
@@ -379,12 +406,12 @@
    */
   const isInstalled = (name, namespace) => {
     return new Promise((resolve, reject) => {
-      if (window.external.Violentmonkey) {
+      if (window.external && window.external.Violentmonkey) {
         window.external.Violentmonkey.isInstalled(name, namespace).then((data) => resolve(data))
         return
       }
 
-      if (window.external.Tampermonkey) {
+      if (window.external && window.external.Tampermonkey) {
         window.external.Tampermonkey.isInstalled(name, namespace, (data) => {
           (data.installed) ? resolve(data.version) : resolve()
         })
@@ -403,6 +430,7 @@
    * @returns {number} Comparison value
    */
   const compareVersions = (v1, v2) => {
+    if (!v1 || !v2) return
     if (v1 === null || v2 === null) return
     if (v1 === v2) return 0
 
@@ -496,36 +524,33 @@
 
   //* Script
   clearOldCache()
+  addMenu()
 
-  scriptList.find('li').each((index, element) => {
+  scriptList.find('li').each(async (index, element) => {
     const id = $(element).data('script-id')
 
-    if (GM_config.get('hideNonLatinScripts')) hideNonLatinScripts(element)
-    if (GM_config.get('hideBlacklistedScripts')) hideBlacklistedScripts(element)
-    if (GM_config.get('hideScript')) hideScript(element, id, true)
+    if (config.get('hideNonLatinScripts')) hideNonLatinScripts(element)
+    if (config.get('hideBlacklistedScripts')) hideBlacklistedScripts(element)
+    if (config.get('hideScript')) hideScript(element, id, true)
 
-    if (GM_config.get('installButton')) {
-      getScriptData(id).then((data) => {
-        const version = data.version
-        const url = data.code_url
+    if (config.get('installButton')) {
+      const script = await getScriptData(id).then()
+      const version = script.version
+      const installed = await isInstalled(script.name, script.namespace).then()
+      const update = compareVersions(version, installed)
+      const label = installLabel(update)
 
-        isInstalled(data.name, data.namespace).then((data) => {
-          const update = compareVersions(version, data)
-          const label = installLabel(update)
-
-          addInstallButton(element, url, label, version)
-        }).catch((error) => MU.error(error))
-      }).catch((error) => MU.error(error))
+      addInstallButton(element, script.code_url, label, version)
     }
   })
 
-  if (GM_config.get('hideScript') && scriptInfo.length > 0) {
+  if (config.get('hideScript') && scriptInfo.length > 0) {
     const id = $(scriptInfo).find('.install-link').data('script-id')
 
     hideScript(scriptInfo, id, false)
   }
 
-  if (GM_config.get('showTotalInstalls') && userScriptList.length > 0) {
+  if (config.get('showTotalInstalls') && userScriptList.length > 0) {
     const dailyInstalls = []
     const totalInstalls = []
 
@@ -540,29 +565,32 @@
     listSort.find('.list-option.list-current:nth-child(2), .list-option:not(list-current):nth-child(2) a').append(`<span> (${totalInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
   }
 
-  if (GM_config.get('milestoneNotification')) {
+  if (config.get('milestoneNotification')) {
     if (!userID) return
 
-    getUserData(userID.match(/\d+(?=\D)/g)).then((data) => {
-      getTotalInstalls(data).then(async (totalInstalls) => {
-        const lastMilestone = await GM.getValue('lastMilestone', 0)
-        const milestone = $($.grep(milestones, (milestone) => totalInstalls >= milestone)).get(-1)
+    const userData = await getUserData(userID.match(/\d+(?=\D)/g)).then()
+    const totalInstalls = await getTotalInstalls(userData).then()
+    const lastMilestone = await GM.getValue('lastMilestone', 0)
+    const milestone = $($.grep(milestones, (milestone) => totalInstalls >= milestone)).get(-1)
 
-        MU.log(`total installs are "${totalInstalls}", milestone reached is "${milestone}", last milestone reached is "${lastMilestone}"`)
+    MU.log(`total installs are "${totalInstalls}", milestone reached is "${milestone}", last milestone reached is "${lastMilestone}"`)
 
-        if (milestone <= lastMilestone) return
+    if (milestone <= lastMilestone) return
 
-        GM.setValue('lastMilestone', milestone)
+    GM.setValue('lastMilestone', milestone)
 
-        GM.notification({
-          text: (locales[lang] ? locales[lang].milestone : locales.en.milestone).replace('$1', milestone.toLocaleString()),
-          title: GM.info.script.name,
-          image: logo,
-          onclick: () => {
-            window.location = `https://${window.location.hostname}${userID}#user-script-list-section`
-          }
-        })
-      }).catch((error) => MU.error(error))
-    }).catch((error) => MU.error(error))
+    const text = (locales[lang] ? locales[lang].milestone : locales.en.milestone).replace('$1', milestone.toLocaleString())
+    if (GM.info.scriptHandler !== 'Userscripts') { //! Userscripts Safari: GM.notification is missing
+      GM.notification({
+        text: text,
+        title: GM.info.script.name,
+        image: logo,
+        onclick: () => {
+          window.location = `https://${window.location.hostname}${userID}#user-script-list-section`
+        }
+      })
+    } else {
+      MU.alert(text)
+    }
   }
 })()

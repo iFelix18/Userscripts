@@ -1,0 +1,47 @@
+#greasyfork-plus * {
+  font-family: Open Sans, sans-serif, Segoe UI Emoji !important;
+}
+
+#greasyfork-plus {
+  background-color: #fff !important;
+  border-radius: 5px !important;
+  border: 1px solid #bbb !important;
+  box-shadow: 0 0 5px #ddd !important;
+  box-sizing: border-box !important;
+  height: auto !important;
+  list-style-type: none !important;
+  margin-bottom: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 14px !important;
+  max-height: none !important;
+  max-width: 1200px !important;
+  padding: 0 1em 1em !important;
+  position: static !important;
+  width: auto !important;
+}
+
+#greasyfork-plus .config_header {
+  display: block !important;
+  font-size: 1.5em !important;
+  font-weight: bold !important;
+  margin-bottom: 0.83em !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 0.83em !important;
+}
+
+#greasyfork-plus .field_label {
+  font-size: 0.85em !important;
+  font-weight: 500 !important;
+}
+
+#greasyfork-plus .section_header {
+  background-color: #670000 !important;
+  background-image: linear-gradient(#670000, #900) !important;
+  border: 1px solid transparent !important;
+}
+
+#greasyfork-plus_closeBtn {
+  display: none !important;
+}
