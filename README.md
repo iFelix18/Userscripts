@@ -9,7 +9,6 @@ My scripts and libraries
 [![Open Issues][open-issues-badge]][open-issues-link]
 [![Closed Issues][closed-issues-badge]][closed-issues-link]
 [![Last Commit][last-commit-badge]][last-commit-link]
-[![jsDelivr Hits][jsdelivr-hits-badge]][jsdelivr-hits-link]
 [![JavaScript Style Guide][style-guide-badge]][style-guide-link]
 [![Lerna][lerna-badge]][lerna-link]
 [![License][license-badge]][license-link]
@@ -97,8 +96,6 @@ This product uses Wikidata data but is not endorsed or certified by Wikidata.
 [closed-issues-link]: https://github.com/iFelix18/Userscripts/issues?q=is%3Aissue+is%3Aclosed
 [last-commit-badge]: https://flat.badgen.net/github/last-commit/iFelix18/Userscripts
 [last-commit-link]: https://github.com/iFelix18/Userscripts/commits/master
-[jsdelivr-hits-badge]: https://flat.badgen.net/jsdelivr/hits/gh/iFelix18/Userscripts?color=FF5627
-[jsdelivr-hits-link]: https://www.jsdelivr.com/package/gh/iFelix18/Userscripts
 [style-guide-badge]: https://flat.badgen.net/badge/code%20style/standard/44CC11
 [style-guide-link]: https://standardjs.com
 [lerna-badge]: https://flat.badgen.net/badge/maintained%20with/lerna/CC00FF
