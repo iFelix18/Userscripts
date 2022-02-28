@@ -73,9 +73,13 @@ const minifyHBS = () => {
 const replaceCSS = () => {
   return src(paths.userscripts.src)
     .pipe(flatmap((stream, file) => {
-      return src(file.path)
-        .pipe(replace(/(?<=(css: )')(.*?)(?=')/g, readFileSync('tempfiles/config.css', 'utf8')))
-        .pipe(dest(paths.userscripts.dest))
+      const fileName = file.stem.replace('.user', '')
+
+      return existsSync(`tempfiles/${fileName}.css`)
+        ? src(file.path)
+          .pipe(replace(/(?<=(css: )')(.*?)(?=')/g, readFileSync(`tempfiles/${fileName}.css`, 'utf8')))
+          .pipe(dest(paths.userscripts.dest))
+        : stream
     }))
 }
 
