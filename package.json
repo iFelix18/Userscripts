@@ -17,6 +17,9 @@
     "email": "iFelix18@protonmail.com",
     "url": "https://twitter.com/iFeIix18"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "lint": "eslint . --ext .json,.js",
     "lint:md": "markdownlint-cli2 **/*.md !**/node_modules/** !LICENSE.md",
