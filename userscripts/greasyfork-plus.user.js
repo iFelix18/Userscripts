@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.8.0
+// @version            1.8.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -432,11 +432,15 @@
    * @param {boolean} list Is list
    */
   const hideScript = async (element, id, list) => {
-    // if is in list hide it
+    // if is in hiddenlist hide it
     if (id in hiddenList && list) {
-      $(element).addClass('hidden').css('background-color', color).css('color', colorText).hide().find('a').css('color', colorLink)
+      $(element).addClass('hidden').css('background-color', color).css('color', colorText).hide()
+      $(element).find('a:not(.install-link)').css('color', colorLink)
     } else if (id in hiddenList && !list) {
-      $(element).addClass('hidden').css('background-color', color).css('color', colorText).find('a').css('color', colorLink)
+      $(element).addClass('hidden').css('background-color', color).css('color', colorText)
+      $(element).find('.user-content').css('background', color).css('color', colorText)
+      $(element).find('a:not(.install-link):not(.install-help-link)').css('color', colorLink)
+      $(element).find('code').css('background-color', 'transparent')
     }
 
     // add button to hide the script
@@ -459,18 +463,33 @@
         GM.setValue('hiddenList', JSON.stringify(hiddenList))
 
         if (list) {
-          $(element).hide(750).addClass('hidden').css('background-color', color)
-            .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
+          $(element).hide(750).addClass('hidden').css('background-color', color).css('color', colorText)
+          $(element).find('a:not(.install-link)').css('color', colorLink)
+          $(element).find('.block-button').text(blockLabel($(element).hasClass('hidden')))
         } else {
-          $(element).addClass('hidden').css('background-color', color)
-            .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
+          $(element).addClass('hidden').css('background-color', color).css('color', colorText)
+          $(element).find('.user-content').css('background', color).css('color', colorText)
+          $(element).find('a:not(.install-link):not(.install-help-link)').css('color', colorLink)
+          $(element).find('code').css('background-color', 'transparent')
+          $(element).find('.block-button').text(blockLabel($(element).hasClass('hidden')))
         }
       } else { // ...else remove it
         delete hiddenList[id]
 
         GM.setValue('hiddenList', JSON.stringify(hiddenList))
-        $(element).removeClass('hidden').css('background-color', '')
-          .find('.block-button').text(blockLabel($(element).hasClass('hidden')))
+
+        if (list) {
+          $(element).removeClass('hidden').css('background-color', '').css('color', '')
+          $(element).find('a').css('color', '')
+          $(element).find('a:not(.install-link)').css('color', '')
+          $(element).find('.block-button').text(blockLabel($(element).hasClass('hidden')))
+        } else {
+          $(element).removeClass('hidden').css('background-color', '').css('color', '')
+          $(element).find('.user-content').css('background', '').css('color', '')
+          $(element).find('a:not(.install-link):not(.install-help-link)').css('color', '')
+          $(element).find('code').css('background-color', '')
+          $(element).find('.block-button').text(blockLabel($(element).hasClass('hidden')))
+        }
       }
     })
   }
