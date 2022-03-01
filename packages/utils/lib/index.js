@@ -3,11 +3,11 @@
 // @namespace    https://github.com/iFelix18
 // @exclude      *
 // ==UserLibrary==
-// @name         Utils
+// @name         @ifelix18/utils
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      4.0.0
+// @version      5.0.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -17,75 +17,98 @@
 // @grant        GM.setValue
 // ==/UserScript==
 
-((exports) => {
-  const name = GM.info.script.name
-  const version = GM.info.script.version
-  const matches = /^(.*?)\s<\S[^\s@]*@\S[^\s.]*\.\S+>$/.exec(GM.info.script.author)
-  const author = matches ? matches[1] : GM.info.script.author
-
+this.UserscriptUtils = this.u = (() => {
   /**
-   * Log userscript header and, if logging is true, script config values
+   * Utils for my userscripts
    *
-   * @param {string} ID Config ID
+   * @class
    */
-  const init = async (ID) => {
-    console.log(`%c${name}\n` + `%cv${version} by ${author} is running!`, 'color:red;font-weight:bold;font-size:18px;', '') // Userscript header
+  class UserscriptUtils {
+    /**
+     * Utils configuration
+     *
+     * @param {object} config Configuration
+     * @param {string} config.name Userscript name
+     * @param {string} config.version Userscript version
+     * @param {string} config.author Userscript author
+     * @param {string} [config.color='red'] Userscript header color
+     * @param {string} [config.logging=false] Logging
+     */
+    constructor (config = {}) {
+      if (!config.name) throw new Error('Userscript name is required')
+      if (!config.author) throw new Error('Userscript author is required')
 
-    if (!ID) throw new Error('A config ID is required')
+      const matches = /^(.*?)\s<\S[^\s@]*@\S[^\s.]*\.\S+>$/.exec(config.author)
 
-    let data = await GM.getValue(ID)
-    if (!data) throw new Error('Wrong config ID')
-
-    data = JSON.parse(data)
-    const logging = data.logging
-    GM.setValue('logging', logging)
-
-    if (logging) { // if logging is true, log script config values
-      for (const key of Object.keys(data)) {
-        console.log(`${name}:`, `${key} is "${data[key]}"`)
+      /**
+       * @private
+       */
+      this._config = {
+        name: config.name.toUpperCase(),
+        version: config.version || undefined,
+        author: matches ? matches[1] : config.author,
+        color: config.color || 'red',
+        logging: config.logging || false
       }
     }
-  }
 
-  /**
-   * Log, if logging is true
-   *
-   * @param {string} message Message
-   */
-  const log = async (message) => {
-    const logging = await GM.getValue('logging', false)
+    /**
+     * Initialize utils
+     * log userscript header
+     * and, if logging is true, script config values
+     *
+     * @param {string} id Config ID
+     */
+    async init (id) {
+      console.log(`%c${this._config.name}\n` + `${!this._config.version ? '%c' : `%cv${this._config.version} `}by ${this._config.author} is running!`, `color:${this._config.color};font-weight:bold;font-size:18px;`, '')
 
-    if (logging) {
-      console.log(`${name}:`, message)
+      if (id && this._config.logging === true) {
+        const data = JSON.parse(await GM.getValue(id))
+        for (const key of Object.keys(data)) {
+          console.log(`${this._config.name}:`, `${key} is "${data[key]}"`)
+        }
+      }
     }
-  }
 
-  /**
-   * Error
-   *
-   * @param {string} message Message
-   */
-  const error = (message) => {
-    console.error(`${name}:`, message)
-  }
+    /**
+     * Log, if logging is true
+     *
+     * @param {string} message Message
+     */
+    log (message) {
+      if (this._config.logging === true) {
+        console.log(`${this._config.name}:`, message)
+      }
+    }
 
-  /**
-   * Alert
-   *
-   * @param {string} message Message
-   */
-  const alert = (message) => {
-    window.alert(`${name}: ${message}`)
-  }
+    /**
+     * Error
+     *
+     * @param {string} message Message
+     */
+    error (message) {
+      console.error(`${this._config.name}:`, message)
+    }
 
-  /**
-   * Returns shortened version of a message
-   *
-   * @param {string} message Message
-   * @returns {string} Shortened message
-   */
-  const short = (message) => {
-    return message.split(' ').length > 6 ? `${message.split(' ', 6).join(' ')} [...]` : message
+    /**
+     * Alert
+     *
+     * @param {string} message Message
+     */
+    alert (message) {
+      window.alert(`${this._config.name}: ${message}`)
+    }
+
+    /**
+     * Returns shortened version of a message
+     *
+     * @param {string} message Message
+     * @param {number} length Message length
+     * @returns {string} Shortened message
+     */
+    short (message, length) {
+      return message.split(' ').length > length ? `${message.split(' ', length).join(' ')} [...]` : message
+    }
   }
 
   /**
@@ -94,7 +117,7 @@
    * @param {string} oldID Old config ID
    * @param {string} newID New config ID
    */
-  const migrateConfig = async (oldID, newID) => {
+  UserscriptUtils.migrateConfig = async (oldID, newID) => {
     if (!oldID) throw new Error('An old config ID is required')
     if (!newID) throw new Error('An new config ID is required')
 
@@ -106,10 +129,5 @@
     }
   }
 
-  exports.alert = alert
-  exports.error = error
-  exports.init = init
-  exports.log = log
-  exports.migrateConfig = migrateConfig
-  exports.short = short
-})(this.MU = this.MU || {})
+  return UserscriptUtils
+})()
