@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.7.0
+// @version            1.7.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -230,7 +230,7 @@
    * @returns {string} Label
    */
   const blockLabel = (hidden) => {
-    return hidden ? '✓ Not hide this script' : '🛇 Hide this script'
+    return hidden ? '✔️ Not hide this script' : '❌ Hide this script'
   }
 
   /**
