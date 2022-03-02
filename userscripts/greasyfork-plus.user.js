@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.8.3
+// @version            1.8.4
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -255,12 +255,13 @@
    * Adds buttons to the side menu to quickly show/hide scripts hidden by filters
    */
   const addOptions = () => {
+    // create menu
     const html = `
     <div id="${GM.info.script.name.toLowerCase().replace(/\s/g, '-')}-options" class="list-option-group">${GM.info.script.name} filters:
       <ul>
-          <li class="list-option non-latin"><a href="/non-latin-scripts" onclick="return false">Non-Latin scripts</a></li>
-          <li class="list-option blacklisted"><a href="/blacklisted-scripts" onclick="return false">Blacklisted scripts</a></li>
-          <li class="list-option hidden"><a href="/hidden-scripts" onclick="return false">Hidden scripts</a></li>
+        <li class="list-option non-latin"><a href="/non-latin-scripts" onclick="return false">Non-Latin scripts</a></li>
+        <li class="list-option blacklisted"><a href="/blacklisted-scripts" onclick="return false">Blacklisted scripts</a></li>
+        <li class="list-option hidden"><a href="/hidden-scripts" onclick="return false">Hidden scripts</a></li>
       </ul>
     </div>
     `
