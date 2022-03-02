@@ -12,13 +12,12 @@
   height: auto !important;
   list-style-type: none !important;
   margin-bottom: 0 !important;
-  margin-bottom: 20px;
   margin-left: auto !important;
   margin-right: auto !important;
   margin-top: 0 !important;
   max-height: none !important;
-  max-width: none !important;
-  padding: 0 30em 0 !important;
+  max-width: 1200px !important;
+  padding: 0 1em 1em !important;
   position: static !important;
   width: auto !important;
 }
@@ -33,16 +32,22 @@
   margin-top: 0.83em !important;
 }
 
+#openuserjs-plus .section_header {
+  background-color: #2c3e50 !important;
+  background-image: none !important;
+  border: 1px solid transparent !important;
+  color: #fff !important;
+}
+
 #openuserjs-plus .field_label {
   font-size: 0.85em !important;
   font-weight: 600 !important;
   margin-left: 6px !important;
 }
 
-#openuserjs-plus .section_header {
-  background-color: #2c3e50 !important;
-  border-color: #202d3b !important;
-  border: 1px solid transparent !important;
+#openuserjs-plus_field_milestoneNotification {
+  display: ruby-text-container !important;
+  width: 100% !important;
 }
 
 #openuserjs-plus_closeBtn {
