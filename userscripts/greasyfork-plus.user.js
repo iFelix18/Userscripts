@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.8.5
+// @version            1.8.6
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -224,7 +224,7 @@
     author: GM.info.script.author,
     logging: config.get('logging')
   })
-  UU.init('greasyfork-plus')
+  UU.init(id)
   UU.log(nonLatins)
   UU.log(blacklist)
   UU.log(hiddenList)
