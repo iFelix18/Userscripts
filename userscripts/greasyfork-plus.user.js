@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.8.2
+// @version            1.8.3
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -246,9 +246,30 @@
   /**
    * Adds a link to the menu to access the script configuration
    */
-  const addToMenu = () => {
-    const menu = `<li class='${GM.info.script.name.toLowerCase().replace(/\s/g, '_')}_settings'><a href='/settings' title='Settings'>${GM.info.script.name}</a></li>`
+  const addSettings = () => {
+    const menu = `<li class='${GM.info.script.name.toLowerCase().replace(/\s/g, '-')}-settings'><a href='/settings' title='Settings'>${GM.info.script.name}</a></li>`
     if (document.location.pathname !== '/settings') $('#site-nav > nav > li').first().before(menu)
+  }
+
+  /**
+   * Adds buttons to the side menu to quickly show/hide scripts hidden by filters
+   */
+  const addOptions = () => {
+    const html = `
+    <div id="${GM.info.script.name.toLowerCase().replace(/\s/g, '-')}-options" class="list-option-group">${GM.info.script.name} filters:
+      <ul>
+          <li class="list-option non-latin"><a href="/non-latin-scripts" onclick="return false">Non-Latin scripts</a></li>
+          <li class="list-option blacklisted"><a href="/blacklisted-scripts" onclick="return false">Blacklisted scripts</a></li>
+          <li class="list-option hidden"><a href="/hidden-scripts" onclick="return false">Hidden scripts</a></li>
+      </ul>
+    </div>
+    `
+    $('.list-option-groups > div').first().before(html)
+
+    // click
+    $('.list-option-group li.non-latin').click(() => $('.script-list li.non-latin').toggle())
+    $('.list-option-group li.blacklisted').click(() => $('.script-list li.blacklisted').toggle())
+    $('.list-option-group li.hidden').click(() => $('.script-list li.hidden').toggle())
   }
 
   /**
@@ -402,7 +423,7 @@
     if (!name) return
 
     if (nonLatins.test(name) || nonLatins.test(description)) {
-      $(element).addClass('non-latin').hide()
+      $(element).addClass('non-latin')
     }
   }
 
@@ -418,7 +439,7 @@
     if (!name) return
 
     if (blacklist.test(name) || blacklist.test(description)) {
-      $(element).addClass('blacklisted').hide()
+      $(element).addClass('blacklisted')
     }
   }
 
@@ -431,20 +452,11 @@
    */
   const hideScript = async (element, id, list) => {
     // if is in hiddenlist hide it
-    if (id in hiddenList) {
-      if (list) {
-        $(element).hide().addClass('hidden')
-      } else {
-        $(element).addClass('hidden')
-      }
-    }
+    if (id in hiddenList) { $(element).addClass('hidden') }
 
     // add button to hide the script
-    if (list) {
-      $(element).find('.badge-js, .badge-css').before(`<span class="block-button" role="button" style="cursor: pointer; font-size: 70%;">${blockLabel($(element).hasClass('hidden'))}</span>`)
-    } else {
-      $(element).find('header h2').append(`<span class="block-button" role="button" style="cursor: pointer; font-size: 50%; margin-left: 1ex;">${blockLabel($(element).hasClass('hidden'))}</span>`)
-    }
+    $(element).find('.badge-js, .badge-css').before(`<span class="block-button" role="button" style="cursor: pointer; font-size: 70%;">${blockLabel($(element).hasClass('hidden'))}</span>`)
+    $(element).find('header h2').append(`<span class="block-button" role="button" style="cursor: pointer; font-size: 50%; margin-left: 1ex;">${blockLabel($(element).hasClass('hidden'))}</span>`)
 
     // on click...
     $(element).find('.block-button').click(async () => {
@@ -485,11 +497,14 @@
 
   //* Script
   $(document).ready(async () => {
-    addToMenu()
-
-    GM.addStyle('.script-list li.non-latin, .script-list li.blacklisted, .script-list li.hidden { background: rgb(50, 25, 25); color: rgb(232, 230, 227); } .script-list li.non-latin a:not(.install-link), .script-list li.blacklisted a:not(.install-link), .script-list li.hidden a:not(.install-link) { color: rgb(255, 132, 132); } #script-info.hidden, #script-info.hidden .user-content { background: rgb(50, 25, 25); color: rgb(232, 230, 227); } #script-info.hidden a:not(.install-link):not(.install-help-link) { color: rgb(255, 132, 132); } #script-info.hidden code { background-color: transparent; }')
+    addSettings()
 
     if (config.get('hideNonLatinScripts') || config.get('hideBlacklistedScripts') || config.get('hideScript') || config.get('installButton')) {
+      if (config.get('hideNonLatinScripts') || config.get('hideBlacklistedScripts') || config.get('hideScript')) {
+        addOptions()
+        GM.addStyle('.script-list li.non-latin, .script-list li.blacklisted, .script-list li.hidden { display: none; background: rgb(50, 25, 25); color: rgb(232, 230, 227); } .script-list li.non-latin a:not(.install-link), .script-list li.blacklisted a:not(.install-link), .script-list li.hidden a:not(.install-link) { color: rgb(255, 132, 132); } #script-info.hidden, #script-info.hidden .user-content { background: rgb(50, 25, 25); color: rgb(232, 230, 227); } #script-info.hidden a:not(.install-link):not(.install-help-link) { color: rgb(255, 132, 132); } #script-info.hidden code { background-color: transparent; }')
+      }
+
       $('.script-list').find('li').each(async (index, element) => {
         const scriptID = $(element).data('script-id')
 
@@ -505,10 +520,10 @@
           addInstallButton(element, script.code_url, label, script.version)
         }
       })
-    }
-    if (config.get('hideScript') && $('#script-info').length > 0) {
-      const id = $('#script-info').find('.install-link').data('script-id')
-      hideScript($('#script-info'), id, false)
+      if (config.get('hideScript') && $('#script-info').length > 0) {
+        const id = $('#script-info').find('.install-link').data('script-id')
+        hideScript($('#script-info'), id, false)
+      }
     }
     if (config.get('showTotalInstalls') && $('#user-script-list').length > 0) {
       const dailyInstalls = []
