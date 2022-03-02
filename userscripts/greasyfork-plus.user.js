@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.8.6
+// @version            1.8.7
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -188,7 +188,7 @@
       id,
       title,
       fields,
-      css: '#greasyfork-plus *{font-family:Open Sans,sans-serif,Segoe UI Emoji!important}#greasyfork-plus{background-color:#fff!important;border-radius:5px!important;border:1px solid #bbb!important;box-shadow:0 0 5px #ddd!important;box-sizing:border-box!important;height:auto!important;list-style-type:none!important;margin-bottom:0!important;margin-left:auto!important;margin-right:auto!important;margin-top:14px!important;max-height:none!important;max-width:1200px!important;padding:0 1em 1em!important;position:static!important;width:auto!important}#greasyfork-plus .config_header{display:block!important;font-size:1.5em!important;font-weight:700!important;margin-bottom:.83em!important;margin-left:0!important;margin-right:0!important;margin-top:.83em!important}#greasyfork-plus .field_label{font-size:.85em!important;font-weight:500!important}#greasyfork-plus .section_header{background-color:#670000!important;background-image:linear-gradient(#670000,#900)!important;border:1px solid transparent!important}#greasyfork-plus_closeBtn{display:none!important}',
+      css: '#greasyfork-plus *{font-family:Open Sans,sans-serif,Segoe UI Emoji!important;color:#000!important}#greasyfork-plus{background-color:#fff!important;border-radius:5px!important;border:1px solid #bbb!important;box-shadow:0 0 5px #ddd!important;box-sizing:border-box!important;height:auto!important;list-style-type:none!important;margin-bottom:0!important;margin-left:auto!important;margin-right:auto!important;margin-top:14px!important;max-height:none!important;max-width:1200px!important;padding:0 1em 1em!important;position:static!important;width:auto!important}#greasyfork-plus .config_header{display:block!important;font-size:1.5em!important;font-weight:700!important;margin-bottom:.83em!important;margin-left:0!important;margin-right:0!important;margin-top:.83em!important}#greasyfork-plus .section_header{background-color:#670000!important;background-image:linear-gradient(#670000,#900)!important;border:1px solid transparent!important;color:#fff!important}#greasyfork-plus .field_label{font-size:.85em!important;font-weight:500!important;margin-left:6px!important}#greasyfork-plus_field_milestoneNotification{display:ruby-text-container!important;width:100%!important}#greasyfork-plus_closeBtn{display:none!important}',
       events: {
         init: () => {
           config.open()

@@ -1,5 +1,6 @@
 #greasyfork-plus * {
   font-family: Open Sans, sans-serif, Segoe UI Emoji !important;
+  color: #000 !important;
 }
 
 #greasyfork-plus {
@@ -31,15 +32,22 @@
   margin-top: 0.83em !important;
 }
 
-#greasyfork-plus .field_label {
-  font-size: 0.85em !important;
-  font-weight: 500 !important;
-}
-
 #greasyfork-plus .section_header {
   background-color: #670000 !important;
   background-image: linear-gradient(#670000, #900) !important;
   border: 1px solid transparent !important;
+  color: #fff !important;
+}
+
+#greasyfork-plus .field_label {
+  font-size: 0.85em !important;
+  font-weight: 500 !important;
+  margin-left: 6px !important;
+}
+
+#greasyfork-plus_field_milestoneNotification {
+  display: ruby-text-container !important;
+  width: 100% !important;
 }
 
 #greasyfork-plus_closeBtn {
