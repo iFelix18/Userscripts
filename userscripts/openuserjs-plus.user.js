@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.7.1
+// @version            1.7.2
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -32,7 +32,6 @@
 // @connect            openuserjs.org
 // @grant              GM_getValue
 // @grant              GM_setValue
-// @grant              GM.addStyle
 // @grant              GM.deleteValue
 // @grant              GM.getValue
 // @grant              GM.notification
@@ -333,7 +332,7 @@
     if (config.get('hideNonLatinScripts') || config.get('hideBlacklistedScripts') || config.get('hideScript') || config.get('installButton')) {
       if (config.get('hideNonLatinScripts') || config.get('hideBlacklistedScripts') || config.get('hideScript')) {
         addOptions()
-        GM.addStyle('.panel-default > .table .tr-link.non-latin, .panel-default > .table .tr-link.non-latin:hover, .panel-default > .table .tr-link.blacklisted, .panel-default > .table .tr-link.blacklisted:hover, .panel-default > .table .tr-link.hidden-script, .panel-default > .table .tr-link.hidden-script:hover { display: none; background-color: rgb(50, 25, 25) !important; color: rgb(232, 230, 227) !important; } .container-fluid.hidden-script .col-sm-8, .container-fluid.hidden-script .col-sm-8 .panel-body { background: rgb(50, 25, 25); color: rgb(232, 230, 227); } .container-fluid.hidden-script .col-sm-8 code { background-color: transparent; }')
+        $('head').append('<style>.panel-default > .table .tr-link.non-latin, .panel-default > .table .tr-link.non-latin:hover, .panel-default > .table .tr-link.blacklisted, .panel-default > .table .tr-link.blacklisted:hover, .panel-default > .table .tr-link.hidden-script, .panel-default > .table .tr-link.hidden-script:hover { display: none; background-color: rgb(50, 25, 25) !important; color: rgb(232, 230, 227) !important; } .container-fluid.hidden-script .col-sm-8, .container-fluid.hidden-script .col-sm-8 .panel-body { background: rgb(50, 25, 25); color: rgb(232, 230, 227); } .container-fluid.hidden-script .col-sm-8 code { background-color: transparent; }</style>')
       }
 
       $('.panel-default > .table .tr-link').each((index, element) => {
