@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.8.7
+// @version            1.8.8
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -37,7 +37,6 @@
 // @compatible         safari
 // @grant              GM_getValue
 // @grant              GM_setValue
-// @grant              GM.addStyle
 // @grant              GM.deleteValue
 // @grant              GM.getValue
 // @grant              GM.notification
@@ -502,7 +501,7 @@
     if (config.get('hideNonLatinScripts') || config.get('hideBlacklistedScripts') || config.get('hideScript') || config.get('installButton')) {
       if (config.get('hideNonLatinScripts') || config.get('hideBlacklistedScripts') || config.get('hideScript')) {
         addOptions()
-        GM.addStyle('.script-list li.non-latin, .script-list li.blacklisted, .script-list li.hidden { display: none; background: rgb(50, 25, 25); color: rgb(232, 230, 227); } .script-list li.non-latin a:not(.install-link), .script-list li.blacklisted a:not(.install-link), .script-list li.hidden a:not(.install-link) { color: rgb(255, 132, 132); } #script-info.hidden, #script-info.hidden .user-content { background: rgb(50, 25, 25); color: rgb(232, 230, 227); } #script-info.hidden a:not(.install-link):not(.install-help-link) { color: rgb(255, 132, 132); } #script-info.hidden code { background-color: transparent; }')
+        $('head').append('<style>.script-list li.non-latin, .script-list li.blacklisted, .script-list li.hidden { display: none; background: rgb(50, 25, 25); color: rgb(232, 230, 227); } .script-list li.non-latin a:not(.install-link), .script-list li.blacklisted a:not(.install-link), .script-list li.hidden a:not(.install-link) { color: rgb(255, 132, 132); } #script-info.hidden, #script-info.hidden .user-content { background: rgb(50, 25, 25); color: rgb(232, 230, 227); } #script-info.hidden a:not(.install-link):not(.install-help-link) { color: rgb(255, 132, 132); } #script-info.hidden code { background-color: transparent; }</style>')
       }
 
       $('.script-list').find('li').each(async (index, element) => {
