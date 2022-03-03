@@ -3,11 +3,11 @@
 // @namespace    https://github.com/iFelix18
 // @exclude      *
 // ==UserLibrary==
-// @name         Jikan API
+// @name         @ifelix18/jikan
 // @description  Jikan API for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      1.1.0
+// @version      1.1.1
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/jikan#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/jikan#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
