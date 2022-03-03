@@ -7,23 +7,23 @@
 // @description  Jikan API for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      1.0.5
-// @homepage     https://github.com/iFelix18/Userscripts
-// @homepageURL  https://github.com/iFelix18/Userscripts
+// @version      1.1.0
+// @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/jikan#readme
+// @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/jikan#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
 // @connect      api.jikan.moe
 // @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
-(() => {
+this.Jikan = (function () {
   /**
    * Jikan API
    *
    * @see https://jikan.moe/
    * @class
    */
-  this.Jikan = class {
+  class Jikan {
     /**
      * API configuration
      *
@@ -68,8 +68,10 @@
      * @returns {object} Search results
      */
     search (research = {}) {
+      if (!research.query) throw new Error('A search query is required.')
+
       const search = {
-        query: research.query || '',
+        query: research.query,
         type: research.type === 'series' ? 'tv' : research.type || undefined,
         limit: research.limit || 25,
         page: research.page || 1
@@ -80,19 +82,26 @@
           method: 'GET',
           url: `${this._config.url}/v4/anime?q=${encodeURIComponent(search.query)}&type=${search.type}&order_by=popularity&sfw=true&limit=${search.limit}&page=${search.page}`,
           headers: this._headers,
+          timeout: 15_000,
           onload: (response) => {
             this._debug(response)
             const data = JSON.parse(response.responseText).data
-            if (search.query !== '' && response.readyState === 4 && response.responseText !== '[]') {
+            if (data.length > 0 && response.readyState === 4 && response.responseText !== '[]') {
               resolve(data)
             } else {
-              search.query === ''
-                ? reject(new Error('A search query is required.'))
-                : reject(new Error(response))
+              reject(new Error('No results'))
             }
+          },
+          onerror: () => {
+            reject(new Error('An error occurs while processing the request'))
+          },
+          ontimeout: () => {
+            reject(new Error('Request times out'))
           }
         })
       })
     }
   }
+
+  return Jikan
 })()
