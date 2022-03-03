@@ -16,14 +16,18 @@
     "email": "iFelix18@protonmail.com",
     "url": "https://twitter.com/iFeIix18"
   },
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "src": "src"
   },
   "files": [
     "lib"
   ],
-  "scripts": {},
+  "scripts": {
+    "build": "rollup --config '../../rollup.config.js' --name 'UserscriptUtils'",
+    "watch": "rollup --watch --config '../../rollup.config.js' --name 'UserscriptUtils'"
+  },
   "publishConfig": {
     "access": "public"
   }

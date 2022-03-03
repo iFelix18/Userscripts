@@ -1,2 +1,2 @@
-**/*.min.js
 **/*.meta.js
+**/lib/*.js

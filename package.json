@@ -1,6 +1,5 @@
 {
   "name": "userscripts",
-  "version": "1.0.0",
   "private": true,
   "description": "My userscripts and libraries",
   "homepage": "https://github.com/iFelix18/Userscripts#readme",
@@ -51,6 +50,10 @@
     "lerna": "^4.0.0",
     "lerna-wizard": "^1.1.1",
     "markdownlint-cli2": "^0.4.0",
+    "rollup": "^2.69.0",
+    "rollup-plugin-eslint-bundle": "^6.0.0",
+    "rollup-plugin-shift-header": "https://github.com/roddolf/rollup-plugin-shift-header",
+    "rollup-plugin-terser": "^7.0.2",
     "updates": "^13.0.3",
     "userscript-meta": "^1.0.1",
     "yarn": "^1.22.17"
