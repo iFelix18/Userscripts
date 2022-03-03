@@ -4,7 +4,6 @@ import { readFileSync, existsSync, writeFile } from 'node:fs'
 import cleanCSS from 'gulp-clean-css'
 import flatmap from 'gulp-flatmap'
 import htmlMinifier from 'gulp-html-minifier-terser'
-import minify from 'gulp-minify'
 import replace from 'gulp-replace'
 
 // paths
@@ -17,10 +16,6 @@ const paths = {
     dest: 'tempfiles/',
     src: 'userscripts/src/handlebars/*.hbs'
   },
-  lib: {
-    dest: 'packages/',
-    src: ['packages/**/lib/*.js', '!packages/**/lib/*.min.js']
-  },
   meta: {
     dest: 'userscripts/meta/',
     src: 'userscripts/meta/'
@@ -32,20 +27,6 @@ const paths = {
 }
 
 // minify
-const minifyJS = () => {
-  return src(paths.lib.src)
-    .pipe(minify({
-      ext: {
-        min: '.min.js'
-      },
-      noSource: true,
-      preserveComments: (node, comment) => {
-        return (comment.value.startsWith(' ==') || comment.value.startsWith(' @'))
-      }
-    }))
-    .pipe(dest(paths.lib.dest))
-}
-
 const minifyCSS = () => {
   return src(paths.css.src)
     .pipe(cleanCSS({}))
@@ -118,12 +99,6 @@ const watchUserJS = () => {
   }, series(bumpMeta))
 }
 
-const watchJS = () => {
-  watch(paths.lib.src, {
-    ignoreInitial: false
-  }, series(minifyJS))
-}
-
 const watchCSS = () => {
   watch(paths.css.src, {
     ignoreInitial: false
@@ -137,5 +112,5 @@ const watchHBS = () => {
 }
 
 // export
-const _default = parallel(watchUserJS, watchJS, watchCSS, watchHBS)
+const _default = parallel(watchUserJS, watchCSS, watchHBS)
 export { _default as default }
