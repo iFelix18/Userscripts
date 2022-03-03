@@ -16,7 +16,7 @@
     "email": "iFelix18@protonmail.com",
     "url": "https://twitter.com/iFeIix18"
   },
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "directories": {
     "lib": "lib",
     "src": "src"
