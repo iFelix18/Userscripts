@@ -7,7 +7,7 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      5.0.0
+// @version      5.1.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -17,7 +17,7 @@
 // @grant        GM.setValue
 // ==/UserScript==
 
-this.UserscriptUtils = this.u = (() => {
+this.UserscriptUtils = (function () {
   /**
    * Utils for my userscripts
    *
