@@ -3,27 +3,27 @@
 // @namespace    https://github.com/iFelix18
 // @exclude      *
 // ==UserLibrary==
-// @name         Rotten Tomatoes API
+// @name         @ifelix18/rottentomatoes
 // @description  Rotten Tomatoes API for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      1.1.9
-// @homepage     https://github.com/iFelix18/Userscripts
-// @homepageURL  https://github.com/iFelix18/Userscripts
+// @version      1.2.0
+// @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/rottentomatoes#readme
+// @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/rottentomatoes#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
 // @connect      rottentomatoes.com
 // @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
-(() => {
+this.RottenTomatoes = (function () {
   /**
    * Rotten Tomatoes API
    *
    * @see https://www.rottentomatoes.com/
    * @class
    */
-  this.RottenTomatoes = class {
+  class RottenTomatoes {
     /**
      * API configuration
      *
@@ -61,15 +61,17 @@
      * Returns the results of a search
      *
      * @param {object} research Research object
-     * @param {string} [research.query=''] Item title to search for
-     * @param {string} [research.type=null] Type of result to return (movie or series)
-     * @param {string} [research.limit=null] Limit
+     * @param {string} research.query Item title to search for
+     * @param {string} [research.type=''] Type of result to return (movie or series)
+     * @param {string} [research.limit=25] Limit
      * @returns {object} Search results
      */
     search (research = {}) {
+      if (!research.query) throw new Error('A search query is required.')
+
       const search = {
-        query: research.query || '',
-        type: research.type === 'movie' ? 'movie' : (research.type === 'series' ? 'tvseries' : undefined),
+        query: research.query,
+        type: ['movie', 'series'].includes(research.type) ? (research.type === 'series' ? 'tvseries' : research.type) : '',
         limit: research.limit || 25
       }
 
@@ -78,19 +80,32 @@
           method: 'GET',
           url: `${this._config.url}/api/private/v2.0/search/?q=${encodeURIComponent(search.query)}&t=${search.type}&limit=${search.limit}`,
           headers: this._headers,
+          timeout: 15_000,
           onload: (response) => {
             this._debug(response)
             const data = JSON.parse(response.responseText)
-            if (response.readyState === 4 && response.responseText !== '[]') {
-              resolve(research.type === 'movie' ? data.movies : (research.type === 'series' ? data.tvSeries : undefined))
+            if (Object.keys(data).length > 0 && (data.movieCount > 0 || data.tvCount > 0) && response.readyState === 4 && response.responseText !== '[]') {
+              if (data.movieCount > 0 && data.tvCount > 0) {
+                resolve([...data.movies, ...data.tvSeries])
+              } else if (data.movieCount > 0) {
+                resolve(data.movies)
+              } else if (data.tvCount > 0) {
+                resolve(data.tvSeries)
+              }
             } else {
-              search.query === ''
-                ? reject(new Error('A search query is required.'))
-                : reject(new Error(response))
+              reject(new Error('No results'))
             }
+          },
+          onerror: () => {
+            reject(new Error('An error occurs while processing the request'))
+          },
+          ontimeout: () => {
+            reject(new Error('Request times out'))
           }
         })
       })
     }
   }
+
+  return RottenTomatoes
 })()
