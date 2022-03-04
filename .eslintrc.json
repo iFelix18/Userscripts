@@ -33,7 +33,7 @@
       ]
     },
     {
-      "files": "packages/**/lib/*.js",
+      "files": "packages/**/src/*.js",
       "extends": [
         "plugin:userscripts/recommended"
       ],
