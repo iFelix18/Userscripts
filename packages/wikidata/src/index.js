@@ -7,9 +7,9 @@
 // @description  Wikidata for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.1.0
-// @homepage     https://github.com/iFelix18/Userscripts
-// @homepageURL  https://github.com/iFelix18/Userscripts
+// @version      2.1.1
+// @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/wikidata#readme
+// @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/wikidata#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
 // @connect      query.wikidata.org
