@@ -7,7 +7,7 @@
 // @description  Jikan API for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      1.1.1
+// @version      2.0.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/jikan#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/jikan#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -17,6 +17,16 @@
 // ==/UserScript==
 
 this.Jikan = (function () {
+  /**
+   * API methods
+   */
+  const methods = {
+    '/anime/search': {
+      method: 'GET',
+      url: '/anime?q={query}&type={type}&order_by={order_by}&sfw={sfw}&page={page}'
+    }
+  }
+
   /**
    * Jikan API
    *
@@ -28,7 +38,8 @@ this.Jikan = (function () {
      * API configuration
      *
      * @param {object} config Configuration
-     * @param {string} [config.url='https://api.jikan.moe'] Jikan API URL
+     * @param {string} [config.api_url='https://api.jikan.moe/v4'] Jikan API URL
+     * @param {number} [config.limit=25] Limit
      * @param {boolean} [config.debug=false] Debug
      */
     constructor (config = {}) {
@@ -36,7 +47,8 @@ this.Jikan = (function () {
        * @private
        */
       this._config = {
-        url: config.url || 'https://api.jikan.moe',
+        api_url: config.api_url || 'https://api.jikan.moe/v4',
+        limit: config.limit || 25,
         debug: config.debug || false
       }
 
@@ -55,38 +67,52 @@ this.Jikan = (function () {
       this._debug = (response) => {
         if (this._config.debug || response.status !== 200) console.log(`${response.status}: ${response.finalUrl}`)
       }
+
+      this._this = this
+      this._methods()
     }
 
     /**
-     * Returns the results of a search
+     * Creates the various methods
      *
-     * @param {object} research Research object
-     * @param {string} [research.search=''] Anime title to search for
-     * @param {string} [research.type=undefined] Type of result to return
-     * @param {number} [research.limit=25] Limit
-     * @param {number} [research.page=1] Page number to return
-     * @returns {object} Search results
+     * @private
      */
-    search (research = {}) {
-      if (!research.query) throw new Error('A search query is required.')
+    _methods () {
+      for (const method in methods) {
+        const parts = method.split('/')
+        const function_ = parts.pop()
+        parts.shift()
 
-      const search = {
-        query: research.query,
-        type: research.type === 'series' ? 'tv' : research.type || undefined,
-        limit: research.limit || 25,
-        page: research.page || 1
+        let temporary = this._this
+        for (const part of parts) {
+          temporary = temporary[part] || (temporary[part] = {})
+        }
+
+        temporary[function_] = this._request.bind(this, methods[method])
       }
+    }
 
+    /**
+     * Makes a request with GM.xmlHttpRequest
+     *
+     * @private
+     * @param {object} method API method
+     * @param {object} parameters Function parameters
+     * @returns {object} Response
+     */
+    _request (method, parameters) {
       return new Promise((resolve, reject) => {
+        const finalURL = this._resolve(method, parameters)
+
         GM.xmlHttpRequest({
-          method: 'GET',
-          url: `${this._config.url}/v4/anime?q=${encodeURIComponent(search.query)}&type=${search.type}&order_by=popularity&sfw=true&limit=${search.limit}&page=${search.page}`,
+          method: method.method,
+          url: finalURL,
           headers: this._headers,
           timeout: 15_000,
           onload: (response) => {
             this._debug(response)
             const data = JSON.parse(response.responseText).data
-            if (data.length > 0 && response.readyState === 4 && response.responseText !== '[]') {
+            if (data.length > 0 && response.readyState === 4 && response.status === 200) {
               resolve(data)
             } else {
               reject(new Error('No results'))
@@ -100,6 +126,43 @@ this.Jikan = (function () {
           }
         })
       })
+    }
+
+    /**
+     * Resolve url
+     *
+     * @private
+     * @param {object} method API method
+     * @param {object} parameters Function parameters
+     * @returns {string} Final URL
+     */
+    _resolve (method, parameters) {
+      const url = this._config.api_url
+      const path = method.url.split('?')
+      const pathParameters = []
+      const queryString = []
+
+      // Path Params
+      if (path[0]) {
+        pathParameters.push(path[0])
+      }
+
+      // Query String
+      if (path[1]) {
+        for (const query of path[1].split('&')) {
+          const regex = new RegExp(Object.keys(parameters).map(key => `{${key}}`).join('|'), 'gi')
+
+          if (regex.test(query)) {
+            queryString.push(query.replace(regex, (matched) => parameters[matched.replace(/[{}]/g, '')]))
+          }
+        }
+      }
+      if (this._config.limit) { // limit
+        queryString.push(`limit=${this._config.limit}`)
+      }
+
+      // return final URL
+      return `${url}${pathParameters.join('')}?${queryString.join('&')}`
     }
   }
 
