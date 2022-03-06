@@ -19,9 +19,7 @@ export default [
         plugins: [
           shiftHeader(),
           eslintBundle({
-            eslintOptions: {
-              fix: true
-            },
+            eslintOptions: { fix: true },
             throwOnWarning: true,
             throwOnError: true,
             formatter: 'compact'
@@ -36,11 +34,7 @@ export default [
         plugins: [
           shiftHeader(),
           terser({
-            output: {
-              comments: (node, comment) => {
-                return (comment.value.startsWith(' ==') || comment.value.startsWith(' @'))
-              }
-            }
+            output: { comments: (node, comment) => (comment.value.startsWith(' ==') || comment.value.startsWith(' @')) }
           })
         ]
       }
