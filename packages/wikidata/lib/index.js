@@ -3,11 +3,11 @@
 // @namespace    https://github.com/iFelix18
 // @exclude      *
 // ==UserLibrary==
-// @name         Wikidata
+// @name         @ifelix18/wikidata
 // @description  Wikidata for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.0.3
+// @version      2.1.0
 // @homepage     https://github.com/iFelix18/Userscripts
 // @homepageURL  https://github.com/iFelix18/Userscripts
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -16,14 +16,14 @@
 // @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
-(() => {
+this.Wikidata = (function () {
   /**
    * Wikidata
    *
    * @see https://www.wikidata.org/wiki/Special:MyLanguage/Wikidata:SPARQL_query_service/Wikidata_Query_Help
    * @class
    */
-  this.Wikidata = class {
+  class Wikidata {
     /**
      * Configuration
      *
@@ -152,8 +152,6 @@
             return { value: `https://movieplayer.it/serietv/wd_${id}/`, country: 'italy' }
           case 'Il mondo dei doppiatori':
             return { value: `https://www.antoniogenna.net/doppiaggio/${id}.htm`, country: 'italy' }
-          default:
-            break
         }
       }
     }
@@ -210,8 +208,7 @@
           method: 'GET',
           url: `${this._config.endpoint}/sparql?query=${encodeURIComponent(query)}`,
           headers: this._headers,
-          // eslint-disable-next-line unicorn/numeric-separators-style
-          timeout: 15000,
+          timeout: 15_000,
           onload: (response) => {
             this._debug(response)
             const json = JSON.parse(response.responseText)
@@ -241,14 +238,16 @@
               reject(new Error('No results'))
             }
           },
-          onerror: (response) => {
+          onerror: () => {
             reject(new Error('An error occurs while processing the request'))
           },
-          ontimeout: (response) => {
+          ontimeout: () => {
             reject(new Error('Request times out'))
           }
         })
       })
     }
   }
+
+  return Wikidata
 })()
