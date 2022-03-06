@@ -16,14 +16,18 @@
     "email": "iFelix18@protonmail.com",
     "url": "https://twitter.com/iFeIix18"
   },
-  "main": "lib/trakt.js",
+  "main": "lib/index.js",
   "directories": {
-    "lib": "lib"
+    "lib": "lib",
+    "src": "src"
   },
   "files": [
     "lib"
   ],
-  "scripts": {},
+  "scripts": {
+    "build": "rollup --config '../../rollup.config.js' --name 'Trakt'",
+    "watch": "rollup --watch --config '../../rollup.config.js' --name 'Trakt'"
+  },
   "publishConfig": {
     "access": "public"
   }
