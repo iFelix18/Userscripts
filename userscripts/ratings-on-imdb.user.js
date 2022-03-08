@@ -18,7 +18,7 @@
 // @description:zh-CN  将烂番茄、Metacritic和MyAnimeList的评级添加到IMDb中。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.3.0
+// @version            2.3.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -101,7 +101,7 @@
   const title = `${GM.info.script.name} v${GM.info.script.version} Settings`
   UserscriptUtils.migrateConfig('config', id) // migrate to the new config ID
 
-  if (document.location.pathname === '/settings') {
+  if (document.location.pathname === '/settings/') {
     document.title = title
     config.init({
       frame: $('#error').empty().get(0),
@@ -131,7 +131,7 @@
       events: {
         init: () => {
           if (!config.isOpen && config.get('OMDbApiKey') === '') {
-            window.location = '/settings'
+            window.location = '/settings/'
           }
           if (GM.info.scriptHandler !== 'Userscripts') { //! Userscripts Safari: GM.registerMenuCommand is missing
             GM.registerMenuCommand('Configure', () => config.open())
@@ -177,8 +177,8 @@
    * Adds a link to the menu to access the script configuration
    */
   const addSettings = () => {
-    const menu = `<div><ul><li class="${id}_settings ipc-inline-list__item"><a class="ipc-link ipc-link--baseAlt ipc-link--inherit-color ipc-link--launch ipc-link--touch-target"href=/settings title=Settings>${GM.info.script.name}</a></ul></div>`
-    if (document.location.pathname !== '/settings') $('.imdb-footer__links > div').last().after(menu)
+    const menu = `<div><ul><li class="${id}_settings ipc-inline-list__item"><a class="ipc-link ipc-link--baseAlt ipc-link--inherit-color ipc-link--launch ipc-link--touch-target"href=/settings/ title=Settings>${GM.info.script.name}</a></ul></div>`
+    $('.imdb-footer__links > div').last().after(menu)
   }
 
   /**
