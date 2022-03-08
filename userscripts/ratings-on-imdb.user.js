@@ -18,7 +18,7 @@
 // @description:zh-CN  将烂番茄、Metacritic和MyAnimeList的评级添加到IMDb中。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.3.2
+// @version            2.3.3
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -177,8 +177,9 @@
    * Adds a link to the menu to access the script configuration
    */
   const addSettings = () => {
-    const menu = `<div><ul><li class="${id}_settings ipc-inline-list__item"><a class="ipc-link ipc-link--baseAlt ipc-link--inherit-color ipc-link--launch ipc-link--touch-target"href=/settings/ title=Settings>${GM.info.script.name}</a></ul></div>`
-    $('.imdb-footer__links > div').last().after(menu)
+    const menu = `<div class="${id}_settings dAMWXo"><a aria-disabled=false class="ipc-button ipc-button--center-align-content ipc-button--core-baseAlt ipc-button--default-height ipc-button--on-textPrimary ipc-button--single-padding ipc-button--theme-baseAlt ipc-text-button"href=/settings/ role=button tabindex=0><div class=ipc-button__text>${GM.info.script.name}</div></a></div>`
+
+    $('.dtcBHE .navbar__inner > .Root__Separator-sc-7p0yen-1').after(menu)
   }
 
   /**
@@ -216,18 +217,17 @@
 
   //* Script
   $(document).ready(async () => {
-    addSettings()
-    clearOldCache()
+    addSettings() // add settings
+    clearOldCache() // clear old cache
 
     const target = $('.hglRHk div[class^="RatingBar__ButtonContainer"] div[class^="RatingBarButtonBase__ContentWrap"]:nth-child(1)')
     if (target.length === 0) return // check if it is on the main page
 
     const id = getID() // IMDb ID
     if (!id) return // check if an ID exists
-
     UU.log(`ID is '${id}'`)
 
-    addTemplate(target)
+    addTemplate(target) // add template
 
     // get ratings
     const ratings = await rating.get({ id }).then().catch(error => console.error(error))
