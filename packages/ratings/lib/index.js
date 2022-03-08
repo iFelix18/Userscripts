@@ -3,48 +3,59 @@
 // @namespace    https://github.com/iFelix18
 // @exclude      *
 // ==UserLibrary==
-// @name         Ratings
+// @name         @ifelix18/ratings
 // @description  Ratings for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      3.0.3
-// @homepage     https://github.com/iFelix18/Userscripts
-// @homepageURL  https://github.com/iFelix18/Userscripts
+// @version      4.0.0
+// @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/ratings#readme
+// @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/ratings#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @grant        none
+// @connect      api.jikan.moe
+// @connect      omdbapi.com
+// @connect      rottentomatoes.com
+// @grant        GM.getValue
+// @grant        GM.setValue
+// @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
-/* global Jikan, OMDb, RottenTomatoes */
+this.Ratings = (function () {
+  /* global Jikan, OMDb, RottenTomatoes */
 
-(() => {
   /**
    * Ratings for my userscripts
    *
    * @class
    */
-  this.Ratings = class {
+  class Ratings {
     /**
      * Ratings configuration
      *
      * @param {object} config Configuration
-     * @param {string} config.omdb_apikey OMDb API Key
-     * @param {string} [config.omdb_url='https://www.omdbapi.com'] OMDb API URL
-     * @param {string} [config.tomato_url='https://www.rottentomatoes.com'] Rotten Tomatoes API URL
-     * @param {string} [config.jikan_url='https://api.jikan.moe'] Jikan API URL
+     * @param {string} config.omdb_api_key OMDb API Key
+     * @param {string} [config.omdb_api_url='https://www.omdbapi.com'] OMDb API URL
+     * @param {string} [config.tomato_api_url='https://www.rottentomatoes.com/api/private/v2.0'] Rotten Tomatoes API URL
+     * @param {number} [config.tomato_limit=25] Rotten Tomatoes limit
+     * @param {string} [config.jikan_api_url='https://api.jikan.moe/v4'] Jikan API URL
+     * @param {number} [config.jikan_limit=25] Jikan limit
+     * @param {number} [config.cache_period=0] Cache period
      * @param {boolean} [config.debug=false] Debug
      */
     constructor (config = {}) {
-      if (!config.omdb_apikey) throw new Error('OMDb API Key is required')
+      if (!config.omdb_api_key) throw new Error('OMDb API Key is required')
 
       /**
        * @private
        */
       this._config = {
-        omdb_apikey: config.omdb_apikey,
-        omdb_url: config.omdb_url || 'https://www.omdbapi.com',
-        tomato_url: config.tomato_url || 'https://www.rottentomatoes.com',
-        jikan_url: config.jikan_url || 'https://api.jikan.moe',
+        omdb_api_key: config.omdb_api_key,
+        omdb_api_url: config.omdb_api_url || 'https://www.omdbapi.com',
+        tomato_api_url: config.tomato_api_url || 'https://www.rottentomatoes.com/api/private/v2.0',
+        tomato_limit: config.tomato_limit || 25,
+        jikan_api_url: config.jikan_api_url || 'https://api.jikan.moe/v4',
+        jikan_limit: config.jikan_limit || 25,
+        cache_period: config.cache_period || 0,
         debug: config.debug || false
       }
 
@@ -54,8 +65,8 @@
        * @private
        */
       this._omdb = new OMDb({
-        apikey: this._config.omdb_apikey,
-        url: this._config.omdb_url,
+        api_key: this._config.omdb_api_key,
+        api_url: this._config.omdb_api_url,
         debug: this._config.debug
       })
 
@@ -65,7 +76,8 @@
        * @private
        */
       this._tomato = new RottenTomatoes({
-        url: this._config.tomato_url,
+        api_url: this._config.tomato_api_url,
+        limit: this._config.tomato_limit,
         debug: this._config.debug
       })
 
@@ -75,7 +87,8 @@
        * @private
        */
       this._mal = new Jikan({
-        url: this._config.jikan_url,
+        api_url: this._config.jikan_api_url,
+        limit: this._config.jikan_limit,
         debug: this._config.debug
       })
 
@@ -144,6 +157,16 @@
       this._n = (string) => {
         return string.replace(/\p{P}\s/gu, ' ').toLowerCase()
       }
+
+      /**
+       * Debug
+       *
+       * @private
+       * @param {*} log log
+       */
+      this._debug = (log) => {
+        if (this._config.debug) console.log(log)
+      }
     }
 
     /**
@@ -152,58 +175,99 @@
      * @param {string} id IMDb ID
      * @returns {object} Ratings
      */
-    async get (id) {
-      const omdb = await this._omdb.get({ id: id }).then()
-      let tomato = await this._tomato.search({ query: omdb.Title, type: omdb.Type }).then()
-      let mal = await this._mal.search({ query: omdb.Title, type: omdb.Type }).then()
+    async get ({ id }) {
+      const cache = await GM.getValue(id, {}) // get cache
 
-      tomato = tomato.map((item) => item).find((item) => (new RegExp(item.url).test(omdb.tomatoURL)) || ((item.name ? this._n(item.name) : this._n(item.title)) === this._n(omdb.Title) && (item.year ? item.year : item.startYear) === Number.parseInt(/\d{4}/.exec(omdb.Year)[0])))
-      mal = mal.map((item) => item).find((item) => item.title_english && this._n(item.title_english) === this._n(omdb.Title) && new Date(item.aired.from).getFullYear() === Number.parseInt(/\d{4}/.exec(omdb.Year)[0]))
+      if (cache && ((Date.now() - cache.time) < this._config.cache_period) && !this._config.debug) { // cache valid
+        const data = cache.data // cached data
 
-      return { omdb, tomato, mal } // return data
+        console.log(`${id} data from cache`)
+        return data // return cached data
+      } else {
+        const omdb = await this._omdb.id({
+          id,
+          tomatoes: true
+        }).then().catch(error => console.error(error))
+        let tomato = omdb.Type === 'movie'
+          ? await this._tomato.movie.search({
+            query: omdb.Title
+          }).then(data => data.movies).catch(error => console.error(error))
+          : await this._tomato.tv.search({
+            query: omdb.Title
+          }).then(data => data.tvSeries).catch(error => console.error(error))
+        let mal = await this._mal.anime.search({
+          query: omdb.Title,
+          type: omdb.Type
+        }).then().catch(error => console.error(error))
+
+        tomato = tomato
+          ? tomato
+            .map((item) => item)
+            .find((item) => (new RegExp(item.url).test(omdb.tomatoURL)) || ((item.name ? this._n(item.name) : this._n(item.title)) === this._n(omdb.Title) && (item.year ? item.year : item.startYear) === Number.parseInt(/\d{4}/.exec(omdb.Year)[0])))
+          : undefined
+        mal = mal
+          ? mal
+            .map((item) => item)
+            .find((item) => item.title_english && this._n(item.title_english) === this._n(omdb.Title) && new Date(item.aired.from).getFullYear() === Number.parseInt(/\d{4}/.exec(omdb.Year)[0]))
+          : undefined
+
+        const data = { omdb, tomato, mal } // APIs data
+        if (!this._config.debug) { GM.setValue(id, { data, time: Date.now() }) } // set cache
+
+        console.log(`${id} data from APIs`)
+        this._debug(data)
+        return data // return data
+      }
     }
 
     /**
      * Returns elaborated data
      *
-     * @param {object} data data ratings from APIs
+     * @param {object} data Data ratings from APIs
+     * @param {object} data.omdb Data
+     * @param {object} data.tomato Data
+     * @param {object} data.mal Data
      * @returns {object} Elaborated ratings
      */
-    async elaborate (data) {
+    async elaborate ({ omdb, tomato, mal }) {
       const imdb = {
         logo: this._logos.imdb,
-        rating: data.omdb && data.omdb.imdbRating && data.omdb.imdbRating !== 'N/A' ? Number(data.omdb.imdbRating) : 'N/A',
+        rating: omdb && omdb.imdbRating && omdb.imdbRating !== 'N/A' ? Number(omdb.imdbRating) : 'N/A',
         source: 'imdb',
         symbol: '/10',
-        url: data.omdb && data.omdb.imdbID ? `https://www.imdb.com/title/${data.omdb.imdbID}/` : 'N/A',
-        votes: data.omdb && data.omdb.imdbVotes && data.omdb.imdbVotes !== 'N/A' ? this._votes(Number(data.omdb.imdbVotes.replace(/,/g, ''))) : 'N/A'
+        url: omdb && omdb.imdbID ? `https://www.imdb.com/title/${omdb.imdbID}/` : 'N/A',
+        votes: omdb && omdb.imdbVotes && omdb.imdbVotes !== 'N/A' ? this._votes(Number(omdb.imdbVotes.replace(/,/g, ''))) : 'N/A'
       }
       const tomatometer = {
-        logo: data.tomato && data.tomato.meterScore ? this._tomatoLogo(Number(data.tomato.meterScore)) : this._logos.rotten,
-        rating: data.tomato && data.tomato.meterScore ? Number(data.tomato.meterScore) : 'N/A',
+        logo: tomato && tomato.meterScore ? this._tomatoLogo(Number(tomato.meterScore)) : this._logos.rotten,
+        rating: tomato && tomato.meterScore ? Number(tomato.meterScore) : 'N/A',
         source: 'tomatometer',
         symbol: '%',
-        url: data.tomato && data.tomato.url ? `https://www.rottentomatoes.com${data.tomato.url}/` : 'N/A',
-        votes: data.tomato && data.tomato.meterScore ? this._tomatoScore(Number(data.tomato.meterScore)) : 'N/A'
+        url: tomato && tomato.url ? `https://www.rottentomatoes.com${tomato.url}/` : 'N/A',
+        votes: tomato && tomato.meterScore ? this._tomatoScore(Number(tomato.meterScore)) : 'N/A'
       }
       const metascore = {
         logo: this._logos.metacritic,
-        rating: data.omdb && data.omdb.Metascore && data.omdb.Metascore !== 'N/A' ? Number(data.omdb.Metascore) : 'N/A',
+        rating: omdb && omdb.Metascore && omdb.Metascore !== 'N/A' ? Number(omdb.Metascore) : 'N/A',
         source: 'metascore',
         symbol: '',
-        url: data.omdb && data.omdb.Title ? `https://www.metacritic.com/search/${data.omdb.Type === 'series' ? 'tv' : data.omdb.Type}/${encodeURIComponent(data.omdb.Title)}/results` : 'N/A',
-        votes: data.omdb && data.omdb.Metascore && data.omdb.Metascore !== 'N/A' ? this._color(Number(data.omdb.Metascore)) : 'N/A'
+        url: omdb && omdb.Title ? `https://www.metacritic.com/search/${omdb.Type === 'series' ? 'tv' : omdb.Type}/${encodeURIComponent(omdb.Title)}/results` : 'N/A',
+        votes: omdb && omdb.Metascore && omdb.Metascore !== 'N/A' ? this._color(Number(omdb.Metascore)) : 'N/A'
       }
       const myanimelist = {
         logo: this._logos.mal,
-        rating: data.mal && data.mal.score ? Number(data.mal.score) : 'N/A',
+        rating: mal && mal.score ? Number(mal.score) : 'N/A',
         source: 'myanimelist',
         symbol: '',
-        url: data.mal && data.mal.url ? data.mal.url : 'N/A',
-        votes: data.mal && data.mal.scored_by ? this._votes(Number(data.mal.scored_by)) : 'N/A'
+        url: mal && mal.url ? mal.url : 'N/A',
+        votes: mal && mal.scored_by ? this._votes(Number(mal.scored_by)) : 'N/A'
       }
 
-      return { imdb, tomatometer, metascore, myanimelist }
+      const data = { imdb, tomatometer, metascore, myanimelist }
+      this._debug(data)
+      return data
     }
   }
+
+  return Ratings
 })()
