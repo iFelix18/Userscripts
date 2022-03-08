@@ -18,7 +18,7 @@
 // @description:zh-CN  将烂番茄、Metacritic和MyAnimeList的评级添加到IMDb中。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.3.1
+// @version            2.3.2
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -49,7 +49,7 @@
 // @grant              GM.setValue
 // @grant              GM.xmlHttpRequest
 // @run-at             document-idle
-// @inject-into        page
+// @inject-into        content
 // ==/UserScript==
 
 /* global $, GM_configStruct, Handlebars, Ratings, UserscriptUtils */
