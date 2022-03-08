@@ -4,7 +4,7 @@ Adds ratings from Rotten Tomatoes, Metacritic and MyAnimeList to [IMDb][imdb-lin
 
 [![Version][version-badge]][link] [![Size][size-badge]][link] [![Install][install-badge]][download-link]
 
->**Note**: After installation, enter your [OMDb API Key][omdb-api] in the script settings.
+>**Note**: After installation, enter your [OMDb API Key][omdb-api] on the script settings page accessible at [this address][settings-link].
 
 |           Screenshots           |
 | :-----------------------------: |
@@ -24,6 +24,7 @@ Adds ratings from Rotten Tomatoes, Metacritic and MyAnimeList to [IMDb][imdb-lin
 [link]: #ratings-on-imdb
 [imdb-link]: https://www.imdb.com/
 [omdb-api]: https://www.omdbapi.com/apikey.aspx
+[settings-link]: https://www.imdb.com/settings
 
 [version-badge]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/ratings-on-imdb
 [size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js
