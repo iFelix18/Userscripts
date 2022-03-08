@@ -24,7 +24,7 @@ Aggiunge valutazioni da Rotten Tomatoes, Metacritic e MyAnimeList a [IMDb][imdb-
 [link]: #valutazioni-su-imdb
 [imdb-link]: https://www.imdb.com/
 [omdb-api]: https://www.omdbapi.com/apikey.aspx
-[settings-link]: https://www.imdb.com/settings
+[settings-link]: https://www.imdb.com/settings/
 
 [version-badge]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/ratings-on-imdb
 [size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js

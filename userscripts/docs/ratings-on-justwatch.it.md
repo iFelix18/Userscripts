@@ -4,7 +4,7 @@ Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a [JustW
 
 [![Version][version-badge]][link] [![Size][size-badge]][link] [![Install][install-badge]][download-link]
 
->**Nota**: Dopo l'installazione, inserisci la tua [OMDb API Key][omdb-api] nelle impostazioni dello script.
+>**Nota**: Dopo l'installazione, inserisci la tua [OMDb API Key][omdb-api] nella pagina delle impostazioni dello script accessibile a [questo indirizzo][settings-link].
 
 |           Screenshots           |
 | :-----------------------------: |
@@ -24,6 +24,7 @@ Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a [JustW
 [link]: #valutazioni-su-justwatch
 [justwatch-link]: https://www.justwatch.com/
 [omdb-api]: https://www.omdbapi.com/apikey.aspx
+[settings-link]: https://www.justwatch.com/settings/
 
 [version-badge]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/ratings-on-justwatch
 [size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js

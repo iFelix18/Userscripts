@@ -4,7 +4,7 @@ Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [JustWatc
 
 [![Version][version-badge]][link] [![Size][size-badge]][link] [![Install][install-badge]][download-link]
 
->**Note**: After installation, enter your [OMDb API Key][omdb-api] in the script settings.
+>**Note**: After installation, enter your [OMDb API Key][omdb-api] on the script settings page accessible at [this address][settings-link].
 
 |           Screenshots           |
 | :-----------------------------: |
@@ -24,6 +24,7 @@ Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [JustWatc
 [link]: #ratings-on-justwatch
 [justwatch-link]: https://www.justwatch.com/
 [omdb-api]: https://www.omdbapi.com/apikey.aspx
+[settings-link]: https://www.justwatch.com/settings/
 
 [version-badge]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/ratings-on-justwatch
 [size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js
