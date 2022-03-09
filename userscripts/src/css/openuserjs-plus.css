@@ -1,13 +1,10 @@
 #openuserjs-plus * {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-  color: #2c3e50 !important;
 }
 
 #openuserjs-plus {
-  background-color: #fff !important;
-  border-radius: 4px !important;
+  background-color: transparent !important;
   border: 1px solid transparent !important;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, .05) !important;
   box-sizing: border-box !important;
   height: auto !important;
   list-style-type: none !important;
@@ -33,10 +30,18 @@
 }
 
 #openuserjs-plus .section_header {
-  background-color: #2c3e50 !important;
+  background-color: rgb(44, 62, 80) !important;
   background-image: none !important;
   border: 1px solid transparent !important;
-  color: #fff !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+#openuserjs-plus .config_var {
+  display: flex !important;
+}
+
+#openuserjs-plus_milestoneNotification_var {
+  flex-direction: column !important;
 }
 
 #openuserjs-plus .field_label {
@@ -46,10 +51,23 @@
 }
 
 #openuserjs-plus_field_milestoneNotification {
-  display: ruby-text-container !important;
-  width: 100% !important;
+  flex: 1 1 auto !important;
+}
+
+#openuserjs-plus_buttons_holder {
+  color: inherit !important;
+}
+
+#openuserjs-plus input[type="button"],
+#openuserjs-plus button {
+  font-size: 0.85em !important;
+  font-weight: 600 !important;
 }
 
 #openuserjs-plus_closeBtn {
   display: none !important;
+}
+
+#openuserjs-plus .reset {
+  color: inherit !important;
 }

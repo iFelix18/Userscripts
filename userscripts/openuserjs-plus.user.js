@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.7.3
+// @version            1.7.4
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -105,20 +105,20 @@
   const id = 'openuserjs-plus'
   UserscriptUtils.migrateConfig('config', id) // migrate to the new config ID
 
-  if (document.location.pathname === '/settings') {
+  if (document.location.pathname === '/settings/') {
     document.title = title
     config.init({
-      frame: $('.panel-default').empty().get(0),
+      frame: $('body').empty().get(0),
       id,
       title,
       fields,
-      css: '#openuserjs-plus *{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif!important;color:#2c3e50!important}#openuserjs-plus{background-color:#fff!important;border-radius:4px!important;border:1px solid transparent!important;box-shadow:0 1px 1px rgba(0,0,0,.05)!important;box-sizing:border-box!important;height:auto!important;list-style-type:none!important;margin-bottom:0!important;margin-left:auto!important;margin-right:auto!important;margin-top:0!important;max-height:none!important;max-width:1200px!important;padding:0 1em 1em!important;position:static!important;width:auto!important}#openuserjs-plus .config_header{display:block!important;font-size:1.5em!important;font-weight:700!important;margin-bottom:.83em!important;margin-left:0!important;margin-right:0!important;margin-top:.83em!important}#openuserjs-plus .section_header{background-color:#2c3e50!important;background-image:none!important;border:1px solid transparent!important;color:#fff!important}#openuserjs-plus .field_label{font-size:.85em!important;font-weight:600!important;margin-left:6px!important}#openuserjs-plus_field_milestoneNotification{display:ruby-text-container!important;width:100%!important}#openuserjs-plus_closeBtn{display:none!important}',
+      css: '#openuserjs-plus *{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif!important}#openuserjs-plus{background-color:transparent!important;border:1px solid transparent!important;box-sizing:border-box!important;height:auto!important;list-style-type:none!important;margin-bottom:0!important;margin-left:auto!important;margin-right:auto!important;margin-top:0!important;max-height:none!important;max-width:1200px!important;padding:0 1em 1em!important;position:static!important;width:auto!important}#openuserjs-plus .config_header{display:block!important;font-size:1.5em!important;font-weight:700!important;margin-bottom:.83em!important;margin-left:0!important;margin-right:0!important;margin-top:.83em!important}#openuserjs-plus .section_header{background-color:#2c3e50!important;background-image:none!important;border:1px solid transparent!important;color:#fff!important}#openuserjs-plus .config_var{display:flex!important}#openuserjs-plus_milestoneNotification_var{flex-direction:column!important}#openuserjs-plus .field_label{font-size:.85em!important;font-weight:600!important;margin-left:6px!important}#openuserjs-plus_field_milestoneNotification{flex:1 1 auto!important}#openuserjs-plus_buttons_holder{color:inherit!important}#openuserjs-plus button,#openuserjs-plus input[type=button]{font-size:.85em!important;font-weight:600!important}#openuserjs-plus_closeBtn{display:none!important}#openuserjs-plus .reset{color:inherit!important}',
       events: {
         init: () => {
           config.open()
         },
         save: () => {
-          window.location = document.referrer
+          history.back()
         }
       }
     })
@@ -170,8 +170,8 @@
    * Adds a link to the menu to access the script configuration
    */
   const addSettings = () => {
-    const menu = `<li class='${GM.info.script.name.toLowerCase().replace(/\s/g, '-')}_settings'><a href='/settings' title='Settings'>${GM.info.script.name}</a></li>`
-    if (document.location.pathname !== '/settings') $('.navbar-collapse-top > .navbar-right > li').first().before(menu)
+    const menu = `<li class='${id}_settings'><a href='/settings/' title='Settings'>${GM.info.script.name}</a></li>`
+    if (document.location.pathname !== '/settings/') $('.navbar-collapse-top > .navbar-right > li').first().before(menu)
   }
 
   /**
@@ -181,7 +181,7 @@
     // create menu
     const html = `
     <div class="panel panel-default">
-      <a href="/settings" onclick="return false" class="panel-heading">
+      <a href="/settings/" onclick="return false" class="panel-heading">
         <div class="panel-title"><i class="fa fa-fw fa-exclamation-circle"></i>${GM.info.script.name} filters</div>
       </a>
       <div>
