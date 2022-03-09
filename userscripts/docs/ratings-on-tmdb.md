@@ -4,7 +4,7 @@ Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [TMDb][tm
 
 [![Version][version-badge]][link] [![Size][size-badge]][link] [![Install][install-badge]][download-link]
 
->**Note**: After installation, enter your [TMDb API Key][tmdb-api] and your [OMDb API Key][omdb-api] in the script settings.
+>**Note**: After installation, enter your [TMDb API Key][tmdb-api] and your [OMDb API Key][omdb-api] on the script settings page accessible at [this address][settings-link].
 
 |           Screenshots           |
 | :-----------------------------: |
@@ -25,6 +25,7 @@ Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [TMDb][tm
 [tmdb-link]: https://www.themoviedb.org/
 [tmdb-api]: https://developers.themoviedb.org/3/
 [omdb-api]: https://www.omdbapi.com/apikey.aspx
+[settings-link]: https://www.themoviedb.org/settings/
 
 [version-badge]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/ratings-on-tmdb
 [size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js

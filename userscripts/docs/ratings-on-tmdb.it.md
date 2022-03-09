@@ -4,7 +4,7 @@ Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a [TMDb]
 
 [![Version][version-badge]][link] [![Size][size-badge]][link] [![Install][install-badge]][download-link]
 
->**Note**: Dopo l'installazione, inserisci la tua [TMDb API Key][tmdb-api] e la tua [OMDb API Key][omdb-api] nelle impostazioni dello script.
+>**Note**: Dopo l'installazione, inserisci la tua [TMDb API Key][tmdb-api] e la tua [OMDb API Key][omdb-api] nella pagina delle impostazioni dello script accessibile a [questo indirizzo][settings-link].
 
 |           Screenshots           |
 | :-----------------------------: |
@@ -25,6 +25,7 @@ Aggiunge valutazioni da IMDb, Rotten Tomatoes, Metacritic e MyAnimeList a [TMDb]
 [tmdb-link]: https://www.themoviedb.org/
 [tmdb-api]: https://developers.themoviedb.org/3/
 [omdb-api]: https://www.omdbapi.com/apikey.aspx
+[settings-link]: https://www.themoviedb.org/settings/
 
 [version-badge]: https://flat.badgen.net/runkit/iFelix18/version/Userscripts/ratings-on-tmdb
 [size-badge]: https://flat.badgen.net/badgesize/normal/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
