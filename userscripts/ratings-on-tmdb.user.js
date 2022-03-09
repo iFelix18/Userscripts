@@ -18,7 +18,7 @@
 // @description:zh-CN  在TMDb中添加来自IMDb、烂番茄、Metacritic和MyAnimeList的评分。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.3.0
+// @version            2.3.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -195,6 +195,7 @@
    */
   const addSettings = () => {
     const menu = `<li class="${id}_settings k-item k-menu-item k-state-default"role=menuitem style=z-index:auto><a class="k-link k-menu-link"href=/settings/ >${GM.info.script.name}</a>`
+
     $('header div.nav_wrapper > .k-menu:not(.k-context-menu) > .k-item').last().after(menu)
   }
 
@@ -223,6 +224,7 @@
    */
   const addTemplate = (target) => {
     const template = '<li class=external-ratings style=display:flex;margin-right:0></li><script id=external-ratings-template type=text/x-handlebars-template>{{#each ratings}} {{#ifEqual this.rating "N/A"}} {{else}} <a class=external-rating-link href={{this.url}} target=_blank><div class={{this.source}}-rating style=display:inline-flex;align-items:center;margin-right:20px><div class=logo style=display:inline-flex><img alt=logo src={{this.logo}} width=46></div><div class=text style=font-weight:700;margin-left:6px;display:inline-flex;flex-direction:column;align-items:flex-start><div class=vote style=display:flex;align-items:center;align-content:center;justify-content:center>{{this.rating}} {{#ifEqual this.rating "N/A"}} {{else}} <span style=font-weight:400;font-size:80%;opacity:.8>{{this.symbol}} </span>{{/ifEqual}}</div>{{#ifEqual this.votes "N/A"}} {{else}} {{#ifEqual this.source "metascore"}}<div class=votes style="display:flex;align-items:center;align-content:center;justify-content:center;background:linear-gradient(to top,transparent 0,transparent 25%,{{this.votes}} 25%,{{this.votes}} 75%,transparent 75%,transparent 100%);color:transparent">{{this.rating}}</div>{{else}}<div class=votes style=font-weight:400;opacity:.8>{{this.votes}}</div>{{/ifEqual}} {{/ifEqual}}</div></div></a>{{/ifEqual}} {{/each}}</script>'
+
     $(template).insertAfter(target)
   }
 
@@ -231,6 +233,7 @@
    */
   const clearOldCache = async () => {
     const values = await GM.listValues()
+
     for (const value of values) {
       const cache = await GM.getValue(value) // get cache
       if ((Date.now() - cache.time) > 3_600_000) { GM.deleteValue(value) } // delete old cache
