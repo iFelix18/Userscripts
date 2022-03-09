@@ -11,6 +11,7 @@ Caratteristiche:
 >* Aggiunge un pulsante per nascondere lo script (premi `Ctrl + Alt + H` per mostrarli di nuovo)
 >* Aggiunge un pulsante per installare direttamente lo script
 >* Ricevi una notifica ogni volta che le tue installazioni totali superano uno dei traguardi prefissati
+>* Pagina di configurazione accessibile a [questo indirizzo][settings-link]
 
 |                   Screenshots                   |
 | :---------------------------------------------: |
@@ -20,8 +21,6 @@ Caratteristiche:
 |               _Pulsante installa_               |
 | [![Milestone notification][screenshot-3]][link] |
 |              _Notifica traguardo_               |
-|     [![Settings page][screenshot-4]][link]      |
-|              _Pagina impostazioni_              |
 
 [link]: #openuserjs
 [openuserjs-link]: https://openuserjs.org/
@@ -32,7 +31,8 @@ Caratteristiche:
 
 [download-link]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/openuserjs-plus.user.js "Clicca qui!"
 
+[settings-link]: https://openuserjs.org/settings/
+
 [screenshot-1]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_hide-script-button.png?raw=true "Pulsante nascondi script"
 [screenshot-2]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_install-button.png?raw=true "Pulsante installa"
 [screenshot-3]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_milestone-notification.png?raw=true "Notifica traguardo"
-[screenshot-4]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_settings-page.png?raw=true "Pagina impostazioni"
