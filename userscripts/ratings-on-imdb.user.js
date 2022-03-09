@@ -18,7 +18,7 @@
 // @description:zh-CN  将烂番茄、Metacritic和MyAnimeList的评级添加到IMDb中。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.3.3
+// @version            2.3.4
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -104,11 +104,11 @@
   if (document.location.pathname === '/settings/') {
     document.title = title
     config.init({
-      frame: $('#error').empty().get(0),
+      frame: $('body').empty().get(0),
       id,
       title,
       fields,
-      css: '#ratings-on-imdb *{font-family:Roboto,Helvetica,Arial,sans-serif!important;color:#000!important}#ratings-on-imdb{background-color:transparent!important;border:1px solid transparent!important;box-sizing:border-box!important;height:auto!important;list-style-type:none!important;margin-bottom:0!important;margin-left:auto!important;margin-right:auto!important;margin-top:0!important;max-height:none!important;max-width:1200px!important;padding:0 1em 1em!important;position:static!important;width:auto!important}#ratings-on-imdb .config_header{display:block!important;font-size:1.5em!important;font-weight:700!important;margin-bottom:.83em!important;margin-left:0!important;margin-right:0!important;margin-top:.83em!important}#ratings-on-imdb .section_header{background-color:#e2b616!important;background-image:none!important;border:1px solid transparent!important}#ratings-on-imdb .section_desc{background-color:transparent!important;border:1px solid transparent!important}#ratings-on-imdb .config_var{align-items:center!important;display:flex!important}#ratings-on-imdb .field_label{font-size:.85em!important;font-weight:600!important;margin-left:6px!important}#ratings-on-imdb_field_OMDbApiKey{flex:1!important}#ratings-on-imdb_closeBtn{display:none!important}',
+      css: '#ratings-on-imdb *{font-family:Roboto,Helvetica,Arial,sans-serif!important}#ratings-on-imdb{background-color:transparent!important;border:1px solid transparent!important;box-sizing:border-box!important;height:auto!important;list-style-type:none!important;margin-bottom:0!important;margin-left:auto!important;margin-right:auto!important;margin-top:0!important;max-height:none!important;max-width:1200px!important;padding:0 1em 1em!important;position:static!important;width:auto!important}#ratings-on-imdb .config_header{display:block!important;font-size:1.5em!important;font-weight:700!important;margin-bottom:.83em!important;margin-left:0!important;margin-right:0!important;margin-top:.83em!important}#ratings-on-imdb .section_desc,#ratings-on-imdb .section_header{background-color:#e2b616!important;background-image:none!important;border:1px solid transparent!important;color:#000!important}#ratings-on-imdb .config_var{align-items:center!important;display:flex!important}#ratings-on-imdb .field_label{font-size:.85em!important;font-weight:600!important;margin-left:6px!important}#ratings-on-imdb_field_OMDbApiKey{flex:1!important}#ratings-on-imdb_buttons_holder{color:inherit!important}#ratings-on-imdb button,#ratings-on-imdb input[type=button]{font-size:.85em!important;font-weight:600!important}#ratings-on-imdb_closeBtn{display:none!important}#ratings-on-imdb .reset{color:inherit!important}',
       events: {
         init: () => {
           config.open()
@@ -118,7 +118,7 @@
             window.alert(`${GM.info.script.name}: check your settings and save`)
           } else {
             window.alert(`${GM.info.script.name}: settings saved`)
-            window.location = document.referrer
+            history.back()
           }
         }
       }

@@ -1,6 +1,5 @@
 #ratings-on-imdb * {
   font-family: Roboto, Helvetica, Arial, sans-serif !important;
-  color: rgb(0, 0, 0) !important;
 }
 
 #ratings-on-imdb {
@@ -30,15 +29,12 @@
   margin-top: 0.83em !important;
 }
 
-#ratings-on-imdb .section_header {
+#ratings-on-imdb .section_header,
+#ratings-on-imdb .section_desc {
   background-color: rgb(226, 182, 22) !important;
   background-image: none !important;
   border: 1px solid transparent !important;
-}
-
-#ratings-on-imdb .section_desc {
-  background-color: transparent !important;
-  border: 1px solid transparent !important;
+  color: rgb(0, 0, 0) !important;
 }
 
 #ratings-on-imdb .config_var {
@@ -56,6 +52,20 @@
   flex: 1 !important;
 }
 
+#ratings-on-imdb_buttons_holder {
+  color: inherit !important;
+}
+
+#ratings-on-imdb input[type="button"],
+#ratings-on-imdb button {
+  font-size: 0.85em !important;
+  font-weight: 600 !important;
+}
+
 #ratings-on-imdb_closeBtn {
   display: none !important;
+}
+
+#ratings-on-imdb .reset {
+  color: inherit !important;
 }
