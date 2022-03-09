@@ -5,5 +5,5 @@
 // @description Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to TMDb
 // @copyright 2021, Davide (https://github.com/iFelix18)
 // @license MIT
-// @version 2.2.0
+// @version 2.3.0
 // ==/UserScript==
