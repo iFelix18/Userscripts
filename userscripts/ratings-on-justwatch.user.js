@@ -18,7 +18,7 @@
 // @description:zh-CN  在JustWatch中添加来自IMDb、烂番茄、Metacritic和MyAnimeList的评分。
 // @copyright          2022, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.2.0
+// @version            1.2.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -189,7 +189,7 @@
    * @returns {string} ID
    */
   const getID = () => {
-    const link = $('.title-info:not(.visible-xs) a[href^="https://www.imdb.com/"]').attr('href') // IMDb link
+    let link = $('.title-info:not(.visible-xs) a[href^="https://www.imdb.com/"]').attr('href') // IMDb link
     if (!link) return // check if the link exists
 
     return new Promise((resolve, reject) => { // load last IMDb link
@@ -197,7 +197,8 @@
         method: 'GET',
         url: link,
         onload: (response) => {
-          resolve(/\/title\/(tt\d*)/i.exec(response.finalUrl)[1]) // IMDb ID
+          link = GM.info.scriptHandler === 'Userscripts' ? response.responseURL : response.finalUrl //! Userscripts Safari: response.finalUrl is missing
+          resolve(/\/title\/(tt\d*)/i.exec(link)[1]) // IMDb ID
         }
       })
     })
