@@ -1,20 +1,17 @@
 #greasyfork-plus * {
   font-family: Open Sans, sans-serif, Segoe UI Emoji !important;
-  color: #000 !important;
 }
 
 #greasyfork-plus {
-  background-color: #fff !important;
-  border-radius: 5px !important;
-  border: 1px solid #bbb !important;
-  box-shadow: 0 0 5px #ddd !important;
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
   box-sizing: border-box !important;
   height: auto !important;
   list-style-type: none !important;
   margin-bottom: 0 !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  margin-top: 14px !important;
+  margin-top: 0 !important;
   max-height: none !important;
   max-width: 1200px !important;
   padding: 0 1em 1em !important;
@@ -33,10 +30,18 @@
 }
 
 #greasyfork-plus .section_header {
-  background-color: #670000 !important;
-  background-image: linear-gradient(#670000, #900) !important;
+  background-color: rgb(103, 0, 0) !important;
+  background-image: linear-gradient(rgb(103, 0, 0), rgb(153, 0, 0)) !important;
   border: 1px solid transparent !important;
-  color: #fff !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+#greasyfork-plus .config_var {
+  display: flex !important;
+}
+
+#greasyfork-plus_milestoneNotification_var {
+  flex-direction: column !important;
 }
 
 #greasyfork-plus .field_label {
@@ -46,10 +51,23 @@
 }
 
 #greasyfork-plus_field_milestoneNotification {
-  display: ruby-text-container !important;
-  width: 100% !important;
+  flex: 1 1 auto !important;
+}
+
+#greasyfork-plus_buttons_holder {
+  color: inherit !important;
+}
+
+#greasyfork-plus input[type="button"],
+#greasyfork-plus button {
+  font-size: 0.85em !important;
+  font-weight: 500 !important;
 }
 
 #greasyfork-plus_closeBtn {
   display: none !important;
+}
+
+#greasyfork-plus .reset {
+  color: inherit !important;
 }
