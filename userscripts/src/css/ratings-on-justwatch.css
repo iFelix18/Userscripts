@@ -1,10 +1,5 @@
-:root {
-  color-scheme: unset !important;
-}
-
 #ratings-on-justwatch * {
   font-family: Lato, Lato-fallback, Arial, sans-serif !important;
-  color: rgb(0, 0, 0) !important;
 }
 
 #ratings-on-justwatch {
@@ -34,15 +29,12 @@
   margin-top: 0.83em !important;
 }
 
-#ratings-on-justwatch .section_header {
+#ratings-on-justwatch .section_header,
+#ratings-on-justwatch .section_desc {
   background-color: rgb(251, 197, 0) !important;
   background-image: none !important;
   border: 1px solid transparent !important;
-}
-
-#ratings-on-justwatch .section_desc {
-  background-color: transparent !important;
-  border: 1px solid transparent !important;
+  color: rgb(0, 0, 0) !important;
 }
 
 #ratings-on-justwatch .config_var {
@@ -60,6 +52,20 @@
   flex: 1 !important;
 }
 
+#ratings-on-justwatch_buttons_holder {
+  color: inherit !important;
+}
+
+#ratings-on-justwatch input[type="button"],
+#ratings-on-justwatch button {
+  font-size: 0.85em !important;
+  font-weight: 600 !important;
+}
+
 #ratings-on-justwatch_closeBtn {
   display: none !important;
+}
+
+#ratings-on-justwatch .reset {
+  color: inherit !important;
 }
