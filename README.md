@@ -35,7 +35,7 @@ Readme languages:
 
 |                 _Library_                  |                    _Version_                    |
 | :----------------------------------------: | :---------------------------------------------: |
-|           [My Utils][utils-link]           |     [![Version][utils-version]][libraries]      |
+|            [Utils][utils-link]             |     [![Version][utils-version]][libraries]      |
 |          [Ratings][ratings-link]           |    [![Version][ratings-version]][libraries]     |
 |          [Trakt API][trakt-link]           |     [![Version][trakt-version]][libraries]      |
 |           [TMDb API][tmdb-link]            |      [![Version][tmdb-version]][libraries]      |
@@ -60,16 +60,10 @@ Readme languages:
 
 ## How to use libraries
 
-Put them in the _Metadata Block_ via `@require`, for example:
+The libraries are published on npm, put it in the _Metadata Block_ via `@require` specifying the version, for example:
 
 ```JavaScript
-// @require https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/lib/utils/utils.min.js
-```
-
-Use a specific version using a specific GitHub tag, for example:
-
-```JavaScript
-// @require https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@utils-2.3.0/lib/utils/utils.min.js
+// @require https://cdn.jsdelivr.net/npm/@ifelix18/utils@5.1.1/lib/index.min.js
 ```
 
 ---
