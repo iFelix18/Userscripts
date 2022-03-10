@@ -18,7 +18,7 @@
 // @description:zh-CN  在TMDb中添加来自IMDb、烂番茄、Metacritic和MyAnimeList的评分。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.3.1
+// @version            2.3.2
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -129,7 +129,11 @@
             window.alert(`${GM.info.script.name}: check your settings and save`)
           } else {
             window.alert(`${GM.info.script.name}: settings saved`)
-            history.back()
+            if ('referrer' in document && document.referrer !== '') {
+              window.location = document.referrer
+            } else {
+              window.history.back()
+            }
           }
         }
       }
