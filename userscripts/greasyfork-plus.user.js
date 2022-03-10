@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.8.11
+// @version            1.8.12
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -191,7 +191,12 @@
           config.open()
         },
         save: () => {
-          history.back()
+          window.alert(`${GM.info.script.name}: settings saved`)
+          if ('referrer' in document && document.referrer !== '') {
+            window.location = document.referrer
+          } else {
+            window.history.back()
+          }
         }
       }
     })
@@ -207,6 +212,7 @@
           }
         },
         save: () => {
+          window.alert(`${GM.info.script.name}: settings saved`)
           config.close()
           setTimeout(window.location.reload(false), 500)
         }
