@@ -7,7 +7,7 @@
 // @description  Trakt API for my userscripts
 // @copyright    2020, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.0.0
+// @version      2.1.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/trakt#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/trakt#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -24,9 +24,17 @@ const methods = {
     method: 'GET',
     url: '/shows/{id}/seasons/{season}/episodes/{episode}?extended'
   },
+  '/episodes/translations': {
+    method: 'GET',
+    url: '/shows/{id}/seasons/{season}/episodes/{episode}/translations/{language}'
+  },
   '/movies/summary': {
     method: 'GET',
     url: '/movies/{id}?extended'
+  },
+  '/movies/translations': {
+    method: 'GET',
+    url: '/movies/{id}/translations/{language}'
   },
   '/search/id': {
     method: 'GET',
@@ -47,6 +55,10 @@ const methods = {
   '/shows/summary': {
     method: 'GET',
     url: '/shows/{id}?extended'
+  },
+  '/shows/translations': {
+    method: 'GET',
+    url: '/shows/{id}/translations/{language}'
   }
 }
 
