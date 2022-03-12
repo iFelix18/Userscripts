@@ -7,7 +7,7 @@
 // @description  Trakt API for my userscripts
 // @copyright    2020, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.1.0
+// @version      2.1.1
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/trakt#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/trakt#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -199,7 +199,7 @@ this.Trakt = (function () {
       // Query String
       if (path[1]) {
         for (const query of path[1].split('&')) {
-          const regex = new RegExp(Object.keys(parameters).map(key => `{${key}}`).join('|'), 'gi')
+          const regex = new RegExp(Object.keys(parameters).map(key => `${key}`).join('|'), 'gi')
 
           if (regex.test(query)) {
             queryString.push(`${query}=${parameters[query]}`)
