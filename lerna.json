@@ -7,8 +7,7 @@
       "ignoreChanges": [
         "ignored-file",
         "*.md"
-      ],
-      "message": "Publish %s"
+      ]
     }
   },
   "useWorkspaces": true,
