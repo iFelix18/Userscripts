@@ -7,7 +7,7 @@
 // @description  Trakt API for my userscripts
 // @copyright    2020, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.1.1
+// @version      2.2.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/trakt#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/trakt#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -21,43 +21,83 @@
  */
 const methods = {
   '/episodes/summary': {
+    extended: [
+      'full'
+    ],
     method: 'GET',
-    url: '/shows/{id}/seasons/{season}/episodes/{episode}?extended'
+    url: '/shows/{id}/seasons/{season}/episodes/{episode}'
   },
   '/episodes/translations': {
     method: 'GET',
+    optional: [
+      'language'
+    ],
     url: '/shows/{id}/seasons/{season}/episodes/{episode}/translations/{language}'
   },
   '/movies/summary': {
+    extended: [
+      'full'
+    ],
     method: 'GET',
-    url: '/movies/{id}?extended'
+    url: '/movies/{id}'
   },
   '/movies/translations': {
     method: 'GET',
+    optional: [
+      'language'
+    ],
     url: '/movies/{id}/translations/{language}'
   },
   '/search/id': {
+    extended: [
+      'full'
+    ],
     method: 'GET',
+    optional: [
+      'type'
+    ],
     url: '/search/{id_type}/{id}?type'
   },
   '/search/query': {
+    extended: [
+      'full'
+    ],
     method: 'GET',
-    url: '/search/{type}?query&extended'
+    optional: [
+      'fields'
+    ],
+    url: '/search/{type}?query&fields'
   },
   '/seasons/season': {
+    extended: [
+      'full'
+    ],
     method: 'GET',
-    url: '/shows/{id}/seasons/{season}?translations&extended'
+    optional: [
+      'translations'
+    ],
+    url: '/shows/{id}/seasons/{season}?translations'
   },
   '/seasons/summary': {
+    extended: [
+      'full',
+      'episodes'
+    ],
     method: 'GET',
-    url: '/shows/{id}/seasons?extended'
+    url: '/shows/{id}/seasons'
   },
   '/shows/summary': {
+    extended: [
+      'full'
+    ],
     method: 'GET',
-    url: '/shows/{id}?extended'
+    url: '/shows/{id}'
   },
   '/shows/translations': {
     method: 'GET',
+    optional: [
+      'language'
+    ],
     url: '/shows/{id}/translations/{language}'
   }
 }
@@ -99,16 +139,16 @@ export default class Trakt {
       'trakt-api-version': 2
     }
 
-    /**
-     * @param {object} response GM.xmlHttpRequest response
-     * @private
-     */
-    this._debug = (response) => {
-      if (this._config.debug || response.status !== 200) console.log(`${response.status}: ${response.finalUrl}`)
-    }
-
     this._this = this
     this._methods()
+  }
+
+  /**
+   * @param {object} response GM.xmlHttpRequest response
+   * @private
+   */
+  _debug (response) {
+    if (this._config.debug || response.status !== 200) console.log(`${response.status}: ${response.finalUrl}`)
   }
 
   /**
@@ -150,8 +190,8 @@ export default class Trakt {
         timeout: 15_000,
         onload: (response) => {
           this._debug(response)
-          const data = JSON.parse(response.responseText)
-          if (response.readyState === 4 && response.status === 200) {
+          const data = response.status === 200 ? JSON.parse(response.responseText) : {}
+          if (data.length > 0 && response.readyState === 4 && response.status === 200) {
             resolve(data)
           } else {
             if (data.status_message) {
@@ -180,33 +220,46 @@ export default class Trakt {
    * @returns {string} Final URL
    */
   _resolve (method, parameters) {
-    const url = this._config.api_url
-    const path = method.url.split('?')
-    const pathParameters = []
-    const queryString = []
+    const url = method.url.split('?')
+    const providedParameters = new Set(Object.keys(parameters).map(key => `${key}`))
 
-    // Path Params
-    if (path[0]) {
-      if (parameters) {
-        const regex = new RegExp(Object.keys(parameters).map(key => `{${key}}`).join('|'), 'gi')
-        pathParameters.push(path[0].replace(regex, (matched) => parameters[matched.replace(/[{}]/g, '')]))
-      } else {
-        pathParameters.push(path[0])
-      }
-    }
+    const Parameters = []
+    const Queries = []
 
-    // Query String
-    if (path[1]) {
-      for (const query of path[1].split('&')) {
-        const regex = new RegExp(Object.keys(parameters).map(key => `${key}`).join('|'), 'gi')
-
-        if (regex.test(query)) {
-          queryString.push(`${query}=${parameters[query]}`)
+    // Parameters
+    if (parameters && url[0]) {
+      for (let parameter of url[0].split('/')) {
+        if (!/\{.+?\}/.test(parameter)) { // eslint-disable-line unicorn/better-regex
+          Parameters.push(parameter)
+        } else {
+          parameter = parameter.replace(/[{}]/g, '')
+          if (providedParameters.has(parameter)) {
+            Parameters.push(encodeURIComponent(parameters[parameter]))
+          } else {
+            if (!method.optional.includes(parameter)) throw new Error(`Missing parameter: ${parameter}`)
+          }
         }
       }
     }
 
+    // Queries
+    if (parameters && url[1]) {
+      for (const query of url[1].split('&')) {
+        if (providedParameters.has(query)) {
+          Queries.push(`${query}=${encodeURIComponent(parameters[query])}`)
+        } else {
+          if (!method.optional.includes(query)) throw new Error(`Missing parameter: ${query}`)
+        }
+      }
+    }
+
+    // Extended
+    if (parameters && method.extended && parameters.extended && method.extended.includes(parameters.extended)) {
+      Queries.push(`extended=${parameters.extended}`)
+    }
+
     // return final URL
-    return `${url}${pathParameters.join('')} ${queryString.length > 0 ? `?${queryString.join(' & ')}` : ''}`
+    const finalURL = `${this._config.api_url}${Parameters.join('/')}${Queries.length > 0 ? `?${Queries.join('&')}` : ''}`
+    return finalURL
   }
 }
