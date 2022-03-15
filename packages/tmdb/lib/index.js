@@ -7,7 +7,7 @@
 // @description  TMDb API for my userscripts
 // @copyright    2020, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.0.0
+// @version      2.1.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/tmdb#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/tmdb#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -21,61 +21,92 @@ this.TMDb = (function () {
    * API methods
    */
   const methods = {
+    '/configuration/api': {
+      method: 'GET',
+      optional: [],
+      url: '/configuration'
+    },
     '/configuration/primary_translations': {
       method: 'GET',
+      optional: [],
       url: '/configuration/primary_translations'
     },
     '/find': {
       method: 'GET',
+      optional: [],
       url: '/find/{external_id}?external_source'
     },
     '/movie/details': {
+      append_to_response: true,
       method: 'GET',
+      optional: [],
       url: '/movie/{movie_id}'
     },
     '/movie/external_ids': {
       method: 'GET',
+      optional: [],
       url: '/movie/{movie_id}/external_ids'
     },
     '/movie/images': {
       method: 'GET',
-      url: '/movie/{movie_id}/images'
+      optional: [
+        'include_image_language'
+      ],
+      url: '/movie/{movie_id}/images?include_image_language'
     },
     '/tv/details': {
+      append_to_response: true,
       method: 'GET',
+      optional: [],
       url: '/tv/{tv_id}'
     },
     '/tv/episode/details': {
+      append_to_response: true,
       method: 'GET',
+      optional: [],
       url: '/tv/{tv_id}/season/{season_number}/episode/{episode_number}'
     },
     '/tv/episode/external_ids': {
       method: 'GET',
+      optional: [],
       url: '/tv/{tv_id}/season/{season_number}/episode/{episode_number}/external_ids'
     },
     '/tv/episode/images': {
       method: 'GET',
-      url: '/tv/{tv_id}/season/{season_number}/episode/{episode_number}/images'
+      optional: [
+        'include_image_language'
+      ],
+      url: '/tv/{tv_id}/season/{season_number}/episode/{episode_number}/images?include_image_language'
     },
     '/tv/external_ids': {
       method: 'GET',
+      optional: [],
       url: '/tv/{tv_id}/external_ids'
     },
     '/tv/images': {
       method: 'GET',
-      url: '/tv/{tv_id}/images'
+      optional: [
+        'include_image_language'
+      ],
+      url: '/tv/{tv_id}/images?include_image_language'
     },
     '/tv/season/details': {
+      append_to_response: true,
       method: 'GET',
+      optional: [],
       url: '/tv/{tv_id}/season/{season_number}'
     },
     '/tv/season/external_ids': {
       method: 'GET',
+      optional: [],
       url: '/tv/{tv_id}/season/{season_number}/external_ids'
     },
     '/tv/season/images': {
       method: 'GET',
-      url: '/tv/{tv_id}/season/{season_number}/images'
+      optional: [
+        'include_image_language'
+      ],
+      url: '/tv/{tv_id}/season/{season_number}/images?include_image_language'
     }
   }
 
@@ -92,40 +123,43 @@ this.TMDb = (function () {
      * @param {object} config Configuration
      * @param {string} config.api_key TMDb API Key
      * @param {string} [config.api_url='https://api.themoviedb.org/3'] TMDb API URL
-     * @param {string} [config.language='en-US'] TMDb API language
+     * @param {string} [config.language] TMDb API language
      * @param {boolean} [config.debug=false] Debug
      */
     constructor (config = {}) {
       if (!config.api_key) throw new Error('TMDb API Key is required')
 
-      /**
-       * @private
-       */
       this._config = {
         api_key: config.api_key,
         api_url: config.api_url || 'https://api.themoviedb.org/3',
-        language: config.language || 'en-US',
+        language: config.language,
         debug: config.debug || false
       }
 
-      /**
-       * @private
-       */
       this._headers = {
         'User-Agent': 'Mozilla/5.0',
         'Content-Type': 'application/json;charset=utf-8'
       }
 
-      /**
-       * @param {object} response GM.xmlHttpRequest response
-       * @private
-       */
-      this._debug = (response) => {
-        if (this._config.debug || response.status !== 200) console.log(`${response.status}: ${response.finalUrl}`)
-      }
-
-      this._this = this
       this._methods()
+    }
+
+    /**
+     * This
+     *
+     * @private
+     * @returns {object} This
+     */
+    _this () {
+      return this
+    }
+
+    /**
+     * @private
+     * @param {object} response GM.xmlHttpRequest response
+     */
+    _debug (response) {
+      if (this._config.debug || response.status !== 200) console.log(`${response.status}: ${response.finalUrl}`)
     }
 
     /**
@@ -139,7 +173,7 @@ this.TMDb = (function () {
         const function_ = parts.pop()
         parts.shift()
 
-        let temporary = this._this
+        let temporary = this._this()
         for (const part of parts) {
           temporary = temporary[part] || (temporary[part] = {})
         }
@@ -158,20 +192,18 @@ this.TMDb = (function () {
      */
     _request (method, parameters) {
       return new Promise((resolve, reject) => {
-        const finalURL = this._resolve(method, parameters)
-
         GM.xmlHttpRequest({
           method: method.method,
-          url: finalURL,
+          url: this._resolve(method, parameters),
           headers: this._headers,
           timeout: 15_000,
           onload: (response) => {
             this._debug(response)
-            const data = JSON.parse(response.responseText)
-            if (response.readyState === 4 && response.status === 200) {
+            const data = response.responseText ? JSON.parse(response.responseText) : undefined
+            if (data && response.readyState === 4 && response.status === 200) {
               resolve(data)
             } else {
-              if (data.status_message) {
+              if (data && data.status_message) {
                 reject(new Error(data.status_message))
               } else {
                 reject(new Error('No results'))
@@ -197,34 +229,55 @@ this.TMDb = (function () {
      * @returns {string} Final URL
      */
     _resolve (method, parameters) {
-      const url = this._config.api_url
-      const path = method.url.split('?')
-      const pathParameters = []
-      const queryString = []
+      const url = method.url.split('?')
+      const providedParameters = parameters ? new Set(Object.keys(parameters).map(key => `${key}`)) : {}
 
-      // Path Params
-      if (path[0]) {
-        if (parameters) {
-          const regex = new RegExp(Object.keys(parameters).map(key => `{${key}}`).join('|'), 'gi')
-          pathParameters.push(path[0].replace(regex, (matched) => parameters[matched.replace(/[{}]/g, '')]))
-        } else {
-          pathParameters.push(path[0])
+      const Parameters = []
+      const Queries = []
+
+      // Parameters
+      if (url[0]) {
+        for (let parameter of url[0].split('/')) {
+          if (!/\{.+?\}/.test(parameter)) { // eslint-disable-line unicorn/better-regex
+            Parameters.push(parameter)
+          } else {
+            parameter = parameter.replace(/[{}]/g, '')
+            if (parameters && providedParameters.has(parameter)) {
+              Parameters.push(encodeURIComponent(parameters[parameter]))
+            } else {
+              if (!method.optional.includes(parameter)) throw new Error(`Missing parameter: ${parameter}`)
+            }
+          }
         }
       }
 
-      // Query String
-      if (path[1]) {
-        for (const query of path[1].split('&')) {
-          queryString.push(`${query}=${parameters[query]}`)
+      // Queries
+      if (url[1]) {
+        for (const query of url[1].split('&')) {
+          if (parameters && providedParameters.has(query)) {
+            Queries.push(`${query}=${encodeURIComponent(parameters[query])}`)
+          } else {
+            if (!method.optional.includes(query)) throw new Error(`Missing parameter: ${query}`)
+          }
         }
       }
-      if (this._config.language) { // language
-        queryString.push(`language=${this._config.language}`)
+
+      // API Key
+      Queries.push(`api_key=${this._config.api_key}`)
+
+      // Language
+      if (this._config.language) {
+        Queries.push(`language=${this._config.language}`)
       }
-      queryString.push(`api_key=${this._config.api_key}`) // api key
+
+      // Append to response
+      if (method.append_to_response && parameters.append_to_response) {
+        Queries.push(`append_to_response=${parameters.append_to_response}`)
+      }
 
       // return final URL
-      return `${url}${pathParameters.join('')}?${queryString.join('&')}`
+      const finalURL = `${this._config.api_url}${Parameters.join('/')}${Queries.length > 0 ? `?${Queries.join('&')}` : ''}`
+      return finalURL
     }
   }
 
