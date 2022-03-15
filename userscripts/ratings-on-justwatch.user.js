@@ -18,7 +18,7 @@
 // @description:zh-CN  在JustWatch中添加来自IMDb、烂番茄、Metacritic和MyAnimeList的评分。
 // @copyright          2022, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.2.3
+// @version            1.2.4
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -261,7 +261,7 @@
   //* Script
   $(document).ready(() => {
     NodeCreationObserver.init(id)
-    NodeCreationObserver.onCreation('.navbar__wrapper > .navbar__button__link:last-of-type', () => {
+    NodeCreationObserver.onCreation('.searchbar-input-container.sc-ion-searchbar-md', () => {
       addSettings() // add settings
     }, true)
     NodeCreationObserver.onCreation('.title-info:not(.visible-xs) a[href^="https://www.imdb.com/"]', () => {
