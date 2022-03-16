@@ -18,7 +18,7 @@
 // @description:zh-CN  在JustWatch中添加来自IMDb、烂番茄、Metacritic和MyAnimeList的评分。
 // @copyright          2022, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.2.4
+// @version            1.2.5
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -35,6 +35,7 @@
 // @require            https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js
 // @match              *://www.justwatch.com/*
 // @connect            api.jikan.moe
+// @connect            imdb.com
 // @connect            omdbapi.com
 // @connect            rottentomatoes.com
 // @compatible         chrome
@@ -160,7 +161,7 @@
   const UU = new UserscriptUtils({
     name: GM.info.script.name,
     version: GM.info.script.version,
-    author: GM.info.script.author,
+    author: 'Davide',
     logging: config.get('logging')
   })
   UU.init(id)
