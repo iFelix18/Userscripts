@@ -7,12 +7,14 @@
 // @description  TMDb API for my userscripts
 // @copyright    2020, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.1.0
+// @version      2.2.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/tmdb#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/tmdb#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
 // @connect      api.themoviedb.org
+// @grant        GM.getValue
+// @grant        GM.setValue
 // @grant        GM.xmlHttpRequest
 // ==/UserScript==
 
@@ -125,8 +127,11 @@ this.TMDb = (function () {
      * @param {string} [config.api_url='https://api.themoviedb.org/3'] TMDb API URL
      * @param {string} [config.language] TMDb API language
      * @param {boolean} [config.debug=false] Debug
+     * @param {object} cache Cache
+     * @param {boolean} [cache.active=false] Cache status
+     * @param {number} [cache.time_to_live=3600] Time yo Live cache, in seconds
      */
-    constructor (config = {}) {
+    constructor (config = {}, cache = config.cache || {}) {
       if (!config.api_key) throw new Error('TMDb API Key is required')
 
       this._config = {
@@ -134,6 +139,11 @@ this.TMDb = (function () {
         api_url: config.api_url || 'https://api.themoviedb.org/3',
         language: config.language,
         debug: config.debug || false
+      }
+
+      this._cache = {
+        active: cache.active || false,
+        TTL: (cache.time_to_live || 3600) * 1000
       }
 
       this._headers = {
@@ -156,10 +166,25 @@ this.TMDb = (function () {
 
     /**
      * @private
-     * @param {object} response GM.xmlHttpRequest response
+     * @param {object} response Response
      */
     _debug (response) {
-      if (this._config.debug || response.status !== 200) console.log(`${response.status}: ${response.finalUrl}`)
+      if (this._config.debug) console.log(`${GM.info.script.name}:`, response)
+    }
+
+    /**
+     * Return final URL SHA-256 hash
+     *
+     * @private
+     * @see https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest#converting_a_digest_to_a_hex_string
+     * @param {string} url Final URL
+     * @returns {string} SHA-256 hash
+     */
+    async _crypto (url) {
+      const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(url))
+      const hashArray = [...new Uint8Array(hashBuffer)]
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+      return hashHex
     }
 
     /**
@@ -190,33 +215,43 @@ this.TMDb = (function () {
      * @param {object} parameters Function parameters
      * @returns {object} Response
      */
-    _request (method, parameters) {
-      return new Promise((resolve, reject) => {
-        GM.xmlHttpRequest({
-          method: method.method,
-          url: this._resolve(method, parameters),
-          headers: this._headers,
-          timeout: 15_000,
-          onload: (response) => {
-            this._debug(response)
-            const data = response.responseText ? JSON.parse(response.responseText) : undefined
-            if (data && response.readyState === 4 && response.status === 200) {
-              resolve(data)
-            } else {
-              if (data && data.status_message) {
-                reject(new Error(data.status_message))
+    async _request (method, parameters) {
+      const finalURL = this._resolve(method, parameters)
+      const hash = await this._crypto(finalURL).then().catch(error => new Error(error))
+      const cache = await GM.getValue(hash)
+
+      return await new Promise((resolve, reject) => {
+        if (this._cache.active && cache && ((Date.now() - cache.time) < this._cache.TTL)) { // cache valid
+          this._debug({ status: 'cached', finalURL })
+          resolve(cache.data)
+        } else { // cache not valid
+          GM.xmlHttpRequest({
+            method: method.method,
+            url: finalURL,
+            headers: this._headers,
+            timeout: 15_000,
+            onload: (response) => {
+              this._debug({ status: response.status, finalURL })
+              const data = response.responseText ? JSON.parse(response.responseText) : undefined
+              if (data && response.readyState === 4 && response.status === 200) {
+                if (this._cache.active) GM.setValue(hash, { data, time: Date.now() })
+                resolve(data)
               } else {
-                reject(new Error('No results'))
+                if (data && data.status_message) {
+                  reject(new Error(data.status_message))
+                } else {
+                  reject(new Error('No results'))
+                }
               }
+            },
+            onerror: () => {
+              reject(new Error('An error occurs while processing the request'))
+            },
+            ontimeout: () => {
+              reject(new Error('Request times out'))
             }
-          },
-          onerror: () => {
-            reject(new Error('An error occurs while processing the request'))
-          },
-          ontimeout: () => {
-            reject(new Error('Request times out'))
-          }
-        })
+          })
+        }
       })
     }
 
@@ -238,7 +273,7 @@ this.TMDb = (function () {
       // Parameters
       if (url[0]) {
         for (let parameter of url[0].split('/')) {
-          if (!/\{.+?\}/.test(parameter)) { // eslint-disable-line unicorn/better-regex
+          if (!/{.+?}/.test(parameter)) {
             Parameters.push(parameter)
           } else {
             parameter = parameter.replace(/[{}]/g, '')
