@@ -1,6 +1,6 @@
 {
   "name": "@ifelix18/trakt",
-  "version": "2.2.1",
+  "version": "2.3.0",
   "description": "Trakt API for my userscripts",
   "homepage": "https://github.com/iFelix18/Userscripts/tree/master/packages/trakt#readme",
   "bugs": {
