@@ -7,7 +7,7 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      6.0.0
+// @version      6.1.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -18,12 +18,29 @@
 // ==/UserScript==
 
 this.UU = (function () {
-  const _name = GM.info.script.name
-  const _version = GM.info.script.version
+  /* global $ */
+
+  const observed = {}
+  const name = GM.info.script.name
+  const version = GM.info.script.version
   const matches = /^(.*?)\s<\S[^\s@]*@\S[^\s.]*\.\S+>$/.exec(GM.info.script.author)
   const author = matches ? matches[1] : GM.info.script.author
   let _id
   let _logging
+
+  const callsCallback = (selector) => {
+    $(selector).each((index, element) => {
+      if (!$(element).data(_id)) {
+        $(element).data(_id, 1)
+        observed[selector].callback.call(index, element)
+      }
+    })
+  }
+
+  const observer = () => {
+    new MutationObserver(() => $.each(observed, (selector) => callsCallback(selector)))
+      .observe(document, { childList: true, subtree: true })
+  }
 
   const index = {
     /**
@@ -46,13 +63,13 @@ this.UU = (function () {
 
       // logs userscript header
       const style = 'color:red;font-weight:700;font-size:18px;text-transform:uppercase'
-      console.info(`%c${_name}\n` + `%cv${_version}${author ? ` by ${author}` : ''} is running!`, style, '')
+      console.info(`%c${name}\n` + `%cv${version}${author ? ` by ${author}` : ''} is running!`, style, '')
 
       // if logging is true, logs script config values
       if (_logging) {
         for (const key in data) {
           if (Object.hasOwnProperty.call(data, key)) {
-            console.info(`${_name}:`, `${key} is "${data[key]}"`)
+            console.info(`${name}:`, `${key} is "${data[key]}"`)
           }
         }
       }
@@ -64,7 +81,7 @@ this.UU = (function () {
      */
     log: (message) => {
       if (_logging) {
-        console.info(`${_name}:`, message)
+        console.info(`${name}:`, message)
       }
     },
     /**
@@ -73,7 +90,7 @@ this.UU = (function () {
      * @param {string} message Message
      */
     error: (message) => {
-      console.error(`${_name}:`, message)
+      console.error(`${name}:`, message)
     },
     /**
      * Warn
@@ -81,7 +98,7 @@ this.UU = (function () {
      * @param {string} message Message
      */
     warn: (message) => {
-      console.warn(`${_name}:`, message)
+      console.warn(`${name}:`, message)
     },
     /**
      * Alert
@@ -89,7 +106,7 @@ this.UU = (function () {
      * @param {string} message Message
      */
     alert: (message) => {
-      window.alert(`${_name}: ${message}`)
+      window.alert(`${name}: ${message}`)
     },
     /**
      * Returns shortened version of a message
@@ -117,6 +134,16 @@ this.UU = (function () {
         GM.deleteValue(oldID) // delete old config
         window.location.reload(false) // reload the page to apply the new configuration
       }
+    },
+    /**
+     * Observe the creation of new elements
+     *
+     * @param {string} selector Selector
+     * @param {Function} callback callback
+     */
+    observe: (selector, callback) => {
+      $.extend(observed, { [selector]: { callback } })
+      observer()
     }
   }
 
