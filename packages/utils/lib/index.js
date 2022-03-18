@@ -7,7 +7,7 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      5.1.1
+// @version      6.0.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -17,88 +17,80 @@
 // @grant        GM.setValue
 // ==/UserScript==
 
-this.UserscriptUtils = (function () {
-  /**
-   * Utils for my userscripts
-   *
-   * @class
-   */
-  class UserscriptUtils {
+this.UU = (function () {
+  const _name = GM.info.script.name
+  const _version = GM.info.script.version
+  const matches = /^(.*?)\s<\S[^\s@]*@\S[^\s.]*\.\S+>$/.exec(GM.info.script.author)
+  const author = matches ? matches[1] : GM.info.script.author
+  let _id
+  let _logging
+
+  const index = {
     /**
-     * Utils configuration
-     *
-     * @param {object} config Configuration
-     * @param {string} config.name Userscript name
-     * @param {string} config.version Userscript version
-     * @param {string} config.author Userscript author
-     * @param {string} [config.color='red'] Userscript header color
-     * @param {string} [config.logging=false] Logging
-     */
-    constructor (config = {}) {
-      if (!config.name) throw new Error('Userscript name is required')
-      if (!config.author) throw new Error('Userscript author is required')
-
-      const matches = /^(.*?)\s<\S[^\s@]*@\S[^\s.]*\.\S+>$/.exec(config.author)
-
-      /**
-       * @private
-       */
-      this._config = {
-        name: config.name.toUpperCase(),
-        version: config.version || undefined,
-        author: matches ? matches[1] : config.author,
-        color: config.color || 'red',
-        logging: config.logging || false
-      }
-    }
-
-    /**
-     * Initialize utils
-     * log userscript header
-     * and, if logging is true, script config values
+     * Initialize the userscript.
+     * Logs userscript header and, if logging is true, the script config values
      *
      * @param {string} id Config ID
+     * @param {boolean} logging Logging
      */
-    async init (id) {
-      console.log(`%c${this._config.name}\n` + `${!this._config.version ? '%c' : `%cv${this._config.version} `}by ${this._config.author} is running!`, `color:${this._config.color};font-weight:bold;font-size:18px;`, '')
+    init: async (id, logging) => {
+      if (!id) throw new Error('A config ID is required')
 
-      if (id && this._config.logging === true) {
-        const data = JSON.parse(await GM.getValue(id))
-        for (const key of Object.keys(data)) {
-          console.log(`${this._config.name}:`, `${key} is "${data[key]}"`)
+      _id = id
+      _logging = typeof logging !== 'boolean' ? false : logging
+
+      // get config data
+      let data = await GM.getValue(_id)
+      if (!data) throw new Error('Wrong config ID')
+      data = JSON.parse(data)
+
+      // logs userscript header
+      const style = 'color:red;font-weight:700;font-size:18px;text-transform:uppercase'
+      console.info(`%c${_name}\n` + `%cv${_version}${author ? ` by ${author}` : ''} is running!`, style, '')
+
+      // if logging is true, logs script config values
+      if (_logging) {
+        for (const key in data) {
+          if (Object.hasOwnProperty.call(data, key)) {
+            console.info(`${_name}:`, `${key} is "${data[key]}"`)
+          }
         }
       }
-    }
-
+    },
     /**
      * Log, if logging is true
      *
      * @param {string} message Message
      */
-    log (message) {
-      if (this._config.logging === true) {
-        console.log(`${this._config.name}:`, message)
+    log: (message) => {
+      if (_logging) {
+        console.info(`${_name}:`, message)
       }
-    }
-
+    },
     /**
      * Error
      *
      * @param {string} message Message
      */
-    error (message) {
-      console.error(`${this._config.name}:`, message)
-    }
-
+    error: (message) => {
+      console.error(`${_name}:`, message)
+    },
+    /**
+     * Warn
+     *
+     * @param {string} message Message
+     */
+    warn: (message) => {
+      console.warn(`${_name}:`, message)
+    },
     /**
      * Alert
      *
      * @param {string} message Message
      */
-    alert (message) {
-      window.alert(`${this._config.name}: ${message}`)
-    }
-
+    alert: (message) => {
+      window.alert(`${_name}: ${message}`)
+    },
     /**
      * Returns shortened version of a message
      *
@@ -106,28 +98,27 @@ this.UserscriptUtils = (function () {
      * @param {number} length Message length
      * @returns {string} Shortened message
      */
-    short (message, length) {
-      return message.split(' ').length > length ? `${message.split(' ', length).join(' ')} [...]` : message
+    short: (message, length) => {
+      return message.split(' ').length > Number(length) ? `${message.split(' ', Number(length)).join(' ')} [...]` : message
+    },
+    /**
+     * Migrate configuration
+     *
+     * @param {string} oldID Old config ID
+     * @param {string} newID New config ID
+     */
+    migrateConfig: async (oldID, newID) => {
+      if (!oldID) throw new Error('An old config ID is required')
+      if (!newID) throw new Error('An new config ID is required')
+
+      const oldConfig = await GM.getValue(oldID) // get old config
+      if (oldConfig) {
+        GM.setValue(newID, oldConfig) // set new config
+        GM.deleteValue(oldID) // delete old config
+        window.location.reload(false) // reload the page to apply the new configuration
+      }
     }
   }
 
-  /**
-   * Migrate configuration
-   *
-   * @param {string} oldID Old config ID
-   * @param {string} newID New config ID
-   */
-  UserscriptUtils.migrateConfig = async (oldID, newID) => {
-    if (!oldID) throw new Error('An old config ID is required')
-    if (!newID) throw new Error('An new config ID is required')
-
-    const oldConfig = await GM.getValue(oldID) // get old config
-    if (oldConfig) {
-      GM.setValue(newID, oldConfig) // set new config
-      GM.deleteValue(oldID) // delete old config
-      window.location.reload(false)
-    }
-  }
-
-  return UserscriptUtils
+  return index
 })()

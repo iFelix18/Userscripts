@@ -25,8 +25,8 @@
     "lib"
   ],
   "scripts": {
-    "build": "rollup --config '../../rollup.config.js' --name 'UserscriptUtils'",
-    "watch": "rollup --watch --config '../../rollup.config.js' --name 'UserscriptUtils'"
+    "build": "rollup --config '../../rollup.config.js' --name 'UU'",
+    "watch": "rollup --watch --config '../../rollup.config.js' --name 'UU'"
   },
   "publishConfig": {
     "access": "public"
