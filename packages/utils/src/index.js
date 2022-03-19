@@ -7,7 +7,7 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      6.1.1
+// @version      6.2.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -27,18 +27,31 @@ const author = matches ? matches[1] : GM.info.script.author
 let id
 let logging
 
-const callsCallback = (selector) => {
-  $(selector).each((index, element) => {
-    if (!$(element).data(id)) {
-      $(element).data(id, 1)
-      observed[selector].callback.call(index, element)
-    }
-  })
+const callsCallback = (selector, element) => {
+  if (!$(element).data(id) && $(element).data('visible')) {
+    $(element).data(id, 1)
+    observed[selector].callback.call(element, element)
+  }
 }
 
-const observer = () => {
-  new MutationObserver(() => $.each(observed, (selector) => callsCallback(selector)))
-    .observe(document, { childList: true, subtree: true })
+const intersectionObserver = (selector, element) => {
+  new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      const element = $(entry.target)
+      $(element).data('visible', observed[selector].visible ? entry.intersectionRatio > 0 : true) // any element is "visible" if visibility is not required
+      callsCallback(selector, element)
+    }
+  }, { rootMargin: '0px', threshold: 1 }).observe(element)
+}
+
+const mutationObserver = () => {
+  new MutationObserver(() => {
+    $.each(observed, (selector) => {
+      $(selector).each((index, element) => {
+        intersectionObserver(selector, element)
+      })
+    })
+  }).observe(document, { attributes: true, childList: true, subtree: true })
 }
 
 export default {
@@ -139,9 +152,10 @@ export default {
    *
    * @param {string} selector Selector
    * @param {Function} callback callback
+   * @param {boolean} visible Only visible on screen elements
    */
-  observe: (selector, callback) => {
-    $.extend(observed, { [selector]: { callback } })
-    observer()
+  observe: (selector, callback, visible) => {
+    $.extend(observed, { [selector]: { callback, visible: typeof visible !== 'boolean' ? false : visible } })
+    mutationObserver()
   }
 }
