@@ -7,7 +7,7 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      6.1.0
+// @version      6.1.1
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -24,13 +24,13 @@ const name = GM.info.script.name
 const version = GM.info.script.version
 const matches = /^(.*?)\s<\S[^\s@]*@\S[^\s.]*\.\S+>$/.exec(GM.info.script.author)
 const author = matches ? matches[1] : GM.info.script.author
-let _id
-let _logging
+let id
+let logging
 
 const callsCallback = (selector) => {
   $(selector).each((index, element) => {
-    if (!$(element).data(_id)) {
-      $(element).data(_id, 1)
+    if (!$(element).data(id)) {
+      $(element).data(id, 1)
       observed[selector].callback.call(index, element)
     }
   })
@@ -46,17 +46,17 @@ export default {
    * Initialize the userscript.
    * Logs userscript header and, if logging is true, the script config values
    *
-   * @param {string} id Config ID
-   * @param {boolean} logging Logging
+   * @param {string} _id Config ID
+   * @param {boolean} _logging Logging
    */
-  init: async (id, logging) => {
-    if (!id) throw new Error('A config ID is required')
+  init: async (_id, _logging) => {
+    if (!_id) throw new Error('A config ID is required')
 
-    _id = id
-    _logging = typeof logging !== 'boolean' ? false : logging
+    id = _id
+    logging = typeof _logging !== 'boolean' ? false : _logging
 
     // get config data
-    let data = await GM.getValue(_id)
+    let data = await GM.getValue(id)
     if (!data) throw new Error('Wrong config ID')
     data = JSON.parse(data)
 
@@ -65,7 +65,7 @@ export default {
     console.info(`%c${name}\n` + `%cv${version}${author ? ` by ${author}` : ''} is running!`, style, '')
 
     // if logging is true, logs script config values
-    if (_logging) {
+    if (logging) {
       for (const key in data) {
         if (Object.hasOwnProperty.call(data, key)) {
           console.info(`${name}:`, `${key} is "${data[key]}"`)
@@ -79,7 +79,7 @@ export default {
    * @param {string} message Message
    */
   log: (message) => {
-    if (_logging) {
+    if (logging) {
       console.info(`${name}:`, message)
     }
   },
