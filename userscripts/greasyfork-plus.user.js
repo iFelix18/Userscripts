@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.8.13
+// @version            1.8.14
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -229,15 +229,7 @@
    */
   const addOptions = () => {
     // create menu
-    const html = `
-    <div id="${id}-options" class="list-option-group">${GM.info.script.name} filters:
-      <ul>
-        <li class="list-option non-latin"><a href="/non-latin-scripts" onclick="return false">Non-Latin scripts</a></li>
-        <li class="list-option blacklisted"><a href="/blacklisted-scripts" onclick="return false">Blacklisted scripts</a></li>
-        <li class="list-option hidden"><a href="/hidden-scripts" onclick="return false">Hidden scripts</a></li>
-      </ul>
-    </div>
-    `
+    const html = `<div class=list-option-group id=${id}-options>${GM.info.script.name} filters:<ul><li class="list-option non-latin"><a href=/non-latin-scripts onclick=return!1>Non-Latin scripts</a><li class="list-option blacklisted"><a href=/blacklisted-scripts onclick=return!1>Blacklisted scripts</a><li class="list-option hidden"><a href=/hidden-scripts onclick=return!1>Hidden scripts</a></ul></div>`
     $('.list-option-groups > div').first().before(html)
 
     // click
@@ -425,12 +417,12 @@
    * @param {boolean} list Is list
    */
   const hideScript = async (element, id, list) => {
-    // if is in hiddenlist hide it
+    // if is in hiddenList hide it
     if (id in hiddenList) { $(element).addClass('hidden') }
 
     // add button to hide the script
-    $(element).find('.badge-js, .badge-css').before(`<span class="block-button" role="button" style="cursor: pointer; font-size: 70%;">${blockLabel($(element).hasClass('hidden'))}</span>`)
-    $(element).find('header h2').append(`<span class="block-button" role="button" style="cursor: pointer; font-size: 50%; margin-left: 1ex;">${blockLabel($(element).hasClass('hidden'))}</span>`)
+    $(element).find('.badge-js, .badge-css').before(`<span class=block-button role=button style=cursor:pointer;font-size:70%>${blockLabel($(element).hasClass('hidden'))}</span>`)
+    $(element).find('header h2').append(`<span class=block-button role=button style=cursor:pointer;font-size:50%;margin-left:1ex>${blockLabel($(element).hasClass('hidden'))}</span>`)
 
     // on click...
     $(element).find('.block-button').click(async () => {
@@ -466,7 +458,7 @@
   const addInstallButton = (element, url, label, version) => {
     $(element)
       .find('.badge-js, .badge-css')
-      .after(`<a class="install-link" href="${url}" style="float: right; zoom: 0.7; -moz-transform: scale(0.7); text-decoration: none;">${label} ${version}</a>`)
+      .after(`<a class=install-link href=${url} style=float:right;zoom:.7;-moz-transform:scale(.7);text-decoration:none>${label} ${version}</a>`)
   }
 
   //* Script
@@ -476,7 +468,7 @@
     if (GM_config.get('hideNonLatinScripts') || GM_config.get('hideBlacklistedScripts') || GM_config.get('hideScript') || GM_config.get('installButton')) {
       if (GM_config.get('hideNonLatinScripts') || GM_config.get('hideBlacklistedScripts') || GM_config.get('hideScript')) {
         addOptions()
-        $('head').append('<style>.script-list li.non-latin, .script-list li.blacklisted, .script-list li.hidden { display: none; background: rgb(50, 25, 25); color: rgb(232, 230, 227); } .script-list li.non-latin a:not(.install-link), .script-list li.blacklisted a:not(.install-link), .script-list li.hidden a:not(.install-link) { color: rgb(255, 132, 132); } #script-info.hidden, #script-info.hidden .user-content { background: rgb(50, 25, 25); color: rgb(232, 230, 227); } #script-info.hidden a:not(.install-link):not(.install-help-link) { color: rgb(255, 132, 132); } #script-info.hidden code { background-color: transparent; }</style>')
+        $('head').append('<style>.script-list li.blacklisted,.script-list li.hidden,.script-list li.non-latin{display:none;background:#321919;color:#e8e6e3}.script-list li.blacklisted a:not(.install-link),.script-list li.hidden a:not(.install-link),.script-list li.non-latin a:not(.install-link){color:#ff8484}#script-info.hidden,#script-info.hidden .user-content{background:#321919;color:#e8e6e3}#script-info.hidden a:not(.install-link):not(.install-help-link){color:#ff8484}#script-info.hidden code{background-color:transparent}</style>')
       }
 
       $('.script-list').find('li').each(async (index, element) => {
@@ -510,8 +502,8 @@
         totalInstalls.push(Number.parseInt($(element).text().replace(/\D/g, ''), 10))
       })
 
-      $('#script-list-sort').find('.list-option.list-current:nth-child(1), .list-option:not(list-current):nth-child(1) a').append(`<span> (${dailyInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
-      $('#script-list-sort').find('.list-option.list-current:nth-child(2), .list-option:not(list-current):nth-child(2) a').append(`<span> (${totalInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
+      $('#script-list-sort').find('.list-option.list-current:nth-child(1), .list-option:not(list-current):nth-child(1) a').append(`<span>(${dailyInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
+      $('#script-list-sort').find('.list-option.list-current:nth-child(2), .list-option:not(list-current):nth-child(2) a').append(`<span>(${totalInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
     }
     if (GM_config.get('milestoneNotification')) {
       const userID = $('.user-profile-link a').attr('href')
