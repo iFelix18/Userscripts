@@ -7,7 +7,7 @@
 // @description  TMDb API for my userscripts
 // @copyright    2020, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.2.0
+// @version      2.2.1
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/tmdb#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/tmdb#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
