@@ -12,7 +12,6 @@ Caratteristiche:
 >* Aggiunge un pulsante per installare direttamente lo script, che mostra la versione dello script e che cambia dinamicamente in base alla tua versione, se presente, già installata (il cambio dinamico funziona solo se stai utilizzando Violentmonkey o Tampermonkey)
 >* Mostra il numero di installazioni giornaliere e totali sul profilo utente
 >* Ricevi una notifica ogni volta che le tue installazioni totali superano uno dei traguardi prefissati
->* Pagina di configurazione accessibile a [questo indirizzo][settings-link]
 
 |                                           Screenshots                                           |
 | :---------------------------------------------------------------------------------------------: |
@@ -33,8 +32,6 @@ Caratteristiche:
 [install-badge]: https://flat.badgen.net/badge/install%20directly%20from/jsDelivr/blue "Clicca qui!"
 
 [download-link]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/greasyfork-plus.user.js "Clicca qui!"
-
-[settings-link]: https://greasyfork.org/settings/
 
 [screenshot-1]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/greasyfork-plus_hide-script-button.png?raw=true "Pulsante nascondi script"
 [screenshot-2]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/greasyfork-plus_install-button.gif?raw=true "Pulsante installa"
