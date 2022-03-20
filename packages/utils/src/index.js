@@ -7,7 +7,7 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      6.2.0
+// @version      6.2.1
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -24,8 +24,9 @@ const name = GM.info.script.name
 const version = GM.info.script.version
 const matches = /^(.*?)\s<\S[^\s@]*@\S[^\s.]*\.\S+>$/.exec(GM.info.script.author)
 const author = matches ? matches[1] : GM.info.script.author
-let id
-let logging
+
+let id = name.toLowerCase().replace(/\s/g, '-')
+let logging = false
 
 const callsCallback = (selector, element) => {
   if (!$(element).data(id) && $(element).data('visible')) {
@@ -38,7 +39,7 @@ const intersectionObserver = (selector, element) => {
   new IntersectionObserver((entries) => {
     for (const entry of entries) {
       const element = $(entry.target)
-      $(element).data('visible', observed[selector].visible ? entry.intersectionRatio > 0 : true) // any element is "visible" if visibility is not required
+      $(element).data('visible', observed[selector].onlyVisible ? entry.intersectionRatio > 0 : true) // any element is "visible" if visibility is not required
       callsCallback(selector, element)
     }
   }, { rootMargin: '0px', threshold: 1 }).observe(element)
@@ -57,28 +58,25 @@ const mutationObserver = () => {
 export default {
   /**
    * Initialize the userscript.
-   * Logs userscript header and, if logging is true, the script config values
+   * Logs userscript header and,
+   * if an ID is provided and logging is true, the script config values
    *
-   * @param {string} _id Config ID
-   * @param {boolean} _logging Logging
+   * @param {object} config Utils configuration
    */
-  init: async (_id, _logging) => {
-    if (!_id) throw new Error('A config ID is required')
-
-    id = _id
-    logging = typeof _logging !== 'boolean' ? false : _logging
-
-    // get config data
-    let data = await GM.getValue(id)
-    if (!data) throw new Error('Wrong config ID')
-    data = JSON.parse(data)
+  init: async (config = {}) => {
+    id = config.id
+    logging = typeof config.logging !== 'boolean' ? false : config.logging
 
     // logs userscript header
     const style = 'color:red;font-weight:700;font-size:18px;text-transform:uppercase'
     console.info(`%c${name}\n` + `%cv${version}${author ? ` by ${author}` : ''} is running!`, style, '')
 
-    // if logging is true, logs script config values
-    if (logging) {
+    // if an ID is provided and if logging is true, logs script config values
+    if (config.id && config.logging) {
+      // get config data
+      let data = await GM.getValue(id)
+      data = JSON.parse(data)
+
       for (const key in data) {
         if (Object.hasOwnProperty.call(data, key)) {
           console.info(`${name}:`, `${key} is "${data[key]}"`)
@@ -148,14 +146,19 @@ export default {
     }
   },
   /**
-   * Observe the creation of new elements
-   *
-   * @param {string} selector Selector
-   * @param {Function} callback callback
-   * @param {boolean} visible Only visible on screen elements
+   * Observe
    */
-  observe: (selector, callback, visible) => {
-    $.extend(observed, { [selector]: { callback, visible: typeof visible !== 'boolean' ? false : visible } })
-    mutationObserver()
+  observe: {
+    /**
+     * Observe the creation of new elements
+     *
+     * @param {string} selector Selector
+     * @param {Function} callback callback
+     * @param {boolean} onlyVisible Only visible on screen elements
+     */
+    creation: (selector, callback, onlyVisible) => {
+      $.extend(observed, { [selector]: { callback, onlyVisible: typeof onlyVisible !== 'boolean' ? false : onlyVisible } })
+      mutationObserver()
+    }
   }
 }
