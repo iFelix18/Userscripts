@@ -12,12 +12,20 @@ export default [
     input,
     output: [
       {
+        file: path.join(output, 'index.js'),
         format: 'iife',
         extend: true,
         strict: false,
-        file: path.join(output, 'index.js'),
         plugins: [
           shiftHeader(),
+          terser({
+            compress: false,
+            mangle: false,
+            output: {
+              beautify: true,
+              comments: (node, comment) => (comment.value.startsWith(' ==') || comment.value.startsWith(' @') || comment.value.startsWith(' global'))
+            }
+          }),
           eslintBundle({
             eslintOptions: { fix: true },
             throwOnWarning: true,
@@ -34,7 +42,11 @@ export default [
         plugins: [
           shiftHeader(),
           terser({
-            output: { comments: (node, comment) => (comment.value.startsWith(' ==') || comment.value.startsWith(' @')) }
+            compress: true,
+            mangle: true,
+            output: {
+              comments: (node, comment) => (comment.value.startsWith(' ==') || comment.value.startsWith(' @'))
+            }
           })
         ]
       }
