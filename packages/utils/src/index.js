@@ -7,7 +7,7 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      6.2.1
+// @version      6.2.2
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -28,28 +28,32 @@ const author = matches ? matches[1] : GM.info.script.author
 let id = name.toLowerCase().replace(/\s/g, '-')
 let logging = false
 
-const callsCallback = (selector, element) => {
-  if (!$(element).data(id) && $(element).data('visible')) {
+const callsCallback = async (selector, element) => {
+  const visibility = observed[selector].onlyVisible
+    ? await intersectionObserver(element)
+    : true
+
+  if (!$(element).data(id) && visibility) {
     $(element).data(id, 1)
     observed[selector].callback.call(element, element)
   }
 }
 
-const intersectionObserver = (selector, element) => {
-  new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      const element = $(entry.target)
-      $(element).data('visible', observed[selector].onlyVisible ? entry.intersectionRatio > 0 : true) // any element is "visible" if visibility is not required
-      callsCallback(selector, element)
-    }
-  }, { rootMargin: '0px', threshold: 1 }).observe(element)
+const intersectionObserver = (element) => {
+  return new Promise(resolve => {
+    new IntersectionObserver((entries) => {
+      $.each(entries, (index, entry) => {
+        resolve(entry.intersectionRatio > 0)
+      })
+    }, { rootMargin: '0px', threshold: 1 }).observe(element)
+  })
 }
 
 const mutationObserver = () => {
   new MutationObserver(() => {
     $.each(observed, (selector) => {
       $(selector).each((index, element) => {
-        intersectionObserver(selector, element)
+        callsCallback(selector, element)
       })
     })
   }).observe(document, { attributes: true, childList: true, subtree: true })
@@ -79,7 +83,7 @@ export default {
 
       for (const key in data) {
         if (Object.hasOwnProperty.call(data, key)) {
-          console.info(`${name}:`, `${key} is "${data[key]}"`)
+          console.log(`${name}:`, `${key} is "${data[key]}"`)
         }
       }
     }
@@ -91,7 +95,7 @@ export default {
    */
   log: (message) => {
     if (logging) {
-      console.info(`${name}:`, message)
+      console.log(`${name}:`, message)
     }
   },
   /**
@@ -154,10 +158,11 @@ export default {
      *
      * @param {string} selector Selector
      * @param {Function} callback callback
-     * @param {boolean} onlyVisible Only visible on screen elements
+     * @param {object} options Options
+     * @param {boolean} options.onlyVisible Only visible on screen elements
      */
-    creation: (selector, callback, onlyVisible) => {
-      $.extend(observed, { [selector]: { callback, onlyVisible: typeof onlyVisible !== 'boolean' ? false : onlyVisible } })
+    creation: (selector, callback, options = {}) => {
+      $.extend(observed, { [selector]: { callback, onlyVisible: typeof options.onlyVisible !== 'boolean' ? false : options.onlyVisible } })
       mutationObserver()
     }
   }
