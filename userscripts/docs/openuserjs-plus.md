@@ -11,7 +11,6 @@ Features:
 >* Add a button to hide the script (press `Ctrl + Alt + H` to show again)
 >* Add a button to install the script directly
 >* Get notified whenever your total installs got over one of your set milestones
->* Configuration page accessible at [this address][settings-link]
 
 |                   Screenshots                   |
 | :---------------------------------------------: |
@@ -30,8 +29,6 @@ Features:
 [install-badge]: https://flat.badgen.net/badge/install%20directly%20from/jsDelivr/blue "Click here!"
 
 [download-link]: https://cdn.jsdelivr.net/gh/iFelix18/Userscripts@master/userscripts/openuserjs-plus.user.js "Click here!"
-
-[settings-link]: https://openuserjs.org/settings/
 
 [screenshot-1]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_hide-script-button.png?raw=true "Hide script button"
 [screenshot-2]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/openuserjs-plus_install-button.png?raw=true "Install button"
