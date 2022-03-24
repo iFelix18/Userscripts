@@ -7,7 +7,7 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      6.2.2
+// @version      6.3.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -26,10 +26,13 @@ this.UU = (function () {
   let id = name.toLowerCase().replace(/\s/g, '-')
   let logging = false
   const callsCallback = async (selector, element) => {
-    const visibility = observed[selector].onlyVisible ? await intersectionObserver(element) : true
-    if (!$(element).data(id) && visibility) {
+    const onlyVisible = observed[selector].onlyVisible ? await intersectionObserver(element) : true
+    if (!$(element).data(id) && onlyVisible) {
       $(element).data(id, 1)
       observed[selector].callback.call(element, element)
+      if (observed[selector].onlyFirstMatch) {
+        delete observed[selector]
+      }
     }
   }
   const intersectionObserver = element => new Promise(resolve => {
@@ -46,7 +49,9 @@ this.UU = (function () {
     new MutationObserver(() => {
       $.each(observed, selector => {
         $(selector).each((index, element) => {
+          const onlyFirstMatch = observed[selector].onlyFirstMatch ? !observed[selector].onlyFirstMatch : true
           callsCallback(selector, element)
+          return onlyFirstMatch
         })
       })
     }).observe(document, {
@@ -101,7 +106,8 @@ this.UU = (function () {
         $.extend(observed, {
           [selector]: {
             callback,
-            onlyVisible: typeof options.onlyVisible !== 'boolean' ? false : options.onlyVisible
+            onlyVisible: typeof options.onlyVisible !== 'boolean' ? false : options.onlyVisible,
+            onlyFirstMatch: typeof options.onlyFirstMatch !== 'boolean' ? false : options.onlyFirstMatch
           }
         })
         mutationObserver()

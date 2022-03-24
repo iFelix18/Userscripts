@@ -7,7 +7,7 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      6.2.2
+// @version      6.3.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -29,13 +29,13 @@ let id = name.toLowerCase().replace(/\s/g, '-')
 let logging = false
 
 const callsCallback = async (selector, element) => {
-  const visibility = observed[selector].onlyVisible
-    ? await intersectionObserver(element)
-    : true
+  const onlyVisible = observed[selector].onlyVisible ? await intersectionObserver(element) : true
 
-  if (!$(element).data(id) && visibility) {
+  if (!$(element).data(id) && onlyVisible) {
     $(element).data(id, 1)
     observed[selector].callback.call(element, element)
+
+    if (observed[selector].onlyFirstMatch) { delete observed[selector] }
   }
 }
 
@@ -53,7 +53,10 @@ const mutationObserver = () => {
   new MutationObserver(() => {
     $.each(observed, (selector) => {
       $(selector).each((index, element) => {
+        const onlyFirstMatch = observed[selector].onlyFirstMatch ? !observed[selector].onlyFirstMatch : true
+
         callsCallback(selector, element)
+        return onlyFirstMatch
       })
     })
   }).observe(document, { attributes: true, childList: true, subtree: true })
@@ -159,10 +162,11 @@ export default {
      * @param {string} selector Selector
      * @param {Function} callback callback
      * @param {object} options Options
-     * @param {boolean} options.onlyVisible Only visible on screen elements
+     * @param {boolean} options.onlyVisible Only visible elements on screen
+     * @param {boolean} options.onlyFirstMatch Only the first matched element
      */
     creation: (selector, callback, options = {}) => {
-      $.extend(observed, { [selector]: { callback, onlyVisible: typeof options.onlyVisible !== 'boolean' ? false : options.onlyVisible } })
+      $.extend(observed, { [selector]: { callback, onlyVisible: typeof options.onlyVisible !== 'boolean' ? false : options.onlyVisible, onlyFirstMatch: typeof options.onlyFirstMatch !== 'boolean' ? false : options.onlyFirstMatch } })
       mutationObserver()
     }
   }
