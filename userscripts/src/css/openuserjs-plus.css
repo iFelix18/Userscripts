@@ -1,37 +1,9 @@
 #openuserjs-plus * {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-}
-
-#openuserjs-plus {
-  background-color: transparent !important;
-  border: 1px solid transparent !important;
-  box-sizing: border-box !important;
-  height: auto !important;
-  list-style-type: none !important;
-  margin-bottom: 0 !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  margin-top: 0 !important;
-  max-height: none !important;
-  max-width: 1200px !important;
-  padding: 0 1em 1em !important;
-  position: static !important;
-  width: auto !important;
-}
-
-#openuserjs-plus .config_header {
-  display: block !important;
-  font-size: 1.5em !important;
-  font-weight: bold !important;
-  margin-bottom: 0.83em !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  margin-top: 0.83em !important;
+  font-family: Open Sans, sans-serif, Segoe UI Emoji !important;
 }
 
 #openuserjs-plus .section_header {
-  background-color: rgb(44, 62, 80) !important;
-  background-image: none !important;
+  background-color: rgb(0, 87, 183) !important;
   border: 1px solid transparent !important;
   color: rgb(255, 255, 255) !important;
 }
@@ -44,30 +16,6 @@
   flex-direction: column !important;
 }
 
-#openuserjs-plus .field_label {
-  font-size: 0.85em !important;
-  font-weight: 600 !important;
-  margin-left: 6px !important;
-}
-
 #openuserjs-plus_field_milestoneNotification {
-  flex: 1 1 auto !important;
-}
-
-#openuserjs-plus_buttons_holder {
-  color: inherit !important;
-}
-
-#openuserjs-plus input[type="button"],
-#openuserjs-plus button {
-  font-size: 0.85em !important;
-  font-weight: 600 !important;
-}
-
-#openuserjs-plus_closeBtn {
-  display: none !important;
-}
-
-#openuserjs-plus .reset {
-  color: inherit !important;
+  flex: 1 !important;
 }
