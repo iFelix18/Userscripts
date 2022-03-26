@@ -1,13 +1,16 @@
-<div class="external-ratings idYUsR" style="margin-right:.5rem"></div>
+<div class="external-ratings" style="display: inline-flex;"></div>
 <script id="external-ratings-template" type="text/x-handlebars-template">
   {{#each ratings}}
     {{#ifEqual this.rating "N/A"}}
 
     {{else}}
-      <div class="{{this.source}}-rating rating-bar__base-button jQXoLQ">
+      <div
+        class="{{this.source}}-rating rating-bar__base-button"
+        style="display:inline-flex;flex-direction: column;-moz-box-align: center;align-items: center;padding: 0.25rem;margin-right:.5rem;"
+      >
         <div
-          class="external-rating-title bufoWn"
-          style="text-transform: uppercase;"
+          class="external-rating-title"
+          style="text-transform:uppercase;font-family: Roboto,Helvetica,Arial,sans-serif;font-size: .75rem;font-weight: 600;letter-spacing: .16667em;line-height: 1rem;color: rgba(255,255,255,0.7);white-space: nowrap;margin-bottom: 0.25rem;"
         >
           {{this.source}}
         </div>
@@ -16,13 +19,25 @@
           href="{{this.url}}"
         >
           <div class="ipc-button__text">
-            <div class="jodtvN">
-              <div class="external-rating-logo dwhzFZ">
+            <div
+              style="display: flex;-moz-box-align: center;align-items: center;"
+            >
+              <div
+                class="external-rating-logo"
+                style="display: flex;-moz-box-align: center;align-items: center;height: 2rem;width: 2rem;margin-right: 0.25rem;"
+              >
                 <img src="{{this.logo}}" alt="logo" width="24" />
               </div>
-              <div class="hmJkIS">
-                <div class="bmbYRW">
-                  <span class="external-rating-vote iTLWoV">
+              <div
+                style="display: inline-flex;flex-direction: column;align-items: flex-start;padding-right: 0.25rem;"
+              >
+                <div
+                  style="display: flex;-moz-box-align: center;align-items: center;font-family: Roboto,Helvetica,Arial,sans-serif;font-size: 1rem;font-weight: 400;letter-spacing: .03125em;text-transform: none;color: rgba(255,255,255,0.7);line-height: 1.5rem;margin-bottom: -0.125rem;"
+                >
+                  <span
+                    class="external-rating-vote"
+                    style="font-family: Roboto,Helvetica,Arial,sans-serif;font-size: 1.25rem;font-weight: 600;letter-spacing: .0125em;line-height: 1.5rem;text-transform: none;color: rgb(255,255,255);padding-right: 0.125rem;"
+                  >
                     {{this.rating}}
                   </span>
                   {{#ifEqual this.rating "N/A"}}
@@ -33,23 +48,25 @@
                     </span>
                   {{/ifEqual}}
                 </div>
-                <div class="fKXaGo"></div>
                 {{#ifEqual this.rating "N/A"}}
 
                 {{else}}
                   {{#ifEqual this.source "metascore"}}
                     <div
-                      class="external-rating-votes jkCVKJ"
-                      style="display: flex; align-items: center; align-content: center; justify-content: center; background: linear-gradient(to top, transparent 0, transparent 25%,
+                      class="external-rating-votes"
+                      style="font-family: Roboto,Helvetica,Arial,sans-serif;font-size: .75rem;font-weight: 400;letter-spacing: .03333em;line-height: 1rem;text-transform: none;color:transparent;width:100%;background:linear-gradient(to top, transparent 0, transparent 25%,
                         {{this.votes}}
                          25%,
                         {{this.votes}}
-                         75%, transparent 75%, transparent 100%); color:transparent; width:100%;"
+                         75%, transparent 75%, transparent 100%);"
                     >
                       {{this.rating}}
                     </div>
                   {{else}}
-                    <div class="external-rating-votes jkCVKJ">
+                    <div
+                      class="external-rating-votes"
+                      style="font-family: Roboto,Helvetica,Arial,sans-serif;font-size: .75rem;font-weight: 400;letter-spacing: .03333em;line-height: 1rem;text-transform: none;color: rgba(255,255,255,0.7);"
+                    >
                       {{this.votes}}
                     </div>
                   {{/ifEqual}}
