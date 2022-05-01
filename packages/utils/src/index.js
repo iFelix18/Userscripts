@@ -7,7 +7,7 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      6.3.0
+// @version      6.4.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -77,19 +77,6 @@ export default {
     // logs userscript header
     const style = 'color:red;font-weight:700;font-size:18px;text-transform:uppercase'
     console.info(`%c${name}\n` + `%cv${version}${author ? ` by ${author}` : ''} is running!`, style, '')
-
-    // if an ID is provided and if logging is true, logs script config values
-    if (config.id && config.logging) {
-      // get config data
-      let data = await GM.getValue(id)
-      data = JSON.parse(data)
-
-      for (const key in data) {
-        if (Object.hasOwnProperty.call(data, key)) {
-          console.log(`${name}:`, `${key} is "${data[key]}"`)
-        }
-      }
-    }
   },
   /**
    * Log, if logging is true
@@ -134,23 +121,6 @@ export default {
    */
   short: (message, length) => {
     return message.split(' ').length > Number(length) ? `${message.split(' ', Number(length)).join(' ')} [...]` : message
-  },
-  /**
-   * Migrate configuration
-   *
-   * @param {string} oldID Old config ID
-   * @param {string} newID New config ID
-   */
-  migrateConfig: async (oldID, newID) => {
-    if (!oldID) throw new Error('An old config ID is required')
-    if (!newID) throw new Error('An new config ID is required')
-
-    const oldConfig = await GM.getValue(oldID) // get old config
-    if (oldConfig) {
-      GM.setValue(newID, oldConfig) // set new config
-      GM.deleteValue(oldID) // delete old config
-      window.location.reload(false) // reload the page to apply the new configuration
-    }
   },
   /**
    * Observe
