@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.8.14
+// @version            1.8.15
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -26,7 +26,7 @@
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@2207c5c1322ebb56e401f03c2e581719f909762a/gm_config.min.js
 // @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@6.2.1/lib/index.min.js
+// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@6.4.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6/dist/index.min.js
 // @match              *://greasyfork.org/*
 // @match              *://sleazyfork.org/*
@@ -175,7 +175,6 @@
   } /* cSpell: enable */
 
   //* GM_config
-  UU.migrateConfig('config', id) // migrate to the new GM_config ID
   GM_config.init({
     id,
     title,
@@ -465,7 +464,9 @@
   $(document).ready(async () => {
     addSettingsToMenu()
 
-    if (GM_config.get('hideNonLatinScripts') || GM_config.get('hideBlacklistedScripts') || GM_config.get('hideScript') || GM_config.get('installButton')) {
+    const userID = $('.user-profile-link a').length > 0 ? $('.user-profile-link a').attr('href') : undefined
+
+    if (window.location.pathname !== userID && (GM_config.get('hideNonLatinScripts') || GM_config.get('hideBlacklistedScripts') || GM_config.get('hideScript') || GM_config.get('installButton'))) {
       if (GM_config.get('hideNonLatinScripts') || GM_config.get('hideBlacklistedScripts') || GM_config.get('hideScript')) {
         addOptions()
         $('head').append('<style>.script-list li.blacklisted,.script-list li.hidden,.script-list li.non-latin{display:none;background:#321919;color:#e8e6e3}.script-list li.blacklisted a:not(.install-link),.script-list li.hidden a:not(.install-link),.script-list li.non-latin a:not(.install-link){color:#ff8484}#script-info.hidden,#script-info.hidden .user-content{background:#321919;color:#e8e6e3}#script-info.hidden a:not(.install-link):not(.install-help-link){color:#ff8484}#script-info.hidden code{background-color:transparent}</style>')
@@ -506,7 +507,6 @@
       $('#script-list-sort').find('.list-option.list-current:nth-child(2), .list-option:not(list-current):nth-child(2) a').append(`<span>(${totalInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
     }
     if (GM_config.get('milestoneNotification')) {
-      const userID = $('.user-profile-link a').attr('href')
       const milestones = GM_config.get('milestoneNotification').replace(/\s/g, '').split(',').map((element) => Number(element))
 
       if (!userID) return
