@@ -49,7 +49,7 @@
     "lerna-wizard": "^1.1.1",
     "markdownlint-cli2": "^0.4.0",
     "rollup": "^2.70.1",
-    "rollup-plugin-eslint-bundle": "^6.0.0",
+    "rollup-plugin-eslint-bundle": "^7.0.0",
     "rollup-plugin-shift-header": "https://github.com/roddolf/rollup-plugin-shift-header",
     "rollup-plugin-terser": "^7.0.2",
     "updates": "^13.0.4",
