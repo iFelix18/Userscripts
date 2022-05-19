@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.7.7
+// @version            1.7.8
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -312,7 +312,7 @@
     }
 
     if (GM_config.get('milestoneNotification')) {
-      const milestones = GM_config.get('milestoneNotification').replace(/\s/g, '').split(',').map((element) => Number(element))
+      const milestones = GM_config.get('milestoneNotification').replace(/\s/g, '').split(',').map(Number)
 
       if (!userID) return
 
