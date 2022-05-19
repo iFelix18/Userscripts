@@ -1,5 +1,6 @@
 #greasyfork-plus * {
   font-family: Open Sans, sans-serif, Segoe UI Emoji !important;
+  font-size: 12px;
 }
 
 #greasyfork-plus .section_header {
@@ -9,14 +10,37 @@
   color: rgb(255, 255, 255) !important;
 }
 
+#greasyfork-plus .field_label {
+  margin-bottom: 4px !important;
+}
+
+#greasyfork-plus .field_label span {
+  font-size: 95% !important;
+  font-style: italic !important;
+  opacity: 0.8 !important;
+}
+
+#greasyfork-plus .field_label b {
+  color: rgb(103, 0, 0) !important;
+}
+
 #greasyfork-plus .config_var {
   display: flex !important;
 }
 
-#greasyfork-plus_milestoneNotification_var {
+#greasyfork-plus_milestoneNotification_var,
+#greasyfork-plus_customBlacklist_var,
+#greasyfork-plus_hiddenList_var {
   flex-direction: column !important;
+  margin-left: 21px !important;
 }
 
-#greasyfork-plus_field_milestoneNotification {
+#greasyfork-plus_field_milestoneNotification,
+#greasyfork-plus_field_customBlacklist {
   flex: 1 !important;
+}
+
+#greasyfork-plus_field_hiddenList {
+  box-sizing: border-box !important;
+  width: 100% !important;
 }
