@@ -5,13 +5,15 @@ Adds various features and improves the [Greasy Fork][greasyfork-link] experience
 [![Version][version-badge]][link] [![Size][size-badge]][link] [![Install][install-badge]][download-link]
 
 Features:
->
->* Hide all non-Latin scripts (press `Ctrl + Alt + L` to show again)
->* Hide all scripts with blacklisted words (press `Ctrl + Alt + B` to show again)
->* Add a button to hide the script (press `Ctrl + Alt + H` to show again)
->* Add a button to install the script directly, which shows the version of the script, and which changes dynamically according to your version, if any, already installed (dynamic changes only work if you are using Violentmonkey or Tampermonkey)
->* Shows the number of daily and total installations on the user profile
->* Get notified whenever your total installs got over one of your set milestones
+
+* Hide blacklisted scripts (press `Ctrl + Alt + B` to show again), based on one or more of the following lists:
+  * Non-Latin: This list blocks all scripts with non-Latin characters in the title/description
+  * Blacklist: A "non-opinionable" list that blocks all scripts with emoji in the title/description, references to "bots", "cheats" and some online game sites, and other "bullshit"
+  * Custom Blacklist: Personal blacklist defined by a set of unwanted words
+* Add a button to hide the script (press `Ctrl + Alt + H` to show again)
+* Add a button to install the script directly, which shows the version of the script, and which changes dynamically according to your version, if any, already installed (dynamic changes only work if you are using Violentmonkey or Tampermonkey)
+* Shows the number of daily and total installations on the user profile
+* Get notified whenever your total installs got over one of your set milestones
 
 |                                           Screenshots                                           |
 | :---------------------------------------------------------------------------------------------: |
