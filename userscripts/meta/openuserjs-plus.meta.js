@@ -5,5 +5,5 @@
 // @description Adds various features and improves the OpenUserJS experience
 // @copyright 2021, Davide (https://github.com/iFelix18)
 // @license MIT
-// @version 2.0.1
+// @version 2.0.2
 // ==/UserScript==

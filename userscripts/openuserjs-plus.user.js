@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.0.1
+// @version            2.0.2
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -41,7 +41,6 @@
 // @grant              GM.notification
 // @grant              GM.registerMenuCommand
 // @grant              GM.setValue
-// @grant              GM.xmlHttpRequest
 // @run-at             document-start
 // @inject-into        page
 // ==/UserScript==
@@ -238,15 +237,12 @@
    */
   const getUserData = (userID) => {
     return new Promise((resolve, reject) => {
-      GM.xmlHttpRequest({
-        method: 'GET',
-        url: `https://openuserjs.org${userID}`,
-        onload: (response) => {
-          UU.log(`${response.status}: ${response.finalUrl}`)
-          const data = response.responseText
-          resolve(data)
-        }
-      })
+      fetch(`https://openuserjs.org${userID}`)
+        .then((response) => {
+          UU.log(`${response.status}: ${response.url}`)
+          return response.text()
+        })
+        .then((data) => resolve(data))
     })
   }
 
