@@ -42,5 +42,7 @@
 
 #greasyfork-plus_field_hiddenList {
   box-sizing: border-box !important;
+  overflow: hidden !important;
+  resize: none !important;
   width: 100% !important;
 }

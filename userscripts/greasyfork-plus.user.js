@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.0.0
+// @version            2.0.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -113,8 +113,8 @@
       labelPos: 'left',
       type: 'textarea',
       title: 'Separate IDs with a comma!',
-      // size: 150,
-      default: ''
+      default: '',
+      save: false
     },
     logging: {
       label: 'Logging',
@@ -208,7 +208,7 @@
     id,
     title,
     fields,
-    css: '#greasyfork-plus *{font-family:Open Sans,sans-serif,Segoe UI Emoji!important;font-size:12px}#greasyfork-plus .section_header{background-color:#670000!important;background-image:linear-gradient(#670000,#900)!important;border:1px solid transparent!important;color:#fff!important}#greasyfork-plus .field_label{margin-bottom:4px!important}#greasyfork-plus .field_label span{font-size:95%!important;font-style:italic!important;opacity:.8!important}#greasyfork-plus .field_label b{color:#670000!important}#greasyfork-plus .config_var{display:flex!important}#greasyfork-plus_customBlacklist_var,#greasyfork-plus_hiddenList_var,#greasyfork-plus_milestoneNotification_var{flex-direction:column!important;margin-left:21px!important}#greasyfork-plus_field_customBlacklist,#greasyfork-plus_field_milestoneNotification{flex:1!important}#greasyfork-plus_field_hiddenList{box-sizing:border-box!important;width:100%!important}',
+    css: '#greasyfork-plus *{font-family:Open Sans,sans-serif,Segoe UI Emoji!important;font-size:12px}#greasyfork-plus .section_header{background-color:#670000!important;background-image:linear-gradient(#670000,#900)!important;border:1px solid transparent!important;color:#fff!important}#greasyfork-plus .field_label{margin-bottom:4px!important}#greasyfork-plus .field_label span{font-size:95%!important;font-style:italic!important;opacity:.8!important}#greasyfork-plus .field_label b{color:#670000!important}#greasyfork-plus .config_var{display:flex!important}#greasyfork-plus_customBlacklist_var,#greasyfork-plus_hiddenList_var,#greasyfork-plus_milestoneNotification_var{flex-direction:column!important;margin-left:21px!important}#greasyfork-plus_field_customBlacklist,#greasyfork-plus_field_milestoneNotification{flex:1!important}#greasyfork-plus_field_hiddenList{box-sizing:border-box!important;overflow:hidden!important;resize:none!important;width:100%!important}',
     events: {
       init: () => {
         // ? remove old hiddenList from Greasy Fork+ 1.x
@@ -217,33 +217,46 @@
           setTimeout(window.location.reload(false), 500)
         }
 
-        // show hidden list in config panel
-        if (!$.isEmptyObject(hiddenList)) GM_config.fields.hiddenList.value = hiddenList.sort((a, b) => a - b).join(', ')
-
-        if (GM.info.scriptHandler !== 'Userscripts') { //! Userscripts Safari: GM.registerMenuCommand is missing
-          GM.registerMenuCommand('Configure', () => GM_config.open())
-        }
+        //! Userscripts Safari: GM.registerMenuCommand is missing
+        if (GM.info.scriptHandler !== 'Userscripts') GM.registerMenuCommand('Configure', () => GM_config.open())
       },
-      open: async () => {
-        // show unsaved hidden list in config panel
-        const newHiddenList = await GM.getValue('hiddenList', [])
-        const oldHiddenList = GM_config.get('hiddenList') !== '' ? GM_config.get('hiddenList').split(',').map(Number) : undefined
+      open: async (document) => {
+        const textarea = $(document).find(`#${id}_field_hiddenList`)
 
-        if (($(newHiddenList).not(oldHiddenList).length > 0 || $(oldHiddenList).not(newHiddenList).length > 0) && !$.isEmptyObject(newHiddenList)) {
-          GM_config.fields.hiddenList.value = newHiddenList.sort((a, b) => a - b).join(', ')
+        // show unsaved hidden list in config panel
+        const hiddenList = await GM.getValue('hiddenList', [])
+        const unsavedHiddenList = GM_config.get('hiddenList') !== '' ? GM_config.get('hiddenList').split(',').map(Number) : undefined
+
+        if (($(hiddenList).not(unsavedHiddenList).length > 0 || $(unsavedHiddenList).not(hiddenList).length > 0) && !$.isEmptyObject(hiddenList)) {
+          GM_config.fields.hiddenList.value = hiddenList.sort((a, b) => a - b).join(', ')
 
           // ? fix GM_config
           GM_config.close()
           GM_config.open()
         }
-      },
-      save: () => {
-        const hiddenList = GM_config.get('hiddenList') !== '' ? GM_config.get('hiddenList').split(',').map(Number) : undefined
-        GM.setValue('hiddenList', hiddenList)
 
-        UU.alert('settings saved')
-        GM_config.close()
-        setTimeout(window.location.reload(false), 500)
+        // resize textarea on creation and editing
+        const resize = (target) => {
+          $(target).height('')
+          $(target).height($(target)[0].scrollHeight)
+        }
+
+        resize(textarea)
+        $(textarea).bind({
+          input: (event) => resize(event.target)
+        })
+      },
+      save: (forgotten) => {
+        // store unsaved hiddenList
+        const unsavedHiddenList = forgotten.hiddenList !== '' ? forgotten.hiddenList.split(',').map(Number).filter((element) => element !== 0) : undefined
+
+        if (GM_config.isOpen) {
+          GM.setValue('hiddenList', $.makeArray(unsavedHiddenList))
+
+          UU.alert('settings saved')
+          GM_config.close()
+          setTimeout(window.location.reload(false), 500)
+        }
       }
     }
   })
