@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.0.1
+// @version            2.0.2
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -42,7 +42,6 @@
 // @grant              GM.notification
 // @grant              GM.registerMenuCommand
 // @grant              GM.setValue
-// @grant              GM.xmlHttpRequest
 // @run-at             document-start
 // @inject-into        page
 // ==/UserScript==
@@ -311,15 +310,12 @@
    */
   const getScriptData = async (id) => {
     return new Promise((resolve, reject) => {
-      GM.xmlHttpRequest({
-        method: 'GET',
-        url: `https://${window.location.hostname}/scripts/${id}.json`,
-        onload: (response) => {
-          UU.log(`${response.status}: ${response.finalUrl}`)
-          const data = JSON.parse(response.responseText)
-          resolve(data)
-        }
-      })
+      fetch(`https://${window.location.hostname}/scripts/${id}.json`)
+        .then((response) => {
+          UU.log(`${response.status}: ${response.url}`)
+          return response.json()
+        })
+        .then((data) => resolve(data))
     })
   }
 
@@ -331,15 +327,11 @@
    */
   const getUserData = (userID) => {
     return new Promise((resolve, reject) => {
-      GM.xmlHttpRequest({
-        method: 'GET',
-        url: `https://${window.location.hostname}/users/${userID}.json`,
-        onload: (response) => {
-          UU.log(`${response.status}: ${response.finalUrl}`)
-          const data = JSON.parse(response.responseText)
-          resolve(data)
-        }
-      })
+      fetch(`https://${window.location.hostname}/users/${userID}.json`)
+        .then((response) => {
+          UU.log(`${response.status}: ${response.url}`)
+          return response.json()
+        }).then((data) => resolve(data))
     })
   }
 
