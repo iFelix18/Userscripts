@@ -5,12 +5,14 @@ Aggiunge varie funzionalità e migliora l'esperienza di [OpenUserJS][openuserjs-
 [![Version][version-badge]][link] [![Size][size-badge]][link] [![Install][install-badge]][download-link]
 
 Caratteristiche:
->
->* Nascondi tutti gli script non latini (premi `Ctrl + Alt + L` per mostrarli di nuovo)
->* Nascondi tutti gli script con parole nella blacklist (premi `Ctrl + Alt + B` per mostrarli di nuovo)
->* Aggiunge un pulsante per nascondere lo script (premi `Ctrl + Alt + H` per mostrarli di nuovo)
->* Aggiunge un pulsante per installare direttamente lo script
->* Ricevi una notifica ogni volta che le tue installazioni totali superano uno dei traguardi prefissati
+
+* Nascondere gli script nella blacklist (premere `Ctrl + Alt + B` per mostrarli di nuovo), in base a una o più delle seguenti liste:
+  * Non-Latin: Questa lista blocca tutti gli script con caratteri non latini nel titolo/descrizione
+  * Blacklist: Una lista "non opinabile" che blocca tutti gli script con emoji nel titolo/descrizione, i riferimenti a " bots", "cheats" e alcuni siti di giochi online, e altre "stronzate"
+  * Custom Blacklist: Blacklist personale definita da un insieme di parole indesiderate
+* Aggiunge un pulsante per nascondere lo script (premi `Ctrl + Alt + H` per mostrarli di nuovo)
+* Aggiunge un pulsante per installare direttamente lo script, che mostra la versione dello script e che cambia dinamicamente in base alla tua versione, se presente, già installata (il cambio dinamico funziona solo se stai utilizzando Violentmonkey o Tampermonkey)
+* Ricevi una notifica ogni volta che le tue installazioni totali superano uno dei traguardi prefissati
 
 |                   Screenshots                   |
 | :---------------------------------------------: |
