@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.7.8
+// @version            2.0.0
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -53,42 +53,71 @@
   const id = 'openuserjs-plus'
   const title = `${GM.info.script.name} v${GM.info.script.version} Settings`
   const fields = {
-    hideNonLatinScripts: {
-      label: 'Hide non-Latin scripts, press "Ctrl + Alt + L" to show non-Latin scripts',
+    hideBlacklistedScripts: {
+      label: 'Hide blacklisted scripts:<br><span>Choose which lists to activate in the section below, press <b>Ctrl + Alt + B</b> to show Blacklisted scripts</span>',
       section: ['Features'],
       labelPos: 'right',
       type: 'checkbox',
       default: true
     },
-    hideBlacklistedScripts: {
-      label: 'Hide blacklisted scripts, press "Ctrl + Alt + B" to show Blacklisted scripts',
+    hideHiddenScript: {
+      label: 'Hide scripts:<br><span>Add a button to hide the script<br>See and edit the list of hidden scripts below, press <b>Ctrl + Alt + H</b> to show Hidden script',
       labelPos: 'right',
       type: 'checkbox',
       default: true
     },
-    hideScript: {
-      label: 'Add a button to hide the script, press "Ctrl + Alt + H" to show Hidden scripts',
-      labelPos: 'right',
-      type: 'checkbox',
-      default: true
-    },
-    installButton: {
-      label: 'Add a button to install the script directly',
+    showInstallButton: {
+      label: 'Install button:<br><span>Add to the scripts list a button to install the script directly</span>',
       labelPos: 'right',
       type: 'checkbox',
       default: true
     },
     milestoneNotification: {
-      label: 'Get notified whenever your total installs got over any of these milestone (leave blank to disable) - Separate milestones with a comma!',
+      label: 'Milestone notifications:<br><span>Get notified whenever your total installs got over any of these milestone<br>Separate milestones with a comma, leave blank to turn off notifications</span>',
       labelPos: 'left',
       type: 'text',
       title: 'Separate milestones with a comma!',
       size: 150,
       default: '10, 100, 500, 1000, 2500, 5000, 10000, 100000, 1000000'
     },
+    nonLatins: {
+      label: 'Non-Latin:<br><span>This list blocks all scripts with non-Latin characters in the title/description</span>',
+      section: ['Lists'],
+      labelPos: 'right',
+      type: 'checkbox',
+      default: true
+    },
+    blacklist: {
+      label: 'Blacklist:<br><span>A "non-opinionable" list that blocks all scripts with emoji in the title/description, references to "bots", "cheats" and some online game sites, and other "bullshit"</span>',
+      labelPos: 'right',
+      type: 'checkbox',
+      default: true
+    },
+    customBlacklist: {
+      label: 'Custom Blacklist:<br><span>Personal blacklist defined by a set of unwanted words<br>Separate unwanted words with a comma (example: YouTube, Facebook, pizza), leave blank to disable this list</span>',
+      labelPos: 'left',
+      type: 'text',
+      title: 'Separate unwanted words with a comma!',
+      size: 150,
+      default: ''
+    },
+    hiddenList: {
+      label: 'Hidden Scripts:<br><span>Block individual undesired scripts by their names<br>Separate each script with a new line</span>',
+      labelPos: 'left',
+      type: 'textarea',
+      title: 'Separate each script with a new line!',
+      default: '',
+      save: false
+    },
     logging: {
       label: 'Logging',
-      section: ['Develop'],
+      section: ['Developer options'],
+      labelPos: 'right',
+      type: 'checkbox',
+      default: false
+    },
+    debugging: {
+      label: 'Debugging',
       labelPos: 'right',
       type: 'checkbox',
       default: false
@@ -99,24 +128,62 @@
   const blacklist = new RegExp([ /* cspell: disable-next-line */
     '\\bagar((.)?io)?\\b', '\\bagma((.)?io)?\\b', '\\baimbot\\b', '\\barras((.)?io)?\\b', '\\bbot(s)?\\b', '\\bbubble((.)?am)?\\b', '\\bcheat(s)?\\b', '\\bdiep((.)?io)?\\b', '\\bfreebitco((.)?in)?\\b', '\\bgota((.)?io)?\\b', '\\bhack(s)?\\b', '\\bkrunker((.)?io)?\\b', '\\blostworld((.)?io)?\\b', '\\bmoomoo((.)?io)?\\b', '\\broblox(.com)?\\b', '\\bshell\\sshockers\\b', '\\bshellshock((.)?io)?\\b', '\\bshellshockers\\b', '\\bskribbl((.)?io)?\\b', '\\bslither((.)?io)?\\b', '\\bsurviv((.)?io)?\\b', '\\btaming((.)?io)?\\b', '\\bvenge((.)?io)?\\b', '\\bvertix((.)?io)?\\b', '\\bzombs((.)?io)?\\b', '\\p{Extended_Pictographic}'
   ].join('|'), 'giu')
-  const hiddenList = JSON.parse(await GM.getValue('hiddenList', '{}'))
+  const hiddenList = await GM.getValue('hiddenList', [])
 
   //* GM_config
   GM_config.init({
     id,
     title,
     fields,
-    css: '#openuserjs-plus *{font-family:Open Sans,sans-serif,Segoe UI Emoji!important}#openuserjs-plus .section_header{background-color:#0057b7!important;border:1px solid transparent!important;color:#fff!important}#openuserjs-plus .config_var{display:flex!important}#openuserjs-plus_milestoneNotification_var{flex-direction:column!important}#openuserjs-plus_field_milestoneNotification{flex:1!important}',
+    css: '#openuserjs-plus *{font-family:Open Sans,sans-serif,Segoe UI Emoji!important;font-size:12px}#openuserjs-plus .section_header{background-color:#0057b7!important;border:1px solid transparent!important;color:#fff!important}#openuserjs-plus .field_label{margin-bottom:4px!important}#openuserjs-plus .field_label span{font-size:95%!important;font-style:italic!important;opacity:.8!important}#openuserjs-plus .field_label b{color:#0057b7!important}#openuserjs-plus .config_var{display:flex!important}#openuserjs-plus_customBlacklist_var,#openuserjs-plus_hiddenList_var,#openuserjs-plus_milestoneNotification_var{flex-direction:column!important;margin-left:21px!important}#openuserjs-plus_field_customBlacklist,#openuserjs-plus_field_milestoneNotification{flex:1!important}#openuserjs-plus_field_hiddenList{box-sizing:border-box!important;overflow:hidden!important;resize:none!important;width:100%!important}',
     events: {
       init: () => {
-        if (GM.info.scriptHandler !== 'Userscripts') { //! Userscripts Safari: GM.registerMenuCommand is missing
-          GM.registerMenuCommand('Configure', () => GM_config.open())
+        // ? remove old hiddenList from Greasy Fork+ 1.x
+        if (!Array.isArray(hiddenList)) {
+          GM.deleteValue('hiddenList')
+          setTimeout(window.location.reload(false), 500)
         }
+
+        //! Userscripts Safari: GM.registerMenuCommand is missing
+        if (GM.info.scriptHandler !== 'Userscripts') GM.registerMenuCommand('Configure', () => GM_config.open())
       },
-      save: () => {
-        UU.alert('settings saved')
-        GM_config.close()
-        setTimeout(window.location.reload(false), 500)
+      open: async (document) => {
+        const textarea = $(document).find('#openuserjs-plus_field_hiddenList')
+
+        // show unsaved hidden list in config panel
+        const hiddenList = await GM.getValue('hiddenList', [])
+        const unsavedHiddenList = GM_config.get('hiddenList') !== '' ? GM_config.get('hiddenList').split(/\n/g).map(String) : undefined
+
+        if (($(hiddenList).not(unsavedHiddenList).length > 0 || $(unsavedHiddenList).not(hiddenList).length > 0) && !$.isEmptyObject(hiddenList)) {
+          GM_config.fields.hiddenList.value = hiddenList.sort((a, b) => (a < b) ? -1 : ((a > b) ? 1 : 0)).join('\n')
+
+          // ? fix GM_config
+          GM_config.close()
+          GM_config.open()
+        }
+
+        // resize textarea on creation and editing
+        const resize = (target) => {
+          $(target).height('')
+          $(target).height($(target)[0].scrollHeight)
+        }
+
+        resize(textarea)
+        $(textarea).bind({
+          input: (event) => resize(event.target)
+        })
+      },
+      save: (forgotten) => {
+        // store unsaved hiddenList
+        const unsavedHiddenList = forgotten.hiddenList !== '' ? forgotten.hiddenList.split(/\n/g).map(String).filter((element) => element !== undefined && element !== '') : undefined
+
+        if (GM_config.isOpen) {
+          GM.setValue('hiddenList', $.makeArray(unsavedHiddenList))
+
+          UU.alert('settings saved')
+          GM_config.close()
+          setTimeout(window.location.reload(false), 500)
+        }
       }
     }
   })
@@ -129,8 +196,8 @@
 
   //* Shortcuts
   const { register } = VM.shortcut
-  register('ctrl-alt-l', () => {
-    $('.panel-default > .table .tr-link.non-latin').toggle()
+  register('ctrl-alt-s', () => {
+    GM_config.open()
   })
   register('ctrl-alt-b', () => {
     $('.panel-default > .table .tr-link.blacklisted').toggle()
@@ -155,11 +222,10 @@
    */
   const addOptions = () => {
     // create menu
-    const html = `<div class="panel panel-default"><a class=panel-heading href=/settings/ onclick=return!1><div class=panel-title><i class="fa fa-exclamation-circle fa-fw"></i>${GM.info.script.name} filters</div></a><div><div class=table-responsive><table class="table table-condensed table-hover table-striped"><tr class="list-option non-latin"><td class=align-middle><b><a class=tr-link-a href=/non-latin-scripts onclick=return!1>Non-Latin scripts</a></b><tr class="list-option blacklisted"><td class=align-middle><b><a class=tr-link-a href=/blacklisted-scripts onclick=return!1>Blacklisted scripts</a></b><tr class="list-option hidden-script"><td class=align-middle><b><a class=tr-link-a href=/hidden-script-scripts onclick=return!1>Hidden scripts</a></b></table></div></div></div>`
+    const html = `<div class="panel panel-default"id=${id}-options><a class=panel-heading href=/settings/ onclick=return!1><div class=panel-title><i class="fa fa-exclamation-circle fa-fw"></i>${GM.info.script.name} Lists</div></a><div><div class=table-responsive><table class="table table-condensed table-hover table-striped"><tr class="list-option blacklisted"><td class=align-middle><b><a class=tr-link-a href=/blacklist onclick=return!1>Blacklisted scripts (${$('.panel-default > .table .tr-link.blacklisted').length})</a></b><tr class="list-option hidden-script"><td class=align-middle><b><a class=tr-link-a href=/blacklist onclick=return!1>Hidden scripts (${$('.panel-default > .table .tr-link.hidden-script').length})</a></b></table></div></div></div>`
     $('.col-sm-4 > .panel-default').first().before(html)
 
     // click
-    $('.list-option.non-latin').click(() => $('.panel-default > .table .tr-link.non-latin').toggle())
     $('.list-option.blacklisted').click(() => $('.panel-default > .table .tr-link.blacklisted').toggle())
     $('.list-option.hidden-script').click(() => $('.panel-default > .table .tr-link.hidden-script').toggle())
   }
@@ -174,7 +240,7 @@
     return new Promise((resolve, reject) => {
       GM.xmlHttpRequest({
         method: 'GET',
-        url: `https://openuserjs.org/users/${userID}`,
+        url: `https://openuserjs.org${userID}`,
         onload: (response) => {
           UU.log(`${response.status}: ${response.finalUrl}`)
           const data = response.responseText
@@ -195,76 +261,89 @@
   }
 
   /**
-   * Hide all scripts with non-Latin characters in the name or description
+   * Hide a blacklisted script
    *
-   * @param {object} element Script
+   * @param {object} element  Script
+   * @param {string} list     Blacklist name
    */
-  const hideNonLatinScripts = (element) => {
+  const hideBlacklistedScript = (element, list) => {
     const name = $(element).find('.tr-link-a b').text()
     const description = $(element).find('td:nth-child(1) p').text()
 
     if (!name) return
 
-    if (nonLatins.test(name) || nonLatins.test(description)) {
-      $(element).addClass('non-latin')
+    switch (list) {
+      case 'nonLatins':
+        if ((nonLatins.test(name) || nonLatins.test(description)) && !$(element).hasClass('blacklisted')) {
+          $(element).addClass('blacklisted non-latins')
+          if (GM_config.get('hideBlacklistedScripts') && GM_config.get('debugging')) { $(element).find('.tr-link-a b').append(' (non-latin)') }
+        }
+        break
+      case 'blacklist':
+        if ((blacklist.test(name) || blacklist.test(description)) && !$(element).hasClass('blacklisted')) {
+          $(element).addClass('blacklisted blacklist')
+          if (GM_config.get('hideBlacklistedScripts') && GM_config.get('debugging')) { $(element).find('.tr-link-a b').append(' (blacklist)') }
+        }
+        break
+      case 'customBlacklist': {
+        const customBlacklist = new RegExp(GM_config.get('customBlacklist').replace(/\s/g, '').split(',').join('|'), 'giu')
+        if ((customBlacklist.test(name) || customBlacklist.test(description)) && !$(element).hasClass('blacklisted')) {
+          $(element).addClass('blacklisted custom-blacklist')
+          if (GM_config.get('hideBlacklistedScripts') && GM_config.get('debugging')) { $(element).find('.tr-link-a b').append(' (custom-blacklist)') }
+        }
+        break
+      }
+      default:
+        UU.log('No blacklists')
+        break
     }
   }
 
   /**
-   * Hide all scripts with blacklisted words in the name or description
+   * Hide a hidden scripts
    *
    * @param {object} element Script
-   */
-  const hideBlacklistedScripts = (element) => {
-    const name = $(element).find('.tr-link-a b').text()
-    const description = $(element).find('td:nth-child(1) p').text()
-
-    if (!name) return
-
-    if (blacklist.test(name) || blacklist.test(description)) {
-      $(element).addClass('blacklisted')
-    }
-  }
-
-  /**
-   * Hide scripts
-   *
-   * @param {object} element SCript
    * @param {boolean} list Is list
    */
-  const hideScript = async (element, list) => {
+  const hideHiddenScript = async (element, list) => {
     const name = list ? $(element).find('.tr-link-a b').text() : $(element).find('.script-name').text()
 
     if (!name) return
 
     // if is in hiddenList hide it
-    if (name in JSON.parse(await GM.getValue('hiddenList', '{}'))) { $(element).addClass('hidden-script') }
+    if ($.inArray(name, hiddenList) !== -1) {
+      $(element).addClass('hidden-script')
+      if (GM_config.get('hideHiddenScript') && GM_config.get('debugging')) { $(element).find('.script-link').append(' (hidden)') }
+    }
 
     // add button to hide the script
     $(element).find('td:nth-child(1) span:last-of-type').after(`<span class=block-button role=button style=cursor:pointer;margin-left:1ex>${blockLabel($(element).hasClass('hidden-script'))}</span>`)
     $(element).find('.script-name').after(`<span class=block-button role=button style=cursor:pointer;margin-left:1ex;font-size:70%>${blockLabel($(element).hasClass('hidden-script'))}</span>`)
 
     // on click...
-    $(element).find('.block-button').click(async (event) => {
+    $(element).find('.block-button').click((event) => {
       event.stopPropagation()
 
       // ...if it is not in the list add it and hide it...
-      if (!(name in hiddenList)) {
-        hiddenList[name] = name
+      if ($.inArray(name, hiddenList) === -1) {
+        hiddenList.push(name)
 
-        GM.setValue('hiddenList', JSON.stringify(hiddenList))
+        GM.setValue('hiddenList', hiddenList)
 
         if (list) {
           $(element).hide(750).addClass('hidden-script').find('.block-button').text(blockLabel($(element).hasClass('hidden-script')))
+          if (GM_config.get('hideHiddenScript') && GM_config.get('debugging')) { $(element).find('.script-link').append(' (hidden)') }
         } else {
           $(element).addClass('hidden-script').find('.block-button').text(blockLabel($(element).hasClass('hidden-script')))
+          if (GM_config.get('hideHiddenScript') && GM_config.get('debugging')) { $(element).find('.script-link').append(' (hidden)') }
         }
       } else { // ...else remove it
-        delete hiddenList[name]
+        hiddenList.splice($.inArray(name, hiddenList), 1)
 
-        GM.setValue('hiddenList', JSON.stringify(hiddenList))
+        GM.setValue('hiddenList', hiddenList)
 
         $(element).removeClass('hidden-script').find('.block-button').text(blockLabel($(element).hasClass('hidden-script')))
+        if (GM_config.get('hideHiddenScript') && GM_config.get('debugging')) { $(element).find('.script-link').html($(element).find('.script-link').html().replace(' (hidden)', '')) }
       }
     })
   }
@@ -287,30 +366,42 @@
     }
   }
 
-  //* Script
-  $(document).ready(async () => {
+  //* Main Script
+  $(async () => {
     addSettingsToMenu()
 
-    const userID = $('a[title="My profile"]').length > 0 ? $('a[title="My profile"]').text() : undefined
+    const userID = $('.navbar-default .navbar-nav > li > a[title^="My profile"]').length > 0 ? $('.navbar-default .navbar-nav > li > a[title^="My profile"]').attr('href') : undefined
 
-    if (!window.location.pathname.startsWith(`/users/${userID}`) && (GM_config.get('hideNonLatinScripts') || GM_config.get('hideBlacklistedScripts') || GM_config.get('hideScript') || GM_config.get('installButton'))) {
-      if (GM_config.get('hideNonLatinScripts') || GM_config.get('hideBlacklistedScripts') || GM_config.get('hideScript')) {
-        addOptions()
-        $('head').append('<style>.panel-default>.table .tr-link.blacklisted,.panel-default>.table .tr-link.blacklisted:hover,.panel-default>.table .tr-link.hidden-script,.panel-default>.table .tr-link.hidden-script:hover,.panel-default>.table .tr-link.non-latin,.panel-default>.table .tr-link.non-latin:hover{display:none;background-color:#321919!important;color:#e8e6e3!important}.container-fluid.hidden-script .col-sm-8,.container-fluid.hidden-script .col-sm-8 .panel-body{background:#321919;color:#e8e6e3}.container-fluid.hidden-script .col-sm-8 code{background-color:transparent}</style>')
+    // blacklisted scripts / hidden scripts / install button
+    if (!window.location.pathname.startsWith(userID) && !/groups/.test(window.location.pathname) && (GM_config.get('hideBlacklistedScripts') || GM_config.get('hideHiddenScript') || GM_config.get('showInstallButton'))) {
+      // for each script in the list
+      $('.panel-default > .table .tr-link').each((index, element) => {
+        // blacklisted scripts
+        if (GM_config.get('nonLatins')) hideBlacklistedScript(element, 'nonLatins')
+        if (GM_config.get('blacklist')) hideBlacklistedScript(element, 'blacklist')
+        if (GM_config.get('customBlacklist')) hideBlacklistedScript(element, 'customBlacklist')
+
+        // hidden scripts
+        if (GM_config.get('hideHiddenScript')) hideHiddenScript(element, true)
+
+        // install button
+        if (GM_config.get('showInstallButton')) addInstallButton(element)
+      })
+
+      // hidden scripts on details page
+      if (GM_config.get('hideHiddenScript') && window.location.pathname.includes('/scripts/')) {
+        const element = $('#body > .container-fluid')
+        hideHiddenScript(element, false)
       }
 
-      $('.panel-default > .table .tr-link').each((index, element) => {
-        if (GM_config.get('hideNonLatinScripts')) hideNonLatinScripts(element)
-        if (GM_config.get('hideBlacklistedScripts')) hideBlacklistedScripts(element)
-        if (GM_config.get('hideScript')) hideScript(element, true)
-        if (GM_config.get('installButton')) addInstallButton(element)
-      })
-      if (GM_config.get('hideScript') && window.location.pathname.includes('/scripts/')) {
-        const element = $('#body > .container-fluid')
-        if (GM_config.get('hideScript')) hideScript(element, false)
+      // add options and style for blacklisted/hidden scripts
+      if (GM_config.get('hideBlacklistedScripts') || GM_config.get('hideHiddenScript')) {
+        addOptions()
+        $('head').append('<style>.panel-default>.table .tr-link.blacklisted,.panel-default>.table .tr-link.blacklisted:hover{display:none;background:#321919;color:#e8e6e3}.panel-default>.table .tr-link.hidden-script,.panel-default>.table .tr-link.hidden-script:hover{display:none;background:#321932;color:#e8e6e3}.container-fluid.hidden-script .col-sm-8,.container-fluid.hidden-script .col-sm-8 .panel-body{background:#321932;color:#e8e6e3}.container-fluid.hidden-script .col-sm-8 code{background-color:transparent}</style>')
       }
     }
 
+    // milestone notification
     if (GM_config.get('milestoneNotification')) {
       const milestones = GM_config.get('milestoneNotification').replace(/\s/g, '').split(',').map(Number)
 

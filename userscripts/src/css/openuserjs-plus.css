@@ -1,5 +1,6 @@
 #openuserjs-plus * {
   font-family: Open Sans, sans-serif, Segoe UI Emoji !important;
+  font-size: 12px;
 }
 
 #openuserjs-plus .section_header {
@@ -8,14 +9,39 @@
   color: rgb(255, 255, 255) !important;
 }
 
+#openuserjs-plus .field_label {
+  margin-bottom: 4px !important;
+}
+
+#openuserjs-plus .field_label span {
+  font-size: 95% !important;
+  font-style: italic !important;
+  opacity: 0.8 !important;
+}
+
+#openuserjs-plus .field_label b {
+  color: rgb(0, 87, 183) !important;
+}
+
 #openuserjs-plus .config_var {
   display: flex !important;
 }
 
-#openuserjs-plus_milestoneNotification_var {
+#openuserjs-plus_milestoneNotification_var,
+#openuserjs-plus_customBlacklist_var,
+#openuserjs-plus_hiddenList_var {
   flex-direction: column !important;
+  margin-left: 21px !important;
 }
 
-#openuserjs-plus_field_milestoneNotification {
+#openuserjs-plus_field_milestoneNotification,
+#openuserjs-plus_field_customBlacklist {
   flex: 1 !important;
+}
+
+#openuserjs-plus_field_hiddenList {
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  resize: none !important;
+  width: 100% !important;
 }
