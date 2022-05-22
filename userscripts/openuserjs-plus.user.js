@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.0.0
+// @version            2.0.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -148,7 +148,7 @@
         if (GM.info.scriptHandler !== 'Userscripts') GM.registerMenuCommand('Configure', () => GM_config.open())
       },
       open: async (document) => {
-        const textarea = $(document).find('#openuserjs-plus_field_hiddenList')
+        const textarea = $(document).find(`#${id}_field_hiddenList`)
 
         // show unsaved hidden list in config panel
         const hiddenList = await GM.getValue('hiddenList', [])
