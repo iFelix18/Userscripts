@@ -18,20 +18,19 @@
 // @description:zh-CN  在JustWatch中添加来自IMDb、烂番茄、Metacritic和MyAnimeList的评分。
 // @copyright          2022, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            1.2.5
+// @version            1.3.0
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
 // @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/ratings-on-justwatch.meta.js
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-justwatch.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@5.1.1/lib/index.min.js
+// @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
+// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@6.4.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@ifelix18/omdb@2.0.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@ifelix18/rottentomatoes@2.0.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@ifelix18/jikan@2.0.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@ifelix18/ratings@4.0.0/lib/index.min.js
-// @require            https://cdn.jsdelivr.net/npm/node-creation-observer@1.2.0/release/node-creation-observer-latest.min.js
-// @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require            https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js
 // @match              *://www.justwatch.com/*
 // @connect            api.jikan.moe
@@ -54,15 +53,13 @@
 // @inject-into        content
 // ==/UserScript==
 
-/* global $, GM_configStruct, Handlebars, NodeCreationObserver, Ratings, UserscriptUtils */
+/* global $, GM_config, Handlebars, Ratings, UU */
 
 (() => {
   //* Constants
-  const cachePeriod = 3_600_000
   const id = GM.info.script.name.toLowerCase().replace(/\s/g, '-')
-
-  //* GM_config
-  const config = new GM_configStruct()
+  const title = `${GM.info.script.name} v${GM.info.script.version} Settings`
+  const cachePeriod = 3_600_000
   const fields = {
     OMDbApiKey: {
       label: 'OMDb API Key',
@@ -97,80 +94,49 @@
         }
 
         UU.log('cache cleared')
-        config.close()
+        GM_config.close()
       }
     }
   }
-  const title = `${GM.info.script.name} v${GM.info.script.version} Settings`
-  UserscriptUtils.migrateConfig('config', id) // migrate to the new config ID
 
-  if (document.location.pathname === '/settings/') {
-    document.title = title
-    config.init({
-      frame: $('body').empty().get(0),
-      id,
-      title,
-      fields,
-      css: '#ratings-on-justwatch *{font-family:Lato,Lato-fallback,Arial,sans-serif!important}#ratings-on-justwatch{background-color:transparent!important;border:1px solid transparent!important;box-sizing:border-box!important;height:auto!important;list-style-type:none!important;margin-bottom:0!important;margin-left:auto!important;margin-right:auto!important;margin-top:0!important;max-height:none!important;max-width:1200px!important;padding:0 1em 1em!important;position:static!important;width:auto!important}#ratings-on-justwatch .config_header{display:block!important;font-size:1.5em!important;font-weight:700!important;margin-bottom:.83em!important;margin-left:0!important;margin-right:0!important;margin-top:.83em!important}#ratings-on-justwatch .section_desc,#ratings-on-justwatch .section_header{background-color:#fbc500!important;background-image:none!important;border:1px solid transparent!important;color:#000!important}#ratings-on-justwatch .config_var{align-items:center!important;display:flex!important}#ratings-on-justwatch .field_label{font-size:.85em!important;font-weight:600!important;margin-left:6px!important}#ratings-on-justwatch_field_OMDbApiKey{flex:1!important}#ratings-on-justwatch_buttons_holder{color:inherit!important}#ratings-on-justwatch button,#ratings-on-justwatch input[type=button]{font-size:.85em!important;font-weight:600!important}#ratings-on-justwatch_closeBtn{display:none!important}#ratings-on-justwatch .reset{color:inherit!important}',
-      events: {
-        init: () => {
-          config.open()
-        },
-        save: () => {
-          if (config.get('OMDbApiKey') === '') {
-            window.alert(`${GM.info.script.name}: check your settings and save`)
-          } else {
-            window.alert(`${GM.info.script.name}: settings saved`)
-            if ('referrer' in document && document.referrer !== '') {
-              window.location = document.referrer
-            } else {
-              window.history.back()
-            }
-          }
+  //* GM_config
+  GM_config.init({
+    id,
+    title,
+    fields,
+    css: '#ratings-on-justwatch *{font-family:Lato,Lato-fallback,Arial,sans-serif!important}#ratings-on-justwatch{background:#121212!important}#ratings-on-justwatch .section_desc,#ratings-on-justwatch .section_header{background-color:#fbc500!important;border:1px solid transparent!important;color:#000!important}#ratings-on-justwatch .config_var{display:flex!important}#ratings-on-justwatch_field_OMDbApiKey{background:#fff!important;color:#000!important;flex:1!important}#ratings-on-justwatch button,#ratings-on-justwatch input[type=button]{background:#fff!important;border:1px solid transparent!important;color:#000!important}#ratings-on-justwatch button:hover,#ratings-on-justwatch input[type=button]:hover{filter:brightness(85%)!important}#ratings-on-justwatch .reset{margin-right:10px!important}',
+    events: {
+      init: () => {
+        // initial configuration if OMDb API Key is missing
+        if (!GM_config.isOpen && GM_config.get('OMDbApiKey') === '') {
+          GM_config.open()
         }
-      }
-    })
-  } else {
-    config.init({
-      id,
-      title,
-      fields,
-      events: {
-        init: () => {
-          if (!config.isOpen && config.get('OMDbApiKey') === '') {
-            window.location = '/settings/'
-          }
-          if (GM.info.scriptHandler !== 'Userscripts') { //! Userscripts Safari: GM.registerMenuCommand is missing
-            GM.registerMenuCommand('Configure', () => config.open())
-          }
-        },
-        save: () => {
-          if (config.get('OMDbApiKey') === '') {
-            window.alert(`${GM.info.script.name}: check your settings and save`)
+
+        //! Userscripts Safari: GM.registerMenuCommand is missing
+        if (GM.info.scriptHandler !== 'Userscripts') GM.registerMenuCommand('Configure', () => GM_config.open())
+      },
+      save: () => {
+        if (GM_config.isOpen) {
+          if (GM_config.get('OMDbApiKey') === '') {
+            UU.alert('check your settings and save')
           } else {
-            window.alert(`${GM.info.script.name}: settings saved`)
-            config.close()
+            UU.alert('settings saved')
+            GM_config.close()
             setTimeout(window.location.reload(false), 500)
           }
         }
       }
-    })
-  }
+    }
+  })
 
   //* Utils
-  const UU = new UserscriptUtils({
-    name: GM.info.script.name,
-    version: GM.info.script.version,
-    author: 'Davide',
-    logging: config.get('logging')
-  })
-  UU.init(id)
+  UU.init({ id, logging: GM_config.get('logging') })
 
   //* Ratings
   const rating = new Ratings({
-    omdb_api_key: config.get('OMDbApiKey'),
+    omdb_api_key: GM_config.get('OMDbApiKey'),
     cache_period: cachePeriod,
-    debug: config.get('debugging')
+    debug: GM_config.get('debugging')
   })
 
   //* Handlebars
@@ -184,9 +150,10 @@
    * Adds a link to the menu to access the script configuration
    */
   const addSettings = () => {
-    const menu = `<a href=/settings/ title=Settings class="${id}_settings navbar__button__link"><span class="navbar__button__link__item">${GM.info.script.name}</span></a>`
+    const menu = `<a class="${id} navbar__button__link"href=""onclick=return!1 title=Settings><span class=navbar__button__link__item>${GM.info.script.name}</span></a>`
 
     $('.navbar__wrapper > .navbar__button__link').last().after(menu)
+    $(`.${id}`).click(() => GM_config.open())
   }
 
   /**
@@ -236,36 +203,34 @@
   /**
    * Add ratings
    */
-  const addRatings = async () => {
-    clearOldCache() // clear old cache
+  const addRatings = () => {
+    UU.observe.creation('.title-block', async (element) => {
+      clearOldCache() // clear old cache
 
-    const target = $('.title-block')
-    if (target.length === 0) return // check if it is on the main page
+      const id = await getID() // IMDb ID
+      if (!id) return // check if the ID exists
+      UU.log(`ID is '${id}'`)
 
-    const id = await getID() // IMDb ID
-    if (!id) return // check if the ID exists
-    UU.log(`ID is '${id}'`)
+      addTemplate(element) // add template
 
-    addTemplate(target) // add template
+      // get ratings
+      const ratings = await rating.get({ id }).then().catch(error => console.error(error))
+      const elaboratedRatings = await rating.elaborate(ratings).then().catch(error => console.error(error))
 
-    // get ratings
-    const ratings = await rating.get({ id }).then().catch(error => console.error(error))
-    const elaboratedRatings = await rating.elaborate(ratings).then().catch(error => console.error(error))
-
-    // compile template
-    const template = Handlebars.compile($('#external-ratings-template').html())
-    const context = { ratings: elaboratedRatings }
-    const compile = template(context)
-    $('.external-ratings').html(compile)
+      // compile template
+      const template = Handlebars.compile($('#external-ratings-template').html())
+      const context = { ratings: elaboratedRatings }
+      const compile = template(context)
+      $('.external-ratings').html(compile)
+    }, { onlyFirstMatch: true })
   }
 
   //* Script
   $(document).ready(() => {
-    NodeCreationObserver.init(id)
-    NodeCreationObserver.onCreation('.searchbar-input-container.sc-ion-searchbar-md', () => {
+    UU.observe.creation('.searchbar-input-container.sc-ion-searchbar-md', () => {
       addSettings() // add settings
-    }, true)
-    NodeCreationObserver.onCreation('.title-info:not(.visible-xs) a[href^="https://www.imdb.com/"]', () => {
+    }, { onlyFirstMatch: true })
+    UU.observe.creation('.title-info:not(.visible-xs) a[href^="https://www.imdb.com/"]', () => {
       $('.external-ratings, #external-ratings-template').remove() // remove old ratings
       addRatings() // add ratings
     })
