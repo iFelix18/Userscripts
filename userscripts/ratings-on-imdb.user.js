@@ -18,7 +18,7 @@
 // @description:zh-CN  将烂番茄、Metacritic和MyAnimeList的评级添加到IMDb中。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.4.0
+// @version            2.4.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -26,7 +26,7 @@
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-imdb.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
 // @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@6.3.0/lib/index.min.js
+// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@6.4.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@ifelix18/omdb@2.0.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@ifelix18/rottentomatoes@2.0.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@ifelix18/jikan@2.0.0/lib/index.min.js
@@ -105,20 +105,23 @@
     css: '#ratings-on-imdb *{color:#fff!important;font-family:Roboto,Helvetica,Arial,sans-serif!important;font-size:14px!important;font-weight:400!important}#ratings-on-imdb{background:#121212!important}#ratings-on-imdb .section_desc,#ratings-on-imdb .section_header{background-color:#e2b616!important;border:1px solid transparent!important;color:#000!important}#ratings-on-imdb .config_var{display:flex!important}#ratings-on-imdb_field_OMDbApiKey{color:#000!important;flex:1!important}#ratings-on-imdb button,#ratings-on-imdb input[type=button]{background:#fff!important;border:1px solid transparent!important;color:#000!important}#ratings-on-imdb button:hover,#ratings-on-imdb input[type=button]:hover{filter:brightness(85%)!important}#ratings-on-imdb .reset{margin-right:10px!important}',
     events: {
       init: () => {
+        // initial configuration if OMDb API Key is missing
         if (!GM_config.isOpen && GM_config.get('OMDbApiKey') === '') {
           GM_config.open()
         }
-        if (GM.info.scriptHandler !== 'Userscripts') { //! Userscripts Safari: GM.registerMenuCommand is missing
-          GM.registerMenuCommand('Configure', () => GM_config.open())
-        }
+
+        //! Userscripts Safari: GM.registerMenuCommand is missing
+        if (GM.info.scriptHandler !== 'Userscripts') GM.registerMenuCommand('Configure', () => GM_config.open())
       },
       save: () => {
-        if (GM_config.get('OMDbApiKey') === '') {
-          UU.alert('check your settings and save')
-        } else {
-          UU.alert('settings saved')
-          GM_config.close()
-          setTimeout(window.location.reload(false), 500)
+        if (GM_config.isOpen) {
+          if (GM_config.get('OMDbApiKey') === '') {
+            UU.alert('check your settings and save')
+          } else {
+            UU.alert('settings saved')
+            GM_config.close()
+            setTimeout(window.location.reload(false), 500)
+          }
         }
       }
     }
