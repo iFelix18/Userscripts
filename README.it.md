@@ -23,11 +23,11 @@ Lingue readme:
 
 |                       _Script_                        |                     _Versione_                      |                         _Installa_                         |
 | :---------------------------------------------------: | :-------------------------------------------------: | :--------------------------------------------------------: |
-|      [Valutazioni su TMDb][ratings-on-tmdb-link]      |   [![Version][ratings-on-tmdb-version]][scripts]    |   [![Install][install-badge]][ratings-on-tmdb-download]    |
-|      [Valutazioni su IMDb][ratings-on-imdb-link]      |   [![Version][ratings-on-imdb-version]][scripts]    |   [![Install][install-badge]][ratings-on-imdb-download]    |
-| [Valutazioni su JustWatch][ratings-on-justwatch-link] | [![Version][ratings-on-justwatch-version]][scripts] | [![Install][install-badge]][ratings-on-justwatch-download] |
 |          [OpenUserJS+][openuserjs-plus-link]          |   [![Version][openuserjs-plus-version]][scripts]    |   [![Install][install-badge]][openuserjs-plus-download]    |
 |         [Greasy Fork+][greasyfork-plus-link]          |   [![Version][greasyfork-plus-version]][scripts]    |   [![Install][install-badge]][greasyfork-plus-download]    |
+|      [Valutazioni su IMDb][ratings-on-imdb-link]      |   [![Version][ratings-on-imdb-version]][scripts]    |   [![Install][install-badge]][ratings-on-imdb-download]    |
+|      [Valutazioni su TMDb][ratings-on-tmdb-link]      |   [![Version][ratings-on-tmdb-version]][scripts]    |   [![Install][install-badge]][ratings-on-tmdb-download]    |
+| [Valutazioni su JustWatch][ratings-on-justwatch-link] | [![Version][ratings-on-justwatch-version]][scripts] | [![Install][install-badge]][ratings-on-justwatch-download] |
 
 ---
 
@@ -36,13 +36,13 @@ Lingue readme:
 |                 _Libreria_                 |                   _Versione_                    |
 | :----------------------------------------: | :---------------------------------------------: |
 |            [Utils][utils-link]             |     [![Version][utils-version]][libraries]      |
+|           [OMDb API][omdb-link]            |      [![Version][omdb-version]][libraries]      |
+|           [TMDb API][tmdb-link]            |      [![Version][tmdb-version]][libraries]      |
+|          [Jikan API][jikan-link]           |     [![Version][jikan-version]][libraries]      |
 |          [Ratings][ratings-link]           |    [![Version][ratings-version]][libraries]     |
 |          [Trakt API][trakt-link]           |     [![Version][trakt-version]][libraries]      |
-|           [TMDb API][tmdb-link]            |      [![Version][tmdb-version]][libraries]      |
-|           [OMDb API][omdb-link]            |      [![Version][omdb-version]][libraries]      |
-| [Rotten Tomatoes API][rottentomatoes-link] | [![Version][rottentomatoes-version]][libraries] |
-|          [Jikan API][jikan-link]           |     [![Version][jikan-version]][libraries]      |
 |         [Wikidata][wikidata-link]          |    [![Version][wikidata-version]][libraries]    |
+| [Rotten Tomatoes API][rottentomatoes-link] | [![Version][rottentomatoes-version]][libraries] |
 
 ---
 
