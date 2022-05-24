@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.0.2
+// @version            2.0.3
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -26,7 +26,7 @@
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@2207c5c1322ebb56e401f03c2e581719f909762a/gm_config.min.js
 // @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@6.4.0/lib/index.min.js
+// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@6.5.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6/dist/index.min.js
 // @match              *://greasyfork.org/*
 // @match              *://sleazyfork.org/*
@@ -573,7 +573,7 @@
       // add options and style for blacklisted/hidden scripts
       if (GM_config.get('hideBlacklistedScripts') || GM_config.get('hideHiddenScript')) {
         addOptions()
-        $('head').append('<style>.script-list li.blacklisted{display:none;background:#321919;color:#e8e6e3}.script-list li.hidden{display:none;background:#321932;color:#e8e6e3}.script-list li.blacklisted a:not(.install-link),.script-list li.hidden a:not(.install-link){color:#ff8484}#script-info.hidden,#script-info.hidden .user-content{background:#321932;color:#e8e6e3}#script-info.hidden a:not(.install-link):not(.install-help-link){color:#ff8484}#script-info.hidden code{background-color:transparent}</style>')
+        UU.addStyle('.script-list li.blacklisted{display:none;background:#321919;color:#e8e6e3}.script-list li.hidden{display:none;background:#321932;color:#e8e6e3}.script-list li.blacklisted a:not(.install-link),.script-list li.hidden a:not(.install-link){color:#ff8484}#script-info.hidden,#script-info.hidden .user-content{background:#321932;color:#e8e6e3}#script-info.hidden a:not(.install-link):not(.install-help-link){color:#ff8484}#script-info.hidden code{background-color:transparent}')
       }
     }
 
