@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 OpenUserJS 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.0.2
+// @version            2.0.3
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -26,7 +26,7 @@
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/openuserjs-plus.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
 // @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@6.4.0/lib/index.min.js
+// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@6.5.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6/dist/index.min.js
 // @match              *://openuserjs.org/*
 // @connect            openuserjs.org
@@ -393,7 +393,7 @@
       // add options and style for blacklisted/hidden scripts
       if (GM_config.get('hideBlacklistedScripts') || GM_config.get('hideHiddenScript')) {
         addOptions()
-        $('head').append('<style>.panel-default>.table .tr-link.blacklisted,.panel-default>.table .tr-link.blacklisted:hover{display:none;background:#321919;color:#e8e6e3}.panel-default>.table .tr-link.hidden-script,.panel-default>.table .tr-link.hidden-script:hover{display:none;background:#321932;color:#e8e6e3}.container-fluid.hidden-script .col-sm-8,.container-fluid.hidden-script .col-sm-8 .panel-body{background:#321932;color:#e8e6e3}.container-fluid.hidden-script .col-sm-8 code{background-color:transparent}</style>')
+        UU.addStyle('.panel-default>.table .tr-link.blacklisted,.panel-default>.table .tr-link.blacklisted:hover{display:none;background:#321919;color:#e8e6e3}.panel-default>.table .tr-link.hidden-script,.panel-default>.table .tr-link.hidden-script:hover{display:none;background:#321932;color:#e8e6e3}.container-fluid.hidden-script .col-sm-8,.container-fluid.hidden-script .col-sm-8 .panel-body{background:#321932;color:#e8e6e3}.container-fluid.hidden-script .col-sm-8 code{background-color:transparent}')
       }
     }
 
