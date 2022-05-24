@@ -7,14 +7,11 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      6.4.0
+// @version      6.5.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @grant        GM.deleteValue
-// @grant        GM.getValue
-// @grant        GM.setValue
 // ==/UserScript==
 this.UU = (function () {
   /* global $ */
@@ -82,6 +79,11 @@ this.UU = (function () {
       window.alert(`${name}: ${message}`)
     },
     short: (message, length) => message.split(' ').length > Number(length) ? `${message.split(' ', Number(length)).join(' ')} [...]` : message,
+    addStyle: css => {
+      const head = $('head')
+      const style = `<style type='text/css'>${css}</style>`
+      if (head.length > 0) $(head).append(style)
+    },
     observe: {
       creation: (selector, callback, options = {}) => {
         $.extend(observed, {

@@ -7,18 +7,16 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      6.4.0
+// @version      6.5.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
-// @grant        GM.deleteValue
-// @grant        GM.getValue
-// @grant        GM.setValue
 // ==/UserScript==
 
 /* global $ */
 
+// Constants
 const observed = {}
 const name = GM.info.script.name
 const version = GM.info.script.version
@@ -28,6 +26,7 @@ const author = matches ? matches[1] : GM.info.script.author
 let id = name.toLowerCase().replace(/\s/g, '-')
 let logging = false
 
+// Functions
 const callsCallback = async (selector, element) => {
   const onlyVisible = observed[selector].onlyVisible ? await intersectionObserver(element) : true
 
@@ -62,11 +61,11 @@ const mutationObserver = () => {
   }).observe(document, { attributes: true, childList: true, subtree: true })
 }
 
+// Utils
 export default {
   /**
    * Initialize the userscript.
-   * Logs userscript header and,
-   * if an ID is provided and logging is true, the script config values
+   * Logs userscript header
    *
    * @param {object} config Utils configuration
    */
@@ -123,7 +122,18 @@ export default {
     return message.split(' ').length > Number(length) ? `${message.split(' ', Number(length)).join(' ')} [...]` : message
   },
   /**
-   * Observe
+   * Append css to head
+   *
+   * @param {string} css CSS
+   */
+  addStyle: (css) => {
+    const head = $('head')
+    const style = `<style type='text/css'>${css}</style>`
+
+    if (head.length > 0) $(head).append(style)
+  },
+  /**
+   * Observer
    */
   observe: {
     /**
