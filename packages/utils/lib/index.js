@@ -7,7 +7,7 @@
 // @description  Utils for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      6.5.0
+// @version      6.6.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/utils#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -83,6 +83,31 @@ this.UU = (function () {
       const head = $('head')
       const style = `<style type='text/css'>${css}</style>`
       if (head.length > 0) $(head).append(style)
+    },
+    resource: {
+      getURL: name => new Promise((resolve, reject) => {
+        const meta = GM.info.scriptMetaStr
+        const regex = /(?<=\bresource\s+)(\w+)\s(.*)/gm
+        let results
+        while ((results = regex.exec(meta)) !== null) {
+          if (results.index === regex.lastIndex) regex.lastIndex++
+          if (results[1] === name) resolve(results[2])
+        }
+      }),
+      getText: name => new Promise((resolve, reject) => {
+        index.resource.getURL(name).then(url => fetch(url)).then(resp => resolve(resp.text())).catch(error => reject(error))
+      }),
+      add: async (name, type) => {
+        const head = $('head')
+        switch (type) {
+          case 'stylesheet':
+          {
+            const stylesheet = `<link href="${await index.resource.getURL(name)}"rel=stylesheet>`
+            if (head.length > 0) $(head).append(stylesheet)
+            break
+          }
+        }
+      }
     },
     observe: {
       creation: (selector, callback, options = {}) => {
