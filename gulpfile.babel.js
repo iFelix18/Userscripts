@@ -77,6 +77,19 @@ const replaceHBS = () => {
     }))
 }
 
+const replaceTooltipHBS = () => {
+  return src(paths.userscripts.src)
+    .pipe(flatmap((stream, file) => {
+      const fileName = file.stem.replace('.user', '')
+
+      return existsSync(`tempfiles/${fileName}.tooltip.hbs`)
+        ? src(file.path)
+          .pipe(replace(/(?<=const template = Handlebars.compile\(')(.*?)(?=')/g, readFileSync(`tempfiles/${fileName}.tooltip.hbs`, 'utf8')))
+          .pipe(dest(paths.userscripts.dest))
+        : stream
+    }))
+}
+
 // bump meta
 const bumpMeta = (callback) => {
   return src(paths.userscripts.src)
@@ -108,7 +121,7 @@ const watchCSS = () => {
 const watchHBS = () => {
   watch(paths.handlebars.src, {
     ignoreInitial: false
-  }, series(minifyHBS, replaceHBS))
+  }, series(minifyHBS, replaceHBS, replaceTooltipHBS))
 }
 
 // export
