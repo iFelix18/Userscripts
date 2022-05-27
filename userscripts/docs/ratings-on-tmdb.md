@@ -6,20 +6,22 @@ Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [TMDb][tm
 
 >**Note**: After installation, enter your [TMDb API Key][tmdb-api] and your [OMDb API Key][omdb-api] on the script settings page accessible at [this address][settings-link].
 
-|           Screenshots           |
-| :-----------------------------: |
-| [![Before][screenshot-1]][link] |
-|         _Movie before_          |
-| [![After][screenshot-2]][link]  |
-|          _Movie after_          |
-| [![Before][screenshot-3]][link] |
-|          _Show before_          |
-| [![After][screenshot-4]][link]  |
-|          _Show after_           |
-| [![Before][screenshot-5]][link] |
-|         _Anime before_          |
-| [![After][screenshot-6]][link]  |
-|          _Anime after_          |
+|           Screenshots            |
+| :------------------------------: |
+| [![Before][screenshot-1]][link]  |
+|          _Movie before_          |
+|  [![After][screenshot-2]][link]  |
+|          _Movie after_           |
+| [![Before][screenshot-3]][link]  |
+|          _Show before_           |
+|  [![After][screenshot-4]][link]  |
+|           _Show after_           |
+| [![Before][screenshot-5]][link]  |
+|          _Anime before_          |
+|  [![After][screenshot-6]][link]  |
+|          _Anime after_           |
+| [![Tooltip][screenshot-7]][link] |
+|            _Tooltip_             |
 
 [link]: #ratings-on-tmdb
 [tmdb-link]: https://www.themoviedb.org/
@@ -39,3 +41,4 @@ Adds ratings from IMDb, Rotten Tomatoes, Metacritic and MyAnimeList to [TMDb][tm
 [screenshot-4]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-tmdb_show-after.png?raw=true "After"
 [screenshot-5]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-tmdb_anime-before.png?raw=true "Before"
 [screenshot-6]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-tmdb_anime-after.png?raw=true "After"
+[screenshot-7]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-tmdb_tooltip.gif?raw=true "Tooltip"
