@@ -18,7 +18,7 @@
 // @description:zh-CN  在TMDb中添加来自IMDb、烂番茄、Metacritic和MyAnimeList的评分。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            3.0.0
+// @version            3.0.1
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -117,7 +117,7 @@
     id,
     title,
     fields,
-    css: '#ratings-on-tmdb *{color:#fff!important;font-family:Source Sans Pro,Arial,sans-serif!important;font-size:12px}#ratings-on-tmdb{background:#121212!important}#ratings-on-tmdb .section_desc,#ratings-on-tmdb .section_header{background-color:#032541!important;border:1px solid transparent!important;color:#fff!important}#ratings-on-tmdb .config_var{display:flex!important}#ratings-on-tmdb_field_OMDbApiKey,#ratings-on-tmdb_field_TMDbApiKey{flex:1!important}#ratings-on-tmdb button,#ratings-on-tmdb input[type=button]{background:#fff!important;border:1px solid transparent!important;color:#000!important}#ratings-on-tmdb button:hover,#ratings-on-tmdb input[type=button]:hover{filter:brightness(85%)!important}#ratings-on-tmdb .reset{margin-right:10px!important}',
+    css: ':root{--accent:rgb(3, 37, 65);--background:rgb(24, 26, 27);--black:rgb(0, 0, 0);--font:"Source Sans Pro",Arial,sans-serif;--white:rgb(255, 255, 255)}#ratings-on-tmdb *{color:var(--white)!important;font-family:var(--font)!important;font-size:14px!important;font-weight:400!important}#ratings-on-tmdb{background:var(--background)!important}#ratings-on-tmdb .config_header{font-size:20pt!important;line-height:1.1!important}#ratings-on-tmdb .section_desc,#ratings-on-tmdb .section_header{background-color:var(--accent)!important;border:1px solid transparent!important;color:var(--white)!important}#ratings-on-tmdb .config_var{align-items:center!important;display:flex!important}#ratings-on-tmdb_field_OMDbApiKey,#ratings-on-tmdb_field_TMDbApiKey{background-color:var(--white)!important;border:1px solid var(--black)!important;color:var(--black)!important;flex:1!important}#ratings-on-tmdb input[type=checkbox]{appearance:none!important;background-color:var(--white)!important;border:1px solid var(--black)!important;cursor:pointer!important;height:15px!important;width:15px!important}#ratings-on-tmdb input[type=checkbox]:checked{appearance:checkbox!important;background-color:var(--accent)!important}#ratings-on-tmdb button,#ratings-on-tmdb input[type=button]{background:var(--white)!important;border:1px solid var(--black)!important;color:var(--black)!important}#ratings-on-tmdb button:hover,#ratings-on-tmdb input[type=button]:hover{filter:brightness(85%)!important}#ratings-on-tmdb .reset{margin-right:10px!important}',
     events: {
       init: () => {
         // initial configuration if OMDb API Key is missing
