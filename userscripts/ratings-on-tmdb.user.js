@@ -18,14 +18,14 @@
 // @description:zh-CN  在TMDb中添加来自IMDb、烂番茄、Metacritic和MyAnimeList的评分。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.3.2
+// @version            3.0.0
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
 // @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
 // @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@5.1.1/lib/index.min.js
+// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@6.6.1/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@ifelix18/tmdb@2.0.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@ifelix18/omdb@2.0.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/@ifelix18/rottentomatoes@2.0.0/lib/index.min.js
@@ -33,6 +33,10 @@
 // @require            https://cdn.jsdelivr.net/npm/@ifelix18/ratings@4.0.0/lib/index.min.js
 // @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require            https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js
+// @require            https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js
+// @require            https://cdn.jsdelivr.net/npm/tooltipster-follower@0.1.5/dist/js/tooltipster-follower.min.js
+// @resource           tooltipster https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/tooltipster.bundle.min.css
+// @resource           follower    https://cdn.jsdelivr.net/npm/tooltipster-follower@0.1.5/dist/css/tooltipster-follower.min.css
 // @match              *://www.themoviedb.org/*
 // @connect            api.jikan.moe
 // @connect            api.themoviedb.org
@@ -54,15 +58,13 @@
 // @inject-into        content
 // ==/UserScript==
 
-/* global $, GM_configStruct, Handlebars, Ratings, TMDb, UserscriptUtils */
+/* global $, GM_config, Handlebars, Ratings, TMDb, UU */
 
 (() => {
   //* Constants
-  const cachePeriod = 3_600_000
   const id = GM.info.script.name.toLowerCase().replace(/\s/g, '-')
-
-  //* GM_config
-  const config = new GM_configStruct()
+  const title = `${GM.info.script.name} v${GM.info.script.version} Settings`
+  const cachePeriod = 3_600_000
   const fields = {
     TMDbApiKey: {
       label: 'TMDb API Key',
@@ -105,86 +107,55 @@
         }
 
         UU.log('cache cleared')
-        config.close()
+        GM_config.close()
       }
     }
   }
-  const title = `${GM.info.script.name} v${GM.info.script.version} Settings`
-  UserscriptUtils.migrateConfig('config', id) // migrate to the new config ID
 
-  if (document.location.pathname === '/settings/') {
-    document.title = title
-    config.init({
-      frame: $('body').empty().get(0),
-      id,
-      title,
-      fields,
-      css: '#ratings-on-tmdb *{font-family:Source Sans Pro,Arial,sans-serif!important}#ratings-on-tmdb{background-color:transparent!important;border:1px solid transparent!important;box-sizing:border-box!important;height:auto!important;list-style-type:none!important;margin-bottom:0!important;margin-left:auto!important;margin-right:auto!important;margin-top:0!important;max-height:none!important;max-width:1200px!important;padding:0 1em 1em!important;position:static!important;width:auto!important}#ratings-on-tmdb .config_header{display:block!important;font-size:1.5em!important;font-weight:700!important;margin-bottom:.83em!important;margin-left:0!important;margin-right:0!important;margin-top:.83em!important}#ratings-on-tmdb .section_desc,#ratings-on-tmdb .section_header{background-color:#032541!important;background-image:none!important;border:1px solid transparent!important;color:#fff!important}#ratings-on-tmdb .config_var{align-items:center!important;display:flex!important}#ratings-on-tmdb .field_label{font-size:.85em!important;font-weight:600!important;margin-left:6px!important}#ratings-on-tmdb_field_OMDbApiKey,#ratings-on-tmdb_field_TMDbApiKey{flex:1!important}#ratings-on-tmdb_buttons_holder{color:inherit!important}#ratings-on-tmdb button,#ratings-on-tmdb input[type=button]{font-size:.85em!important;font-weight:600!important}#ratings-on-tmdb_closeBtn{display:none!important}#ratings-on-tmdb .reset{color:inherit!important}',
-      events: {
-        init: () => {
-          config.open()
-        },
-        save: () => {
-          if (config.get('TMDbApiKey') === '' || config.get('OMDbApiKey') === '') {
-            window.alert(`${GM.info.script.name}: check your settings and save`)
-          } else {
-            window.alert(`${GM.info.script.name}: settings saved`)
-            if ('referrer' in document && document.referrer !== '') {
-              window.location = document.referrer
-            } else {
-              window.history.back()
-            }
-          }
+  //* GM_config
+  GM_config.init({
+    id,
+    title,
+    fields,
+    css: '#ratings-on-tmdb *{color:#fff!important;font-family:Source Sans Pro,Arial,sans-serif!important;font-size:12px}#ratings-on-tmdb{background:#121212!important}#ratings-on-tmdb .section_desc,#ratings-on-tmdb .section_header{background-color:#032541!important;border:1px solid transparent!important;color:#fff!important}#ratings-on-tmdb .config_var{display:flex!important}#ratings-on-tmdb_field_OMDbApiKey,#ratings-on-tmdb_field_TMDbApiKey{flex:1!important}#ratings-on-tmdb button,#ratings-on-tmdb input[type=button]{background:#fff!important;border:1px solid transparent!important;color:#000!important}#ratings-on-tmdb button:hover,#ratings-on-tmdb input[type=button]:hover{filter:brightness(85%)!important}#ratings-on-tmdb .reset{margin-right:10px!important}',
+    events: {
+      init: () => {
+        // initial configuration if OMDb API Key is missing
+        if (!GM_config.isOpen && (GM_config.get('TMDbApiKey') === '' || GM_config.get('OMDbApiKey') === '')) {
+          GM_config.open()
         }
-      }
-    })
-  } else {
-    config.init({
-      id,
-      title,
-      fields,
-      events: {
-        init: () => {
-          if (!config.isOpen && (config.get('TMDbApiKey') === '' || config.get('OMDbApiKey') === '')) {
-            window.location = '/settings/'
-          }
-          if (GM.info.scriptHandler !== 'Userscripts') { //! Userscripts Safari: GM.registerMenuCommand is missing
-            GM.registerMenuCommand('Configure', () => config.open())
-          }
-        },
-        save: () => {
-          if (config.get('TMDbApiKey') === '' || config.get('OMDbApiKey') === '') {
-            window.alert(`${GM.info.script.name}: check your settings and save`)
+
+        //! Userscripts Safari: GM.registerMenuCommand is missing
+        if (GM.info.scriptHandler !== 'Userscripts') GM.registerMenuCommand('Configure', () => GM_config.open())
+      },
+      save: () => {
+        if (GM_config.isOpen) {
+          if (GM_config.get('TMDbApiKey') === '' || GM_config.get('OMDbApiKey') === '') {
+            UU.alert('check your settings and save')
           } else {
-            window.alert(`${GM.info.script.name}: settings saved`)
-            config.close()
+            UU.alert('settings saved')
+            GM_config.close()
             setTimeout(window.location.reload(false), 500)
           }
         }
       }
-    })
-  }
+    }
+  })
 
   //* Utils
-  const UU = new UserscriptUtils({
-    name: GM.info.script.name,
-    version: GM.info.script.version,
-    author: GM.info.script.author,
-    logging: config.get('logging')
-  })
-  UU.init(id)
+  UU.init({ id, logging: GM_config.get('logging') })
 
   //* TMDb API
   const tmdb = new TMDb({
-    api_key: config.get('TMDbApiKey'),
-    debug: config.get('debugging')
+    api_key: GM_config.get('TMDbApiKey'),
+    debug: GM_config.get('debugging')
   })
 
   //* Ratings
   const rating = new Ratings({
-    omdb_api_key: config.get('OMDbApiKey'),
+    omdb_api_key: GM_config.get('OMDbApiKey'),
     cache_period: cachePeriod,
-    debug: config.get('debugging')
+    debug: GM_config.get('debugging')
   })
 
   //* Handlebars
@@ -195,41 +166,24 @@
 
   //* Functions
   /**
+   * Adds various resources to the head
+   */
+  const addResources = () => {
+    // add tooltipster resources
+    UU.resource.add('tooltipster', 'stylesheet')
+    UU.resource.add('follower', 'stylesheet')
+    // add tooltipster customized style
+    UU.addStyle('.tooltipster-follower.tooltipster-light.tooltipster-light-customized { height: fit-content !important; } .tooltipster-follower.tooltipster-light.tooltipster-light-customized .tooltipster-box { border-radius: 8px !important; } .tooltipster-follower.tooltipster-light.tooltipster-light-customized .tooltipster-content { padding: 8px 20px !important; padding-right: 0px !important; }')
+  }
+
+  /**
    * Adds a link to the menu to access the script configuration
    */
   const addSettings = () => {
-    const menu = `<li class="${id}_settings k-item k-menu-item k-state-default"role=menuitem style=z-index:auto><a class="k-link k-menu-link"href=/settings/ >${GM.info.script.name}</a>`
+    const menu = `<li class="${id} k-item k-menu-item k-state-default"role=menuitem style=z-index:auto><a class="k-link k-menu-link"href=""onclick=return!1>${GM.info.script.name}</a>`
 
     $('header div.nav_wrapper > .k-menu:not(.k-context-menu) > .k-item').last().after(menu)
-  }
-
-  /**
-   * Returns TMDb ID
-   *
-   * @returns {string} ID
-   */
-  const getID = () => {
-    return /(\d+)/.exec(window.location.pathname.split('/')[2])[0]
-  }
-
-  /**
-   * Returns TMDb type
-   *
-   * @returns {string} Type
-   */
-  const getType = () => {
-    return window.location.pathname.split('/')[1]
-  }
-
-  /**
-   * Add template
-   *
-   * @param {object} target HTML target for template
-   */
-  const addTemplate = (target) => {
-    const template = '<li class=external-ratings style=display:flex;margin-right:0></li><script id=external-ratings-template type=text/x-handlebars-template>{{#each ratings}} {{#ifEqual this.rating "N/A"}} {{else}} <a class=external-rating-link href={{this.url}} target=_blank><div class={{this.source}}-rating style=display:inline-flex;align-items:center;margin-right:20px><div class=logo style=display:inline-flex><img alt=logo src={{this.logo}} width=46></div><div class=text style=font-weight:700;margin-left:6px;display:inline-flex;flex-direction:column;align-items:flex-start><div class=vote style=display:flex;align-items:center;align-content:center;justify-content:center>{{this.rating}} {{#ifEqual this.rating "N/A"}} {{else}} <span style=font-weight:400;font-size:80%;opacity:.8>{{this.symbol}} </span>{{/ifEqual}}</div>{{#ifEqual this.votes "N/A"}} {{else}} {{#ifEqual this.source "metascore"}}<div class=votes style="display:flex;align-items:center;align-content:center;justify-content:center;background:linear-gradient(to top,transparent 0,transparent 25%,{{this.votes}} 25%,{{this.votes}} 75%,transparent 75%,transparent 100%);color:transparent">{{this.rating}}</div>{{else}}<div class=votes style=font-weight:400;opacity:.8>{{this.votes}}</div>{{/ifEqual}} {{/ifEqual}}</div></div></a>{{/ifEqual}} {{/each}}</script>'
-
-    $(template).insertAfter(target)
+    $(`.${id}`).click(() => GM_config.open())
   }
 
   /**
@@ -244,19 +198,59 @@
     }
   }
 
+  /**
+   * Get item data
+   *
+   * @param {*} item Item
+   * @returns {object} Data
+   */
+  const getData = (item) => {
+    switch (typeof item) {
+      case 'undefined': {
+        const id = /(\d+)/.exec(window.location.pathname.split('/')[2])[0]
+        const type = window.location.pathname.split('/')[1]
+
+        return { id, type }
+      }
+      case 'object': {
+        const data = $(item).find('.options').data()
+        const id = data.id
+        const type = data.mediaType
+
+        return { id, type }
+      }
+      default:
+        break
+    }
+  }
+
+  /**
+   * Add template
+   *
+   * @param {object} target HTML target for template
+   */
+  const addTemplate = (target) => {
+    const template = '<li class=external-ratings style=display:flex;margin-right:0></li><script id=external-ratings-template type=text/x-handlebars-template>{{#each ratings}} {{#ifEqual this.rating "N/A"}} {{else}} <a class=external-rating-link href={{this.url}} target=_blank><div class={{this.source}}-rating style=display:inline-flex;align-items:center;margin-right:20px><div class=logo style=display:inline-flex><img alt=logo src={{this.logo}} width=46></div><div class=text style=font-weight:700;margin-left:6px;display:inline-flex;flex-direction:column;align-items:flex-start><div class=vote style=display:flex;align-items:center;align-content:center;justify-content:center>{{this.rating}} {{#ifEqual this.rating "N/A"}} {{else}} <span style=font-weight:400;font-size:80%;opacity:.8>{{this.symbol}} </span>{{/ifEqual}}</div>{{#ifEqual this.votes "N/A"}} {{else}} {{#ifEqual this.source "metascore"}}<div class=votes style="display:flex;align-items:center;align-content:center;justify-content:center;background:linear-gradient(to top,transparent 0,transparent 25%,{{this.votes}} 25%,{{this.votes}} 75%,transparent 75%,transparent 100%);color:transparent">{{this.rating}}</div>{{else}}<div class=votes style=font-weight:400;opacity:.8>{{this.votes}}</div>{{/ifEqual}} {{/ifEqual}}</div></div></a>{{/ifEqual}} {{/each}}</script>'
+
+    $(template).insertAfter(target)
+  }
+
   //* Script
-  $(document).ready(async () => {
+  $(async () => {
+    addResources() // add resources
     addSettings() // add settings
     clearOldCache() // clear old cache
 
+    // check if it is on the main page
     const target = $('section.inner_content section.header ul.actions li.chart')
-    if (target.length === 0) return // check if it is on the main page
+    if (target.length === 0) return
 
-    let id = getID() // TMDb ID
-    const type = getType() // TMDB type
+    // get item data
+    const data = getData()
+    let id = data.id // TMDb ID
+    const type = data.type // TMDB type
     if (!id) return // check if an ID exists
 
-    // get IMDb ID
     id = type === 'movie'
       ? await tmdb.movie.external_ids({ movie_id: id }).then(ids => ids.imdb_id).catch(error => console.error(error))
       : (type === 'tv'
@@ -265,16 +259,65 @@
     if (!id) return // check if an ID exists
     UU.log(`ID is '${id}'`)
 
-    addTemplate(target) // add template
-
     // get ratings
     const ratings = await rating.get({ id }).then().catch(error => console.error(error))
     const elaboratedRatings = await rating.elaborate(ratings).then().catch(error => console.error(error))
 
+    // add template
+    addTemplate(target)
+
     // compile template
     const template = Handlebars.compile($('#external-ratings-template').html())
-    const context = { ratings: elaboratedRatings }
-    const compile = template(context)
-    $('.external-ratings').html(compile)
+    $('.external-ratings').html(template({ ratings: elaboratedRatings }))
+  })
+
+  UU.observe.creation('div.media.discover div.card.style_1', (item) => { // tooltipster
+    $(item).tooltipster({
+      content: '<span class=loading style=padding-right:20px>Loading...</span>',
+      contentAsHTML: true,
+      plugins: ['follower'],
+      theme: ['tooltipster-light', 'tooltipster-light-customized'],
+      updateAnimation: false,
+      functionBefore: async (instance, helper) => {
+        const $origin = $(helper.origin)
+
+        $(item).find('*').contents().removeAttr('title') // ? fix double tooltip
+
+        // get item data
+        const data = getData(item)
+        let id = data.id // TMDb ID
+        const type = data.type // TMDB type
+        if (!id) return // check if an ID exists
+
+        id = type === 'movie'
+          ? await tmdb.movie.external_ids({ movie_id: id }).then(ids => ids.imdb_id).catch(error => console.error(error))
+          : (type === 'tv'
+              ? await tmdb.tv.external_ids({ tv_id: id }).then(ids => ids.imdb_id).catch(error => console.error(error))
+              : undefined)
+        if (!id) return // check if an ID exists
+        UU.log(`ID is '${id}'`)
+
+        // tooltipster data has not been loaded yet
+        if ($origin.data('loaded') !== true) {
+          // get ratings
+          const ratings = await rating.get({ id }).then().catch(error => console.error(error))
+          const elaboratedRatings = await rating.elaborate(ratings).then().catch(error => console.error(error))
+          for (const key of Object.keys(elaboratedRatings)) { // delete empty from data
+            if (elaboratedRatings[key].rating === 'N/A') delete elaboratedRatings[key]
+          }
+
+          // compile template
+          if ($.isEmptyObject(elaboratedRatings)) { // ratings unavailable
+            instance.content('<span class=ratings-unavailable style=padding-right:20px>Ratings not available</span>')
+          } else {
+            const template = Handlebars.compile('{{#each ratings}} <a class=external-rating-link href={{this.url}} target=_blank><div class={{this.source}}-rating style=display:inline-flex;align-items:center;margin-right:20px><div class=logo style=display:inline-flex><img alt=logo src={{this.logo}} width=46></div><div class=text style=font-weight:700;margin-left:6px;display:inline-flex;flex-direction:column;align-items:flex-start><div class=vote style=display:flex;align-items:center;align-content:center;justify-content:center>{{this.rating}} <span style=font-weight:400;font-size:80%;opacity:.8>{{this.symbol}}</span></div>{{#ifEqual this.votes "N/A"}} {{else}} {{#ifEqual this.source "metascore"}}<div class=votes style="display:flex;align-items:center;align-content:center;justify-content:center;background:linear-gradient(to top,transparent 0,transparent 25%,{{this.votes}} 25%,{{this.votes}} 75%,transparent 75%,transparent 100%);color:transparent">{{this.rating}}</div>{{else}}<div class=votes style=font-weight:400;opacity:.8>{{this.votes}}</div>{{/ifEqual}} {{/ifEqual}}</div></div></a>{{/each}}')
+            instance.content(template({ ratings: elaboratedRatings }))
+          }
+
+          // now tooltipster data has been loaded
+          $origin.data('loaded', true)
+        }
+      }
+    })
   })
 })()

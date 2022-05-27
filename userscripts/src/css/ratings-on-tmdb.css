@@ -1,51 +1,22 @@
 #ratings-on-tmdb * {
+  color: rgb(255, 255, 255) !important;
   font-family: Source Sans Pro, Arial, sans-serif !important;
+  font-size: 12px;
 }
 
 #ratings-on-tmdb {
-  background-color: transparent !important;
-  border: 1px solid transparent !important;
-  box-sizing: border-box !important;
-  height: auto !important;
-  list-style-type: none !important;
-  margin-bottom: 0 !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  margin-top: 0 !important;
-  max-height: none !important;
-  max-width: 1200px !important;
-  padding: 0 1em 1em !important;
-  position: static !important;
-  width: auto !important;
-}
-
-#ratings-on-tmdb .config_header {
-  display: block !important;
-  font-size: 1.5em !important;
-  font-weight: bold !important;
-  margin-bottom: 0.83em !important;
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-  margin-top: 0.83em !important;
+  background: rgb(18, 18, 18) !important;
 }
 
 #ratings-on-tmdb .section_header,
 #ratings-on-tmdb .section_desc {
   background-color: rgb(3, 37, 65) !important;
-  background-image: none !important;
   border: 1px solid transparent !important;
   color: rgb(255, 255, 255) !important;
 }
 
 #ratings-on-tmdb .config_var {
-  align-items: center !important;
   display: flex !important;
-}
-
-#ratings-on-tmdb .field_label {
-  font-size: 0.85em !important;
-  font-weight: 600 !important;
-  margin-left: 6px !important;
 }
 
 #ratings-on-tmdb_field_TMDbApiKey,
@@ -53,20 +24,18 @@
   flex: 1 !important;
 }
 
-#ratings-on-tmdb_buttons_holder {
-  color: inherit !important;
-}
-
 #ratings-on-tmdb input[type="button"],
 #ratings-on-tmdb button {
-  font-size: 0.85em !important;
-  font-weight: 600 !important;
+  background: rgb(255, 255, 255) !important;
+  border: 1px solid transparent !important;
+  color: rgb(0, 0, 0) !important;
 }
 
-#ratings-on-tmdb_closeBtn {
-  display: none !important;
+#ratings-on-tmdb input[type="button"]:hover,
+#ratings-on-tmdb button:hover {
+  filter: brightness(85%) !important;
 }
 
 #ratings-on-tmdb .reset {
-  color: inherit !important;
+  margin-right: 10px !important;
 }
