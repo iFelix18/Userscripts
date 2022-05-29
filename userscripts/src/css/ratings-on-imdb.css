@@ -1,35 +1,66 @@
+:root {
+  --accent: rgb(226, 182, 22);
+  --background: rgb(24, 26, 27);
+  --black: rgb(0, 0, 0);
+  --font: Roboto, Helvetica, Arial, sans-serif;
+  --white: rgb(255, 255, 255);
+}
+
 #ratings-on-imdb * {
-  color: rgb(255, 255, 255) !important;
-  font-family: Roboto, Helvetica, Arial, sans-serif !important;
+  color: var(--white) !important;
+  font-family: var(--font) !important;
   font-size: 14px !important;
   font-weight: 400 !important;
 }
 
 #ratings-on-imdb {
-  background: rgb(18, 18, 18) !important;
+  background: var(--background) !important;
+}
+
+#ratings-on-imdb .config_header {
+  font-size: 20pt !important;
+  line-height: 1.1 !important;
 }
 
 #ratings-on-imdb .section_header,
 #ratings-on-imdb .section_desc {
-  background-color: rgb(226, 182, 22) !important;
+  background-color: var(--accent) !important;
   border: 1px solid transparent !important;
-  color: rgb(0, 0, 0) !important;
+  color: var(--black) !important;
 }
 
 #ratings-on-imdb .config_var {
+  align-items: center !important;
   display: flex !important;
 }
 
 #ratings-on-imdb_field_OMDbApiKey {
-  color: rgb(0, 0, 0) !important;
+  background-color: var(--white) !important;
+  border: 1px solid var(--black) !important;
+  color: var(--black) !important;
   flex: 1 !important;
+}
+
+#ratings-on-imdb input[type=checkbox] {
+  appearance: none !important;
+  background-color: var(--white) !important;
+  border: 1px solid var(--black) !important;
+  cursor: pointer !important;
+  height: 15px !important;
+  width: 15px !important;
+}
+
+
+#ratings-on-imdb input[type=checkbox]:checked {
+  appearance: checkbox !important;
+  background-color: var(--accent) !important;
 }
 
 #ratings-on-imdb input[type="button"],
 #ratings-on-imdb button {
-  background: rgb(255, 255, 255) !important;
-  border: 1px solid transparent !important;
-  color: rgb(0, 0, 0) !important;
+  background: var(--white) !important;
+  border: 1px solid var(--black) !important;
+  color: var(--black) !important;
 }
 
 #ratings-on-imdb input[type="button"]:hover,
