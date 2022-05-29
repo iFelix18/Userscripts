@@ -6,20 +6,22 @@ Aggiunge valutazioni da Rotten Tomatoes, Metacritic e MyAnimeList a [IMDb][imdb-
 
 >**Nota**: Dopo l'installazione, inserisci la tua [OMDb API Key][omdb-api] nella pagina delle impostazioni dello script accessibile a [questo indirizzo][settings-link].
 
-|           Screenshots           |
-| :-----------------------------: |
-| [![Before][screenshot-1]][link] |
-|          _Film prima_           |
-| [![After][screenshot-2]][link]  |
-|           _Film dopo_           |
-| [![Before][screenshot-3]][link] |
-|          _Serie prima_          |
-| [![After][screenshot-4]][link]  |
-|          _Serie dopo_           |
-| [![Before][screenshot-5]][link] |
-|          _Anime prima_          |
-| [![After][screenshot-6]][link]  |
-|          _Anime dopo_           |
+|           Screenshots            |
+| :------------------------------: |
+| [![Before][screenshot-1]][link]  |
+|           _Film prima_           |
+|  [![After][screenshot-2]][link]  |
+|           _Film dopo_            |
+| [![Before][screenshot-3]][link]  |
+|          _Serie prima_           |
+|  [![After][screenshot-4]][link]  |
+|           _Serie dopo_           |
+| [![Before][screenshot-5]][link]  |
+|          _Anime prima_           |
+|  [![After][screenshot-6]][link]  |
+|           _Anime dopo_           |
+| [![Tooltip][screenshot-7]][link] |
+|            _Tooltip_             |
 
 [link]: #valutazioni-su-imdb
 [imdb-link]: https://www.imdb.com/
@@ -38,3 +40,4 @@ Aggiunge valutazioni da Rotten Tomatoes, Metacritic e MyAnimeList a [IMDb][imdb-
 [screenshot-4]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-imdb_show-after.png?raw=true "Dopo"
 [screenshot-5]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-imdb_anime-before.png?raw=true "Prima"
 [screenshot-6]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-imdb_anime-after.png?raw=true "Dopo"
+[screenshot-7]: https://github.com/iFelix18/Userscripts/blob/master/userscripts/docs/screenshots/ratings-on-imdb_tooltip.gif?raw=true "Tooltip"
