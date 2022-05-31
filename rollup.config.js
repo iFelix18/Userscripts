@@ -5,14 +5,19 @@ import { eslintBundle } from 'rollup-plugin-eslint-bundle'
 
 const root = process.cwd()
 const input = path.join(root, 'src/index.js')
-const output = path.join(root, 'lib')
+const output = process.env.NODE_ENV === 'production'
+  ? path.join(root, 'lib')
+  : '../../tempfiles/lib'
+const name = process.env.NODE_ENV === 'production'
+  ? 'index'
+  : root.slice(Math.max(0, root.lastIndexOf('\\') + 1))
 
 export default [
   {
     input,
     output: [
       {
-        file: path.join(output, 'index.js'),
+        file: path.join(output, `${name}.js`),
         format: 'iife',
         extend: true,
         strict: false,
@@ -35,7 +40,7 @@ export default [
         ]
       },
       {
-        file: path.join(output, 'index.min.js'),
+        file: path.join(output, `${name}.min.js`),
         format: 'iife',
         extend: true,
         strict: false,
