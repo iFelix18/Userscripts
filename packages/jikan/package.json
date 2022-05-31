@@ -25,7 +25,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "rollup --config '../../rollup.config.js' --name 'Jikan'",
+    "build": "cross-env NODE_ENV=production rollup --config '../../rollup.config.js' --name 'Jikan'",
     "watch": "rollup --watch --config '../../rollup.config.js' --name 'Jikan'"
   },
   "publishConfig": {

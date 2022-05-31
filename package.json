@@ -20,15 +20,18 @@
     "packages/*"
   ],
   "scripts": {
+    "build": "yarn lint && yarn lint:md && lerna run build",
     "lint": "eslint . --ext .json,.js",
     "lint:md": "markdownlint-cli2 **/*.md !**/node_modules/** !LICENSE.md",
-    "start": "gulp default",
+    "start": "concurrently \"gulp default\" \"http-server -o /tempfiles/lib -c10\" \"lerna run watch\"",
     "update": "updates -u & yarn install"
   },
   "devDependencies": {
     "@babel/core": "^7.17.7",
     "@babel/preset-env": "^7.16.11",
     "@babel/register": "^7.17.7",
+    "concurrently": "^7.2.1",
+    "cross-env": "^7.0.3",
     "eslint": "^8.11.0",
     "eslint-config-greasemonkey": "^1.0.1",
     "eslint-config-standard": "^17.0.0-1",
@@ -45,6 +48,7 @@
     "gulp-flatmap": "^1.0.2",
     "gulp-html-minifier-terser": "^6.0.1",
     "gulp-replace": "^1.1.3",
+    "http-server": "^14.1.0",
     "lerna": "^5.0.0",
     "lerna-wizard": "^1.1.1",
     "markdownlint-cli2": "^0.4.0",

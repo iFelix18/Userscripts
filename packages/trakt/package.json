@@ -25,7 +25,7 @@
     "lib"
   ],
   "scripts": {
-    "build": "rollup --config '../../rollup.config.js' --name 'Trakt'",
+    "build": "cross-env NODE_ENV=production rollup --config '../../rollup.config.js' --name 'Trakt'",
     "watch": "rollup --watch --config '../../rollup.config.js' --name 'Trakt'"
   },
   "publishConfig": {
