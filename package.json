@@ -23,8 +23,10 @@
     "build": "yarn lint && yarn lint:md && lerna run build",
     "lint": "eslint . --ext .json,.js",
     "lint:md": "markdownlint-cli2 **/*.md !**/node_modules/** !LICENSE.md",
-    "start": "concurrently \"gulp default\" \"http-server -o /tempfiles/lib -c10\" \"lerna run watch\"",
-    "update": "updates -u & yarn install"
+    "server": "http-server -o /tempfiles/lib -c10",
+    "start": "concurrently \"gulp default\" \"yarn server\" \"yarn watch\"",
+    "update": "updates -u & yarn install",
+    "watch": "lerna run watch"
   },
   "devDependencies": {
     "@babel/core": "^7.17.7",
