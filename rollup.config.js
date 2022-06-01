@@ -28,7 +28,12 @@ export default [
             mangle: false,
             output: {
               beautify: true,
-              comments: (node, comment) => (comment.value.startsWith(' ==') || comment.value.startsWith(' @') || comment.value.startsWith(' global'))
+              comments: (node, comment) => (
+                comment.value.startsWith(' ==') ||
+                comment.value.startsWith(' @') ||
+                comment.value.startsWith(' global') ||
+                comment.value.startsWith(' eslint-disable')
+              )
             }
           }),
           eslintBundle({
@@ -50,7 +55,10 @@ export default [
             compress: true,
             mangle: true,
             output: {
-              comments: (node, comment) => (comment.value.startsWith(' ==') || comment.value.startsWith(' @'))
+              comments: (node, comment) => (
+                comment.value.startsWith(' ==') ||
+                comment.value.startsWith(' @')
+              )
             }
           })
         ]
