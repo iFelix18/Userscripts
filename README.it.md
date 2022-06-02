@@ -9,6 +9,7 @@ I miei script e le mie librerie
 [![Open Issues][open-issues-badge]][open-issues-link]
 [![Closed Issues][closed-issues-badge]][closed-issues-link]
 [![Last Commit][last-commit-badge]][last-commit-link]
+[![Dependabot Status][dependabot-status-badge]][link]
 [![JavaScript Style Guide][style-guide-badge]][style-guide-link]
 [![Lerna][lerna-badge]][lerna-link]
 [![License][license-badge]][license-link]
@@ -76,24 +77,37 @@ This product uses the TMDb API but is not endorsed or certified by TMDb.
 This product uses the Trakt API but is not endorsed or certified by Trakt.  
 This product uses Wikidata data but is not endorsed or certified by Wikidata.  
 
+[link]: #userscripts
+
 [stars-badge]: https://flat.badgen.net/github/stars/iFelix18/Userscripts
 [stars-link]: https://github.com/iFelix18/Userscripts/stargazers
+
 [watchers-badge]: https://flat.badgen.net/github/watchers/iFelix18/Userscripts
 [watchers-link]: https://github.com/iFelix18/Userscripts/watchers
+
 [scripts-badge]: https://flat.badgen.net/badge/scripts/5/orange
 [scripts-link]: https://github.com/iFelix18/Userscripts/tree/master/userscripts
+
 [libraries-badge]: https://flat.badgen.net/badge/libraries/8/orange
 [libraries-link]: https://github.com/iFelix18/Userscripts/tree/master/packages
+
 [open-issues-badge]: https://flat.badgen.net/github/open-issues/iFelix18/Userscripts
 [open-issues-link]: https://github.com/iFelix18/Userscripts/issues
+
 [closed-issues-badge]: https://flat.badgen.net/github/closed-issues/iFelix18/Userscripts
 [closed-issues-link]: https://github.com/iFelix18/Userscripts/issues?q=is%3Aissue+is%3Aclosed
+
 [last-commit-badge]: https://flat.badgen.net/github/last-commit/iFelix18/Userscripts
 [last-commit-link]: https://github.com/iFelix18/Userscripts/commits/master
+
+[dependabot-status-badge]: https://flat.badgen.net/github/dependabot/iFelix18/Userscripts
+
 [style-guide-badge]: https://flat.badgen.net/badge/code%20style/standard/44CC11
 [style-guide-link]: https://standardjs.com
+
 [lerna-badge]: https://flat.badgen.net/badge/maintained%20with/lerna/CC00FF
 [lerna-link]: https://lerna.js.org/
+
 [license-badge]: https://flat.badgen.net/github/license/iFelix18/Userscripts
 [license-link]: https://github.com/iFelix18/Userscripts/blob/master/LICENSE.md
 
