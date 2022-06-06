@@ -23,7 +23,7 @@
     "build": "yarn lint && yarn lint:md && lerna run build",
     "lint": "eslint . --ext .json,.js",
     "lint:md": "markdownlint-cli2 **/*.md !**/node_modules/** !LICENSE.md",
-    "server": "http-server -o /tempfiles/lib -c10",
+    "server": "http-server -s -c-1",
     "start": "concurrently \"gulp default\" \"yarn server\" \"yarn watch\"",
     "update": "updates -u & yarn install",
     "watch": "lerna run watch"
