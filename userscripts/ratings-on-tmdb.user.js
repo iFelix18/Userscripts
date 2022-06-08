@@ -18,25 +18,25 @@
 // @description:zh-CN  在TMDb中添加来自IMDb、烂番茄、Metacritic和MyAnimeList的评分。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            3.0.1
+// @version            3.0.2
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
 // @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/ratings-on-tmdb.meta.js
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
-// @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@6.6.1/lib/index.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/tmdb@2.0.0/lib/index.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/omdb@2.0.0/lib/index.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/rottentomatoes@2.0.0/lib/index.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/jikan@2.0.0/lib/index.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/ratings@4.0.0/lib/index.min.js
-// @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
-// @require            https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js
-// @require            https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js
-// @require            https://cdn.jsdelivr.net/npm/tooltipster-follower@0.1.5/dist/js/tooltipster-follower.min.js
-// @resource           tooltipster https://cdn.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/tooltipster.bundle.min.css
-// @resource           follower    https://cdn.jsdelivr.net/npm/tooltipster-follower@0.1.5/dist/css/tooltipster-follower.min.css
+// @require            https://fastly.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
+// @require            https://fastly.jsdelivr.net/npm/@ifelix18/utils@6.6.1/lib/index.min.js
+// @require            https://fastly.jsdelivr.net/npm/@ifelix18/tmdb@2.0.0/lib/index.min.js
+// @require            https://fastly.jsdelivr.net/npm/@ifelix18/omdb@2.0.0/lib/index.min.js
+// @require            https://fastly.jsdelivr.net/npm/@ifelix18/rottentomatoes@2.0.0/lib/index.min.js
+// @require            https://fastly.jsdelivr.net/npm/@ifelix18/jikan@2.0.0/lib/index.min.js
+// @require            https://fastly.jsdelivr.net/npm/@ifelix18/ratings@4.0.0/lib/index.min.js
+// @require            https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
+// @require            https://fastly.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js
+// @require            https://fastly.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js
+// @require            https://fastly.jsdelivr.net/npm/tooltipster-follower@0.1.5/dist/js/tooltipster-follower.min.js
+// @resource           tooltipster https://fastly.jsdelivr.net/npm/tooltipster@4.2.8/dist/css/tooltipster.bundle.min.css
+// @resource           follower    https://fastly.jsdelivr.net/npm/tooltipster-follower@0.1.5/dist/css/tooltipster-follower.min.css
 // @match              *://www.themoviedb.org/*
 // @connect            api.jikan.moe
 // @connect            api.themoviedb.org
