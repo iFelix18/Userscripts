@@ -1,0 +1,48 @@
+{
+  "/id": {
+    "method": "GET",
+    "optional": [
+      "plot",
+      "tomatoes",
+      "type",
+      "year"
+    ],
+    "url": "/?i={id}&plot={plot}&tomatoes={tomatoes}&type={type}&y={year}",
+    "validator": {
+      "plot": "^(short|full)$",
+      "tomatoes": "^(true|false)$",
+      "type": "^(movie|series|episode)$",
+      "year": "^[1|2][0-9]{3}$"
+    }
+  },
+  "/search": {
+    "method": "GET",
+    "optional": [
+      "page",
+      "type",
+      "year"
+    ],
+    "url": "/?s={search}&page={page}&type={type}&y={year}",
+    "validator": {
+      "page": "^[1-9][0-9]*$",
+      "type": "^(movie|series|episode)$",
+      "year": "^[1|2][0-9]{3}$"
+    }
+  },
+  "/title": {
+    "method": "GET",
+    "optional": [
+      "plot",
+      "tomatoes",
+      "type",
+      "year"
+    ],
+    "url": "/?t={title}&plot={plot}&tomatoes={tomatoes}&type={type}&y={year}",
+    "validator": {
+      "plot": "^(short|full)$",
+      "tomatoes": "^(true|false)$",
+      "type": "^(movie|series|episode)$",
+      "year": "^[1|2][0-9]{3}$"
+    }
+  }
+}

@@ -7,7 +7,7 @@
 // @description  OMDb API for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      3.0.0
+// @version      3.1.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -21,31 +21,48 @@ const methods = {
   '/id': {
     method: 'GET',
     optional: [
-      'type',
-      'year',
       'plot',
-      'tomatoes'
+      'tomatoes',
+      'type',
+      'year'
     ],
-    url: '/?i={id}&type={type}&y={year}&plot={plot}&tomatoes={tomatoes}'
+    url: '/?i={id}&plot={plot}&tomatoes={tomatoes}&type={type}&y={year}',
+    validator: {
+      plot: '^(short|full)$',
+      tomatoes: '^(true|false)$',
+      type: '^(movie|series|episode)$',
+      year: '^[1|2][0-9]{3}$'
+    }
   },
   '/search': {
     method: 'GET',
     optional: [
+      'page',
       'type',
-      'year',
-      'page'
+      'year'
     ],
-    url: '/?s={search}&type={type}&y={year}&page={page}'
+    url: '/?s={search}&page={page}&type={type}&y={year}',
+    validator: {
+      page: '^[1-9][0-9]*$',
+      type: '^(movie|series|episode)$',
+      year: '^[1|2][0-9]{3}$'
+    }
   },
   '/title': {
     method: 'GET',
     optional: [
-      'type',
-      'year',
       'plot',
-      'tomatoes'
+      'tomatoes',
+      'type',
+      'year'
     ],
-    url: '/?t={title}&type={type}&y={year}&plot={plot}&tomatoes={tomatoes}'
+    url: '/?t={title}&plot={plot}&tomatoes={tomatoes}&type={type}&y={year}',
+    validator: {
+      plot: '^(short|full)$',
+      tomatoes: '^(true|false)$',
+      type: '^(movie|series|episode)$',
+      year: '^[1|2][0-9]{3}$'
+    }
   }
 }
 
@@ -66,7 +83,7 @@ class OMDb {
    * @param {boolean} [config.debug=false] Debug
    * @param {object} cache Cache
    * @param {boolean} [cache.active=false] Cache status
-   * @param {number} [cache.time_to_live=3600] Time yo Live cache, in seconds
+   * @param {number} [cache.time_to_live=3600] Time to Live cache, in seconds
    */
   constructor (config = {}, cache = config.cache || {}) {
     if (!config.api_key) throw new Error('OMDb API Key is required')
@@ -216,9 +233,17 @@ class OMDb {
         const regex = new RegExp(Object.keys(parameters).map((key) => `{${key}}`).join('|'), 'gi')
 
         if (providedParameters.has(key)) {
+          for (const validator in method.validator) {
+            if (Object.hasOwnProperty.call(method.validator, validator) && validator === key && !new RegExp(method.validator[validator]).test(parameters[key])) {
+              throw new Error(`Parameter with invalid options => ${key}:${parameters[key]}`)
+            }
+          }
+
           Queries.push(query.replace(regex, (matched) => encodeURIComponent(parameters[matched.replace(/[{}]/g, '')])))
         } else {
-          if (!method.optional.includes(key)) throw new Error(`Missing parameter: ${key}`)
+          if (!method.optional.includes(key)) {
+            throw new Error(`Missing parameter => ${key}`)
+          }
         }
       }
     }
