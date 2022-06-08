@@ -18,16 +18,16 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.0.3
+// @version            2.0.4
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
 // @updateURL          https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/meta/greasyfork-plus.meta.js
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/greasyfork-plus.user.js
-// @require            https://cdn.jsdelivr.net/gh/sizzlemctwizzle/GM_config@2207c5c1322ebb56e401f03c2e581719f909762a/gm_config.min.js
-// @require            https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
-// @require            https://cdn.jsdelivr.net/npm/@ifelix18/utils@6.5.0/lib/index.min.js
-// @require            https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6/dist/index.min.js
+// @require            https://fastly.jsdelivr.net/gh/sizzlemctwizzle/GM_config@2207c5c1322ebb56e401f03c2e581719f909762a/gm_config.min.js
+// @require            https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
+// @require            https://fastly.jsdelivr.net/npm/@ifelix18/utils@6.5.0/lib/index.min.js
+// @require            https://fastly.jsdelivr.net/npm/@violentmonkey/shortcut@1.2.6/dist/index.min.js
 // @match              *://greasyfork.org/*
 // @match              *://sleazyfork.org/*
 // @connect            greasyfork.org
