@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.0.4
+// @version            2.0.5
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -542,26 +542,28 @@
     // blacklisted scripts / hidden scripts / install button
     if (window.location.pathname !== userID && !/discussions/.test(window.location.pathname) && (GM_config.get('hideBlacklistedScripts') || GM_config.get('hideHiddenScript') || GM_config.get('showInstallButton'))) {
       // for each script in the list
-      $('.script-list').find('li').each(async (index, element) => {
-        const scriptID = $(element).data('script-id')
+      UU.observe.creation('.script-list', (scriptList) => {
+        $(scriptList).find('li').each(async (index, element) => {
+          const scriptID = $(element).data('script-id')
 
-        // blacklisted scripts
-        if (GM_config.get('nonLatins')) hideBlacklistedScript(element, 'nonLatins')
-        if (GM_config.get('blacklist')) hideBlacklistedScript(element, 'blacklist')
-        if (GM_config.get('customBlacklist')) hideBlacklistedScript(element, 'customBlacklist')
+          // blacklisted scripts
+          if (GM_config.get('nonLatins')) hideBlacklistedScript(element, 'nonLatins')
+          if (GM_config.get('blacklist')) hideBlacklistedScript(element, 'blacklist')
+          if (GM_config.get('customBlacklist')) hideBlacklistedScript(element, 'customBlacklist')
 
-        // hidden scripts
-        if (GM_config.get('hideHiddenScript')) hideHiddenScript(element, scriptID, true)
+          // hidden scripts
+          if (GM_config.get('hideHiddenScript')) hideHiddenScript(element, scriptID, true)
 
-        // install button
-        if (GM_config.get('showInstallButton')) {
-          const script = await getScriptData(scriptID).then()
-          const installed = await isInstalled(script.name, script.namespace).then()
-          const update = compareVersions(script.version, installed)
-          const label = installLabel(update)
+          // install button
+          if (GM_config.get('showInstallButton')) {
+            const script = await getScriptData(scriptID).then()
+            const installed = await isInstalled(script.name, script.namespace).then()
+            const update = compareVersions(script.version, installed)
+            const label = installLabel(update)
 
-          addInstallButton(element, script.code_url, label, script.version)
-        }
+            addInstallButton(element, script.code_url, label, script.version)
+          }
+        })
       })
 
       // hidden scripts on details page
@@ -589,8 +591,8 @@
         totalInstalls.push(Number.parseInt($(element).text().replace(/\D/g, ''), 10))
       })
 
-      $('#script-list-sort').find('.list-option.list-current:nth-child(1), .list-option:not(list-current):nth-child(1) a').append(`<span>(${dailyInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
-      $('#script-list-sort').find('.list-option.list-current:nth-child(2), .list-option:not(list-current):nth-child(2) a').append(`<span>(${totalInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
+      $('#script-list-sort').find('.list-option.list-current:nth-child(1), .list-option:not(list-current):nth-child(1) a').append(`<span> (${dailyInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
+      $('#script-list-sort').find('.list-option.list-current:nth-child(2), .list-option:not(list-current):nth-child(2) a').append(`<span> (${totalInstalls.reduce((a, b) => a + b, 0).toLocaleString()})</span>`)
     }
 
     // milestone notification
