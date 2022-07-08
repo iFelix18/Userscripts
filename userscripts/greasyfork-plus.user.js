@@ -18,7 +18,7 @@
 // @description:zh-CN  添加各种功能并改善 Greasy Fork 体验
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            2.0.5
+// @version            2.0.6
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -47,6 +47,7 @@
 // ==/UserScript==
 
 /* global $, GM_config, UU, VM */
+/* eslint-disable unicorn/prefer-top-level-await */
 
 (async () => {
   //* Constants
