@@ -13,10 +13,16 @@
 
 ### Setup and initialization
 
-Include it in your script in the _Metadata Block_ via `@require` specifying the version, for example:
+Include it in your script in the _Metadata Block_ via `@require` specifying the version, also specifying the required API to be granted (`GM.getValue`, `GM.setValue`, `GM.xmlHttpRequest`) via `@grant`, and the domain which can be allowed to be retrieved by `GM.xmlHttpRequest` via `@connect`, like this:
 
 ```JavaScript
-// @require https://cdn.jsdelivr.net/npm/@ifelix18/omdb@3.0.0/lib/index.min.js
+// ...
+// @require https://cdn.jsdelivr.net/npm/@ifelix18/omdb@4.0.0/lib/index.min.js
+// @grant   GM.getValue
+// @grant   GM.setValue
+// @grant   GM.xmlHttpRequest
+// @connect omdbapi.com
+// ...
 ```
 
 Next, initialize the library:
