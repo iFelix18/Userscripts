@@ -1,5 +1,5 @@
-name: Bug Report
-description: Create a bug report to help me improve
+name: Library Bug Report
+description: Create a bug report to help me improve my libraries
 title: "[BUG] Bug Title Here"
 labels: ["bug"]
 assignees:
@@ -13,17 +13,20 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: userscripts
+    id: libraries
     attributes:
-      label: Userscripts
-      description: Which userscripts are you having issues with?
+      label: Libraries
+      description: Which libraries are you having issues with?
       multiple: true
       options:
-        - Greasy Fork+
-        - OpenUserJS+
-        - Ratings on IMDb
-        - Ratings on JustWatch
-        - Ratings on TMDb
+        - Utils
+        - OMDb API
+        - TMDb API
+        - Jikan API
+        - Ratings
+        - Trakt API
+        - Wikidata
+        - Rotten Tomatoes API
     validations:
       required: true
   - type: input
@@ -58,7 +61,7 @@ body:
     id: logs
     attributes:
       label: Console logs
-      description: "Enable `Logging` and `Debugging` in the script settings, open your browser's console, and reports what is shown relative to the script:"
+      description: "Open your browser's console, and reports what is shown relative to the script:"
       placeholder: "Copy and paste logs here."
       render: Shell
     validations:
