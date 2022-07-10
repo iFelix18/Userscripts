@@ -7,12 +7,18 @@
 // @description  OMDb API for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      3.1.0
+// @version      4.0.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
+// @connect      omdbapi.com
+// @grant        GM.getValue
+// @grant        GM.setValue
+// @grant        GM.xmlHttpRequest
 // ==/UserScript==
+
+/* eslint-disable unicorn/prevent-abbreviations */
 
 /**
  * API methods
@@ -72,7 +78,6 @@ const methods = {
  * @see https://www.omdbapi.com/
  * @class
  */
-// eslint-disable-next-line unicorn/prevent-abbreviations
 class OMDb {
   /**
    * API configuration
@@ -99,6 +104,11 @@ class OMDb {
       TTL: (cache.time_to_live || 3600) * 1000
     }
 
+    this._headers = {
+      'User-Agent': 'Mozilla/5.0',
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+
     this._methods()
   }
 
@@ -114,10 +124,10 @@ class OMDb {
 
   /**
    * @private
-   * @param {object} response Response
+   * @param {object} response GM.xmlHttpRequest response
    */
   _debug (response) {
-    if (this._config.debug) console.log(`${response.status} - ${response.url}`)
+    if (this._config.debug) console.log(`${response.status} - ${response.finalURL}`)
   }
 
   /**
@@ -156,52 +166,50 @@ class OMDb {
   }
 
   /**
-   * Fetch APIs
+   * Makes a request with GM.xmlHttpRequest
    *
    * @private
-   * @see https://developer.mozilla.org/en-US/docs/Web/API/AbortController
-   * @see https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
-   * @see https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API
-   * @see https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage
+   * @see https://wiki.greasespot.net/GM.getValue
+   * @see https://wiki.greasespot.net/GM.setValue
+   * @see https://wiki.greasespot.net/GM.xmlHttpRequest
    * @param {object} method API method
    * @param {object} parameters Function parameters
    * @returns {object} Response
    */
   async _request (method, parameters) {
-    const url = this._resolve(method, parameters)
-    const hash = await this._crypto(url).then().catch((error) => new Error(error))
-    const cache = JSON.parse(sessionStorage.getItem(hash))
+    const finalURL = this._resolve(method, parameters)
+    const hash = await this._crypto(finalURL).then().catch((error) => new Error(error))
+    const cache = await GM.getValue(hash)
 
     return new Promise((resolve, reject) => {
-      const controller = new AbortController()
-      const timeout = setTimeout(() => {
-        controller.abort()
-        reject(new Error('Request times out'))
-      }, 15_000)
-
       if (this._cache.active && cache && ((Date.now() - cache.time) < this._cache.TTL)) { // cache valid
-        this._debug({ status: 'cached', url })
-        resolve(cache.data)
+        this._debug({ status: 'cached', finalURL })
+        cache.data.Search ? resolve({ results: cache.data.Search, totalResults: cache.data.totalResults }) : resolve(cache.data)
       } else { // cache not valid
-        fetch(url, {
+        GM.xmlHttpRequest({
           method: method.method,
-          mode: 'cors',
-          signal: controller.signal
-        })
-          .then((response) => {
-            clearTimeout(timeout)
-            this._debug(response)
-            return response.json()
-          })
-          .then((data) => {
+          url: finalURL,
+          headers: this._headers,
+          timeout: 15_000,
+          onload: (response) => {
+            this._debug({ status: response.status, finalURL })
+
+            const data = JSON.parse(response.responseText)
+
             if (data.Response === 'True') {
-              if (this._cache.active) sessionStorage.setItem(hash, JSON.stringify({ data, time: Date.now() }))
-              resolve(data)
+              if (this._cache.active) GM.setValue(hash, { data, time: Date.now() })
+              data.Search ? resolve({ results: data.Search, totalResults: data.totalResults }) : resolve(data)
             } else {
-              reject(new Error(data.Error))
+              data.Error ? reject(new Error(data.Error)) : reject(new Error('No results'))
             }
-          })
-          .catch((error) => reject(error))
+          },
+          onerror: () => {
+            reject(new Error('An error occurs while processing the request'))
+          },
+          ontimeout: () => {
+            reject(new Error('Request times out'))
+          }
+        })
       }
     })
   }

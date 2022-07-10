@@ -7,13 +7,18 @@
 // @description  OMDb API for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      3.1.0
+// @version      4.0.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
+// @connect      omdbapi.com
+// @grant        GM.getValue
+// @grant        GM.setValue
+// @grant        GM.xmlHttpRequest
 // ==/UserScript==
 this.OMDb = (function () {
+  /* eslint-disable unicorn/prevent-abbreviations */
   const methods = {
     '/id': {
       method: 'GET',
@@ -48,7 +53,6 @@ this.OMDb = (function () {
       }
     }
   }
-  // eslint-disable-next-line unicorn/prevent-abbreviations
   class OMDb {
     constructor (config = {}, cache = config.cache || {}) {
       if (!config.api_key) throw new Error('OMDb API Key is required')
@@ -61,6 +65,10 @@ this.OMDb = (function () {
         active: cache.active || false,
         TTL: (cache.time_to_live || 3600) * 1e3
       }
+      this._headers = {
+        'User-Agent': 'Mozilla/5.0',
+        'Content-Type': 'application/json;charset=utf-8'
+      }
       this._methods()
     }
 
@@ -69,7 +77,7 @@ this.OMDb = (function () {
     }
 
     _debug (response) {
-      if (this._config.debug) console.log(`${response.status} - ${response.url}`)
+      if (this._config.debug) console.log(`${response.status} - ${response.finalURL}`)
     }
 
     async _crypto (url) {
@@ -93,43 +101,57 @@ this.OMDb = (function () {
     }
 
     async _request (method, parameters) {
-      const url = this._resolve(method, parameters)
-      const hash = await this._crypto(url).then().catch(error => new Error(error))
-      const cache = JSON.parse(sessionStorage.getItem(hash))
+      const finalURL = this._resolve(method, parameters)
+      const hash = await this._crypto(finalURL).then().catch(error => new Error(error))
+      const cache = await GM.getValue(hash)
       return new Promise((resolve, reject) => {
-        const controller = new AbortController()
-        const timeout = setTimeout(() => {
-          controller.abort()
-          reject(new Error('Request times out'))
-        }, 15e3)
         if (this._cache.active && cache && Date.now() - cache.time < this._cache.TTL) {
           this._debug({
             status: 'cached',
-            url
+            finalURL
           })
-          resolve(cache.data)
+          cache.data.Search
+            ? resolve({
+              results: cache.data.Search,
+              totalResults: cache.data.totalResults
+            })
+            : resolve(cache.data)
         } else {
-          fetch(url, {
+          GM.xmlHttpRequest({
             method: method.method,
-            mode: 'cors',
-            signal: controller.signal
-          }).then(response => {
-            clearTimeout(timeout)
-            this._debug(response)
-            return response.json()
-          }).then(data => {
-            if (data.Response === 'True') {
-              if (this._cache.active) {
-                sessionStorage.setItem(hash, JSON.stringify({
-                  data,
-                  time: Date.now()
-                }))
+            url: finalURL,
+            headers: this._headers,
+            timeout: 15e3,
+            onload: response => {
+              this._debug({
+                status: response.status,
+                finalURL
+              })
+              const data = JSON.parse(response.responseText)
+              if (data.Response === 'True') {
+                if (this._cache.active) {
+                  GM.setValue(hash, {
+                    data,
+                    time: Date.now()
+                  })
+                }
+                data.Search
+                  ? resolve({
+                    results: data.Search,
+                    totalResults: data.totalResults
+                  })
+                  : resolve(data)
+              } else {
+                data.Error ? reject(new Error(data.Error)) : reject(new Error('No results'))
               }
-              resolve(data)
-            } else {
-              reject(new Error(data.Error))
+            },
+            onerror: () => {
+              reject(new Error('An error occurs while processing the request'))
+            },
+            ontimeout: () => {
+              reject(new Error('Request times out'))
             }
-          }).catch(error => reject(error))
+          })
         }
       })
     }
