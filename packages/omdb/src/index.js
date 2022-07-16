@@ -7,7 +7,7 @@
 // @description  OMDb API for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      4.1.0
+// @version      4.1.1
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -17,8 +17,6 @@
 // @grant        GM.setValue
 // @grant        GM.xmlHttpRequest
 // ==/UserScript==
-
-/* eslint-disable unicorn/prevent-abbreviations */
 
 /**
  * API methods
@@ -61,6 +59,7 @@ const methods = {
  * @see https://www.omdbapi.com/
  * @class
  */
+// eslint-disable-next-line unicorn/prevent-abbreviations
 class OMDb {
   /**
    * API configuration
