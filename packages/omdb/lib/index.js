@@ -7,7 +7,7 @@
 // @description  OMDb API for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      4.0.0
+// @version      4.1.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -23,34 +23,17 @@ this.OMDb = (function () {
     '/id': {
       method: 'GET',
       optional: ['plot', 'tomatoes', 'type', 'year'],
-      url: '/?i={id}&plot={plot}&tomatoes={tomatoes}&type={type}&y={year}',
-      validator: {
-        plot: '^(short|full)$',
-        tomatoes: '^(true|false)$',
-        type: '^(movie|series|episode)$',
-        year: '^[1|2][0-9]{3}$'
-      }
+      url: '/?i={id}&plot={plot}&tomatoes={tomatoes}&type={type}&y={year}'
     },
     '/search': {
       method: 'GET',
       optional: ['page', 'type', 'year'],
-      url: '/?s={search}&page={page}&type={type}&y={year}',
-      validator: {
-        page: '^[1-9][0-9]*$',
-        type: '^(movie|series|episode)$',
-        year: '^[1|2][0-9]{3}$'
-      }
+      url: '/?s={search}&page={page}&type={type}&y={year}'
     },
     '/title': {
       method: 'GET',
       optional: ['plot', 'tomatoes', 'type', 'year'],
-      url: '/?t={title}&plot={plot}&tomatoes={tomatoes}&type={type}&y={year}',
-      validator: {
-        plot: '^(short|full)$',
-        tomatoes: '^(true|false)$',
-        type: '^(movie|series|episode)$',
-        year: '^[1|2][0-9]{3}$'
-      }
+      url: '/?t={title}&plot={plot}&tomatoes={tomatoes}&type={type}&y={year}'
     }
   }
   class OMDb {
@@ -169,11 +152,6 @@ this.OMDb = (function () {
           const key = /{(\w+)}/g.exec(query)[1]
           const regex = new RegExp(Object.keys(parameters).map(key => `{${key}}`).join('|'), 'gi')
           if (providedParameters.has(key)) {
-            for (const validator in method.validator) {
-              if (Object.hasOwnProperty.call(method.validator, validator) && validator === key && !new RegExp(method.validator[validator]).test(parameters[key])) {
-                throw new Error(`Parameter with invalid options => ${key}:${parameters[key]}`)
-              }
-            }
             Queries.push(query.replace(regex, matched => encodeURIComponent(parameters[matched.replace(/[{}]/g, '')])))
           } else {
             if (!method.optional.includes(key)) {
