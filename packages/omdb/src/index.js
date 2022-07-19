@@ -7,7 +7,7 @@
 // @description  OMDb API for my userscripts
 // @copyright    2019, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      4.1.1
+// @version      4.1.2
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -159,6 +159,8 @@ class OMDb {
    * @returns {object} Response
    */
   async _request (method, parameters) {
+    if (!parameters) throw new Error('Parameters is required')
+
     const finalURL = this._resolve(method, parameters)
     const hash = await this._crypto(finalURL).then().catch((error) => new Error(error))
     const cache = await GM.getValue(hash)
