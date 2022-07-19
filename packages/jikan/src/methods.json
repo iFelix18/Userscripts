@@ -1,0 +1,25 @@
+{
+  "/anime/search": {
+    "method": "GET",
+    "optional": [
+      "end_date",
+      "genres_exclude",
+      "genres",
+      "letter",
+      "max_score",
+      "min_score",
+      "order_by",
+      "page",
+      "producers",
+      "query",
+      "rating",
+      "score",
+      "sfw",
+      "sort",
+      "start_date",
+      "status",
+      "type"
+    ],
+    "url": "/anime?end_date={end_date}&genres_exclude={genres_exclude}&genres={genres}&letter={letter}&max_score={max_score}&min_score={min_score}&order_by={order_by}&page={page}&producers={producers}&q={query}&rating={rating}&score={score}&sfw={sfw}&sort={sort}&start_date={start_date}&status={status}&type={type}"
+  }
+}

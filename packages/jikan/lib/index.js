@@ -7,164 +7,144 @@
 // @description  Jikan API for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.0.0
+// @version      3.0.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/jikan#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/jikan#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
 // ==/UserLibrary==
 // @connect      api.jikan.moe
+// @grant        GM.getValue
+// @grant        GM.setValue
 // @grant        GM.xmlHttpRequest
 // ==/UserScript==
-
 this.Jikan = (function () {
-  /**
-   * API methods
-   */
   const methods = {
     '/anime/search': {
       method: 'GET',
-      url: '/anime?q={query}&type={type}&order_by={order_by}&sfw={sfw}&page={page}'
+      optional: ['end_date', 'genres_exclude', 'genres', 'letter', 'max_score', 'min_score', 'order_by', 'page', 'producers', 'query', 'rating', 'score', 'sfw', 'sort', 'start_date', 'status', 'type'],
+      url: '/anime?end_date={end_date}&genres_exclude={genres_exclude}&genres={genres}&letter={letter}&max_score={max_score}&min_score={min_score}&order_by={order_by}&page={page}&producers={producers}&q={query}&rating={rating}&score={score}&sfw={sfw}&sort={sort}&start_date={start_date}&status={status}&type={type}'
     }
   }
-
-  /**
-   * Jikan API
-   *
-   * @see https://jikan.moe/
-   * @class
-   */
   class Jikan {
-    /**
-     * API configuration
-     *
-     * @param {object} config Configuration
-     * @param {string} [config.api_url='https://api.jikan.moe/v4'] Jikan API URL
-     * @param {number} [config.limit=25] Limit
-     * @param {boolean} [config.debug=false] Debug
-     */
-    constructor (config = {}) {
-      /**
-       * @private
-       */
+    constructor (config = {}, cache = config.cache || {}) {
       this._config = {
         api_url: config.api_url || 'https://api.jikan.moe/v4',
         limit: config.limit || 25,
         debug: config.debug || false
       }
-
-      /**
-       * @private
-       */
+      this._cache = {
+        active: cache.active || false,
+        TTL: (cache.time_to_live || 3600) * 1e3
+      }
       this._headers = {
         'User-Agent': 'Mozilla/5.0',
         'Content-Type': 'application/json;charset=utf-8'
       }
-
-      /**
-       * @param {object} response GM.xmlHttpRequest response
-       * @private
-       */
-      this._debug = (response) => {
-        if (this._config.debug || response.status !== 200) console.log(`${response.status}: ${response.finalUrl}`)
-      }
-
-      this._this = this
       this._methods()
     }
 
-    /**
-     * Creates the various methods
-     *
-     * @private
-     */
+    _this () {
+      return this
+    }
+
+    _debug (response) {
+      if (this._config.debug) console.log(`${response.status} - ${response.finalURL}`)
+    }
+
+    async _crypto (url) {
+      const hashBuffer = await crypto.subtle.digest('SHA-256', (new TextEncoder()).encode(url))
+      const hashArray = [...new Uint8Array(hashBuffer)]
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+      return hashHex
+    }
+
     _methods () {
       for (const method in methods) {
         const parts = method.split('/')
         const function_ = parts.pop()
         parts.shift()
-
-        let temporary = this._this
+        let temporary = this._this()
         for (const part of parts) {
           temporary = temporary[part] || (temporary[part] = {})
         }
-
         temporary[function_] = this._request.bind(this, methods[method])
       }
     }
 
-    /**
-     * Makes a request with GM.xmlHttpRequest
-     *
-     * @private
-     * @param {object} method API method
-     * @param {object} parameters Function parameters
-     * @returns {object} Response
-     */
-    _request (method, parameters) {
+    async _request (method, parameters) {
+      if (!parameters) throw new Error('Parameters is required')
+      const finalURL = this._resolve(method, parameters)
+      const hash = await this._crypto(finalURL).then().catch(error => new Error(error))
+      const cache = await GM.getValue(hash)
       return new Promise((resolve, reject) => {
-        const finalURL = this._resolve(method, parameters)
-
-        GM.xmlHttpRequest({
-          method: method.method,
-          url: finalURL,
-          headers: this._headers,
-          timeout: 15_000,
-          onload: (response) => {
-            this._debug(response)
-            const data = JSON.parse(response.responseText).data
-            if (data.length > 0 && response.readyState === 4 && response.status === 200) {
-              resolve(data)
-            } else {
-              reject(new Error('No results'))
+        if (this._cache.active && cache && Date.now() - cache.time < this._cache.TTL) {
+          this._debug({
+            status: 'cached',
+            finalURL
+          })
+          resolve(cache.data)
+        } else {
+          GM.xmlHttpRequest({
+            method: method.method,
+            url: finalURL,
+            headers: this._headers,
+            timeout: 15e3,
+            onload: response => {
+              this._debug({
+                status: response.status,
+                finalURL
+              })
+              const data = JSON.parse(response.responseText)
+              if (data.pagination.items.total > 0) {
+                if (this._cache.active) {
+                  GM.setValue(hash, {
+                    data,
+                    time: Date.now()
+                  })
+                }
+                resolve(data)
+              } else {
+                reject(new Error('No results'))
+              }
+            },
+            onerror: () => {
+              reject(new Error('An error occurs while processing the request'))
+            },
+            ontimeout: () => {
+              reject(new Error('Request times out'))
             }
-          },
-          onerror: () => {
-            reject(new Error('An error occurs while processing the request'))
-          },
-          ontimeout: () => {
-            reject(new Error('Request times out'))
-          }
-        })
+          })
+        }
       })
     }
 
-    /**
-     * Resolve url
-     *
-     * @private
-     * @param {object} method API method
-     * @param {object} parameters Function parameters
-     * @returns {string} Final URL
-     */
     _resolve (method, parameters) {
-      const url = this._config.api_url
-      const path = method.url.split('?')
-      const pathParameters = []
-      const queryString = []
-
-      // Path Params
-      if (path[0]) {
-        pathParameters.push(path[0])
+      const url = method.url.split('?')
+      const providedParameters = parameters ? new Set(Object.keys(parameters).map(key => `${key}`)) : {}
+      const Parameters = []
+      const Queries = []
+      if (url[0]) {
+        Parameters.push(url[0])
       }
-
-      // Query String
-      if (path[1]) {
-        for (const query of path[1].split('&')) {
+      if (url[1]) {
+        for (const query of url[1].split('&')) {
+          const key = /{(\w+)}/g.exec(query)[1]
           const regex = new RegExp(Object.keys(parameters).map(key => `{${key}}`).join('|'), 'gi')
-
-          if (regex.test(query)) {
-            queryString.push(query.replace(regex, (matched) => parameters[matched.replace(/[{}]/g, '')]))
+          if (providedParameters.has(key)) {
+            Queries.push(query.replace(regex, matched => encodeURIComponent(parameters[matched.replace(/[{}]/g, '')])))
+          } else {
+            if (!method.optional.includes(key)) {
+              throw new Error(`Missing parameter => ${key}`)
+            }
           }
         }
       }
-      if (this._config.limit) { // limit
-        queryString.push(`limit=${this._config.limit}`)
+      if (this._config.limit) {
+        Queries.push(`limit=${this._config.limit}`)
       }
-
-      // return final URL
-      return `${url}${pathParameters.join('')}?${queryString.join('&')}`
+      const finalURL = `${this._config.api_url}${Parameters.join('/')}${Queries.length > 0 ? `?${Queries.join('&')}` : ''}`
+      return finalURL
     }
   }
-
   return Jikan
-})()
+}())
