@@ -18,7 +18,7 @@
 // @description:zh-CN  将烂番茄、Metacritic和MyAnimeList的评级添加到IMDb中。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            3.0.1
+// @version            3.0.2
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -112,7 +112,9 @@
       init: () => {
         // initial configuration if OMDb API Key is missing
         if (!GM_config.isOpen && GM_config.get('OMDbApiKey') === '') {
-          GM_config.open()
+          $(() => {
+            GM_config.open()
+          })
         }
 
         //! Userscripts Safari: GM.registerMenuCommand is missing
@@ -226,7 +228,7 @@
     clearOldCache() // clear old cache
 
     // check if it is on the main page
-    const target = $('section > div:nth-child(1) .rating-bar__base-button:nth-child(1)')
+    const target = $('section > div:nth-child(2) .rating-bar__base-button:nth-child(1)')
     if (target.length === 0) return
 
     // get item data
