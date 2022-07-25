@@ -1,0 +1,9 @@
+{
+  "/search": {
+    "method": "GET",
+    "optional": [
+      "type"
+    ],
+    "url": "/search/?q={query}&t={type}"
+  }
+}
