@@ -7,7 +7,7 @@
 // @description  TMDb API for my userscripts
 // @copyright    2020, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.2.1
+// @version      3.0.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/tmdb#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/tmdb#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -99,7 +99,8 @@ this.TMDb = (function () {
       url: '/tv/{tv_id}/season/{season_number}/images?include_image_language'
     }
   }
-  class TMDatabase {
+  // eslint-disable-next-line unicorn/prevent-abbreviations
+  class TMDb {
     constructor (config = {}, cache = config.cache || {}) {
       if (!config.api_key) throw new Error('TMDb API Key is required')
       this._config = {
@@ -124,7 +125,7 @@ this.TMDb = (function () {
     }
 
     _debug (response) {
-      if (this._config.debug) console.log(`${GM.info.script.name}:`, response)
+      if (this._config.debug) console.log(`${response.status} - ${response.finalURL}`)
     }
 
     async _crypto (url) {
@@ -148,6 +149,7 @@ this.TMDb = (function () {
     }
 
     async _request (method, parameters) {
+      if (!parameters) throw new Error('Parameters is required')
       const finalURL = this._resolve(method, parameters)
       const hash = await this._crypto(finalURL).then().catch(error => new Error(error))
       const cache = await GM.getValue(hash)
@@ -221,7 +223,9 @@ this.TMDb = (function () {
           if (parameters && providedParameters.has(query)) {
             Queries.push(`${query}=${encodeURIComponent(parameters[query])}`)
           } else {
-            if (!method.optional.includes(query)) throw new Error(`Missing parameter: ${query}`)
+            if (!method.optional.includes(query)) {
+              throw new Error(`Missing parameter: ${query}`)
+            }
           }
         }
       }
@@ -236,5 +240,5 @@ this.TMDb = (function () {
       return finalURL
     }
   }
-  return TMDatabase
+  return TMDb
 }())

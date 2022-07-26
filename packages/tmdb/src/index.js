@@ -7,7 +7,7 @@
 // @description  TMDb API for my userscripts
 // @copyright    2020, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.2.1
+// @version      3.0.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/tmdb#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/tmdb#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -117,7 +117,8 @@ const methods = {
  * @see https://developers.themoviedb.org/3/
  * @class
  */
-export default class TMDb { // eslint-disable-line unicorn/prevent-abbreviations
+// eslint-disable-next-line unicorn/prevent-abbreviations
+export default class TMDb {
   /**
    * API configuration
    *
@@ -168,7 +169,7 @@ export default class TMDb { // eslint-disable-line unicorn/prevent-abbreviations
    * @param {object} response Response
    */
   _debug (response) {
-    if (this._config.debug) console.log(`${GM.info.script.name}:`, response)
+    if (this._config.debug) console.log(`${response.status} - ${response.finalURL}`)
   }
 
   /**
@@ -182,7 +183,7 @@ export default class TMDb { // eslint-disable-line unicorn/prevent-abbreviations
   async _crypto (url) {
     const hashBuffer = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(url))
     const hashArray = [...new Uint8Array(hashBuffer)]
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
+    const hashHex = hashArray.map((b) => b.toString(16).padStart(2, '0')).join('')
     return hashHex
   }
 
@@ -210,11 +211,16 @@ export default class TMDb { // eslint-disable-line unicorn/prevent-abbreviations
    * Makes a request with GM.xmlHttpRequest
    *
    * @private
+   * @see https://wiki.greasespot.net/GM.getValue
+   * @see https://wiki.greasespot.net/GM.setValue
+   * @see https://wiki.greasespot.net/GM.xmlHttpRequest
    * @param {object} method API method
    * @param {object} parameters Function parameters
    * @returns {object} Response
    */
   async _request (method, parameters) {
+    if (!parameters) throw new Error('Parameters is required')
+
     const finalURL = this._resolve(method, parameters)
     const hash = await this._crypto(finalURL).then().catch(error => new Error(error))
     const cache = await GM.getValue(hash)
@@ -231,7 +237,9 @@ export default class TMDb { // eslint-disable-line unicorn/prevent-abbreviations
           timeout: 15_000,
           onload: (response) => {
             this._debug({ status: response.status, finalURL })
+
             const data = response.responseText ? JSON.parse(response.responseText) : undefined
+
             if (data && response.readyState === 4 && response.status === 200) {
               if (this._cache.active) GM.setValue(hash, { data, time: Date.now() })
               resolve(data)
@@ -291,7 +299,9 @@ export default class TMDb { // eslint-disable-line unicorn/prevent-abbreviations
         if (parameters && providedParameters.has(query)) {
           Queries.push(`${query}=${encodeURIComponent(parameters[query])}`)
         } else {
-          if (!method.optional.includes(query)) throw new Error(`Missing parameter: ${query}`)
+          if (!method.optional.includes(query)) {
+            throw new Error(`Missing parameter: ${query}`)
+          }
         }
       }
     }

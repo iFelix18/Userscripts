@@ -1,0 +1,89 @@
+{
+  "/configuration/api": {
+    "method": "GET",
+    "optional": [],
+    "url": "/configuration"
+  },
+  "/configuration/primary_translations": {
+    "method": "GET",
+    "optional": [],
+    "url": "/configuration/primary_translations"
+  },
+  "/find": {
+    "method": "GET",
+    "optional": [],
+    "url": "/find/{external_id}?external_source"
+  },
+  "/movie/details": {
+    "append_to_response": true,
+    "method": "GET",
+    "optional": [],
+    "url": "/movie/{movie_id}"
+  },
+  "/movie/external_ids": {
+    "method": "GET",
+    "optional": [],
+    "url": "/movie/{movie_id}/external_ids"
+  },
+  "/movie/images": {
+    "method": "GET",
+    "optional": [
+      "include_image_language"
+    ],
+    "url": "/movie/{movie_id}/images?include_image_language"
+  },
+  "/tv/details": {
+    "append_to_response": true,
+    "method": "GET",
+    "optional": [],
+    "url": "/tv/{tv_id}"
+  },
+  "/tv/episode/details": {
+    "append_to_response": true,
+    "method": "GET",
+    "optional": [],
+    "url": "/tv/{tv_id}/season/{season_number}/episode/{episode_number}"
+  },
+  "/tv/episode/external_ids": {
+    "method": "GET",
+    "optional": [],
+    "url": "/tv/{tv_id}/season/{season_number}/episode/{episode_number}/external_ids"
+  },
+  "/tv/episode/images": {
+    "method": "GET",
+    "optional": [
+      "include_image_language"
+    ],
+    "url": "/tv/{tv_id}/season/{season_number}/episode/{episode_number}/images?include_image_language"
+  },
+  "/tv/external_ids": {
+    "method": "GET",
+    "optional": [],
+    "url": "/tv/{tv_id}/external_ids"
+  },
+  "/tv/images": {
+    "method": "GET",
+    "optional": [
+      "include_image_language"
+    ],
+    "url": "/tv/{tv_id}/images?include_image_language"
+  },
+  "/tv/season/details": {
+    "append_to_response": true,
+    "method": "GET",
+    "optional": [],
+    "url": "/tv/{tv_id}/season/{season_number}"
+  },
+  "/tv/season/external_ids": {
+    "method": "GET",
+    "optional": [],
+    "url": "/tv/{tv_id}/season/{season_number}/external_ids"
+  },
+  "/tv/season/images": {
+    "method": "GET",
+    "optional": [
+      "include_image_language"
+    ],
+    "url": "/tv/{tv_id}/season/{season_number}/images?include_image_language"
+  }
+}
