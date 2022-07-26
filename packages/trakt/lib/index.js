@@ -7,7 +7,7 @@
 // @description  Trakt API for my userscripts
 // @copyright    2020, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      2.3.1
+// @version      3.0.0
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/trakt#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/trakt#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -103,7 +103,7 @@ this.Trakt = (function () {
     }
 
     _debug (response) {
-      if (this._config.debug) console.log(`${GM.info.script.name}:`, response)
+      if (this._config.debug) console.log(`${response.status} - ${response.finalURL}`)
     }
 
     async _crypto (url) {
@@ -127,6 +127,7 @@ this.Trakt = (function () {
     }
 
     async _request (method, parameters) {
+      if (!parameters) throw new Error('Parameters is required')
       const finalURL = this._resolve(method, parameters)
       const hash = await this._crypto(finalURL).then().catch(error => new Error(error))
       const cache = await GM.getValue(hash)
@@ -212,7 +213,9 @@ this.Trakt = (function () {
           if (parameters && providedParameters.has(query)) {
             Queries.push(`${query}=${encodeURIComponent(parameters[query])}`)
           } else {
-            if (!method.optional.includes(query)) throw new Error(`Missing parameter: ${query}`)
+            if (!method.optional.includes(query)) {
+              throw new Error(`Missing parameter: ${query}`)
+            }
           }
         }
       }

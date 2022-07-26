@@ -1,0 +1,86 @@
+{
+  "/episodes/summary": {
+    "extended": [
+      "full"
+    ],
+    "method": "GET",
+    "optional": [],
+    "url": "/shows/{id}/seasons/{season}/episodes/{episode}"
+  },
+  "/episodes/translations": {
+    "method": "GET",
+    "optional": [
+      "language"
+    ],
+    "url": "/shows/{id}/seasons/{season}/episodes/{episode}/translations/{language}"
+  },
+  "/movies/summary": {
+    "extended": [
+      "full"
+    ],
+    "method": "GET",
+    "optional": [],
+    "url": "/movies/{id}"
+  },
+  "/movies/translations": {
+    "method": "GET",
+    "optional": [
+      "language"
+    ],
+    "url": "/movies/{id}/translations/{language}"
+  },
+  "/search/id": {
+    "extended": [
+      "full"
+    ],
+    "method": "GET",
+    "optional": [
+      "type"
+    ],
+    "url": "/search/{id_type}/{id}?type"
+  },
+  "/search/query": {
+    "extended": [
+      "full"
+    ],
+    "method": "GET",
+    "optional": [
+      "fields"
+    ],
+    "url": "/search/{type}?query&fields"
+  },
+  "/seasons/season": {
+    "extended": [
+      "full"
+    ],
+    "method": "GET",
+    "optional": [
+      "translations"
+    ],
+    "url": "/shows/{id}/seasons/{season}?translations"
+  },
+  "/seasons/summary": {
+    "extended": [
+      "full",
+      "episodes"
+    ],
+    "method": "GET",
+    "optional": [],
+    "url": "/shows/{id}/seasons"
+  },
+  "/shows/summary": {
+    "extended": [
+      "full"
+    ],
+    "method": "GET",
+    "optional": [],
+    "url": "/shows/{id}"
+  },
+  "/shows/translations": {
+    "method": "GET",
+    "optional": [
+      "language"
+    ],
+    "url": "/shows/{id}/translations/{language}"
+  }
+}
