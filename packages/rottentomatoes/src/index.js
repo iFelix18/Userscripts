@@ -7,7 +7,7 @@
 // @description  Rotten Tomatoes API for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      3.0.0
+// @version      3.0.1
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/rottentomatoes#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/rottentomatoes#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -156,6 +156,7 @@ export default class RottenTomatoes {
             const data = JSON.parse(response.responseText)
 
             if (response.readyState === 4 && response.status === 200) {
+              if (this._cache.active) GM.setValue(hash, { data, time: Date.now() })
               resolve(data)
             } else {
               reject(new Error('No results'))
