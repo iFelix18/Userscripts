@@ -18,7 +18,7 @@
 // @description:zh-CN  在TMDb中添加来自IMDb、烂番茄、Metacritic和MyAnimeList的评分。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            3.0.2
+// @version            3.0.3
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -26,11 +26,11 @@
 // @downloadURL        https://raw.githubusercontent.com/iFelix18/Userscripts/master/userscripts/ratings-on-tmdb.user.js
 // @require            https://fastly.jsdelivr.net/gh/sizzlemctwizzle/GM_config@43fd0fe4de1166f343883511e53546e87840aeaf/gm_config.min.js
 // @require            https://fastly.jsdelivr.net/npm/@ifelix18/utils@6.6.1/lib/index.min.js
-// @require            https://fastly.jsdelivr.net/npm/@ifelix18/tmdb@2.0.0/lib/index.min.js
-// @require            https://fastly.jsdelivr.net/npm/@ifelix18/omdb@2.0.0/lib/index.min.js
-// @require            https://fastly.jsdelivr.net/npm/@ifelix18/rottentomatoes@2.0.0/lib/index.min.js
-// @require            https://fastly.jsdelivr.net/npm/@ifelix18/jikan@2.0.0/lib/index.min.js
-// @require            https://fastly.jsdelivr.net/npm/@ifelix18/ratings@4.0.0/lib/index.min.js
+// @require            https://fastly.jsdelivr.net/npm/@ifelix18/tmdb@3.0.0/lib/index.min.js
+// @require            https://fastly.jsdelivr.net/npm/@ifelix18/omdb@4.1.3/lib/index.min.js
+// @require            https://fastly.jsdelivr.net/npm/@ifelix18/rottentomatoes@3.0.1/lib/index.min.js
+// @require            https://fastly.jsdelivr.net/npm/@ifelix18/jikan@3.0.0/lib/index.min.js
+// @require            https://fastly.jsdelivr.net/npm/@ifelix18/ratings@5.0.1/lib/index.min.js
 // @require            https://fastly.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js
 // @require            https://fastly.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js
 // @require            https://fastly.jsdelivr.net/npm/tooltipster@4.2.8/dist/js/tooltipster.bundle.min.js
@@ -64,7 +64,6 @@
   //* Constants
   const id = GM.info.script.name.toLowerCase().replace(/\s/g, '-')
   const title = `${GM.info.script.name} v${GM.info.script.version} Settings`
-  const cachePeriod = 3_600_000
   const fields = {
     TMDbApiKey: {
       label: 'TMDb API Key',
@@ -122,7 +121,7 @@
       init: () => {
         // initial configuration if OMDb API Key is missing
         if (!GM_config.isOpen && (GM_config.get('TMDbApiKey') === '' || GM_config.get('OMDbApiKey') === '')) {
-          GM_config.open()
+          $(() => GM_config.open())
         }
 
         //! Userscripts Safari: GM.registerMenuCommand is missing
@@ -153,9 +152,14 @@
 
   //* Ratings
   const rating = new Ratings({
-    omdb_api_key: GM_config.get('OMDbApiKey'),
-    cache_period: cachePeriod,
-    debug: GM_config.get('debugging')
+    omdb: {
+      api_key: GM_config.get('OMDbApiKey')
+    },
+    debug: GM_config.get('debugging'),
+    cache: {
+      active: true,
+      TTL: 3600
+    }
   })
 
   //* Handlebars
