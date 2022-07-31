@@ -18,7 +18,7 @@
 // @description:zh-CN  将烂番茄、Metacritic和MyAnimeList的评级添加到IMDb中。
 // @copyright          2021, Davide (https://github.com/iFelix18)
 // @license            MIT
-// @version            3.0.3
+// @version            3.0.4
 // @homepage           https://github.com/iFelix18/Userscripts#readme
 // @homepageURL        https://github.com/iFelix18/Userscripts#readme
 // @supportURL         https://github.com/iFelix18/Userscripts/issues
@@ -62,7 +62,6 @@
   //* Constants
   const id = GM.info.script.name.toLowerCase().replace(/\s/g, '-')
   const title = `${GM.info.script.name} v${GM.info.script.version} Settings`
-  const cachePeriod = 3_600_000
   const fields = {
     OMDbApiKey: {
       label: 'OMDb API Key',
@@ -184,7 +183,7 @@
 
     for (const value of values) {
       const cache = await GM.getValue(value) // get cache
-      if ((Date.now() - cache.time) > cachePeriod) { GM.deleteValue(value) } // delete old cache
+      if ((Date.now() - cache.time) > 3_600_000) { GM.deleteValue(value) } // delete old cache
     }
   }
 
