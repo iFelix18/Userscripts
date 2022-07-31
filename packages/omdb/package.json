@@ -1,6 +1,6 @@
 {
   "name": "@ifelix18/omdb",
-  "version": "4.1.2",
+  "version": "4.1.3",
   "description": "OMDb API for my userscripts",
   "homepage": "https://github.com/iFelix18/Userscripts/tree/master/packages/omdb#readme",
   "bugs": {
