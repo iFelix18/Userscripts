@@ -7,7 +7,7 @@
 // @description  Ratings for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      5.0.0
+// @version      5.0.1
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/ratings#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/ratings#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -79,10 +79,6 @@ this.Ratings = (function () {
       }
     }
 
-    _debug = log => {
-      if (this._config.debug) console.log(log)
-    }
-
     _n = string => string.replace(/\p{P}\s/gu, ' ').toLowerCase()
     _votes = votes => votes >= 1e3 ? `${Math.round(votes / 1e3, 1)}k` : votes
     _tomatoLogo = score => score < 60 ? this._logos.rotten : this._logos.fresh
@@ -107,13 +103,11 @@ this.Ratings = (function () {
       const mal = await this._mal.anime.search({
         query: omdb.Title
       }).then(data => data.data.map(item => item).find(item => item.title_english && this._n(item.title_english) === this._n(omdb.Title) && item.year === Number.parseInt(/\d{4}/.exec(omdb.Year)[0]))).catch(error => console.error(error))
-      const data = {
+      return {
         omdb,
         tomato,
         mal
       }
-      this._debug(data)
-      return data
     }
 
     async elaborate ({ omdb, tomato, mal }) {
@@ -149,14 +143,12 @@ this.Ratings = (function () {
         url: mal && mal.url ? mal.url : 'N/A',
         votes: mal && mal.scored_by ? this._votes(Number(mal.scored_by)) : 'N/A'
       }
-      const data = {
+      return {
         imdb,
         tomatometer,
         metascore,
         myanimelist
       }
-      this._debug(data)
-      return data
     }
   }
   return Ratings

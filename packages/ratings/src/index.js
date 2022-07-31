@@ -7,7 +7,7 @@
 // @description  Ratings for my userscripts
 // @copyright    2022, Davide (https://github.com/iFelix18)
 // @license      MIT
-// @version      5.0.0
+// @version      5.0.1
 // @homepage     https://github.com/iFelix18/Userscripts/tree/master/packages/ratings#readme
 // @homepageURL  https://github.com/iFelix18/Userscripts/tree/master/packages/ratings#readme
 // @supportURL   https://github.com/iFelix18/Userscripts/issues
@@ -107,16 +107,6 @@ export default class Ratings {
   }
 
   /**
-   * Debug
-   *
-   * @private
-   * @param {*} log log
-   */
-  _debug = (log) => {
-    if (this._config.debug) console.log(log)
-  }
-
-  /**
    * Normalize a string
    *
    * @param {string} string String
@@ -206,11 +196,7 @@ export default class Ratings {
         .find((item) => item.title_english && this._n(item.title_english) === this._n(omdb.Title) && item.year === Number.parseInt(/\d{4}/.exec(omdb.Year)[0]))
     }).catch(error => console.error(error))
 
-    const data = { omdb, tomato, mal } // APIs data
-
-    this._debug(data)
-
-    return data // return data
+    return { omdb, tomato, mal }
   }
 
   /**
@@ -256,10 +242,6 @@ export default class Ratings {
       votes: mal && mal.scored_by ? this._votes(Number(mal.scored_by)) : 'N/A'
     }
 
-    const data = { imdb, tomatometer, metascore, myanimelist }
-
-    this._debug(data)
-
-    return data
+    return { imdb, tomatometer, metascore, myanimelist }
   }
 }
