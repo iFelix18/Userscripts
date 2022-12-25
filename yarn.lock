@@ -8781,9 +8781,9 @@ upath@^2.0.1:
   integrity sha512-1uEe95xksV1O0CYKXo8vQvN1JEbtJp7lb7C5U9HMsIp6IVwntkH/oNUzyVNQSd4S1sYk2FpSSW44FqMc8qee5w==
 
 updates@^13.0.4:
-  version "13.1.2"
-  resolved "https://registry.yarnpkg.com/updates/-/updates-13.1.2.tgz#aa6e8fe34cd0d4b87ec229ab524b8460826f5c7c"
-  integrity sha512-wixXdKufbYwxKFMqWmkjnf6vlkZ8Lpx8fWYFrkxawNO9j7xlGQHCtbqW7LHkl/+tl57fFlvgvQ5dAIrseqk3Qw==
+  version "13.2.7"
+  resolved "https://registry.yarnpkg.com/updates/-/updates-13.2.7.tgz#cc305d7a4daa99b6b02093f10c05cbe972c17be5"
+  integrity sha512-0RbLcGX1zweNWITsX4hd1OjUX+GHqE/bK9czDdmnmt7lVwae4VLMuou3/Uu7YD6oUSjkswU7KNFNa0watI566A==
 
 uri-js@^4.2.2:
   version "4.4.1"
